@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = '全站全文搜索 · 机场指南';
+const description = '使用 Pagefind 静态搜索引擎检索机场指南全站 31 家品牌档案、线路科普、客户端教程与故障排查知识。';
+const breadcrumbs = [
+  { name: '搜索', url: '/search/' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs} noindex={true}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <div class="max-w-2xl mb-6">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-brand-teal text-xs font-semibold border border-emerald-200 mb-3">
+        <span>🔍 站内即时索引 · 毫秒级离线全文检索</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+        全站内容与知识搜索
+      </h1>
+      <p class="text-xs sm:text-sm text-brand-muted mt-1.5 leading-relaxed">
+        输入品牌名称（如 光速云）、协议（如 VLESS）、客户端（如 Clash）或故障现象（如 节点超时），即刻检索相关档案与章节。
+      </p>
+    </div>
+
+    <!-- Pagefind Container -->
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm min-h-[400px]">
+      <div id="pagefind-container"></div>
+      
+      <!-- Fallback message for development before running build -->
+      <noscript>
+        <div class="text-xs text-amber-800 bg-amber-50 p-4 rounded-lg border border-amber-200 mt-4">
+          提示：站内即时全文检索依赖客户端 JavaScript。若未启用 JS，您也可以直接浏览 <a href="/brands/" class="underline font-bold">品牌库</a> 或 <a href="/guides/" class="underline font-bold">使用教程</a> 专题。
+        </div>
+      </noscript>
+    </div>
+
+  </div>
+</BaseLayout>
+
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+<script is:inline src="/pagefind/pagefind-ui.js"></script>
+
+<script is:inline>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (typeof PagefindUI !== 'undefined') {
+      new PagefindUI({
+        element: "#pagefind-container",
+        showSubResults: true,
+        showImages: false,
+        translations: {
+          placeholder: "搜索品牌、套餐、协议、教程或故障关键字...",
+          clear_search: "清空",
+          load_more: "加载更多结果",
+          search_label: "站内检索",
+          filters_label: "筛选",
+          zero_results: "未找到与 [SEARCH_TERM] 相关的内容",
+          many_results: "找到 [COUNT] 条相关结果",
+          one_result: "找到 1 条相关结果",
+          alt_search: "未找到与 [SEARCH_TERM] 完全匹配的结果，展示相似内容",
+          search_suggestion: "建议尝试更通用的词汇（如：专线、延迟、Clash）",
+          searching: "正在检索全站档案..."
+        }
+      });
+    } else {
+      const container = document.getElementById('pagefind-container');
+      if (container) {
+        container.innerHTML = `
+          <div class="text-xs text-brand-muted p-4 border border-dashed border-brand-border rounded-lg text-center space-y-2">
+            <div class="text-sm font-bold text-brand-dark">Pagefind 索引将在生产构建 (npm run build) 时自动生成</div>
+            <p>在开发环境中，您可直接通过顶部导航栏或页面分类浏览全站内容。</p>
+          </div>
+        `;
+      }
+    }
+  });
+</script>

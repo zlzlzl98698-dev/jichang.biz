@@ -1,0 +1,457 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+import { parseMarkdown } from '../../utils/markdown';
+
+export async function getStaticPaths() {
+  const articles = [
+    {
+      slug: 'clash-verge-rev',
+      title: 'Clash Verge Rev 深度档案：基于 Mihomo 内核的跨平台现代化桌面客户端',
+      description: '全方位剖析 Clash Verge Rev 的技术架构、Mihomo (Clash.Meta) 内核演进、TUN 虚拟网卡实现、订阅管理与多配置调度方案。',
+      author: '机场指南客户端测评组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      clientName: 'Clash Verge Rev',
+      license: '开源 / 免费 (GPL-3.0)',
+      platforms: ['Windows', 'macOS', 'Linux'],
+      core: 'Mihomo (Clash.Meta)',
+      content: `
+## 一、项目背景与历史演进
+
+在原 Clash for Windows (CFW) 核心维护者于 2023 年底宣布归档仓库并停止维护后，全球数十万使用 Clash 生态的用户面临着内核停更与协议脱节的困境。旧版 Clash Premium 内核不仅对 VLESS Reality、Hysteria 2、TUIC v5 等次世代抗封锁协议缺乏原生支持，其基于 Electron 构建的前端架构也因内存开销庞大（常驻 300MB–600MB）而饱受诟病。
+
+在此背景下，开源社区迅速孵化并迭代出新一代现代化图形桌面客户端——**Clash Verge Rev**。该项目采用轻量级 Tauri (Rust) + React 前端架构，底层全面拥抱积极演进的 **Mihomo（原 Clash.Meta）开源内核**，迅速成为跨平台桌面端（Windows、macOS、Linux）装机量与好评率最高的统治级作品。
+
+> [!TIP]
+> 为什么推荐选用 Clash Verge Rev？它彻底解决了旧版 CFW 的三项顽疾：① 内存开销大幅锐减至 80MB–150MB；② 原生支持 Hysteria 2 与 VLESS 等新锐协议；③ 内置经过重构的系统服务模式（Service Mode），一键开启 TUN 虚拟网卡，无需繁琐安装第三方虚拟驱动。
+
+## 二、核心技术架构与硬核特性剖析
+
+### 1. Tauri (Rust) 带来的性能飞跃
+旧版代理软件大多基于完整的 Chromium 内核打包，空载即占用数百兆物理内存。Clash Verge Rev 选用 Rust 语言构建系统底层绑定，直接调用操作系统原生的 WebView 渲染引擎（Windows 上的 WebView2，macOS 上的 WebKit）。这不仅使安装包体积从动辄 100MB 压缩至 30MB 以内，冷启动速度更实现了毫秒级响应，即使在 8GB 内存的轻薄办公本上全天常驻，也几乎不会造成任何系统卡顿。
+
+### 2. 深度绑定 Mihomo (Clash.Meta) 次世代内核
+Mihomo 是当前开源网络代理内核中功能最强劲、更新最频繁的分支。Clash Verge Rev 深度整合了 Mihomo 的核心能力：
+- **次世代协议全覆盖**：完美支持 Shadowsocks-2022、VMess、VLESS（含 XTLS-Reality 与 gRPC）、Trojan、Hysteria 2、TUIC v5 及 WireGuard；
+- **GeoSite / GeoIP 现代规则集**：支持社区高频维护的 Loyalsoldier 与 ACL4SSR 规则集，分流判定完全基于内存布隆过滤器，毫秒级完成海量域名与 IP 匹配；
+- **出站负载均衡与回退调度**：支持 \`url-test\`（低延迟自动选择）、\`fallback\`（故障自动切换）与 \`load-balance\`（连接轮询负载分担）。
+
+### 3. OSI 第 3 层 TUN 虚拟网卡与透明接管
+传统“系统代理”仅在 HTTP / HTTPS 环境变量层级生效，仅能被浏览器等支持系统代理规范的软件遵循。像终端命令行（\`git\`、\`curl\`、\`ssh\`）、各类游戏客户端以及 Docker 容器往往直接绕过系统代理发起直连。
+
+Clash Verge Rev 内置了完善的 **Service Mode（系统服务模式）**。开启后，软件会在操作系统内核中创建一张名为 \`Mihomo\` 的虚拟网卡（TUN 网卡），直接从操作系统第 3 层（网络层）拦截所有出站 IP 数据包，并将其导流进代理内核进行分流判定，真正实现了桌面全机软件的“全局透明代理”。
+
+## 三、新手到高阶保姆级配置实操 SOP
+
+1. **安装包选型与架构匹配**：
+   - **Windows**：推荐下载官方 Release 页面中的 \`Clash.Verge_x64-setup.exe\`（64位安装版）；如果是 ARM 架构平板请选 \`arm64\`；
+   - **macOS**：苹果 Apple Silicon 芯片（M1/M2/M3/M4）必须下载 \`aarch64.dmg\`，Intel 芯片老款 Mac 选择 \`x64.dmg\`；
+   - **Linux**：官方提供 \`.deb\`、\`.rpm\` 以及通用无依赖的 \`.AppImage\`。
+
+2. **订阅导入与自动更新策略**：
+   - 登录服务商后台复制 Clash 格式订阅 URL；
+   - 打开客户端左侧导航栏的 **“订阅 (Profiles)”**，在顶部输入框粘贴订阅链接，点击 **“保存 (Save)”**；
+   - ⚠️ **关键设置**：右键点击该订阅卡片，选择“编辑 (Edit)”，将更新周期修改为 **24 小时或 12 小时**。这能确保服务商更新节点入口 IP 或中转线路时，客户端能静默自动拉取，避免突发断网。
+
+3. **分流模式选择指南 (Rule vs Global vs Direct)**：
+   - **规则模式 (Rule - 强烈推荐 99% 场景)**：根据内置的分流规则库，国内流量（百度、微信、网银、淘宝）直接走本地家庭宽带，国外网站（Google、GitHub、Netflix）自动走代理节点。这是日常使用最省心、最省流量且不触发银行风控的模式；
+   - **全局模式 (Global)**：强制全机所有网络流量无论境内外均通过选中的单一节点出站。仅在特定生僻网站无法被分流规则识别时临时使用；
+   - **直连模式 (Direct)**：彻底不经过任何代理内核，等同于临时关闭代理。
+
+4. **开启 TUN 模式接管全机出站**：
+   - 前往左侧 **“设置 (Settings)”**，找到 **“服务模式 (Service Mode)”**，点击右侧的安装齿轮图标，授予管理员权限完成驱动部署；
+   - 安装成功后，将主界面的 **“TUN 模式”** 开关拨至开启状态；
+   - 此时在系统终端输入 \`curl https://ipinfo.io\`，即可看到出站 IP 已被成功代理。
+
+## 四、高发故障排除与进阶避坑
+
+> [!WARNING]
+> **常见痛点一：系统端口 7890 冲突报错**  
+> 如果电脑上曾安装过旧版 CFW 或其他代理软件且未彻底卸载，Clash Verge Rev 启动时可能会报 \`listen tcp 127.0.0.1:7890: bind: address already in use\`。解决方案：在设置中将“混合端口 (Mixed Port)”从 7890 修改为其他非冲突端口（如 \`7895\` 或 \`10808\`），或在任务管理器中彻底杀掉旧进程。
+
+> [!DANGER]
+> **常见痛点二：关机前未关闭代理导致第二天“有网但打不开网页”**  
+> 很多用户遇到电脑休眠或重启后突然无法上网的情况。根本原因是软件异常退出时未来得及清理 Windows 系统代理注册表项。解决方案：打开 Windows“网络和 Internet -> 代理”，将“使用代理服务器”开关手动关闭，或在软件设置中勾选“系统重启时自动恢复代理设置”。
+      `,
+      faqs: [
+        {
+          question: 'Clash Verge Rev 与已停更的 Clash for Windows 有何区别？',
+          answer: 'CFW 基于旧版 Clash 内核且已永久停更，不支持 Hysteria 2 / TUIC 等新协议，且常驻内存高达 400MB；Clash Verge Rev 积极活跃维护，采用 Mihomo 内核与 Rust 架构，协议与规则支持全面领先，内存开销仅 100MB 左右。'
+        },
+        {
+          question: '下载时应当选择哪种安装包？',
+          answer: 'Windows 用户推荐下载 Clash.Verge_x64-setup.exe；Mac 芯片（M1-M4）必须选择 aarch64.dmg，旧款 Intel Mac 选择 x64.dmg。'
+        },
+        {
+          question: '开启 TUN 模式后电脑无法访问局域网打印机或 NAS 怎么解决？',
+          answer: '在软件设置的 TUN 模式高级配置中，确保开启了“严格路由 (Strict Route)”并正确配置了“绕过局域网 IP (Bypass Private Networks)”，默认私网网段（如 192.168.0.0/16、10.0.0.0/8）将被自动剔除出代理隧道。'
+        }
+      ]
+    },
+    {
+      slug: 'v2rayn',
+      title: 'v2rayN 深度档案：Windows 平台经典多核心代理调度利器',
+      description: '详解 v2rayN 的核心调度机制、Xray-core / Sing-box / Mihomo 多内核无缝切换、路由规则自定义与极致低延迟调优。',
+      author: '机场指南客户端测评组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      clientName: 'v2rayN',
+      license: '开源 / 免费 (GPL-3.0)',
+      platforms: ['Windows'],
+      core: 'Xray-core / Sing-box / Mihomo',
+      content: `
+## 一、软件定位与不可替代的优势
+
+**v2rayN** 是 Windows 平台上历史最悠久、装机量最高且功能最扎实的专业级代理客户端之一。自 V2Ray 早期时代诞生至今，v2rayN 始终保持着高度活跃的开源迭代。
+
+与 Clash 系列“单配置全托管”的哲学不同，v2rayN 的核心设计理念是**“模块化多内核热插拔控制台”**。它本身是一个基于微软 .NET 技术栈构建的高性能图形调度中心，不强绑定某单一协议，而是将底层的协议实现完全解耦为独立的核心程序（Core）：
+- **Xray-core**：Project X 官方核心，XTLS-Reality 与 VLESS 标杆参考实现；
+- **Sing-box core**：次世代纯 Go 高并发通用内核；
+- **Mihomo core**：兼顾 Clash YAML 规则的高性能协议栈。
+
+用户可以在一套统一的界面中，对多服务商、多协议节点进行一键批量延迟测速、路由分流定制与端口映射，是广大 Windows 深度技术用户心目中的硬核首选。
+
+## 二、核心特色功能与机制剖析
+
+### 1. 多内核自由切换与自适应调度
+在 v2rayN 顶部菜单的“设置 -> 核心设置”中，用户可以自由指定处理特定协议时的底层 Core。例如：
+- 当连接 VLESS Reality 节点时，自动调用底层优化最激进的 Xray 核心；
+- 当连接 Hysteria 2 或 TUIC 节点时，自动路由至 Sing-box 核心；
+- 这种模块化机制使得用户无需等待客户端作者更新前端界面，只要将最新的 Core 文件直接解压丢进软件的 \`bin\` 目录，就能立即支持最新的前沿网络协议。
+
+### 2. 批量真连接延迟测速 (Real Delay)
+很多代理软件只提供 TCP Ping 测速。TCP Ping 仅测试本地与节点服务器完成 TCP 三次握手的时间，无法体现服务器是否真正具备访问外网的能力（俗称“绿色的假延迟”）。
+
+v2rayN 原生支持**“真实下载延迟测试 (HTTP GET)”**：
+- 客户端会并发向预设的海外测试端点（如 Google、Cloudflare 测速页）发起微型数据包请求；
+- 测出的毫秒数代表了“从发起请求到真实拿到回包”的真实往返时延（RTT）；
+- 能够精准识别出“TCP 连接正常但节点早已欠费停机”的虚假节点。
+
+### 3. 精细的分流路由规则与 GeoSite 支持
+v2rayN 内置了强大的路由集管理面板。支持通过自定义规则集区分 Direct（直连）、Proxy（代理）与 Block（阻止）域名。用户可以自由导入社区最热门的域名列表（如 \`geosite:cn\`、\`geosite:category-ads-all\`），在保证国内软件原生千兆网速的同时，自动将海外请求分流至专线出站。
+
+## 三、新手上手与实操避坑 SOP
+
+1. **环境依赖：安装 .NET 8.0 运行时**：
+   - v2rayN 7.x 现代版本基于 Microsoft .NET 8.0 开发；
+   - 首次运行前，如果弹窗提示缺失环境，请前往微软官网下载并安装 **.NET Desktop Runtime 8.0 (x64)**；
+   - ⚠️ **切勿下载错版本**：必须是“桌面运行时 (Desktop Runtime)”，而非控制台运行库或 SDK。
+
+2. **完整安装包选型**：
+   - 从官方 GitHub Releases 页面下载时，务必下载名称包含 **\`-With-Core.zip\`** 的完整压缩包（例如 \`v2rayN-With-Core.zip\`）；
+   - 如果下载了不带 Core 的 Mini 版，初次启动会报“找不到 xray.exe 或 sing-box.exe”错误。
+
+3. **解压与防杀毒软件误拦截**：
+   - 将压缩包完整解压至非系统根目录（如 \`D:\\Tools\\v2rayN\\\`），不要直接在压缩包内双击运行；
+   - 由于底层 Core 包含网络拦截组件，Windows Defender 或部分第三方安全软件可能会误报检出。建议将解压后的整个 v2rayN 文件夹添加到杀毒软件的“信任/排除白名单”中。
+
+4. **订阅添加与启用代理**：
+   - 复制机场提供的 V2Ray / Xray 通用订阅链接；
+   - 点击顶部菜单 **“订阅分组 -> 订阅分组设置”**，点击“添加”；
+   - 将链接粘贴至“可选地址 (Url)”中，确定保存；
+   - 按快捷键 \`Ctrl + U\` 立即更新订阅，节点列表将即刻刷出；
+   - 在底部任务栏右键 v2rayN 蓝红色图标，将“系统代理”设置为 **“自动配置系统代理”**，路由选择 **“绕过大陆 (Whitelist)”**。
+      `,
+      faqs: [
+        {
+          question: 'v2rayN 提示找不到 core 核心文件怎么解决？',
+          answer: '这是因为下载了不含内核的 Mini 版。请前往 GitHub Release 重新下载以 -With-Core.zip 结尾的完整包，解压后覆盖即可。'
+        },
+        {
+          question: '测速时节点全是 -1ms 超时，但手机上能正常使用？',
+          answer: '首先检查 Windows 本地系统时间是否偏差超过 60 秒（前往系统设置同步网络时间）；其次检查 Windows 防火墙是否拦截了 xray.exe 的入站与出站通信。'
+        }
+      ]
+    },
+    {
+      slug: 'shadowrocket',
+      title: 'Shadowrocket (小火箭) 深度档案：iOS 平台的规则代理统治级工具',
+      description: '深度剖析 iOS 经典工具 Shadowrocket 的全协议覆盖、Network Extension 低能耗机制、外区正版获取防骗指南与自动化分流配置。',
+      author: '机场指南客户端测评组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      clientName: 'Shadowrocket',
+      license: '商业专有软件 / 约 $2.99',
+      platforms: ['iOS', 'iPadOS', 'macOS (Apple Silicon)'],
+      core: '自主优化协议栈',
+      content: `
+## 一、小火箭在苹果生态的统治地位与技术底座
+
+在苹果移动生态（iPhone、iPad）中，由 Shadow Launch Technology 开发的 **Shadowrocket**（被广大华语用户亲切称为“小火箭”）是知名度最高、装机覆盖率最广的统治级网络代理工具。
+
+小火箭之所以能从早期的众多工具中脱颖而出并长盛不衰，核心归功于以下技术优势：
+1. **极致亲民的买断价格**：相较于动辄数十美元、且转为高昂年订阅制的 Surge 或 Quantumult X，小火箭自发布以来始终保持约 **$2.99 美元（约合 21 元人民币）的一次性终身买断制**，性价比极其突出；
+2. **第一方自研协议栈与闪电级协议跟进**：作者对新型协议的反应速度堪称业界标杆。无论是在 Hysteria 2、TUIC v5、VLESS Reality 还是 Shadowsocks 2022 发布初期，小火箭均在第一时间发布新版提供原生支持；
+3. **出色的能耗比与后台驻留**：深度基于苹果官方的 **Network Extension (NE)** 框架开发，无需越狱即可在后台以极低能耗常驻，彻底打破了 iOS 严苛的后台杀进程限制。
+
+> [!TIP]
+> **关于 iOS 电池统计“耗电元凶”的技术澄清**  
+> 很多用户在 iPhone“设置 -> 电池”中看到 Shadowrocket 耗电占比高达 30%–50%，误以为小火箭极度费电。这实际上是 iOS 系统的统计逻辑机制导致的：由于小火箭接管了系统虚拟网卡，所有通过小火箭代理的 App（如刷 X/Twitter、看 YouTube、浏览网页）所产生的流量功耗，全部被 iOS 统计在了“宿主”Shadowrocket 身上。小火箭本身的 CPU 占用率常年低于 0.5%，待机一整晚电池掉电通常不足 1%。
+
+## 二、正版获取、外区 Apple ID 与防锁机致命红线
+
+由于众所周知的大陆地区应用商店合规政策，Shadowrocket **并未在中国大陆区 App Store 上架**。购买与下载该软件必须通过非大陆区（如美区、港区、日区、台区）的 Apple ID。
+
+> [!DANGER]
+> **🚨 致命红线警告：切勿在 iPhone“系统设置”中登录任何共享 iCloud 账号！**  
+> 互联网与电商平台上存在大量售卖“小火箭共享账号”的灰产店铺。很多小白用户不慎将陌生人的 Apple ID 登录进手机主界面的 **【设置 -> 点击顶部头像 -> iCloud】**。  
+> 一旦在此处登录，不法卖家可立即在远端开启“查找我的 iPhone (Find My)”并远程将你的手机锁死为“丢失模式 (Lost Mode)”，勒索数百上千元解锁费！
+
+### 🛡️ 唯一绝对安全的下载 SOP：
+1. 打开 iPhone 自带的 **【App Store】** 应用程序；
+2. 点击右上角的 **个人头像图标**，向下滑动到页面最底部，点击 **“退出登录 (Sign Out)”**；
+3. 在弹出的登录框中，输入你的 **外区 Apple ID 与密码**，仅在此处完成登录（此时手机主系统的 iCloud 依然是你自己的个人主账号）；
+4. 搜索 \`Shadowrocket\`，认准作者为 **Shadow Launch Technology**，点击购买并完成扣款下载；
+5. 下载完成后，**立即再次返回 App Store 底部点击退出登录**，换回你日常的大陆区个人账号。已下载的小火箭可永久正常使用，后续更新只需在 App Store 内再次验证该外区 ID 密码即可。
+
+## 三、四大核心功能模块与硬核协议支持矩阵
+
+### 1. 全协议覆盖矩阵
+小火箭支持的协议广度在移动端名列前茅：
+- **经典与基础协议**：Shadowsocks (含 AEAD 与 2022)、ShadowsocksR、Trojan、SOCKS5、HTTP；
+- **V2Ray 体系**：VMess、VLESS（完美支持 XTLS-Reality 与 gRPC 传输模式）；
+- **UDP 拥塞控制前沿协议**：Hysteria 2（在恶劣丢包网络下表现极其残暴）、TUIC v5；
+- **其他专有协议**：Snell v4、WireGuard。
+
+### 2. 智能分流规则系统 (Config 模式)
+小火箭内置了强大的规则引擎：
+- **配置 (Config - 默认推荐)**：根据规则文件自动分流。国内网站直连（保证微信消息即时到达、网银不报异地安全风控），境外受阻域名自动走节点；
+- **代理 (Proxy)**：全机所有流量强制走代理节点，极费流量且容易导致国内应用变慢；
+- **直连 (Direct)**：彻底不经过节点，等同于临时停用。
+
+### 3. HTTPS 解密、URL 重写与脚本自动化 (Rewrite & Script)
+小火箭支持高级用户生成并安装本地 CA 根证书。通过开启 HTTPS 解密（MITM），可以执行精细的 URL 重写、去除开屏广告规则以及执行 JavaScript 自动化任务。
+
+## 四、从零到精通保姆级配置实操全流程
+
+1. **第一步：导入机场订阅**
+   - 登录你的机场后台，复制专用的 **“Shadowrocket 订阅链接”**；
+   - 打开小火箭，点击首页右上角的 **“+ (加号)”**；
+   - 点击“类型 (Type)”，将其更改为 **“Subscribe (订阅)”**；
+   - 在“URL”一栏中粘贴刚刚复制的链接，在“备注 (Remark)”中填写机场名称；
+   - 点击右上角“保存 (Save)”。小火箭将自动发起网络请求，瞬间刷出所有节点列表。
+
+2. **第二步：设置 24 小时后台自动静默更新**
+   - 点击底部导航栏 **“设置 (Settings) -> 订阅 (Subscribe)”**；
+   - 勾选 **“打开时更新 (Update on Open)”**；
+   - 勾选 **“自动后台更新 (Auto Update)”**；
+   - 这可以确保每当服务商更换节点入口域名或维护切线时，小火箭都能在后台自动同步最新配置，避免突然全网断连。
+
+3. **第三步：科学测速姿势 (TCP Ping vs HTTP Ping)**
+   - 点击小火箭“节点”列表上方的“连通性测试 (Connectivity Test)”；
+   - 建议在设置中将测试方式由 TCP Ping 修改为 **HTTP Ping**。这样测出的不是简单的握手延迟，而是真实到达海外目标的有效响应时间。
+
+4. **第四步：启动连接与系统授权**
+   - 选中延迟低、稳定性好的可用节点（如“香港专线”或“新加坡专线”）；
+   - 将全局路由保持为 **“配置 (Config)”** 模式；
+   - 拨动顶部的主开关开启代理；
+   - 首次连接时，iOS 系统会弹出“‘Shadowrocket’想添加 VPN 配置”的系统弹窗，点击 **“允许 (Allow)”** 并输入手机锁屏数字密码即可。
+
+## 五、高发疑难故障与避坑排查
+
+> [!WARNING]
+> **问题一：导入订阅提示 \`Network Error\` 或下载配置为空**  
+> 主要是因为订阅分发域名被本地宽带运营商 DNS 污染。解决方法：手机暂时关闭 WiFi，改用 4G/5G 蜂窝数据热点再次尝试拉取；或在订阅编辑页中开启“跳过证书验证”。
+
+> [!WARNING]
+> **问题二：节点全部显示红色感叹号或 \`Timeout\`**  
+> 60% 的原因是手机系统时间不准。前往 iPhone“设置 -> 通用 -> 日期与时间”，确保开启了“自动设置”，并与北京时间严格同步（误差不能超过 60 秒）。
+      `,
+      faqs: [
+        {
+          question: '为什么使用小火箭时手机电池消耗显示很高？',
+          answer: '这是 iOS 系统统计机制导致的：所有经过小火箭虚拟网卡分流的应用流量耗电均被记在小火箭头上，实际小火箭自身后台空载 CPU 占用不足 0.5%，极其省电。'
+        },
+        {
+          question: '在淘宝购买的共享小火箭账号提示被锁定怎么办？',
+          answer: '切勿在系统设置登录共享 ID！如果不慎在 App Store 登录提示锁定，直接在 App Store 退出并向商家要求更换可用账号即可，绝不会影响手机本机的数据安全。'
+        },
+        {
+          question: '小火箭如何配置特定网站（如公司内网）走直连？',
+          answer: '点击底部“配置”标签页，点击正在使用的规则文件右侧的叹号，选择“添加规则”，类型选择 DOMAIN-SUFFIX，输入公司内网域名，策略选择 DIRECT 并置顶保存即可。'
+        }
+      ]
+    },
+    {
+      slug: 'sing-box',
+      title: 'sing-box 官方客户端深度档案：通用的次世代通用代理平台',
+      description: '全平台现代网络代理核心 sing-box 深度档案。解析其纯 Go 高并发架构、JSON 现代配置规范与多操作系统全覆盖能力。',
+      author: '机场指南客户端测评组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      clientName: 'sing-box',
+      license: '开源 / 免费 (GPL-3.0-or-later)',
+      platforms: ['Windows', 'macOS', 'Android', 'iOS', 'Linux'],
+      core: 'sing-box 原生内核',
+      content: `
+## 一、sing-box 的技术革新与架构哲学
+
+**sing-box** 是由开源社区著名网络开发者团队 SagerNet 主导研发的通用代理平台。在过去数年中，由于旧版 V2Ray 与初代 Clash 内核累积了大量的历史技术债务，配置项碎片化严重、内存回收迟缓。
+
+sing-box 彻底抛弃历史包袱，采用纯 Go 语言从零重构，确立了三项划时代的核心优势：
+1. **统一、严格的声明式 JSON 配置规范**：告别了 Clash YAML 缩进错一位就全盘崩溃的脆弱语法，采用强类型、高容错的模块化 JSON 架构；
+2. **顶尖的协议创新与首发平台**：许多前沿加密传输协议（包括 Shadowsocks 2022、TUIC v5、ECH 拓展）均由 sing-box 首发或作为官方标准参考实现；
+3. **真正的全平台第一方原生图形客户端**：覆盖 Windows、macOS、Android、iOS（通过 TestFlight 与外区 App Store）及 Linux，提供了高度一致的系统级 UI。
+
+## 二、与传统内核的核心区别剖析
+
+### 1. 内存利用效率与高并发吞吐
+得益于更现代的 Go 运行时内存池复用技术，sing-box 在千兆大带宽持续下载或高频并发连接时，垃圾回收 (GC) 停顿时间更短，内存波动幅度比传统内核低 40% 以上，极其适合部署在内存受限的路由器或轻量 VPS 设备上。
+
+### 2. 现代规则集机制 (Rule Set)
+sing-box 采用了编译后的二进制规则集格式（\`.srs\`），在客户端加载百万级域名规则时仅需数毫秒，内存占用微乎其微。支持根据进程名（process_name）、网卡名（inbound）、网络协议（network）、域名后缀（domain_suffix）及地理 IP（geoip）进行极其精准的细粒度分流。
+
+## 三、上手指南与适用人群建议
+
+- **适合人群**：对网络延迟敏感、追求纯净开源内核、需要跨多操作系统统一配置的高级网络爱好者；
+- **订阅兼容建议**：由于许多老旧机场仅提供传统 Clash 订阅，使用 sing-box 时建议优先挑选已原生提供“sing-box 专属配置”的服务商，或在客户端中借助内置的转换服务完成无缝映射。
+      `,
+      faqs: [
+        {
+          question: '普通新手上手 sing-box 会不会比较困难？',
+          answer: '如果是使用命令行裸核确实需要学习 JSON 配置语法；但目前官方已发布各平台图形界面客户端，许多第三方优秀 GUI（如 Karing 等）也已内置 sing-box 核心，使用门槛已大幅降低。'
+        }
+      ]
+    },
+    {
+      slug: 'openclash',
+      title: 'OpenClash 软路由插件深度档案：全屋设备透明代理网关指南',
+      description: '在 OpenWrt 路由器上部署 OpenClash，实现智能电视、游戏主机、苹果设备无需安装任何客户端的无感透明分流。',
+      author: '机场指南网络实验室',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      clientName: 'OpenClash',
+      license: '开源 / 免费 (GPL-3.0)',
+      platforms: ['OpenWrt'],
+      core: 'Clash.Meta / Mihomo',
+      content: `
+## 一、软路由与透明网关的意义
+
+在现代多设备数字家庭或小型工作室环境中，随着智能设备不断增多，问题随之而来：
+- **Apple TV / 索尼智能电视**：无法方便地在电视系统内安装客户端，导致 Netflix 4K、Disney+ 或 YouTube 无法流畅播放；
+- **PS5 / Nintendo Switch 游戏主机**：联机游戏由于 NAT 类型严格导致联机失败；
+- **家庭成员手机与平板**：长辈和小孩完全不懂如何配置代理与维护订阅。
+
+通过在家庭的主路由器或旁路由（OpenWrt 固件）上部署 **OpenClash**，可以让局域网内的所有设备（只要连上 Wi-Fi 或插上网线）无需单独安装任何软件，全自动享受透明规则分流，实现全屋网络体验的质变跃升。
+
+## 二、OpenClash 核心工作模式深度剖析
+
+### 1. Fake-IP (TUN 模式 - 强烈推荐)
+- **运行机制**：路由器自身充当局域网的唯一 DNS 服务器。当家庭内任何设备查询海外域名（如 \`netflix.com\`）时，OpenClash 根本不向海外发起耗时的远程 DNS 查询，而是瞬间返回一个虚构的内网 IP（如 \`198.18.0.x\`）；
+- **核心收益**：电视和手机端几乎是 0 毫秒完成 DNS 响应！随后设备向该虚构 IP 发起 TCP 请求，路由器内核拦截该请求并将其封装进代理隧道，在境外落地节点再完成真实的 DNS 解析；
+- **防污染效果**：彻底从物理层杜绝了本地运营商的 DNS 投毒与污染。
+
+### 2. Redir-Host (兼容模式)
+- 先在路由器本地进行真实的 DNS 查询拿到解析 IP，再进行流量重定向；
+- 兼容性更好，适合有特定本地网络测试需求、无法容忍 Fake-IP 的环境，但易受 DNS 污染干扰。
+
+## 三、硬件配置要求与防回环避坑
+
+> [!WARNING]
+> **硬件算力选型准则**  
+> 代理加密解密属于 CPU 密集型计算。如果家庭宽带为 500M–1000M 千兆光纤：
+> - 推荐使用 x86 软路由（如 Intel N100、J4125、i3 系列）或强力 ARM 芯片（如联发科 MT7981 / MT7986 菲仕兰、RK3568）；
+> - 内存建议 **1GB 以上**，避免并发连接过多导致软路由 Out-of-Memory (OOM) 崩溃重启。
+
+> [!DANGER]
+> **旁路由部署防死锁三原则**  
+> 采用“主路由拨号 + 旁路由装 OpenClash”架构时，必须牢记：
+> 1. 主路由 DHCP 的“网关”和“DNS”必须指向旁路由的 IP；
+> 2. 旁路由的网关必须指向主路由 IP，且**必须关闭旁路由自身的 DHCP 服务器**；
+> 3. 在 OpenClash 插件设置中勾选“绕过局域网 IP”，严禁将内网互访流量卷入代理隧道。
+      `,
+      faqs: [
+        {
+          question: '开启 OpenClash 后国内网站很慢甚至打不开？',
+          answer: '前往 OpenClash“DNS 设置”，确保“本地 Nameserver”中配置了阿里公共 DNS (223.5.5.5) 或腾讯 DNSPod (119.29.29.29)，并将 Fallback 仅留海外安全 DNS。'
+        },
+        {
+          question: '电视端 Netflix 提示检测到代理（错误代码：proxy detected）？',
+          answer: '这是落地节点 IP 纯净度问题，属于服务商落地 IP 被流媒体拉黑。在 OpenClash“规则策略”中为 Netflix 单独分配解锁能力强劲的专属原生 IP 节点。'
+        }
+      ]
+    }
+  ];
+
+  return articles.map(art => ({
+    params: { slug: art.slug },
+    props: { article: art }
+  }));
+}
+
+const { article } = Astro.props;
+
+const breadcrumbs = [
+  { name: '客户端软件', url: '/clients/' },
+  { name: article.title, url: `/clients/${article.slug}/` }
+];
+
+const renderedContent = parseMarkdown(article.content);
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.description}
+  breadcrumbs={breadcrumbs}
+  type="article"
+  publishDate={`${article.date}T08:00:00+08:00`}
+  modifiedDate={`${article.updated}T12:00:00+08:00`}
+  faqItems={article.faqs}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    
+    <!-- Article Header -->
+    <header class="border-b border-brand-border pb-6 sm:pb-8 mb-8">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-brand-teal text-xs font-semibold border border-emerald-200 mb-4">
+        <span>💻 核心客户端架构与技术深度档案</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-dark tracking-tight leading-tight">
+        {article.title}
+      </h1>
+      
+      <!-- Metadata Pill Box -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-white p-4 rounded-xl border border-brand-border mt-6 text-xs shadow-2xs">
+        <div>
+          <span class="text-brand-muted block mb-0.5">适用操作系统:</span>
+          <span class="font-bold text-brand-dark">{article.platforms.join(', ')}</span>
+        </div>
+        <div>
+          <span class="text-brand-muted block mb-0.5">底层内核:</span>
+          <span class="font-bold text-brand-teal">{article.core}</span>
+        </div>
+        <div>
+          <span class="text-brand-muted block mb-0.5">开源协议 / 授权:</span>
+          <span class="font-bold text-brand-dark">{article.license}</span>
+        </div>
+        <div>
+          <span class="text-brand-muted block mb-0.5">核验更新时间:</span>
+          <span class="font-mono text-brand-muted">{article.updated}</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Article Content with Rich Typography -->
+    <article class="bg-white border border-brand-border rounded-2xl p-6 sm:p-10 shadow-sm leading-relaxed text-brand-dark">
+      <div set:html={renderedContent} />
+    </article>
+
+    <!-- FAQs -->
+    <div class="mt-10">
+      <FAQ items={article.faqs} title="相关客户端核心答疑" />
+    </div>
+
+    <!-- Related Links -->
+    <div class="mt-10 pt-6 border-t border-brand-border flex items-center justify-between text-xs sm:text-sm">
+      <a href="/clients/" class="text-brand-teal hover:underline font-bold flex items-center gap-1">
+        <span>←</span>
+        <span>返回客户端软件大全</span>
+      </a>
+      <a href="/guides/" class="text-brand-dark hover:underline font-semibold flex items-center gap-1">
+        <span>查看配置上手教程</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+</BaseLayout>

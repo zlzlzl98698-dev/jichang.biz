@@ -1,0 +1,74 @@
+---
+import SEOHead, { type BreadcrumbItem, type FAQItem, type ReviewData } from '../components/SEOHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  type?: 'website' | 'article' | 'collection';
+  breadcrumbs?: BreadcrumbItem[];
+  faqItems?: FAQItem[];
+  reviewData?: ReviewData;
+  author?: string;
+  category?: string;
+  tags?: string[];
+  cover?: string;
+  publishDate?: string;
+  modifiedDate?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  type = 'website',
+  breadcrumbs = [],
+  faqItems = [],
+  reviewData,
+  author,
+  category,
+  tags = [],
+  cover,
+  publishDate,
+  modifiedDate,
+  noindex = false
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <SEOHead
+      title={title}
+      description={description}
+      canonicalUrl={canonicalUrl}
+      type={type}
+      breadcrumbs={breadcrumbs}
+      faqItems={faqItems}
+      reviewData={reviewData}
+      author={author}
+      category={category}
+      tags={tags}
+      cover={cover}
+      publishDate={publishDate}
+      modifiedDate={modifiedDate}
+      noindex={noindex}
+    />
+  </head>
+  <body class="bg-brand-light text-brand-dark flex flex-col min-h-screen">
+    <Header />
+    
+    {breadcrumbs.length > 0 && <Breadcrumb items={breadcrumbs} />}
+
+    <main class="flex-grow">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

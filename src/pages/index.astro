@@ -1,0 +1,391 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BrandCard from '../components/BrandCard.astro';
+import AffiliateDisclosure from '../components/AffiliateDisclosure.astro';
+import FAQ from '../components/FAQ.astro';
+import { BRANDS } from '../data/brands';
+import { CLIENT_LIST } from '../data/clients';
+
+const title = '机场指南 (jichang.biz) · 网络服务选购决策与套餐对比中心';
+const description = '面向合法授权场景的专业网络服务选购平台。汇编 31 家去重机场档案、IEPL/IPLC 专线实测、资费对比与全平台客户端教程，提供客观中立的决策工具。';
+
+// Featured brands for homepage
+const partnerBrand = BRANDS.find(b => b.isPartner);
+const popularBrands = BRANDS.filter(b => !b.isPartner).slice(0, 5);
+
+// Featured Clients
+const topClients = CLIENT_LIST.slice(0, 4);
+
+const faqItems = [
+  {
+    question: '机场指南 (jichang.biz) 是如何进行品牌评测与数据核验的？',
+    answer: '本站坚持“证据与商业展示分离”原则。所有收录品牌均基于公开技术档案、服务商官方套餐表及第三方历史实测数据进行多源交叉核验，严格区分“实测核验”与“商家宣称”，缺失字段如实标记为待核实，绝不编造虚假测速条或 0 丢包伪证。'
+  },
+  {
+    question: '为什么年付折算价格（如 8.25 元/月）不能当成普通月付？',
+    answer: '很多服务商宣传的极低月均费用是年付总价除以 12 的理论成本，要求用户在开通时一次性付清全年费用。若服务商后续线路发生波动甚至关停，用户将承担不可逆的资金损失风险。因此初次选购建议优先尝试月付套餐。'
+  },
+  {
+    question: '专属客户端和第三方通用订阅（如 Clash / 小火箭）有什么区别？',
+    answer: '专属客户端适合小白用户开箱即用，免去配置订阅链接与分流规则的麻烦；但缺点是通常不支持在软路由或开源客户端中使用。通用订阅则支持 Clash Verge Rev、v2rayN、Shadowrocket 等软件，规则自由度极高，适合进阶用户。'
+  }
+];
+---
+
+<BaseLayout title={title} description={description} faqItems={faqItems}>
+  
+  <!-- Hero Section -->
+  <section class="border-b border-brand-border bg-white py-12 lg:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Hero Left (7 cols) -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-brand-teal text-xs font-semibold border border-emerald-200">
+            <span class="w-2 h-2 rounded-full bg-brand-teal animate-pulse"></span>
+            <span>2026 机场决策枢纽 1.0 · 中立透明有据可循</span>
+          </div>
+          
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-dark tracking-tight leading-tight">
+            拒绝盲目跟风，<br/>
+            找到<span class="text-brand-teal">真正适合您</span>的网络服务
+          </h1>
+
+          <p class="text-sm sm:text-base text-brand-muted leading-relaxed max-w-2xl">
+            收录并持续核验 31 家主流机场品牌主档案。以真实线路架构、计费周期、设备兼容性与历史证据为依托，告别虚假性能排行榜与虚标价格。
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a
+              href="/tools/plan-finder/"
+              class="px-5 py-2.5 rounded-xl bg-brand-teal text-white font-bold text-sm hover:bg-brand-accent transition-all shadow-md flex items-center gap-2"
+            >
+              <span>🧭 智能套餐筛选器</span>
+              <span>→</span>
+            </a>
+            <a
+              href="/brands/"
+              class="px-5 py-2.5 rounded-xl bg-brand-light text-brand-dark font-semibold text-sm border border-brand-border hover:bg-gray-200/60 transition-colors"
+            >
+              浏览 31 家品牌库
+            </a>
+            <a
+              href="/compare/"
+              class="px-5 py-2.5 rounded-xl bg-blue-50 text-brand-info font-semibold text-sm border border-blue-200 hover:bg-blue-100 transition-colors"
+            >
+              ⚖️ 品牌并排对比
+            </a>
+          </div>
+
+          <div class="pt-3 text-xs text-brand-muted flex flex-wrap items-center gap-4">
+            <span class="flex items-center gap-1">
+              <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>数据来源与核验日期明确</span>
+            </span>
+            <span class="flex items-center gap-1">
+              <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>商业合作公开披露</span>
+            </span>
+            <span class="flex items-center gap-1">
+              <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span>无 JS 纯静态仍完整可读</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Hero Right: Quick Plan Filter Widget (5 cols) -->
+        <div class="lg:col-span-5 bg-brand-light border border-brand-border rounded-2xl p-6 shadow-sm space-y-4">
+          <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+            <span class="text-xs font-bold text-brand-dark uppercase tracking-wider flex items-center gap-1.5">
+              <span>⚡ 套餐闪电速配</span>
+            </span>
+            <span class="text-[11px] text-brand-muted">3秒定位合适方案</span>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block font-medium text-brand-dark mb-1">您的月度预算上限</label>
+              <div class="grid grid-cols-3 gap-2">
+                <a href="/tools/plan-finder/" class="py-2 px-2 text-center rounded bg-white border border-brand-border hover:border-brand-teal text-brand-dark font-medium">
+                  ≤ ¥10/月
+                </a>
+                <a href="/tools/plan-finder/" class="py-2 px-2 text-center rounded bg-white border border-brand-border hover:border-brand-teal text-brand-dark font-medium">
+                  ¥10–¥25/月
+                </a>
+                <a href="/tools/plan-finder/" class="py-2 px-2 text-center rounded bg-white border border-brand-border hover:border-brand-teal text-brand-dark font-medium">
+                  > ¥25/月
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-medium text-brand-dark mb-1">主要使用场景</label>
+              <div class="grid grid-cols-2 gap-2">
+                <a href="/compatibility/" class="py-2 px-2 text-center rounded bg-white border border-brand-border hover:border-brand-teal text-brand-dark">
+                  🤖 ChatGPT / AI 办公
+                </a>
+                <a href="/compatibility/" class="py-2 px-2 text-center rounded bg-white border border-brand-border hover:border-brand-teal text-brand-dark">
+                  🎬 Netflix / YouTube 4K
+                </a>
+                <a href="/clients/" class="py-2 px-2 text-center rounded bg-white border border-brand-border hover:border-brand-teal text-brand-dark">
+                  📱 手机轻度刷网页
+                </a>
+                <a href="/network/" class="py-2 px-2 text-center rounded bg-white border border-brand-border hover:border-brand-teal text-brand-dark">
+                  ⚡ 跨境团队专线直连
+                </a>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a
+                href="/tools/plan-finder/"
+                class="block w-full text-center py-2.5 rounded-lg bg-brand-dark text-white font-bold hover:bg-brand-navy transition-colors"
+              >
+                查看匹配的已核验方案 →
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Four Scenario Decision Paths (按预算 / 按设备 / 按场景 / 按流量) -->
+  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-8">
+      <h2 class="text-xl sm:text-2xl font-extrabold text-brand-dark">
+        四类典型需求入口
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted mt-1.5">
+        不同的需求场景对专线质量、计费周期与客户端支持度有截然不同的要求。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      
+      <!-- Card 1: By Budget -->
+      <a href="/pricing/" class="bg-white border border-brand-border rounded-xl p-5 hover:border-brand-teal hover:shadow-md transition-all group block space-y-2">
+        <div class="w-8 h-8 rounded-lg bg-emerald-50 text-brand-teal flex items-center justify-center font-bold text-sm">
+          💰
+        </div>
+        <h3 class="text-sm font-bold text-brand-dark group-hover:text-brand-teal transition-colors">
+          按预算选购
+        </h3>
+        <p class="text-xs text-brand-muted leading-relaxed">
+          极限 5.6 元平价档、主流 15-25 元均衡档、以及大容量商业专线档深度对比。
+        </p>
+        <span class="text-xs text-brand-teal font-semibold inline-block pt-1">浏览价格专题 →</span>
+      </a>
+
+      <!-- Card 2: By Device -->
+      <a href="/clients/" class="bg-white border border-brand-border rounded-xl p-5 hover:border-brand-teal hover:shadow-md transition-all group block space-y-2">
+        <div class="w-8 h-8 rounded-lg bg-blue-50 text-brand-info flex items-center justify-center font-bold text-sm">
+          💻
+        </div>
+        <h3 class="text-sm font-bold text-brand-dark group-hover:text-brand-info transition-colors">
+          按设备与系统
+        </h3>
+        <p class="text-xs text-brand-muted leading-relaxed">
+          Windows、Android、iOS（小火箭）、macOS 及 OpenWrt 软路由客户端官方下载与配置。
+        </p>
+        <span class="text-xs text-brand-info font-semibold inline-block pt-1">客户端大全 →</span>
+      </a>
+
+      <!-- Card 3: By Scenario -->
+      <a href="/compatibility/" class="bg-white border border-brand-border rounded-xl p-5 hover:border-brand-teal hover:shadow-md transition-all group block space-y-2">
+        <div class="w-8 h-8 rounded-lg bg-purple-50 text-purple-700 flex items-center justify-center font-bold text-sm">
+          🎯
+        </div>
+        <h3 class="text-sm font-bold text-brand-dark group-hover:text-purple-700 transition-colors">
+          按实际业务场景
+        </h3>
+        <p class="text-xs text-brand-muted leading-relaxed">
+          针对 ChatGPT、Claude、Gemini 大模型生产力交互与 4K 流媒体解锁实测记录。
+        </p>
+        <span class="text-xs text-purple-700 font-semibold inline-block pt-1">兼容性证据库 →</span>
+      </a>
+
+      <!-- Card 4: By Traffic -->
+      <a href="/tools/traffic-calculator/" class="bg-white border border-brand-border rounded-xl p-5 hover:border-brand-teal hover:shadow-md transition-all group block space-y-2">
+        <div class="w-8 h-8 rounded-lg bg-amber-50 text-brand-warning flex items-center justify-center font-bold text-sm">
+          📊
+        </div>
+        <h3 class="text-sm font-bold text-brand-dark group-hover:text-brand-warning transition-colors">
+          按月度用量
+        </h3>
+        <p class="text-xs text-brand-muted leading-relaxed">
+          精准测算轻度查阅、日常办公与超高清视频消耗，选择按月重置或一次性不限时包。
+        </p>
+        <span class="text-xs text-brand-warning font-semibold inline-block pt-1">测算流量用量 →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Featured Brand Showcase & Commercial Disclosure -->
+  <section class="py-10 bg-brand-light border-y border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+        <div>
+          <h2 class="text-xl font-bold text-brand-dark flex items-center gap-2">
+            <span>精选品牌展示与客观档案</span>
+          </h2>
+          <p class="text-xs text-brand-muted mt-1">
+            合作品牌明确标注，客观技术指标严格按实际资料披露，用户自选排序时不暗中固定合作位。
+          </p>
+        </div>
+        <a href="/brands/" class="text-xs text-brand-teal hover:underline font-semibold shrink-0">
+          查看全部 31 家品牌档案 →
+        </a>
+      </div>
+
+      <!-- Affiliate Disclosure Banner -->
+      <AffiliateDisclosure isPartner={true} brandName="光速云" />
+
+      <!-- Brand Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        {partnerBrand && <BrandCard brand={partnerBrand} />}
+        {popularBrands.slice(0, 5).map(b => (
+          <BrandCard brand={b} />
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Quick Plan Overview Table -->
+  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
+      <div>
+        <h2 class="text-xl font-bold text-brand-dark">精选套餐梯队快览</h2>
+        <p class="text-xs text-brand-muted mt-0.5">
+          按真实月均折算成本阶梯展示，杜绝将年付包装为普通月付的文字游戏。
+        </p>
+      </div>
+      <a href="/pricing/" class="text-xs text-brand-teal hover:underline font-semibold">
+        进入完整资费对比专区 →
+      </a>
+    </div>
+
+    <div class="table-responsive-wrapper">
+      <table class="w-full text-left text-xs border-collapse">
+        <thead>
+          <tr class="bg-gray-50 border-b border-brand-border text-brand-muted font-medium">
+            <th class="py-2.5 px-3">品牌 / 套餐</th>
+            <th class="py-2.5 px-3">价格档位属性</th>
+            <th class="py-2.5 px-3 font-mono-numbers">月均折算 (元/月)</th>
+            <th class="py-2.5 px-3 font-mono-numbers">月流量</th>
+            <th class="py-2.5 px-3">专线类型</th>
+            <th class="py-2.5 px-3">客户端导入</th>
+            <th class="py-2.5 px-3">评测与入口</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-brand-border font-sans">
+          <tr class="hover:bg-brand-light/60">
+            <td class="py-3 px-3 font-bold text-brand-dark">
+              <a href="/brands/guangsu/" class="text-brand-teal hover:underline">光速云</a> · 轻量版 (年付)
+              <span class="text-[9px] bg-emerald-100 text-brand-teal px-1 rounded ml-1 font-bold">合作品牌</span>
+            </td>
+            <td class="py-3 px-3 text-brand-muted">年付 99 元 (8.25元/月)</td>
+            <td class="py-3 px-3 font-mono font-bold text-brand-teal">¥8.25</td>
+            <td class="py-3 px-3 font-mono">69GB (摘要存在59G记载冲突)</td>
+            <td class="py-3 px-3">IEPL + 企业内网</td>
+            <td class="py-3 px-3 text-blue-700 font-medium">自研 + 支持Clash</td>
+            <td class="py-3 px-3"><a href="/brands/guangsu/" class="text-brand-teal hover:underline font-semibold">详细档案 →</a></td>
+          </tr>
+          <tr class="hover:bg-brand-light/60">
+            <td class="py-3 px-3 font-bold text-brand-dark">
+              <a href="/brands/muguang/" class="hover:underline">暮光加速</a> · 基础版
+            </td>
+            <td class="py-3 px-3 text-brand-muted">普通月付 20 元</td>
+            <td class="py-3 px-3 font-mono font-bold text-brand-dark">¥20.00</td>
+            <td class="py-3 px-3 font-mono">120GB</td>
+            <td class="py-3 px-3">BGP 优化</td>
+            <td class="py-3 px-3 text-blue-700 font-medium">多设备同时在线</td>
+            <td class="py-3 px-3"><a href="/brands/muguang/" class="text-brand-teal hover:underline font-semibold">详细档案 →</a></td>
+          </tr>
+          <tr class="hover:bg-brand-light/60">
+            <td class="py-3 px-3 font-bold text-brand-dark">
+              <a href="/brands/feimao/" class="hover:underline">飞猫云</a> · 学生版 (年付)
+            </td>
+            <td class="py-3 px-3 text-brand-muted">年付 84 元 (7.0元/月)</td>
+            <td class="py-3 px-3 font-mono font-bold text-brand-dark">¥7.00</td>
+            <td class="py-3 px-3 font-mono">50GB</td>
+            <td class="py-3 px-3">优质中转</td>
+            <td class="py-3 px-3 text-gray-500 font-medium">仅专属客户端</td>
+            <td class="py-3 px-3"><a href="/brands/feimao/" class="text-brand-teal hover:underline font-semibold">详细档案 →</a></td>
+          </tr>
+          <tr class="hover:bg-brand-light/60">
+            <td class="py-3 px-3 font-bold text-brand-dark">
+              <a href="/brands/weifeng/" class="hover:underline">微风网络</a> · 清风 (年付)
+            </td>
+            <td class="py-3 px-3 text-brand-muted">年付 137 元 (11.4元/月)</td>
+            <td class="py-3 px-3 font-mono font-bold text-brand-dark">¥11.41</td>
+            <td class="py-3 px-3 font-mono">100GB</td>
+            <td class="py-3 px-3">IEPL 专线</td>
+            <td class="py-3 px-3 text-blue-700 font-medium">支持Clash订阅</td>
+            <td class="py-3 px-3"><a href="/brands/weifeng/" class="text-brand-teal hover:underline font-semibold">详细档案 →</a></td>
+          </tr>
+          <tr class="hover:bg-brand-light/60">
+            <td class="py-3 px-3 font-bold text-brand-dark">
+              <a href="/brands/shandianshu/" class="hover:underline">闪电鼠</a> · 基础年付
+            </td>
+            <td class="py-3 px-3 text-brand-muted">年付 67.2 元 (5.6元/月)</td>
+            <td class="py-3 px-3 font-mono font-bold text-brand-teal">¥5.60</td>
+            <td class="py-3 px-3 font-mono">60GB</td>
+            <td class="py-3 px-3">IEPL 专线</td>
+            <td class="py-3 px-3 text-blue-700 font-medium">支持Clash订阅</td>
+            <td class="py-3 px-3"><a href="/brands/shandianshu/" class="text-brand-teal hover:underline font-semibold">详细档案 →</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Client Software & Download Guide -->
+  <section class="py-12 bg-white border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-2">
+        <div>
+          <h2 class="text-xl font-bold text-brand-dark">全平台客户端下载与核验</h2>
+          <p class="text-xs text-brand-muted mt-0.5">
+            官方下载渠道核验，避免下载被第三方恶意植入木马或广告的篡改安装包。
+          </p>
+        </div>
+        <a href="/clients/" class="text-xs text-brand-teal hover:underline font-semibold">
+          查看全部平台客户端清单 →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {topClients.map(c => (
+          <div class="border border-brand-border rounded-xl p-4 bg-brand-light flex flex-col justify-between space-y-3">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-xs text-brand-dark">{c.name}</span>
+                <span class="text-[10px] px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800 font-medium">推荐</span>
+              </div>
+              <div class="text-[11px] text-brand-muted mt-1">内核: {c.coreKernel}</div>
+              <div class="text-[11px] text-brand-muted mt-1">平台: {c.platforms.join(', ')}</div>
+            </div>
+            <div class="pt-2 border-t border-brand-border/60 flex items-center justify-between text-xs">
+              <span class="text-brand-muted text-[11px]">{c.isPaid ? c.pricingNote : '开源免费'}</span>
+              <a href={c.officialSourceUrl} target="_blank" rel="noopener noreferrer" class="text-brand-teal font-semibold hover:underline">
+                官方源 →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-12 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <FAQ items={faqItems} title="机场指南平台答疑与选购指引" />
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE_CONFIG } from '../../data/site';
+
+const title = '关于本站 · 机场指南 (jichang.biz) 团队与站点定位';
+const description = '了解机场指南的创办初衷、业务边界与编辑准则。清晰区分 jichang.biz 与维基百科类站点的职能分工。';
+const breadcrumbs = [
+  { name: '关于本站', url: '/about/' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-xs text-brand-muted leading-relaxed space-y-6">
+    
+    <header class="border-b border-brand-border pb-6">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-brand-teal text-xs font-semibold border border-emerald-200 mb-3">
+        <span>🧭 平台愿景与定位</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+        关于机场指南 (jichang.biz)
+      </h1>
+      <p class="text-sm text-brand-muted mt-2">
+        面向合法授权使用场景的网络选购、套餐对比与技术帮助决策中心。
+      </p>
+    </header>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base font-bold text-brand-dark">1. 站点定位与初衷</h2>
+      <p>
+        中文网络关于网络代理服务的信息极其两极化：一边是缺乏实际选购指引的高深理论，另一边则是充满虚假跑分与夸张折扣的低质 AFF 营销站。
+        <strong>机场指南 (jichang.biz)</strong> 的成立正是为了打破这种信息差。我们汇集真实品牌档案、计算真实月均与每 GB 成本、开源客户端安全源核验，打造一个有据可循的消费决策枢纽。
+      </p>
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base font-bold text-brand-dark">2. 与百科类站点 (如 jichangwiki.biz) 的明确分工</h2>
+      <p>
+        • <strong>Wiki 类站点</strong>：专注于实体百科收录、网络底层技术定义、学术源文献与历史证据归档；<br/>
+        • <strong>本站 (jichang.biz)</strong>：专注于具体<strong>用户需求匹配、价格与计费周期比较、品牌实测档案、选购决策工具及合法合规披露的商业入口</strong>。两站分工明确，互不混同。
+      </p>
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base font-bold text-brand-dark">3. 编辑部承诺</h2>
+      <p>
+        不冒充服务商官方、不编造第三方认证头衔、不生成无信息增量的克隆文章。遇到错误及时勘误，保持技术资料的持续鲜活与可审计性。
+      </p>
+    </div>
+
+  </div>
+</BaseLayout>

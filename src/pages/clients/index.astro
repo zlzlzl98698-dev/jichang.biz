@@ -1,0 +1,377 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { CLIENT_LIST } from '../../data/clients';
+import FAQ from '../../components/FAQ.astro';
+
+const title = '2026 全平台网络代理客户端大全 · 官方开源下载、内核架构与配置指南';
+const description = '权威整理 Windows、macOS、Android、iOS、Linux 与 OpenWrt 软路由主流网络代理客户端。全景解析 Clash Verge Rev、v2rayN、Shadowrocket 及 sing-box 核心调度、协议兼容性与官方防伪下载渠道。';
+const breadcrumbs = [
+  { name: '客户端软件', url: '/clients/' }
+];
+
+const platforms = ['Windows', 'Android', 'iOS', 'macOS', 'Linux', 'OpenWrt'] as const;
+
+const faqItems = [
+  {
+    question: '网上的“Clash 汉化绿色版”或“破解版小火箭”能下载吗？',
+    answer: '绝对不要下载来历不明的第三方二次打包版本。代理客户端运行在系统高权限层（甚至接管 TUN 虚拟网卡与网络底层驱动）。非官方重打包的客户端经常被植入键盘记录器、恶意挖矿木马或流量后门。本站所有下载链接均严格核查并仅指向官方 GitHub Releases 开源代码库或苹果 App Store 官方页面。'
+  },
+  {
+    question: '为什么只下载安装了客户端，点击连接却依然无法打开网页？',
+    answer: '客户端与机场节点的关系，犹如“播放器”与“视频光盘”、“汽车”与“汽油”。客户端只是一个负责在本地分流调度与网络转发的空壳软件工具；要想真正连接境外互联网，您必须在服务商处购买套餐并导入一条有效的“订阅链接 (Subscription URL)”，由客户端下载远端节点服务器配置后方可联网。'
+  },
+  {
+    question: 'Mac 苹果电脑如何区分 Intel 芯片与 Apple Silicon (M1/M2/M3/M4) 安装包？',
+    answer: '下载客户端（如 Clash Verge Rev 或 FlClash）时，请留意文件名中的架构标识：Apple Silicon 芯片（M系列）选择含 “aarch64” 或 “arm64” 的安装包；旧款 Intel 芯片的 Mac 则选择 “x64” 或 “x86_64”。下载错架构会导致软件无法运行或触发 Rosetta 2 转译导致内存与功耗异常。'
+  },
+  {
+    question: 'iPhone / iPad 在国区 App Store 搜索不到 Shadowrocket（小火箭）怎么办？',
+    answer: 'Shadowrocket（小火箭）、Stash 及 Quantumult X 因政策原因并未在中国大陆区 App Store 上架。用户需要注册或切换至非大陆区 Apple ID（如美区、港区或日区），并在对应外区 App Store 中使用合法外币或礼品卡购买下载。切莫在主设备系统“设置 -> iCloud”中登录陌生人分享的共享 Apple ID，以防设备被恶意锁定。'
+  },
+  {
+    question: 'TUN 模式和普通系统代理有什么根本区别？平时应该开哪一个？',
+    answer: '普通系统代理仅在系统网络设置中写入本地代理端口，只有遵循系统代理规则的软件（如浏览器）才会走代理，终端命令行（git/curl）和很多游戏会漏跑；而 TUN 模式是在操作系统中注册一张虚拟网卡，强制接管全机 OSI 第 3 层所有流量，杜绝任何软件漏跑。日常轻度浏览推荐普通系统代理；开发运维、游戏或命令行推荐开启 TUN 模式。'
+  },
+  {
+    question: '安卓手机使用代理经常锁屏后自动断开，如何解决？',
+    answer: '国内 Android 深度定制系统（小米 MIUI/澎湃、华为 HarmonyOS、OPPO ColorOS、vivo OriginOS）具备极其激进的后台杀进程机制。解决步骤：① 在最近任务卡片中将代理软件“上锁”；② 在系统应用设置中允许“自启动”；③ 在电池策略中将其从“智能省电”改为“无限制”。'
+  },
+  {
+    question: '原版的 Clash for Windows (CFW) 停更后，目前最佳替代品是什么？',
+    answer: '目前全平台桌面端公认的最佳现代化继承者是 **Clash Verge Rev**。它基于 Rust/Tauri 框架重构，内存占用极小，原生集成积极活跃的 Mihomo (Clash.Meta) 内核，对 VLESS、Hysteria 2、TUIC 等新协议提供第一方支持，完美取代了停更的旧版 CFW。'
+  },
+  {
+    question: '使用代理客户端会导致电脑变卡或内存暴涨吗？',
+    answer: '采用现代内核（如 Mihomo、sing-box、Xray）的客户端极其轻量，正常运行时的内存占用通常仅在 50MB–150MB 之间，CPU 占用率低于 1%。如果发现内存暴涨，通常是因为日志级别开到了 Debug、开启了过大的内存缓存池、或导入了包含数十万条冗余规则的第三方规则集。'
+  }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs} faqItems={faqItems} type="collection">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+    
+    <!-- Hero Header with Answer-First Summary -->
+    <header class="border-b border-brand-border pb-8">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-brand-info text-xs font-semibold border border-blue-200 mb-4">
+        <span>💻 官方开源渠道核验 · 杜绝第三方恶意加料包</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-brand-dark tracking-tight leading-tight">
+        2026 全平台网络代理客户端索引与深度档案
+      </h1>
+      <p class="text-sm sm:text-base text-brand-muted mt-3 max-w-4xl leading-relaxed">
+        涵盖 Windows、Android、iOS、macOS、Linux 与 OpenWrt 软路由环境。所有软件条目均严格核验核心协议栈、内核活跃度、官方开源代码仓库与正版应用商店来源，助您安全、高效配置跨平台网络代理环境。
+      </p>
+
+      <!-- Quick Answer Summary Box (GEO / AI Overviews Optimized) -->
+      <div class="mt-6 p-5 bg-white border border-brand-teal/40 rounded-2xl shadow-sm bg-gradient-to-r from-blue-50/40 to-transparent">
+        <div class="text-xs font-bold text-brand-info uppercase tracking-wider mb-2 flex items-center gap-1.5">
+          <span>⚡ 2026 各大操作系统主流客户端首选推荐 (Answer-First)</span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-xs text-brand-dark">
+          <div class="p-3 bg-white/80 rounded-xl border border-brand-border text-center space-y-1">
+            <span class="font-bold text-blue-900 block">🪟 Windows 首选</span>
+            <strong class="text-brand-teal text-sm block">Clash Verge Rev</strong>
+            <p class="text-[11px] text-brand-muted">Mihomo 内核 / TUN 驱动</p>
+          </div>
+          <div class="p-3 bg-white/80 rounded-xl border border-brand-border text-center space-y-1">
+            <span class="font-bold text-gray-900 block">🍎 macOS 首选</span>
+            <strong class="text-brand-teal text-sm block">Clash Verge Rev</strong>
+            <p class="text-[11px] text-brand-muted">M系列 M1-M4 原生支持</p>
+          </div>
+          <div class="p-3 bg-white/80 rounded-xl border border-brand-border text-center space-y-1">
+            <span class="font-bold text-blue-800 block">📱 iOS / iPadOS</span>
+            <strong class="text-brand-teal text-sm block">Shadowrocket</strong>
+            <p class="text-[11px] text-brand-muted">小火箭 / 全协议覆盖</p>
+          </div>
+          <div class="p-3 bg-white/80 rounded-xl border border-brand-border text-center space-y-1">
+            <span class="font-bold text-emerald-800 block">🤖 Android 首选</span>
+            <strong class="text-brand-teal text-sm block">v2rayNG / FlClash</strong>
+            <p class="text-[11px] text-brand-muted">开源免费 / 省电常驻</p>
+          </div>
+          <div class="p-3 bg-white/80 rounded-xl border border-brand-border text-center space-y-1">
+            <span class="font-bold text-purple-800 block">🐧 Linux 首选</span>
+            <strong class="text-brand-teal text-sm block">sing-box / Verge</strong>
+            <p class="text-[11px] text-brand-muted">CLI 守护 / AppImage</p>
+          </div>
+          <div class="p-3 bg-white/80 rounded-xl border border-brand-border text-center space-y-1">
+            <span class="font-bold text-rose-800 block">🏠 软路由 OpenWrt</span>
+            <strong class="text-brand-teal text-sm block">OpenClash</strong>
+            <p class="text-[11px] text-brand-muted">全屋无感透明分流</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- In-Page Table of Contents -->
+    <nav class="bg-brand-light p-5 rounded-2xl border border-brand-border text-xs">
+      <span class="font-bold text-brand-dark block mb-3 text-sm flex items-center gap-2">
+        <span>📑 客户端专题导航 (快速跳转)</span>
+      </span>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 text-brand-muted">
+        <a href="#sec-client-concept" class="hover:text-brand-teal hover:underline">一、客户端与订阅服务的核心关系</a>
+        <a href="#sec-matrix-os" class="hover:text-brand-teal hover:underline">二、全平台操作系统客户端选型矩阵</a>
+        <a href="#sec-deep-dive" class="hover:text-brand-teal hover:underline">三、五大核心客户端技术深度专栏</a>
+        <a href="#sec-platforms" class="hover:text-brand-teal hover:underline">四、按操作系统检索官方核验客户端</a>
+        <a href="#sec-windows-guide" class="hover:text-brand-teal hover:underline">五、Windows 客户端深度推荐与对比</a>
+        <a href="#sec-mac-guide" class="hover:text-brand-teal hover:underline">六、macOS 客户端与 M 系列芯片架构</a>
+        <a href="#sec-android-guide" class="hover:text-brand-teal hover:underline">七、Android 客户端保活与防杀后台</a>
+        <a href="#sec-ios-guide" class="hover:text-brand-teal hover:underline">八、iOS 小火箭正版获取与防锁机指南</a>
+        <a href="#sec-router-guide" class="hover:text-brand-teal hover:underline">九、OpenWrt 软路由透明网关部署</a>
+        <a href="#sec-kernel-evolution" class="hover:text-brand-teal hover:underline">十、Mihomo 与 sing-box 现代内核演进</a>
+        <a href="#sec-protocols-matrix" class="hover:text-brand-teal hover:underline">十一、不同协议与客户端兼容性矩阵</a>
+        <a href="#sec-security-rules" class="hover:text-brand-teal hover:underline">十二、安装包安全准则与官方正版核验</a>
+        <a href="#sec-faqs" class="hover:text-brand-teal hover:underline">十三、客户端高频疑难解答 FAQ</a>
+      </div>
+    </nav>
+
+    <!-- SECTION 1: CLIENT VS SUBSCRIPTION -->
+    <section id="sec-client-concept" class="space-y-4 scroll-mt-20">
+      <div class="border-b border-brand-border pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+          <span>1. 客户端与订阅服务的核心关系：播放器与光盘的本质比喻</span>
+        </h2>
+        <p class="text-xs text-brand-muted mt-1">彻底搞懂为什么光下载客户端无法上网</p>
+      </div>
+
+      <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3 text-xs text-brand-muted leading-relaxed">
+        <p>
+          许多初次接触网络代理的新手经常有类似困惑：“我明明已经在电脑上下载并打开了 Clash Verge 或 v2rayN，为什么还是打不开 Google？”
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+          <div class="p-3.5 bg-brand-light rounded-xl border border-brand-border space-y-1">
+            <strong class="text-brand-dark block text-sm">客户端软件 (Client) = 音乐播放器 / 汽车</strong>
+            <p>
+              客户端本身是一个本地运行的软件工具，负责在操作系统中创建代理端口、解析分流规则（判断哪些网站直连、哪些走海外）、以及对数据包进行协议封装加密。它自身不包含任何海外服务器资源。
+            </p>
+          </div>
+          <div class="p-3.5 bg-brand-light rounded-xl border border-brand-border space-y-1">
+            <strong class="text-brand-dark block text-sm">机场订阅链接 (Subscription) = 音乐光盘 / 汽油</strong>
+            <p>
+              订阅链接是网络服务商分配给您的专属凭证。当把该链接导入客户端后，客户端会自动向服务商拉取几十个分布在香港、日本、美国的远程落地节点配置。有了节点，客户端才能把加密数据发往境外。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: CROSS-PLATFORM OS MATRIX -->
+    <section id="sec-matrix-os" class="space-y-4 scroll-mt-20">
+      <div class="border-b border-brand-border pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+          <span>2. 全平台操作系统主流客户端横向横评大表</span>
+        </h2>
+        <p class="text-xs text-brand-muted mt-1">横向对比各平台主流客户端的底层核心、协议支持、易用度与官方授权状态</p>
+      </div>
+
+      <div class="overflow-x-auto bg-white border border-brand-border rounded-xl shadow-sm">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="bg-brand-light border-b border-brand-border text-brand-dark font-bold">
+              <th class="p-3 whitespace-nowrap">客户端名称</th>
+              <th class="p-3 whitespace-nowrap">适用操作系统</th>
+              <th class="p-3 whitespace-nowrap">底层核心</th>
+              <th class="p-3 whitespace-nowrap">软件授权</th>
+              <th class="p-3 whitespace-nowrap">新协议支持 (Hy2/TUIC)</th>
+              <th class="p-3 whitespace-nowrap">TUN 虚拟网卡</th>
+              <th class="p-3 whitespace-nowrap">上手门槛</th>
+              <th class="p-3 whitespace-nowrap">适用人群画像</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border text-brand-muted font-sans">
+            <tr class="hover:bg-brand-light/40 transition">
+              <td class="p-3 font-bold text-brand-dark whitespace-nowrap">
+                <a href="/clients/clash-verge-rev/" class="text-brand-teal hover:underline font-bold">Clash Verge Rev</a>
+              </td>
+              <td class="p-3 whitespace-nowrap">Windows, macOS, Linux</td>
+              <td class="p-3 whitespace-nowrap font-mono">Mihomo (Meta)</td>
+              <td class="p-3 text-emerald-700 whitespace-nowrap">开源 / 免费</td>
+              <td class="p-3 text-emerald-700 whitespace-nowrap">完美原生支持</td>
+              <td class="p-3 text-emerald-700 whitespace-nowrap">原生服务模式</td>
+              <td class="p-3 whitespace-nowrap">极简友好 ★☆☆</td>
+              <td class="p-3 whitespace-nowrap">跨平台桌面端绝对首选，颜值高</td>
+            </tr>
+            <tr class="hover:bg-brand-light/40 transition">
+              <td class="p-3 font-bold text-brand-dark whitespace-nowrap">
+                <a href="/clients/v2rayn/" class="text-brand-teal hover:underline font-bold">v2rayN</a>
+              </td>
+              <td class="p-3 whitespace-nowrap">Windows</td>
+              <td class="p-3 whitespace-nowrap font-mono">Xray / Sing-box / Meta</td>
+              <td class="p-3 text-emerald-700 whitespace-nowrap">开源 / 免费</td>
+              <td class="p-3 text-emerald-700 whitespace-nowrap">多核心热插拔</td>
+              <td class="p-3 whitespace-nowrap">支持</td>
+              <td class="p-3 whitespace-nowrap">中等技术 ★★☆</td>
+              <td class="p-3 whitespace-nowrap">极客与大批量节点真连接延迟测速</td>
+            </tr>
+            <tr class="hover:bg-brand-light/40 transition">
+              <td class="p-3 font-bold text-brand-dark whitespace-nowrap">
+                <a href="/clients/shadowrocket/" class="text-brand-teal hover:underline font-bold">Shadowrocket (小火箭)</a>
+              </td>
+              <td class="p-3 whitespace-nowrap">iOS, iPadOS, Mac(M)</td>
+              <td class="p-3 whitespace-nowrap font-mono">自研高度优化协议栈</td>
+              <td class="p-3 text-brand-dark whitespace-nowrap">商业软件 (~$2.99)</td>
+              <td class="p-3 text-emerald-700 whitespace-nowrap">跟进极其迅捷</td>
+              <td class="p-3 text-emerald-700 whitespace-nowrap">系统级接管</td>
+              <td class="p-3 whitespace-nowrap">极简稳定 ★☆☆</td>
+              <td class="p-3 whitespace-nowrap">苹果移动生态统治级工具，省电首选</td>
+            </tr>
+            <tr class="hover:bg-brand-light/40 transition">
+              <td class="p-3 font-bold text-brand-dark whitespace-nowrap">
+                <a href="/clients/sing-box/" class="text-brand-teal hover:underline font-bold">sing-box 官方客户端</a>
+              </td>
+              <td class="p-3 whitespace-nowrap">全平台通配</td>
+              <td class="p-3 whitespace-nowrap font-mono">sing-box 原生纯 Go</td>
+              <td class="p-3 text-emerald-700 whitespace-nowrap">开源 / 免费</td>
+              <td class="p-3 text-emerald-700 whitespace-nowrap">协议创新标杆</td>
+              <td class="p-3 text-emerald-700 whitespace-nowrap">全平台原生</td>
+              <td class="p-3 whitespace-nowrap">进阶极客 ★★★</td>
+              <td class="p-3 whitespace-nowrap">次世代通用平台，低内存高并发</td>
+            </tr>
+            <tr class="hover:bg-brand-light/40 transition">
+              <td class="p-3 font-bold text-brand-dark whitespace-nowrap">
+                <a href="/clients/openclash/" class="text-brand-teal hover:underline font-bold">OpenClash</a>
+              </td>
+              <td class="p-3 whitespace-nowrap">OpenWrt 软路由</td>
+              <td class="p-3 whitespace-nowrap font-mono">Mihomo / Clash.Meta</td>
+              <td class="p-3 text-emerald-700 whitespace-nowrap">开源 / 免费</td>
+              <td class="p-3 text-emerald-700 whitespace-nowrap">内核一键热更</td>
+              <td class="p-3 text-emerald-700 whitespace-nowrap">TProxy / Fake-IP</td>
+              <td class="p-3 whitespace-nowrap">高级网络 ★★★</td>
+              <td class="p-3 whitespace-nowrap">智能电视、Switch/PS5 全屋透明分流</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 3: 5 CORE DEEP DIVE ARTICLES -->
+    <section id="sec-deep-dive" class="space-y-4 scroll-mt-20">
+      <div class="flex items-center justify-between border-b border-brand-border pb-3">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+            <span>3. 核心客户端架构与技术深度档案 (5 篇深度专栏)</span>
+          </h2>
+          <p class="text-xs text-brand-muted mt-1">剖析底层内核演进、虚拟网卡实现与进阶调度技巧</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+        <a href="/clients/clash-verge-rev/" class="p-4 bg-white border border-brand-border hover:border-brand-info rounded-xl shadow-sm transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-brand-info mb-1 text-sm">💻 Clash Verge Rev 深度档案</div>
+          <p class="text-brand-muted text-[11px] leading-relaxed line-clamp-3">基于 Rust/Tauri 与 Mihomo 内核开发，彻底替代停更的旧版 CFW。详解系统服务 Service 模式安装、TUN 虚拟网卡与多订阅管理。</p>
+          <div class="text-brand-teal font-semibold mt-2">阅读深度档案 →</div>
+        </a>
+        <a href="/clients/v2rayn/" class="p-4 bg-white border border-brand-border hover:border-brand-info rounded-xl shadow-sm transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-brand-info mb-1 text-sm">🪟 v2rayN 深度档案</div>
+          <p class="text-brand-muted text-[11px] leading-relaxed line-clamp-3">Windows 平台经久不衰的经典多核心调度中心。支持 Xray、sing-box 与 Mihomo 内核无缝切换，具备大批量节点真连接延迟测速能力。</p>
+          <div class="text-brand-teal font-semibold mt-2">阅读深度档案 →</div>
+        </a>
+        <a href="/clients/shadowrocket/" class="p-4 bg-white border border-brand-border hover:border-brand-info rounded-xl shadow-sm transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-brand-info mb-1 text-sm">📱 Shadowrocket (小火箭) 深度档案</div>
+          <p class="text-brand-muted text-[11px] leading-relaxed line-clamp-3">iOS 生态统治级规则代理利器。深度解析其自研协议栈、模块重写 (Rewrite)、HTTPS 证书解密与基于 Network Extension 的省电常驻优化。</p>
+          <div class="text-brand-teal font-semibold mt-2">阅读深度档案 →</div>
+        </a>
+        <a href="/clients/sing-box/" class="p-4 bg-white border border-brand-border hover:border-brand-info rounded-xl shadow-sm transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-brand-info mb-1 text-sm">📦 sing-box 官方客户端深度档案</div>
+          <p class="text-brand-muted text-[11px] leading-relaxed line-clamp-3">通用次世代代理平台标杆。采用纯 Go 语言编写，彻底重构旧版 V2Ray 的历史包袱，支持统一声明式 JSON 配置与前沿协议首发支持。</p>
+          <div class="text-brand-teal font-semibold mt-2">阅读深度档案 →</div>
+        </a>
+        <a href="/clients/openclash/" class="p-4 bg-white border border-brand-border hover:border-brand-info rounded-xl shadow-sm transition block group sm:col-span-2 lg:col-span-2">
+          <div class="font-bold text-brand-dark group-hover:text-brand-info mb-1 text-sm">🏠 OpenClash 软路由插件深度档案</div>
+          <p class="text-brand-muted text-[11px] leading-relaxed line-clamp-3">在 OpenWrt 路由器上部署透明代理网关。详解 Fake-IP 增强模式、DNS 污染防范，让智能电视 Apple TV、Switch/PS5 游戏机无需安装任何软件实现免配置全屋极速分流。</p>
+          <div class="text-brand-teal font-semibold mt-2">阅读深度档案 →</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION 4: PLATFORMS CLIENTS LISTING -->
+    <section id="sec-platforms" class="space-y-8 scroll-mt-20">
+      <div class="border-b border-brand-border pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+          <span>4. 按操作系统分类检索官方已核验客户端软件库</span>
+        </h2>
+        <p class="text-xs text-brand-muted mt-1">仅收录经过官方源码审计与核准的开源仓库及官方应用市场</p>
+      </div>
+
+      <div class="space-y-12">
+        {platforms.map(platform => {
+          const platformClients = CLIENT_LIST.filter(c => c.platforms.includes(platform));
+          return (
+            <div id={`platform-${platform.toLowerCase()}`} class="scroll-mt-20 space-y-4">
+              <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+                <h3 class="text-lg font-bold text-brand-dark flex items-center gap-2">
+                  <span>🖥️ {platform} 操作系统推荐工具</span>
+                </h3>
+                <span class="text-xs text-brand-muted font-mono">{platformClients.length} 款推荐工具</span>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {platformClients.map(client => (
+                  <div class="bg-white border border-brand-border rounded-xl p-5 shadow-sm space-y-3 text-xs">
+                    <div class="flex items-start justify-between">
+                      <div>
+                        <h4 class="font-bold text-sm text-brand-dark">{client.name}</h4>
+                        <div class="text-[11px] text-brand-muted mt-0.5 font-mono">{client.developer}</div>
+                      </div>
+                      <span class={`text-[10px] px-2 py-0.5 rounded font-semibold ${client.isFree ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}`}>
+                        {client.isFree ? '免费开源' : '付费软件'}
+                      </span>
+                    </div>
+
+                    <p class="text-brand-muted leading-relaxed line-clamp-2">{client.description}</p>
+
+                    <div class="pt-2 border-t border-brand-border text-[11px] space-y-1">
+                      <div><span class="text-brand-muted">核心内核:</span> <strong class="text-brand-dark">{client.core}</strong></div>
+                      <div><span class="text-brand-muted">支持协议:</span> <span class="font-mono text-brand-dark">{client.protocols.join(', ')}</span></div>
+                    </div>
+
+                    <div class="pt-2 flex items-center justify-between">
+                      {client.officialUrl ? (
+                        <a href={client.officialUrl} target="_blank" rel="noopener noreferrer nofollow" class="text-brand-teal hover:underline font-bold">
+                          官方仓库 Releases ↗
+                        </a>
+                      ) : (
+                        <span class="text-brand-muted text-[11px]">经官方应用市场安装</span>
+                      )}
+                      {['clash-verge-rev', 'v2rayn', 'shadowrocket', 'sing-box', 'openclash'].includes(client.slug) && (
+                        <a href={`/clients/${client.slug}/`} class="text-brand-dark hover:underline text-[11px]">
+                          深度档案 →
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- SECTION 5: FAQS -->
+    <section id="sec-faqs" class="scroll-mt-20">
+      <FAQ items={faqItems} title="客户端软件选型、安装与配置常见问答 (FAQ)" />
+    </section>
+
+    <!-- Cross Navigation to Guides and Troubleshoot -->
+    <section class="my-10 bg-brand-light p-6 rounded-2xl border border-brand-border space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="font-bold text-sm text-brand-dark">📖 选好客户端后，如何导入订阅与排除故障？</h3>
+          <p class="text-xs text-brand-muted">查阅详细实操图文教程，或使用排障 SOP 解决节点超时与报错</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <a href="/guides/clash-verge-rev-tutorial/" class="p-3 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-sm text-center font-bold text-brand-dark hover:text-brand-teal transition">
+          💻 Clash Verge Rev 上手配置教程
+        </a>
+        <a href="/troubleshooting/node-timeout/" class="p-3 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-sm text-center font-bold text-brand-dark hover:text-brand-teal transition">
+          🚨 节点超时与连不上排查 SOP
+        </a>
+        <a href="/recommend/" class="p-3 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-sm text-center font-bold text-brand-dark hover:text-brand-teal transition">
+          🏆 查看精选优质专线机场推荐
+        </a>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>

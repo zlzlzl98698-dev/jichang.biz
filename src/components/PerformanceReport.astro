@@ -1,0 +1,103 @@
+---
+import type { SpeedTestRecord } from '../types/brand';
+import EvidenceStatus from './EvidenceStatus.astro';
+
+interface Props {
+  record: SpeedTestRecord;
+  brandName: string;
+  brandAccent?: string;
+}
+
+const { record, brandName, brandAccent = '#087F73' } = Astro.props;
+const hasData = record.nodes && record.nodes.length > 0;
+---
+
+<div class="bg-brand-navy border border-gray-800 rounded-xl p-5 my-6 text-white font-mono shadow-md overflow-hidden">
+  
+  <!-- Console Header -->
+  <div class="flex flex-wrap items-center justify-between pb-3 border-b border-gray-800 text-xs text-gray-400 gap-2">
+    <div class="flex items-center gap-2">
+      <span class="w-2.5 h-2.5 rounded-full" style={`background-color: ${brandAccent};`}></span>
+      <span class="text-white font-semibold font-sans">{brandName} · 网络可观测性与测速报告</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <span>测试日期: {record.testDate || '待核验'}</span>
+      <span class="px-2 py-0.5 rounded text-[10px] bg-gray-800 border border-gray-700">
+        {record.isPeak ? '⚡ 晚高峰时段' : '🕒 常规时段'}
+      </span>
+      <EvidenceStatus status={record.dataStatus} />
+    </div>
+  </div>
+
+  <!-- Test Environment Spec -->
+  <div class="py-2.5 text-[11px] text-gray-400 border-b border-gray-800/80 flex flex-wrap items-center justify-between gap-2">
+    <div>
+      <span class="text-gray-400">测试环境: </span>
+      <span class="text-gray-300">{record.environment || '标准单次网络连通性抽样'}</span>
+    </div>
+    <div class="text-[10px] text-gray-400">
+      * 注: 带宽以 Mbps 为单位 (1 MB/s ≈ 8 Mbps)；单次瞬时测速仅代表当时网络状态，不代表长期持续表现。
+    </div>
+  </div>
+
+  <!-- Performance Visual Bars / Fallback -->
+  {hasData ? (
+    <div class="py-4 space-y-4">
+      {record.nodes.map(node => {
+        const speed = node.downloadMbps || 0;
+        // Max reference bandwidth for bar width (capped at 600Mbps)
+        const percentage = Math.min(100, Math.round((speed / 600) * 100));
+        return (
+          <div class="space-y-1">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-gray-200 font-sans flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span>{node.region} 专线出口</span>
+              </span>
+              <div class="flex items-center gap-4 text-xs font-mono-numbers">
+                <span class="text-gray-400">
+                  延迟: <strong class="text-emerald-300">{node.latencyMs !== null ? `${node.latencyMs}ms` : '—'}</strong>
+                </span>
+                <span class="text-gray-400">
+                  下载: <strong class="text-white">{node.downloadMbps !== null ? `${node.downloadMbps} Mbps` : '—'}</strong>
+                  {node.downloadMbps !== null && (
+                    <span class="text-[10px] text-gray-400 font-normal">
+                      (~{(node.downloadMbps / 8).toFixed(1)} MB/s)
+                    </span>
+                  )}
+                </span>
+              </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-900 rounded h-2 overflow-hidden border border-gray-800">
+              <div
+                class="h-full rounded transition-all duration-300"
+                style={`width: ${percentage}%; background-color: ${brandAccent}; opacity: 0.9;`}
+              ></div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  ) : (
+    <div class="py-8 text-center text-xs text-gray-400 space-y-2">
+      <div class="text-sm text-gray-400">暂无逐地区独立测速证据</div>
+      <p class="max-w-md mx-auto text-[11px] leading-relaxed">
+        本站严格恪守真实原则：对该品牌尚未取得可信测速截图与日志，不制造虚拟测速条或 0 丢包伪证。待官方或第三方实验室复测完成后更新。
+      </p>
+    </div>
+  )}
+
+  <!-- Console Footer / Summary -->
+  <div class="pt-3 border-t border-gray-800 text-xs text-gray-400 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+    <div>
+      <span class="text-gray-400">数据分析摘要: </span>
+      <span class="text-gray-300 font-sans">{record.summary || '按公开采样记录汇总'}</span>
+    </div>
+    <div class="text-[10px] text-gray-400 shrink-0 font-sans">
+      来源: 机场指南真实历史档案 · 严禁无授权抄袭
+    </div>
+  </div>
+
+</div>

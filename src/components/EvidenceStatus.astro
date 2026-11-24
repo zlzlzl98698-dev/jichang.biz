@@ -1,0 +1,53 @@
+---
+import type { DataStatus } from '../types/brand';
+
+interface Props {
+  status: DataStatus;
+  notes?: string;
+  className?: string;
+}
+
+const { status, notes, className = '' } = Astro.props;
+
+const statusConfig: Record<DataStatus, { label: string; badgeClass: string; desc: string }> = {
+  verified: {
+    label: '实测核验',
+    badgeClass: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+    desc: '已通过独立测速或第三方多源交叉核验'
+  },
+  vendor: {
+    label: '商家宣称',
+    badgeClass: 'bg-blue-50 text-blue-800 border-blue-200',
+    desc: '信息来源于服务商官方公开文案，尚未经第三方长期多轮实测'
+  },
+  historical: {
+    label: '历史记录',
+    badgeClass: 'bg-amber-50 text-amber-800 border-amber-200',
+    desc: '基于历史测试快照记录，可能随服务商最新调整发生变动'
+  },
+  conflict: {
+    label: '记录冲突',
+    badgeClass: 'bg-rose-50 text-rose-800 border-rose-200',
+    desc: '不同历史资料或摘要与详情间存在字段冲突，已诚实标出'
+  },
+  unknown: {
+    label: '待核实',
+    badgeClass: 'bg-gray-100 text-gray-700 border-gray-300',
+    desc: '暂无可靠公开数据，不凭推测虚构数值'
+  }
+};
+
+const current = statusConfig[status] || statusConfig.unknown;
+---
+
+<span
+  class:list={[
+    'inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-medium border',
+    current.badgeClass,
+    className
+  ]}
+  title={notes || current.desc}
+>
+  <span class="w-1.5 h-1.5 rounded-full bg-current opacity-75"></span>
+  <span>{current.label}</span>
+</span>

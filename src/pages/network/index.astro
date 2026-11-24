@@ -1,0 +1,871 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NetworkConceptDiagram from '../../components/NetworkConceptDiagram.astro';
+import FAQ from '../../components/FAQ.astro';
+import { BRANDS } from '../../data/brands';
+
+const title = '机场线路与节点全景指南 · IEPL、IPLC 专线与 BGP 中转架构深度科普';
+const description = '深度剖析机场网络底层架构。权威解析 IEPL 国际以太网专线、IPLC 专线与 BGP 隧道中转的技术差异，物理光纤时延极限、节点倍率计费模型、原生住宅 IP 识别与晚高峰测速防坑 SOP。';
+const breadcrumbs = [
+  { name: '线路与节点', url: '/network/' }
+];
+
+const faqItems = [
+  {
+    question: 'IEPL 专线和 IPLC 专线到底有什么区别？哪个更好？',
+    answer: '在最终用户的实际体验上，两者表现高度接近。IPLC（International Private Leased Circuit，国际专线租用电路）是电信运营商最早期的点对点物理内网专线标准；IEPL（International Ethernet Private Line，国际以太网私线）则是基于现代以太网技术的二层虚拟专线，具备更灵活的带宽调度能力与配置灵活性。两者的核心共同点是：均在运营商骨干内网闭环中完成跨过境传输，完全绕过公网国际出口路由与防火墙过滤，因此晚高峰极其平稳，几乎不受公网拥塞波动影响。'
+  },
+  {
+    question: '为什么美国节点的延迟通常在 130ms–180ms 甚至更高？这是质量差吗？',
+    answer: '完全不是质量差，而是受限于光速传播的物理定律。中国大陆到美国本土横跨太平洋，物理直线距离超过 10,000 公里。光在海底石英玻璃光纤中的折射率导致每传输 1,000 公里产生约 5ms 的单向时延，往返（RTT）仅纯物理光纤耗时就至少需要 100ms 以上，加上国内骨干网接入跳数与美国机房路由交换，130ms–160ms 已经是跨太平洋的物理顶级水准。如果有服务商宣传“美国节点 20ms”，必属将本地到国内中转入口的握手延迟冒充最终落地延迟的虚假宣传。'
+  },
+  {
+    question: '什么是“节点倍率”？为什么用 2 倍率节点流量扣得飞快？',
+    answer: '节点倍率是服务商对不同采购成本节点设定的计费放大系数。1.0x 倍率表示您下载 1GB 视频就扣除 1GB 套餐流量；若使用 2.0x 倍率节点（通常是昂贵的高级专线或原生住宅 IP），下载 1GB 实际将扣除 2GB 套餐配额；反之 0.2x 倍率节点下载 1GB 只扣 0.2GB。用户在客户端连接前务必看清节点名称中的倍率标注，避免误用高倍率导致流量快速见底。'
+  },
+  {
+    question: '为什么有时中转节点白天飞快，晚上 20:00–23:00 会严重卡顿甚至断连？',
+    answer: '普通公网中转或劣质隧道中转依赖公网 IP 进行国内到境外的中继。每天晚高峰时期（20:00–23:00），国际公网出口带宽发生严重拥塞，运营商 QoS 策略会优先丢弃普通 UDP 与 TCP 流量，造成丢包率从 0.5% 骤升至 15%–30%，TCP 窗口骤降导致吞吐断崖式下跌。而真正的 IEPL/IPLC 专线走内网 SLA 保障链路，不经过公网出口，因此可以做到 24 小时全天候无波动。'
+  },
+  {
+    question: '什么是 BGP 多线入口？它相比单线中转有什么优势？',
+    answer: 'BGP（Border Gateway Protocol，边界网关协议）多线入口是指服务商在国内接入了同时拥有中国电信、中国联通、中国移动等多个运营商对等互联的机房。不同宽带的用户在发起连接时，BGP 路由器会自动根据网络自治域（AS）拓扑匹配最优接入链路，避免了“电信用户跨网连移动入口”引发的高跨网延迟与丢包，且在单条运营商光纤故障时具备毫秒级自动容灾切换能力。'
+  },
+  {
+    question: '为什么客户端节点列表显示的 Ping 延迟很低（如 15ms），但打开网页依然很慢？',
+    answer: '这是新手最容易踩的陷阱。大部分客户端（如 Clash、v2rayN）默认执行的 Ping 测速，测试的仅是“本地电脑到服务商国内入口服务器”的握手延迟（TCP Handshake），而不是“到境外目标网站”的端到端真实 RTT。如果服务商国内入口在本地同城，Ping 延迟自然只有十几毫秒；但如果其过境带宽已经严重拥堵，境外端到端延迟可能高达几百毫秒甚至丢包，因此切勿将客户端内的入口 Ping 当作实际网速。'
+  },
+  {
+    question: '原生 IP 与广播机房 IP 对日常使用有什么实际影响？',
+    answer: '广播 IP（Datacenter IP）是机房大批量向互联网注册机构宣告的商用 IP 段，被 Netflix、Disney+、ChatGPT、TikTok 等风控系统高度标记，容易遭遇 403 阻断、Cloudflare 5秒盾验证码死循环或被判定为机器人；原生住宅 IP（Residential IP）是当地民用宽带分配的真实用户 IP，信誉评级极高，能够完美通过各类风控系统，但成本高昂且多以高倍率呈现。'
+  },
+  {
+    question: '日常使用为什么强烈建议关闭客户端的“自动选择（URL-Test）”策略？',
+    answer: '自动选择策略会定期向测速 URL 发送探测包，并将流量切向响应延迟最小的节点。这会导致两个严重后果：第一，频繁切换节点导致外部 IP 不断变更，极易触发 Google、ChatGPT、银行等账号的安全异地风控甚至导致封号；第二，部分服务商的劣质节点或高倍率节点延迟短暂变低，自动切换会将流量导向这些高扣量节点，造成流量偷跑。推荐手动指定 1–2 个主力稳定节点。'
+  }
+];
+
+const tocItems = [
+  { id: 'answer-first', title: 'Answer-First 核心决策摘要与选点口诀' },
+  { id: 'three-tier-arch', title: '机场网络技术底座：入口、过境与落地三层解耦' },
+  { id: 'iepl-vs-iplc', title: 'IEPL 与 IPLC 物理专线深度剖析：不过墙的物理真相' },
+  { id: 'bgp-relay', title: 'BGP 智能隧道中转架构：多线容灾与加密中继' },
+  { id: 'direct-lines', title: '普通公网直连与精品网剖析：CN2 GIA、9929 与 4837' },
+  { id: 'regional-guide', title: '热门国家与地区节点特性深度图谱 (港/日/新/美/台/欧)' },
+  { id: 'physical-latency', title: '物理光纤极限与真实网络延迟对照表 (RTT 判定标准)' },
+  { id: 'throughput-metrics', title: '带宽、吞吐与峰值速率：4K/8K 码率判定' },
+  { id: 'packet-loss-jitter', title: '丢包率与抖动量化影响：为什么 1% 丢包能毁掉体验' },
+  { id: 'rate-multipliers', title: '节点流量倍率机制与计算模型：防偷跑避坑指南' },
+  { id: 'residential-vs-datacenter', title: '机房 IP 与原生/住宅 IP：风控等级与溯源技巧' },
+  { id: 'speedtest-reading', title: '测速图与连通性看图指南：真吞吐 vs 虚假握手' },
+  { id: 'evening-peak-sop', title: '晚高峰性能测试 SOP：标准化压测步骤' },
+  { id: 'node-selection-rules', title: '科学选点避坑规则：为什么禁用自动选择' },
+  { id: 'brand-line-matrix', title: '31 家主流品牌线路架构分布速查表' },
+  { id: 'articles-directory', title: '线路网络核心科普专栏 (4篇深度解析)' },
+  { id: 'faq', title: '高频常见问题 (FAQ)' },
+  { id: 'next-steps', title: '下一代网络规划与关联工具' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs} faqItems={faqItems} type="collection">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Hero Header -->
+    <div class="mb-8 border-b border-brand-border pb-6">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 text-brand-info text-xs font-semibold border border-blue-200 mb-3">
+        <span>🌐 物理网络可观测性 · 硬核架构剖析</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-brand-dark tracking-tight">
+        线路与节点架构全景指南：IEPL、IPLC 专线与 BGP 中转原理深度解析
+      </h1>
+      <p class="text-sm sm:text-base text-brand-muted mt-3 leading-relaxed">
+        彻底告别服务商吹捧的虚假营销词汇。本页面基于网络工程物理层与传输层原理，详细拆解入口、过境与落地的三段式网络拓扑，用光速物理极限验明真实时延边界，解析节点倍率偷跑套路与晚高峰网络抗波动表现。
+      </p>
+    </div>
+
+    <!-- In-Page TOC Anchor Navigation -->
+    <nav class="my-6 p-4 bg-brand-light border border-brand-border rounded-xl shadow-xs" aria-label="页面目录导航">
+      <div class="flex items-center justify-between pb-2 mb-2 border-b border-brand-border text-xs font-bold text-brand-dark">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-brand-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+          本文核心章节目录 (TOC)
+        </span>
+        <span class="text-brand-muted font-normal">点击快速跳转</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-1.5 text-xs">
+        {tocItems.map(item => (
+          <a href={`#${item.id}`} class="text-brand-dark hover:text-brand-teal hover:underline truncate py-0.5">
+            · {item.title}
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    <!-- MODULE 2: Answer-First Core Decision Card -->
+    <section id="answer-first" class="my-8 scroll-mt-20">
+      <div class="p-5 bg-linear-to-br from-emerald-50/70 via-white to-blue-50/50 border-2 border-brand-teal/40 rounded-2xl shadow-sm">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-2 py-0.5 rounded bg-brand-teal text-white text-xs font-bold tracking-wide">Answer-First 核心结论</span>
+          <span class="text-xs text-brand-muted font-mono">网络决策黄金法则</span>
+        </div>
+        <h2 class="text-lg font-bold text-brand-dark mb-2">30秒掌握线路选购核心逻辑与选点口诀</h2>
+        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
+          现代代理网络的服务质量（QoS）90% 决定于<strong>过境链路</strong>的物理属性，而非客户端软件。专线保稳定、中转保性价、直连碰运气。请牢记以下选购与选点黄金法则：
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs mb-4">
+          <div class="p-3 bg-white rounded-xl border border-emerald-200">
+            <div class="font-bold text-emerald-800 mb-1">⚡ IEPL / IPLC 内网专线</div>
+            <div class="text-brand-muted">物理专线内网传输，完全不过公网国际出口，晚高峰零丢包、抗波动能力极强，生产力与游戏核心首选。</div>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-blue-200">
+            <div class="font-bold text-brand-info mb-1">🔄 BGP 多线隧道中转</div>
+            <div class="text-brand-muted">国内三网 BGP 接入机房，通过加密隧道跨公网转发，带宽大成本低，性价比极高，但晚高峰可能偶有抖动。</div>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-amber-200">
+            <div class="font-bold text-amber-800 mb-1">🌐 普通公网直连</div>
+            <div class="text-brand-muted">本地客户端直连境外机房，无国内中继缓冲，晚高峰受国际海缆拥堵和 QoS 限制，丢包率往往超过 15%。</div>
+          </div>
+        </div>
+        <div class="p-3 bg-emerald-100/60 rounded-xl border border-emerald-200 text-xs font-mono text-emerald-950 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <span>🎯 <strong>日常选点核心口诀：</strong>近用港新低延迟、影看日美全码率、AI 避港选美新、专线稳如磐石在、倍率先看防偷跑。</span>
+          <a href="/recommend/" class="shrink-0 text-brand-teal hover:underline font-bold">查看专线推荐机场 →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Network Topology Interactive Component -->
+    <section class="my-8">
+      <div class="pb-2 border-b border-brand-border mb-4">
+        <h2 class="text-lg font-bold text-brand-dark">通用企业级专线与中转网络物理拓扑示意</h2>
+        <p class="text-xs text-brand-muted mt-1">直观对比国内接入点、跨国过境链路与境外落地服务器的端到端数据流向。</p>
+      </div>
+      <NetworkConceptDiagram brandName="通用企业级专线与中转" networkType="IEPL / IPLC 物理专线" isSpecific={false} />
+    </section>
+
+    <!-- MODULE 3: Three-Tier Architecture -->
+    <section id="three-tier-arch" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        机场网络技术底座：入口、过境与落地三层解耦
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        一个完整的代理链路绝非一根简单的“网线”，而是由地理位置完全不同的三段基础设施串联构成的分布式传输系统。理解这三层的分工，是避开 90% 虚假宣传的前提：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-xs">1</span>
+            <span class="font-bold text-brand-dark text-sm">入口层 (Ingress)</span>
+          </div>
+          <div class="text-brand-muted space-y-2 leading-relaxed">
+            <p><strong>物理位置：</strong>中国大陆境内机房（常见于深圳、广州、上海、北京）。</p>
+            <p><strong>核心职能：</strong>接收本地客户端的初次连接。负责本地运营商的接入适配，将电信、联通、移动宽带用户的流量汇聚到边界路由器。</p>
+            <p><strong>技术指标：</strong>BGP 多线互联能力、入口带宽冗余、单线崩溃自动故障转移（Failover）。</p>
+          </div>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-6 h-6 rounded-full bg-blue-100 text-brand-info font-bold flex items-center justify-center text-xs">2</span>
+            <span class="font-bold text-brand-dark text-sm">过境层 (Transit)</span>
+          </div>
+          <div class="text-brand-muted space-y-2 leading-relaxed">
+            <p><strong>物理位置：</strong>跨境传输通道（陆缆如深港专线、海缆如亚太环球光缆）。</p>
+            <p><strong>核心职能：</strong>将数据从国内入口机房跨越地理国界传输至境外对端机房。这是整个服务链中<strong>成本最高、技术门槛最高</strong>的环节。</p>
+            <p><strong>技术分类：</strong>IEPL 物理二层以太网专线、IPLC 点对点电路、BGP 公网加密隧道、普通公网直连。</p>
+          </div>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl shadow-xs">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-6 h-6 rounded-full bg-purple-100 text-purple-800 font-bold flex items-center justify-center text-xs">3</span>
+            <span class="font-bold text-brand-dark text-sm">落地层 (Egress)</span>
+          </div>
+          <div class="text-brand-muted space-y-2 leading-relaxed">
+            <p><strong>物理位置：</strong>目标国家/地区的境外数据中心（香港、东京、新加坡、洛杉矶等）。</p>
+            <p><strong>核心职能：</strong>解密代理协议包，以当地真实的公网 IP 向目标网站（如 Google、Netflix、OpenAI）发起最终 TCP/UDP 握手并回传响应。</p>
+            <p><strong>技术指标：</strong>IP 纯净度、原生住宅属性、解锁能力、出口互联带宽（Transit/IX）。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 4: IEPL vs IPLC Deep-Dive -->
+    <section id="iepl-vs-iplc" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        IEPL 与 IPLC 物理专线深度剖析：不过墙的物理真相
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        “专线”是高端机场最具溢价能力的核心卖点。许多用户只知专线稳定，却不知其背后的通信工程逻辑：
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse border border-brand-border bg-white rounded-xl shadow-xs">
+          <thead>
+            <tr class="bg-brand-light text-brand-dark font-bold border-b border-brand-border">
+              <th class="p-3">对比维度</th>
+              <th class="p-3">IEPL (国际以太网私线)</th>
+              <th class="p-3">IPLC (国际专线租用电路)</th>
+              <th class="p-3">BGP 隧道中转 (普通中继)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border text-brand-muted">
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">OSI 网络模型层次</td>
+              <td class="p-3 text-emerald-800 font-mono">Layer 2 (数据链路层以太网)</td>
+              <td class="p-3 text-blue-800 font-mono">Layer 1 (物理层时分复用 TDM)</td>
+              <td class="p-3 font-mono">Layer 3/4/7 (公网 IP 封包转发)</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">是否经过公网出口</td>
+              <td class="p-3 text-emerald-700 font-bold">完全不经过 (运营商内网点对点)</td>
+              <td class="p-3 text-emerald-700 font-bold">完全不经过 (物理硬切片)</td>
+              <td class="p-3 text-amber-700">经过公网 (通过公网加密传输)</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">防火墙审查与阻断</td>
+              <td class="p-3 text-emerald-700 font-bold">免受公网审查，无阻断风险</td>
+              <td class="p-3 text-emerald-700 font-bold">免受公网审查，无阻断风险</td>
+              <td class="p-3 text-amber-700">可能面临公网端口封锁或协议阻断</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">晚高峰 QoS 抖动表现</td>
+              <td class="p-3 text-emerald-700 font-bold">抖动 &lt; 1ms，丢包率趋近于 0</td>
+              <td class="p-3 text-emerald-700 font-bold">抖动 &lt; 1ms，零丢包 SLA 保障</td>
+              <td class="p-3 text-amber-700">丢包率 2%–10%，高峰偶发拥塞</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">每 Mbps 带宽采购成本</td>
+              <td class="p-3 font-mono font-bold text-brand-dark">高昂 (约 100–300 元/月/Mbps)</td>
+              <td class="p-3 font-mono font-bold text-brand-dark">极昂贵 (物理大单租用，上万元起)</td>
+              <td class="p-3 font-mono text-brand-muted">经济 (约 15–50 元/月/Mbps)</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">假专线常见鉴别手段</td>
+              <td class="p-3" colspan="2">
+                <strong>假专线特征：</strong>晚高峰 21:00 延迟飙升 100ms 以上、丢包率明显上涨、遭遇大面积敏感时期节点全红。真正专线即使外界风声鹤唳，内部依旧秒连。
+              </td>
+              <td class="p-3 text-brand-muted">部分不良商家将普通公网中转冠以“IEPL 内网专线”虚高标价。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MODULE 5: BGP Relay & Ingress Architecture -->
+    <section id="bgp-relay" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        BGP 智能隧道中转架构：多线容灾与加密中继
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        并非所有用户都需要高昂的专线。BGP 多线隧道中转作为目前市场上最主流、性价比最高的架构，其核心技术优势体现在以下几个维度：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm flex items-center gap-1.5">
+            <span class="text-brand-teal">🔀</span> BGP 动态路由与多线接入
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            在中国复杂的骨干网环境中，跨网互联（如中国移动宽带访问中国电信服务器）存在严重的跨网延迟与丢包。BGP 机房通过单一 IP 地址同时宣告电信、联通、移动三大运营商的自治系统路由。用户的客户端发起请求时，网络底层自动选择该宽带所属的最优路径进站，实现低延迟接入。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm flex items-center gap-1.5">
+            <span class="text-brand-teal">🛡️</span> 隧道加密协议与流量伪装
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            在公网中转架构中，国内入口到境外落地的通信数据必须经过公网。成熟服务商普遍采用 TLS 加密隧道、WireGuard、Shadowsocks 或私有魔改协议进行封包加密。即便中间路由器截获数据包，也仅能识别为普通的合法加密流量，有效防止被中间人篡改或恶意探测。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 6: Direct Lines & Premium CN2/9929/4837 -->
+    <section id="direct-lines" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        普通公网直连与精品网剖析：CN2 GIA、AS9929 与 AS4837
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        如果机场节点采用“直连线路”，或者用户选择自建 VPS，骨干网的路由分流机制将直接主宰连接质量。以下为运营商核心线路代码与性能解析：
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+        <div class="p-3.5 bg-white border border-brand-border rounded-xl">
+          <div class="font-bold text-brand-dark mb-1 flex items-center justify-between">
+            <span>电信 CN2 GIA</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">AS4809</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            中国电信最高规格国际精品网。独立骨干网络，轻度负载，双向 CN2 路由，晚高峰极度平稳。成本仅次于专线，常用于高规格美西和香港直连。
+          </p>
+        </div>
+
+        <div class="p-3.5 bg-white border border-brand-border rounded-xl">
+          <div class="font-bold text-brand-dark mb-1 flex items-center justify-between">
+            <span>联通 9929 (CU-VIP)</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">AS9929</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            前身网通精品骨干网。被称为联通的“A网”，容纳量极高且用户少，跨洲传输丢包率极低，对欧洲和美洲节点有极佳的表现。
+          </p>
+        </div>
+
+        <div class="p-3.5 bg-white border border-brand-border rounded-xl">
+          <div class="font-bold text-brand-dark mb-1 flex items-center justify-between">
+            <span>联通 4837</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-100 text-purple-800 font-bold">AS4837</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            中国联通普通骨干网。由于联通国际出口带宽冗余大，性价比极高，在白天与非恶劣高峰期能跑满千兆，但晚高峰可能出现阶段性拥塞。
+          </p>
+        </div>
+
+        <div class="p-3.5 bg-white border border-brand-border rounded-xl">
+          <div class="font-bold text-brand-dark mb-1 flex items-center justify-between">
+            <span>普通 163 骨干网</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-gray-100 text-gray-700 font-bold">AS4134</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            电信民用骨干网，承载国内 80% 民用宽带流量。国际出口常年处于 95% 以上超负荷状态，晚高峰丢包率可高达 30% 以上，极不推荐。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 7: Geographic Nodes Characteristics -->
+    <section id="regional-guide" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        热门国家与地区节点特性深度图谱 (港/日/新/美/台/欧)
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        不同地区的节点并非仅有时延差异，还深度绑定了各跨国平台的地域版权、风控策略与内容库。请根据实际业务对号入座：
+      </p>
+
+      <div class="table-responsive-wrapper">
+        <table class="w-full text-left text-xs border-collapse border border-brand-border bg-white rounded-xl shadow-xs">
+          <thead>
+            <tr class="bg-brand-light border-b border-brand-border text-brand-dark font-bold">
+              <th class="p-3">地区</th>
+              <th class="p-3 font-mono">典型时延 (RTT)</th>
+              <th class="p-3">优势应用场景</th>
+              <th class="p-3">风控禁忌与潜在限制</th>
+              <th class="p-3">推荐常驻指数</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border text-brand-muted">
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">🇭🇰 中国香港 (HK)</td>
+              <td class="p-3 font-mono text-emerald-700 font-bold">15ms – 45ms</td>
+              <td class="p-3">网页秒开、Google 搜索、YouTube 4K 流媒体、企业远程桌面</td>
+              <td class="p-3 text-red-700 font-medium">严禁用于 ChatGPT/Claude (高风控未开放区) 及 TikTok</td>
+              <td class="p-3 font-bold text-emerald-800">⭐⭐⭐⭐⭐ (日常主力)</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">🇯🇵 日本东京/大阪 (JP)</td>
+              <td class="p-3 font-mono text-emerald-700 font-bold">45ms – 75ms</td>
+              <td class="p-3">亚太核心骨干枢纽，日本本土流媒体（Abema/DMM）、动漫、Steam 联机</td>
+              <td class="p-3">公网中转晚高峰偶受亚太海缆波动影响；部分流媒体严查机房 IP</td>
+              <td class="p-3 font-bold text-emerald-800">⭐⭐⭐⭐⭐ (兼顾低延时)</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">🇸🇬 新加坡 (SG)</td>
+              <td class="p-3 font-mono text-emerald-700 font-bold">45ms – 65ms</td>
+              <td class="p-3">东南亚互联网中心，<strong>ChatGPT/Claude 黄金解锁区</strong>，TikTok 跨境出海</td>
+              <td class="p-3">华北、东北地区经由华南入口过境时，总物理延迟会略高于华南用户</td>
+              <td class="p-3 font-bold text-emerald-800">⭐⭐⭐⭐⭐ (AI 核心主力)</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">🇺🇸 美国洛杉矶/圣何塞 (US)</td>
+              <td class="p-3 font-mono text-amber-800 font-bold">135ms – 180ms</td>
+              <td class="p-3">全网资源最全、AI 大模型新功能灰度首发、美区原生流媒体、学术数据库</td>
+              <td class="p-3">跨太平洋物理光纤时延注定无法用于低延迟电竞游戏；网页交互略有粘滞感</td>
+              <td class="p-3 font-bold text-blue-800">⭐⭐⭐⭐ (万能兜底节点)</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">🇹🇼 中国台湾 (TW)</td>
+              <td class="p-3 font-mono text-emerald-700 font-bold">35ms – 60ms</td>
+              <td class="p-3">巴哈姆特动画疯、KKTV、繁体中文限定流媒体、台服游戏加速</td>
+              <td class="p-3">专线带宽资源普遍偏小，高峰期偶有拥塞限制</td>
+              <td class="p-3 text-brand-muted">⭐⭐⭐ (特色影音专用)</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">🇪🇺 欧洲 (英/德/法/荷)</td>
+              <td class="p-3 font-mono text-amber-800 font-bold">160ms – 230ms</td>
+              <td class="p-3">欧洲特定服务、小语种测试、跨国企业欧洲分支内网打通</td>
+              <td class="p-3">GDPR 严格合规审查，物理距离长，延迟普遍较高</td>
+              <td class="p-3 text-brand-muted">⭐⭐ (备用或特定业务)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MODULE 8: Physical Latency Limits vs RTT Table -->
+    <section id="physical-latency" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        物理光纤极限与真实网络延迟对照表 (RTT 判定标准)
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        光在真空中的传播速度为 $3 \times 10^8$ m/s，但在石英玻璃光纤中，因折射率影响（折射率 $n \approx 1.47$），实际光速约为 <strong>200,000 公里/秒</strong>，即每传输 1,000 公里产生单向约 5ms 时延，往返（RTT）至少产生 10ms 物理硬时延。虚假宣传不可违背物理学：
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse border border-brand-border bg-white rounded-xl shadow-xs font-mono-numbers">
+          <thead>
+            <tr class="bg-brand-light text-brand-dark font-bold border-b border-brand-border">
+              <th class="p-3 font-sans">国内发起城市与境外目的地</th>
+              <th class="p-3">物理光纤直线距离</th>
+              <th class="p-3 text-brand-teal font-bold">光缆理论往返极限 (RTT)</th>
+              <th class="p-3 text-emerald-800 font-bold">优质专线/精品网达标标准</th>
+              <th class="p-3 text-red-700">劣质中转/拥堵公网警戒线</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border text-brand-muted">
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-sans font-medium text-brand-dark">广州/深圳 ➔ 中国香港</td>
+              <td class="p-3">约 150 km</td>
+              <td class="p-3 font-bold text-brand-teal">&lt; 3 ms</td>
+              <td class="p-3 text-emerald-700 font-bold">8 ms – 15 ms</td>
+              <td class="p-3 text-red-600">&gt; 35 ms</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-sans font-medium text-brand-dark">上海 ➔ 日本东京</td>
+              <td class="p-3">约 1,800 km (NCP/APCN2海缆)</td>
+              <td class="p-3 font-bold text-brand-teal">~ 20 ms</td>
+              <td class="p-3 text-emerald-700 font-bold">32 ms – 45 ms</td>
+              <td class="p-3 text-red-600">&gt; 80 ms</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-sans font-medium text-brand-dark">北京 ➔ 日本东京</td>
+              <td class="p-3">约 2,500 km</td>
+              <td class="p-3 font-bold text-brand-teal">~ 28 ms</td>
+              <td class="p-3 text-emerald-700 font-bold">50 ms – 65 ms</td>
+              <td class="p-3 text-red-600">&gt; 110 ms</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-sans font-medium text-brand-dark">广州/深圳 ➔ 新加坡</td>
+              <td class="p-3">约 2,600 km (SJC/APG海缆)</td>
+              <td class="p-3 font-bold text-brand-teal">~ 30 ms</td>
+              <td class="p-3 text-emerald-700 font-bold">42 ms – 55 ms</td>
+              <td class="p-3 text-red-600">&gt; 90 ms</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-sans font-medium text-brand-dark">上海 ➔ 美国洛杉矶 (跨太平洋)</td>
+              <td class="p-3">约 10,400 km (TPE/FASTER海缆)</td>
+              <td class="p-3 font-bold text-brand-teal">~ 105 ms</td>
+              <td class="p-3 text-emerald-700 font-bold">130 ms – 155 ms</td>
+              <td class="p-3 text-red-600">&gt; 220 ms</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-sans font-medium text-brand-dark">北京 ➔ 德国法兰克福 (欧亚陆缆)</td>
+              <td class="p-3">约 8,500 km (ERA/TEA陆缆)</td>
+              <td class="p-3 font-bold text-brand-teal">~ 95 ms</td>
+              <td class="p-3 text-emerald-700 font-bold">135 ms – 165 ms</td>
+              <td class="p-3 text-red-600">&gt; 260 ms</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MODULE 9: Throughput, Bandwidth & Video Bitrates -->
+    <section id="throughput-metrics" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        下行带宽 vs 上行吞吐 vs 峰值速率判定标准
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        服务商宣称的“1000Mbps 极速节点”，其真实可用价值取决于持续吞吐（Sustained Throughput）而非瞬间突发跑分。各类日常网络业务对带宽与丢包的硬性要求如下：
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-1.5">
+          <div class="font-bold text-brand-dark flex items-center justify-between">
+            <span>4K 60FPS 极清视频</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">需 35–50 Mbps</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            YouTube VP9/AV1 编码 4K 码率在 20–35Mbps 浮动。节点必须具备持续 50Mbps 以上无丢包吞吐，Buffer 缓冲区稳定在 20 秒以上才能免拖动缓冲。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-1.5">
+          <div class="font-bold text-brand-dark flex items-center justify-between">
+            <span>8K HDR 原画流媒体</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">需 100–150 Mbps</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            极度考验节点出口网卡与中转单线程能力。若单线程持续速率低于 80Mbps，8K 播放将频繁出现画质降级或转圈卡顿。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-1.5">
+          <div class="font-bold text-brand-dark flex items-center justify-between">
+            <span>海外电竞与语音 (Discord)</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-100 text-purple-800 font-bold">需 2–5 Mbps</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            带宽需求极小，但对<strong>UDP 丢包率（要求 &lt; 0.5%）</strong>与网络抖动（Jitter &lt; 3ms）极其敏感。专线是唯一能稳定胜任该场景的介质。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-1.5">
+          <div class="font-bold text-brand-dark flex items-center justify-between">
+            <span>AI 大模型与代码仓库</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 font-bold">需 10–30 Mbps</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            ChatGPT Stream 流式打字对首字延迟（TTFT）敏感，Git Clone/Docker Pull 则需要持续稳定的 TCP 下行，严禁中途断流。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 10: Packet Loss & Jitter Quantitative Impact -->
+    <section id="packet-loss-jitter" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        丢包率与抖动量化影响：为什么 1% 丢包能毁掉体验
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        根据 TCP 拥塞控制经典算法（如 Reno/CUBIC），TCP 传输的最大吞吐量与丢包率的平方根成反比。当线路产生丢包时，发送窗口将呈指数级衰减：
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse border border-brand-border bg-white rounded-xl shadow-xs">
+          <thead>
+            <tr class="bg-brand-light text-brand-dark font-bold border-b border-brand-border">
+              <th class="p-3">丢包率区间</th>
+              <th class="p-3">TCP 吞吐折损</th>
+              <th class="p-3">网页加载感受</th>
+              <th class="p-3">视频播放感受</th>
+              <th class="p-3">SSH/远程桌面/游戏</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border text-brand-muted">
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-emerald-700">0.0% – 0.1% (顶级专线)</td>
+              <td class="p-3 font-mono text-emerald-800">100% 跑满全速</td>
+              <td class="p-3">丝滑秒开，无感知</td>
+              <td class="p-3">4K 秒拖动，Buffer 持续充盈</td>
+              <td class="p-3 text-emerald-700 font-bold">光标跟手，游戏 0 丢包回退</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-blue-700">0.5% – 2.0% (普通中转)</td>
+              <td class="p-3 font-mono text-brand-muted">吞吐折损 20% – 40%</td>
+              <td class="p-3">稍有迟滞，不影响常规阅览</td>
+              <td class="p-3">偶见拖动 1–2 秒缓冲</td>
+              <td class="p-3">敲命令偶尔轻微卡顿</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-amber-700">3.0% – 8.0% (轻度拥堵)</td>
+              <td class="p-3 font-mono text-amber-800">吞吐折损 60% – 85%</td>
+              <td class="p-3">页面图片常有撕裂重试</td>
+              <td class="p-3">4K 频繁降级至 1080P</td>
+              <td class="p-3 text-amber-800">频繁跳 ping，电竞出现瞬移</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-red-700">&gt; 10.0% (恶劣晚高峰)</td>
+              <td class="p-3 font-mono text-red-700 font-bold">吞吐折损 &gt; 95% 甚至断流</td>
+              <td class="p-3 text-red-700">出现 ERR_CONNECTION_RESET</td>
+              <td class="p-3 text-red-700">无限转圈，完全无法播放</td>
+              <td class="p-3 text-red-700">SSH 连接直接断开 (Broken Pipe)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MODULE 11: Rate Multiplier Calculation Model -->
+    <section id="rate-multipliers" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        节点流量倍率机制与计算模型：防偷跑避坑指南
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        节点倍率是许多新手流量“莫名蒸发”的头号元凶。服务商利用倍率调控服务器负载与带宽成本，其真实计费模型如下：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-3 text-xs">
+        <div class="p-3 bg-brand-light rounded-lg border border-brand-border font-mono text-xs">
+          <strong>📐 套餐扣除流量计算公式：</strong><br/>
+          实际结算扣除量 (GB) = (实际上传数据量 + 实际下载数据量) × 节点倍率 (Multiplier)
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+          <div class="p-3 rounded-lg border border-emerald-200 bg-emerald-50/50">
+            <div class="font-bold text-emerald-800 mb-1">低倍率节点 (0.1x – 0.5x)</div>
+            <div class="text-brand-muted">
+              <strong>场景：</strong>大文件下载、系统更新、网盘同步。<br/>
+              <strong>效果：</strong>下载 100GB 仅扣 10GB–50GB 配额。缺点通常是晚高峰限速或单线程吞吐较低。
+            </div>
+          </div>
+
+          <div class="p-3 rounded-lg border border-blue-200 bg-blue-50/50">
+            <div class="font-bold text-brand-info mb-1">标准倍率节点 (1.0x)</div>
+            <div class="text-brand-muted">
+              <strong>场景：</strong>日常主力网页浏览、YouTube 视频观看。<br/>
+              <strong>效果：</strong>真实 1:1 计费，下载 1GB 扣 1GB。绝大多数基准专线和 BGP 中转均属此类。
+            </div>
+          </div>
+
+          <div class="p-3 rounded-lg border border-amber-200 bg-amber-50/50">
+            <div class="font-bold text-amber-800 mb-1">高倍率节点 (2.0x – 10.0x)</div>
+            <div class="text-brand-muted">
+              <strong>场景：</strong>原生住宅静态 IP、超低延迟极品专线、冷门小众国家。<br/>
+              <strong>警惕：</strong>2.0x 节点看一部 4K 电影（20GB）将瞬间消耗 <strong>40GB</strong> 流量！严禁误设为长期下载节点。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 12: Datacenter vs Residential IP -->
+    <section id="residential-vs-datacenter" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        机房 IP 与原生/住宅 IP：风控等级与溯源技巧
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        落地节点的 IP 属性决定了你能否顺畅访问高风控平台。以下是两类 IP 的核心本质区别与风控系统判定逻辑：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm flex items-center justify-between">
+            <span>机房广播 IP (Datacenter / Hosting)</span>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-gray-100 text-gray-700 font-bold">高风控标记</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            由机房数据中心（如 AWS、Google Cloud、DigitalOcean、Linode 等）批量向 APNIC/ARIN 申请并广播的 IP。由于常年被爬虫、机器人与代理占用，其 ASN 被 Cloudflare、MaxMind、IPinfo 明确标注为 <code>hosting</code>。访问 ChatGPT 极易遭遇 1020 报错，访问 Google 会频繁跳出机器人点选验证码。
+          </p>
+          <div class="text-[11px] text-brand-dark font-medium pt-2 border-t border-brand-border">
+            <strong>适用场景：</strong>普通网页浏览、开源镜像加速、非严格风控流媒体。
+          </div>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-teal/50 rounded-xl p-4 space-y-2 shadow-xs">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-sm text-brand-teal">原生/住宅 ISP IP (Residential)</span>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">最高信任度</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            由当地真实民用宽带运营商（如香港 HKT/HKBN、美国 AT&amp;T/Comcast、日本 NTT/SoftBank）分配给家庭用户的 IP。其 ASN 属性为 <code>isp</code>。在各类风控雷达中与真实当地网民完全一致，不仅能 100% 无感登录 ChatGPT/Claude，还能解锁最严苛的本地限定流媒体与银行风控。
+          </p>
+          <div class="text-[11px] text-brand-dark font-medium pt-2 border-t border-brand-border">
+            <strong>鉴别工具推荐：</strong>通过 <code>ipinfo.io</code> 检查 <code>type</code> 字段，显示为 <code>isp</code> 即为高质量原生段。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 13: Reading Speedtest Graphs -->
+    <section id="speedtest-reading" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        测速图与连通性看图指南：真吞吐 vs 虚假握手
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        社交媒体与测评博主常贴出色彩斑斓的“节点测速九宫格图”。普通用户若缺乏辨别能力，极易被表面数据误导：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+        <div class="p-3 bg-white border border-brand-border rounded-xl">
+          <div class="font-bold text-brand-dark mb-1">⚠️ 警惕虚假握手 Ping</div>
+          <p class="text-brand-muted leading-relaxed">
+            客户端列表里的毫秒数（如 18ms）只是本地到国内入口的 TCP 握手时长。哪怕境外落地已经崩溃断流，只要国内入口开着，这个 Ping 依然显示绿色。判断连通性必须以端到端 HTTP 测试为准。
+          </p>
+        </div>
+
+        <div class="p-3 bg-white border border-brand-border rounded-xl">
+          <div class="font-bold text-brand-dark mb-1">📊 单线程 vs 多线程吞吐</div>
+          <p class="text-brand-muted leading-relaxed">
+            测速跑出 500Mbps 往往是 16 个线程并发累计的结果。但在实际使用中，看 4K 视频、下载单个大文件或打游戏均依赖<strong>单线程性能</strong>。若单线程仅有 5Mbps，哪怕多线程千兆，日常体验依然会严重卡顿。
+          </p>
+        </div>
+
+        <div class="p-3 bg-white border border-brand-border rounded-xl">
+          <div class="font-bold text-brand-dark mb-1">⏱️ 突发跑分 vs 持续缓存</div>
+          <p class="text-brand-muted leading-relaxed">
+            部分服务商为节点配置了前 5 秒无限制的“突发带宽加速”，测速图瞬间冲高，但超过 10 秒后便被限速至 10Mbps。观察油管“详细统计信息”中的 Connection Speed 是否平直，是拆穿突发套路的最硬指标。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 14: Evening Peak Testing SOP -->
+    <section id="evening-peak-sop" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        晚高峰性能测试 SOP：标准化压测步骤
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        检验一个机场是“真金”还是“虚假营销”，唯一的试金石就是<strong>工作日晚高峰（20:30 – 22:30）</strong>。请遵循本站标准化测试流程自行验证：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-3 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+          <div class="p-3 rounded-lg bg-brand-light border border-brand-border">
+            <div class="font-bold text-brand-dark mb-1">步骤 1：时间窗口选定</div>
+            <div class="text-brand-muted">必须在 20:30–22:00（全国公网出口负载巅峰）开始，严禁在凌晨或工作日白天测速。</div>
+          </div>
+          <div class="p-3 rounded-lg bg-brand-light border border-brand-border">
+            <div class="font-bold text-brand-dark mb-1">步骤 2：端到端丢包检测</div>
+            <div class="text-brand-muted">在终端对目标节点落地 IP 发送持续 100 个 ICMP/TCP 探测包，记录 Packet Loss 率与 Jitter 极差。</div>
+          </div>
+          <div class="p-3 rounded-lg bg-brand-light border border-brand-border">
+            <div class="font-bold text-brand-dark mb-1">步骤 3：单线程极限压测</div>
+            <div class="text-brand-muted">使用 Fast.com 将设置调为“单连接”，观察持续 30 秒的平均稳定速率，记录是否跌破 30Mbps。</div>
+          </div>
+          <div class="p-3 rounded-lg bg-brand-light border border-brand-border">
+            <div class="font-bold text-brand-dark mb-1">步骤 4：4K 流媒体缓冲区验证</div>
+            <div class="text-brand-muted">打开 YouTube 4K 60FPS 视频，右键开启“详细统计信息”，观察 Buffer Health 是否稳定在 20s 以上且无 dropFrames。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 15: Node Selection Strategy & Pitfalls -->
+    <section id="node-selection-rules" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        科学选点避坑规则：为什么禁用自动选择
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        很多用户抱怨“为什么经常需要输入验证码”或“为什么账号被封了”，追查根源都是错误配置了客户端选点策略：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-red-50/60 border border-red-200 rounded-xl space-y-2">
+          <div class="font-bold text-red-900 text-sm flex items-center gap-1.5">
+            <span>❌</span> 绝对避免的错误习惯
+          </div>
+          <ul class="list-disc list-inside space-y-1.5 text-red-800 leading-relaxed">
+            <li><strong>长期挂在“自动选择 (URL-Test)”：</strong>测速包波动会导致外部出口 IP 频繁跨国漂移，直接触发 Google、ChatGPT、银行账号的跨国异地安全封禁。</li>
+            <li><strong>迷信“绿色最低 Ping”盲选：</strong>低 Ping 往往只是国内中转近，落地可能严重限速；更有可能误点入 3.0x 或 5.0x 高倍率陷阱。</li>
+            <li><strong>全天候开着全局代理 (Global)：</strong>导致国内高德地图、微信、网银也走代理，不仅浪费流量，更会导致国内应用风控报警。</li>
+          </ul>
+        </div>
+
+        <div class="p-4 bg-emerald-50/60 border border-emerald-200 rounded-xl space-y-2">
+          <div class="font-bold text-emerald-900 text-sm flex items-center gap-1.5">
+            <span>✅</span> 资深网络工程师推荐的最佳实践
+          </div>
+          <ul class="list-disc list-inside space-y-1.5 text-emerald-800 leading-relaxed">
+            <li><strong>人工指定常驻主力节点：</strong>日常上网固定选择一个优质香港或新加坡 1.0x 节点，保持外部 IP 长期稳定。</li>
+            <li><strong>业务分流分节点：</strong>配置客户端规则分流，日常主力走香港低延迟，AI 业务（OpenAI/Claude）指定走新加坡或美国专属节点。</li>
+            <li><strong>准备应急备用节点：</strong>在节点列表中标记好第二家机场的节点作为兜底分组，防止单家故障导致完全断网。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 16: 31-Brand Line Architecture Matrix -->
+    <section id="brand-line-matrix" class="my-10 scroll-mt-20 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-lg font-bold text-brand-dark">31 家主流品牌线路架构分布速查表</h2>
+        <span class="text-xs text-brand-muted">基于已审计品牌数据生成</span>
+      </div>
+      <p class="text-xs text-brand-muted leading-relaxed">
+        下表汇总了本站收录的 31 家机场服务商所采用的核心过境网络架构与起步门槛，便于快速筛选符合自己网络诉求的品牌：
+      </p>
+
+      <div class="table-responsive-wrapper">
+        <table class="w-full text-left text-xs border-collapse border border-brand-border bg-white rounded-xl shadow-xs">
+          <thead>
+            <tr class="bg-brand-light border-b border-brand-border text-brand-dark font-bold">
+              <th class="p-2.5">品牌名称</th>
+              <th class="p-2.5">底层过境架构类型</th>
+              <th class="p-2.5">起步月付参考</th>
+              <th class="p-2.5">网络特性与定位简评</th>
+              <th class="p-2.5 text-right">档案入口</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border text-brand-muted">
+            {BRANDS.map(b => (
+              <tr class="hover:bg-brand-light/50">
+                <td class="p-2.5 font-bold text-brand-dark whitespace-nowrap">
+                  <a href={`/brands/${b.slug}/`} class="hover:text-brand-teal hover:underline">{b.name}</a>
+                </td>
+                <td class="p-2.5 whitespace-nowrap">
+                  <span class={`px-2 py-0.5 rounded text-[10px] font-bold ${
+                    b.networkType.includes('专线') || b.networkType.includes('IEPL') || b.networkType.includes('IPLC')
+                      ? 'bg-emerald-100 text-emerald-800'
+                      : b.networkType.includes('中转') || b.networkType.includes('BGP')
+                      ? 'bg-blue-100 text-blue-800'
+                      : 'bg-gray-100 text-gray-700'
+                  }`}>
+                    {b.networkType}
+                  </span>
+                </td>
+                <td class="p-2.5 font-mono font-bold text-brand-dark whitespace-nowrap">
+                  ¥{b.startingPriceMonthlyYuan.toFixed(2)} /月起
+                </td>
+                <td class="p-2.5 max-w-xs truncate text-[11px]" title={b.summary}>
+                  {b.summary}
+                </td>
+                <td class="p-2.5 text-right whitespace-nowrap">
+                  <a href={`/brands/${b.slug}/`} class="text-brand-teal hover:underline font-medium">查看档案 →</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MODULE 17: Network Core Articles Directory (4 In-Depth Guides) -->
+    <section id="articles-directory" class="my-10 scroll-mt-20 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-lg font-bold text-brand-dark flex items-center gap-2">
+          <span>🌐 线路网络核心科普专栏 (4篇深度技术长文)</span>
+        </h2>
+        <span class="text-xs text-brand-muted">硬核网络工程深度研讨</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+        <a href="/network/iepl-vs-iplc/" class="p-3.5 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-brand-teal mb-1">⚡ IEPL 与 IPLC 物理专线深度科普</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2 leading-relaxed">内网专线技术原理、二层以太网与物理切片差异、晚高峰零丢包表现与假专线防坑鉴别。</div>
+        </a>
+        <a href="/network/latency-jitter-packet-loss/" class="p-3.5 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-brand-teal mb-1">⏱️ 延迟、抖动与丢包率概念详解</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2 leading-relaxed">为什么美国节点物理极限不可能 20ms？光纤折射率计算公式与 TCP 吞吐折损量化模型。</div>
+        </a>
+        <a href="/network/rate-multiplier-explained/" class="p-3.5 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-brand-teal mb-1">📊 节点倍率真相与扣量陷阱</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2 leading-relaxed">0.1x 到 10x 倍率扣费逻辑、偷跑流量公式计算、自动选点切换误入高倍率避坑指南。</div>
+        </a>
+        <a href="/network/residential-ip-truth/" class="p-3.5 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-brand-teal mb-1">🏠 原生住宅 IP 真伪鉴别与机房 IP 差异</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2 leading-relaxed">机房广播与真实住宅 ISP ASN 属性解析，ChatGPT 与流媒体风控评级天梯与在线查询技巧。</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- MODULE 18: FAQ -->
+    <section id="faq" class="my-10 scroll-mt-20">
+      <FAQ items={faqItems} title="线路架构与节点延迟高频问题解答 (FAQ)" />
+    </section>
+
+    <!-- MODULE 19: Next Steps & Tools Cross-Links -->
+    <section id="next-steps" class="my-10 p-6 bg-brand-light border border-brand-border rounded-2xl shadow-xs">
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-brand-border">
+        <h2 class="text-base font-bold text-brand-dark">线路规划与全站决策工具联动</h2>
+        <span class="text-xs text-brand-teal font-medium">选购决策加速闭环</span>
+      </div>
+      <p class="text-xs text-brand-muted leading-relaxed mb-4">
+        了解了网络底层架构之后，您可以结合自己的预算配额、常用设备以及特定业务诉求，直接前往对应专题获取落地解决方案：
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+        <a href="/recommend/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          🏆 综合机场推荐榜单
+        </a>
+        <a href="/pricing/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          💰 价格梯度与性价比剖析
+        </a>
+        <a href="/compare/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          ⚖️ 20组品牌横向对决
+        </a>
+        <a href="/tools/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          🧮 流量与成本在线计算器
+        </a>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>

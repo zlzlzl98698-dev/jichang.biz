@@ -1,0 +1,349 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PerformanceReport from '../../components/PerformanceReport.astro';
+import CompatibilityMatrix from '../../components/CompatibilityMatrix.astro';
+import PlanComparison from '../../components/PlanComparison.astro';
+import NetworkConceptDiagram from '../../components/NetworkConceptDiagram.astro';
+import EvidenceStatus from '../../components/EvidenceStatus.astro';
+import AffiliateDisclosure from '../../components/AffiliateDisclosure.astro';
+import FAQ from '../../components/FAQ.astro';
+import { BRANDS, type BrandEntity } from '../../data/brands';
+import { getAffiliateLink } from '../../data/links';
+
+export async function getStaticPaths() {
+  return BRANDS.map((brand) => ({
+    params: { slug: brand.slug },
+    props: { brand }
+  }));
+}
+
+interface Props {
+  brand: BrandEntity;
+}
+
+const { brand } = Astro.props;
+const aff = getAffiliateLink(brand.id);
+
+const pageTitle = `${brand.name} 怎么样？2026 深度评测、套餐价格与测速实测报告`;
+const pageDescription = `${brand.name} 真实表现如何？本站汇编其 ${brand.networkType} 专线架构、${brand.startingPriceMonthlyYuan} 元/月起套餐资费、客户端支持度、AI与流媒体解锁能力及关键风险警示。`;
+
+const breadcrumbs = [
+  { name: '品牌库', url: '/brands/' },
+  { name: brand.name, url: `/brands/${brand.slug}/` }
+];
+
+// Contextual FAQs for this specific brand
+const brandFaqs = [
+  {
+    question: `${brand.name} 支持哪些客户端？能不能导入 Clash 或小火箭？`,
+    answer: brand.clientSupport.supportsClash
+      ? `${brand.name} 同时提供自研客户端与第三方通用订阅。用户可以直接将订阅链接导入 Clash Verge Rev、v2rayN、Shadowrocket 等开源代理客户端进行分流配置。`
+      : `${brand.name} 走纯专属客户端模式，目前不提供通用的第三方订阅链接。用户只能通过其官方提供的专属 App 进行登录与连接，不支持在 Clash、Shadowrocket 或软路由 OpenClash 中直接使用。`
+  },
+  {
+    question: `${brand.name} 的最低入门价格是多少？年付和月付如何选择？`,
+    answer: `${brand.name} 的月均起步门槛折合约 ¥${brand.startingPriceMonthlyYuan} 元/月。需要注意的是，${brand.plans.some(p => p.billingCycle === 'yearly') ? '低门槛通常为年付套餐折算后的单月均价，需一次性付清全年费用；若您处于初次测试阶段，强烈建议先选择月付方案，在验证晚高峰稳定性后再考虑长期订阅。' : '该品牌主打常规月付或周期付费，建议结合自身流量需求按月开通。'}`
+  },
+  {
+    question: `${brand.name} 是否稳定解锁 ChatGPT 和 Netflix？`,
+    answer: `根据实测记录与品牌技术文档，${brand.name} 对常见海外流媒体（如 YouTube、Netflix）支持度较好。对于 ChatGPT 与 Claude 等高风控 AI 平台，${brand.unlockMatrix.chatgpt === 'supported' ? '多数亚太节点可正常握手访问。' : '可用性受落地 IP 风控与平台规则变动影响，遇到报错时需手动切换节点。'}服务商官方不作 100% 永久解锁承诺。`
+  },
+  {
+    question: `${brand.name} 适合什么样的人群？有哪些不可忽视的局限？`,
+    answer: `适合人群：${brand.targetAudience.join('、')}。关键限制与缺点：${brand.cons.join('；')}。${brand.riskWarnings.length > 0 ? '风险提示：' + brand.riskWarnings.join('；') : ''}`
+  }
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  breadcrumbs={breadcrumbs}
+  type="article"
+  publishDate={brand.observedAt ? `${brand.observedAt}T08:00:00+08:00` : undefined}
+  modifiedDate={`${brand.updatedAt}T12:00:00+08:00`}
+  faqItems={brandFaqs}
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Header Block -->
+    <header class="border-b border-brand-border pb-6 mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <EvidenceStatus status={brand.dataStatus} />
+        <span class="text-xs text-brand-muted">
+          数据观察日期: {brand.observedAt} · 综合核验更新: {brand.updatedAt}
+        </span>
+        {brand.isPartner && (
+          <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-brand-teal border border-emerald-300">
+            合作品牌商业展示
+          </span>
+        )}
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark flex items-center gap-2.5">
+            <span class="w-4 h-4 rounded-full shrink-0" style={`background-color: ${brand.colorAccent};`}></span>
+            <span>{brand.name} 深度评测与选购档案</span>
+          </h1>
+          <p class="text-sm text-brand-muted mt-1.5 font-medium">
+            {brand.tagline}
+          </p>
+        </div>
+
+        <!-- Price CTA Badge -->
+        <div class="shrink-0 bg-white border border-brand-border rounded-xl p-3 text-right shadow-sm">
+          <div class="text-[11px] text-brand-muted">最低折算门槛</div>
+          <div class="text-xl font-bold text-brand-teal font-mono-numbers">
+            ¥{brand.startingPriceMonthlyYuan} <span class="text-xs text-brand-muted font-normal">/月起</span>
+          </div>
+          {aff && (
+            <a
+              href={aff.url}
+              target={aff.target}
+              rel={aff.rel}
+              class="mt-2 inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-brand-teal text-white text-xs font-bold hover:bg-brand-accent transition-colors"
+            >
+              <span>前往品牌官网</span>
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          )}
+        </div>
+      </div>
+    </header>
+
+    <!-- Answer-First Summary Callout (80-200 汉字独立可读总结) -->
+    <section class="bg-emerald-50/70 border border-emerald-200 rounded-xl p-5 mb-8 shadow-sm" aria-label="核心结论">
+      <div class="flex items-center gap-2 text-xs font-bold text-brand-teal uppercase tracking-wider mb-2">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>核心结论速读 (Answer-First Executive Summary)</span>
+      </div>
+      <p class="text-sm text-brand-dark leading-relaxed font-sans">
+        {brand.summaryFirstAnswer}
+      </p>
+    </section>
+
+    <!-- Quick Fact Sheet Grid -->
+    <section class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6 text-xs" aria-label="关键事实卡">
+      <div class="bg-white border border-brand-border rounded-lg p-3">
+        <div class="text-brand-muted text-[11px]">线路类型</div>
+        <div class="font-bold text-brand-dark mt-1 text-sm">{brand.networkType} 专线</div>
+      </div>
+      <div class="bg-white border border-brand-border rounded-lg p-3">
+        <div class="text-brand-muted text-[11px]">加密协议</div>
+        <div class="font-bold text-brand-dark mt-1 font-mono">{brand.protocols.join(', ')}</div>
+      </div>
+      <div class="bg-white border border-brand-border rounded-lg p-3">
+        <div class="text-brand-muted text-[11px]">客户端支持</div>
+        <div class="font-bold text-brand-dark mt-1">
+          {brand.clientSupport.supportsClash ? '自研 + 通用订阅' : '仅限自研 App'}
+        </div>
+      </div>
+      <div class="bg-white border border-brand-border rounded-lg p-3">
+        <div class="text-brand-muted text-[11px]">优惠代码</div>
+        <div class="font-bold text-brand-teal mt-1 font-mono">
+          {brand.promoCode ? brand.promoCode : '暂无公开券'}
+        </div>
+      </div>
+    </section>
+
+    <!-- Dedicated In-Depth Review Banner Link -->
+    <div class="bg-gradient-to-r from-teal-50 to-emerald-50 border border-teal-200 rounded-xl p-4 mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm">
+      <div class="flex items-start gap-3">
+        <span class="p-2 rounded-lg bg-brand-teal text-white text-base">📊</span>
+        <div>
+          <div class="text-sm font-bold text-brand-dark">想看 {brand.name} 的客观实测与深度评分？</div>
+          <div class="text-xs text-brand-muted mt-0.5">查阅 10 分制量化评分、晚高峰抗丢包实测、AI与流媒体解锁矩阵、优缺点分析及同类竞品横评。</div>
+        </div>
+      </div>
+      <a
+        href={`/reviews/${brand.slug}/`}
+        class="shrink-0 px-4 py-2 rounded-lg bg-brand-teal text-white text-xs font-bold hover:bg-brand-accent transition-colors text-center inline-flex items-center justify-center gap-1.5"
+      >
+        <span>阅读独立深度评测</span>
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+      </a>
+    </div>
+
+    <!-- Section: 资费与完整套餐 -->
+    <section id="plans" class="scroll-mt-20">
+      <h2 class="text-xl sm:text-2xl font-bold text-brand-dark mb-4 pb-2 border-b border-brand-border flex items-center gap-2">
+        <span class="text-brand-teal">💳</span>
+        <span>{brand.name} 官方套餐资费与每GB成本明细</span>
+      </h2>
+      <PlanComparison plans={brand.plans} brandName={brand.name} />
+    </section>
+
+    <!-- Section: 客户端支持与兼容性深入分析 -->
+    <section id="clients" class="my-8 bg-white border border-brand-border rounded-xl p-5 shadow-sm scroll-mt-20">
+      <h2 class="text-base sm:text-lg font-bold text-brand-dark mb-3 flex items-center gap-2">
+        <span>💻 {brand.name} 客户端软件支持与导入指南</span>
+      </h2>
+      <p class="text-xs text-brand-muted mb-4 leading-relaxed">
+        {brand.clientSupport.thirdPartyImportNotes}
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+        <div class:list={[
+          'p-3 rounded-lg border flex items-center justify-between',
+          brand.clientSupport.hasCustomApp ? 'bg-emerald-50/50 border-emerald-200 text-emerald-900' : 'bg-gray-50 border-gray-200 text-gray-500'
+        ]}>
+          <span>服务商定制专属客户端 (Win/Mac/Android/iOS)</span>
+          <span class="font-bold">{brand.clientSupport.hasCustomApp ? '已提供' : '未提供'}</span>
+        </div>
+
+        <div class:list={[
+          'p-3 rounded-lg border flex items-center justify-between',
+          brand.clientSupport.supportsClash ? 'bg-emerald-50/50 border-emerald-200 text-emerald-900' : 'bg-rose-50/50 border-rose-200 text-rose-800'
+        ]}>
+          <span>支持导入 Clash / Mihomo / Shadowrocket 通用订阅</span>
+          <span class="font-bold">{brand.clientSupport.supportsClash ? '全面支持' : '不支持 (封闭生态)'}</span>
+        </div>
+      </div>
+
+      {!brand.clientSupport.supportsClash && (
+        <div class="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900">
+          ⚠️ <strong>特别提醒：</strong>该品牌采用封闭专属客户端策略，无法导出通用订阅链接。如果您依赖 OpenClash 软路由全屋翻墙，或者习惯使用 Clash Verge Rev 的进阶分流规则，请在购买前仔细评估。
+        </div>
+      )}
+    </section>
+
+    <!-- Section: 网络拓扑与传输可观测性 -->
+    <section id="network" class="scroll-mt-20">
+      <h2 class="text-xl sm:text-2xl font-bold text-brand-dark mb-4 pb-2 border-b border-brand-border flex items-center gap-2">
+        <span class="text-brand-teal">⚡</span>
+        <span>{brand.name} 网络物理拓扑与架构解析</span>
+      </h2>
+      <NetworkConceptDiagram brandName={brand.name} networkType={`${brand.networkType} 专线`} isSpecific={true} />
+    </section>
+
+    <!-- Section: 测速实测报告 -->
+    <section id="speed-test" class="scroll-mt-20">
+      <h2 class="text-xl sm:text-2xl font-bold text-brand-dark mb-4 pb-2 border-b border-brand-border flex items-center gap-2">
+        <span class="text-brand-teal">📊</span>
+        <span>{brand.name} 核心地区网络回传测速报告</span>
+      </h2>
+      <PerformanceReport record={brand.speedTest} brandName={brand.name} brandAccent={brand.colorAccent} />
+    </section>
+
+    <!-- Section: AI 生产力与流媒体矩阵 -->
+    <section id="ai-streaming" class="scroll-mt-20">
+      <h2 class="text-xl sm:text-2xl font-bold text-brand-dark mb-4 pb-2 border-b border-brand-border flex items-center gap-2">
+        <span class="text-brand-teal">🎬</span>
+        <span>{brand.name} AI 生产力与流媒体矩阵支持</span>
+      </h2>
+      <CompatibilityMatrix matrix={brand.unlockMatrix} brandName={brand.name} />
+    </section>
+
+    <!-- Section: 优缺点与适合人群对比 -->
+    <section id="audience" class="my-8 scroll-mt-20">
+      <h2 class="text-base sm:text-lg font-bold text-brand-dark mb-4 flex items-center gap-2">
+        <span>👥 {brand.name} 核心优势与适用人群深度横评</span>
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Pros & Target Audience -->
+        <div class="bg-white border border-emerald-200 rounded-xl p-5 shadow-sm space-y-4">
+          <div>
+            <h3 class="text-sm font-bold text-emerald-800 flex items-center gap-1.5 mb-2">
+              <span>✅ 核心亮点与优势</span>
+            </h3>
+            <ul class="space-y-1.5 text-xs text-brand-dark list-disc list-inside">
+              {brand.pros.map(pro => <li>{pro}</li>)}
+            </ul>
+          </div>
+
+          <div class="pt-3 border-t border-emerald-100">
+            <h4 class="text-xs font-bold text-emerald-900 mb-1.5">适合哪些人群？</h4>
+            <div class="flex flex-wrap gap-1.5">
+              {brand.targetAudience.map(aud => (
+                <span class="px-2 py-0.5 rounded text-[11px] bg-emerald-50 text-emerald-800 border border-emerald-200">
+                  {aud}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Cons & Unsuitable Audience -->
+        <div class="bg-white border border-rose-200 rounded-xl p-5 shadow-sm space-y-4">
+          <div>
+            <h3 class="text-sm font-bold text-rose-800 flex items-center gap-1.5 mb-2">
+              <span>⚠️ 局限与缺点分析</span>
+            </h3>
+            <ul class="space-y-1.5 text-xs text-brand-dark list-disc list-inside">
+              {brand.cons.map(con => <li>{con}</li>)}
+            </ul>
+          </div>
+
+          <div class="pt-3 border-t border-rose-100">
+            <h4 class="text-xs font-bold text-rose-900 mb-1.5">不建议哪些用户选购？</h4>
+            <div class="flex flex-wrap gap-1.5">
+              {brand.unsuitableAudience.map(unaud => (
+                <span class="px-2 py-0.5 rounded text-[11px] bg-rose-50 text-rose-800 border border-rose-200">
+                  {unaud}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: 风险提示与避坑建议 -->
+    {brand.riskWarnings.length > 0 && (
+      <section id="risks" class="my-6 bg-rose-50/60 border border-rose-200 rounded-xl p-5 text-xs text-rose-950 scroll-mt-20">
+        <h2 class="text-sm sm:text-base font-bold text-rose-900 flex items-center gap-2 mb-2">
+          <span>🛑 风险警示与选购避坑须知</span>
+        </h2>
+        <ul class="space-y-1.5 list-disc list-inside leading-relaxed text-rose-900/90">
+          {brand.riskWarnings.map(r => <li>{r}</li>)}
+        </ul>
+      </section>
+    )}
+
+    <!-- Section: 商业披露与入口核验 -->
+    <section id="discount" class="my-8 scroll-mt-20">
+      <AffiliateDisclosure isPartner={brand.isPartner} brandName={brand.name} />
+
+      <div class="bg-white border border-brand-border rounded-xl p-5 text-center shadow-sm space-y-3">
+        <h2 class="text-base font-bold text-brand-dark">准备体验 {brand.name}？</h2>
+        <p class="text-xs text-brand-muted max-w-xl mx-auto">
+          注册前请核验网址防范钓鱼站点。若包含优惠代码，请在结账页面输入 <code class="bg-brand-light px-1.5 py-0.5 rounded font-mono font-bold text-brand-teal">{brand.promoCode || '无'}</code> 享受对应折扣。
+        </p>
+
+        {aff ? (
+          <div class="pt-2">
+            <a
+              href={aff.url}
+              target={aff.target}
+              rel={aff.rel}
+              class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-teal text-white font-bold text-sm hover:bg-brand-accent transition-all shadow-md"
+            >
+              <span>前往 {brand.name} 官网（安全直达）</span>
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+            <div class="text-[11px] text-gray-400 mt-2">
+              {aff.disclosureText}
+            </div>
+          </div>
+        ) : (
+          <div class="text-xs text-brand-muted py-2">
+            该品牌暂未收录已核验的商业推广入口或当前入口已暂停。
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- Section: FAQ -->
+    <section id="troubleshooting" class="scroll-mt-20">
+      <FAQ items={brandFaqs} title={`${brand.name} 常见疑问与选购答疑`} />
+    </section>
+
+  </div>
+</BaseLayout>

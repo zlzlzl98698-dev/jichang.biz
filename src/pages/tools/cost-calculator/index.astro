@@ -1,0 +1,202 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = '实际成本折算器 (Cost Calculator) · 揭开月均与每GB真实单价';
+const description = '科学计算年付、季付与一次性不限时套餐的真实月均支出与每GB成本。破除年付偷换月付、一次性流量假装每月重置的商业话术。';
+const breadcrumbs = [
+  { name: '决策工具', url: '/tools/' },
+  { name: '成本折算器', url: '/tools/cost-calculator/' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Header -->
+    <div class="max-w-2xl mb-8">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-semibold border border-amber-200 mb-3">
+        <span>💰 财务理性决策 · 真实单价核算</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+        实际成本与每GB单价折算器
+      </h1>
+      <p class="text-sm text-brand-muted mt-2 leading-relaxed">
+        很多机场宣传“月付 5.6 元”实为年付必须一次交清 67.2 元；宣传“不限时 100 元”并不等于每月都有 100GB。本计算器帮您算清不同计费周期的真实成本。
+      </p>
+    </div>
+
+    <!-- Comparative Form -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- Scenario A: 周期计费 (月付/年付) -->
+      <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-4 text-xs">
+        <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+          <h2 class="font-bold text-sm text-brand-dark">方案 A：周期订阅 (按月重置流量)</h2>
+          <span class="px-2 py-0.5 rounded bg-blue-50 text-blue-700 text-[10px] font-bold">按周期重置</span>
+        </div>
+
+        <div>
+          <label class="block font-medium text-brand-dark mb-1">付款周期</label>
+          <select id="a-cycle" class="w-full bg-brand-light border border-brand-border rounded-lg p-2 text-xs">
+            <option value="1">普通月付 (1个月)</option>
+            <option value="3">季付 (3个月)</option>
+            <option value="6">半年付 (6个月)</option>
+            <option value="12" selected>年付 (12个月)</option>
+            <option value="24">两年付 (24个月)</option>
+            <option value="36">三年付 (36个月)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-medium text-brand-dark mb-1">套餐一次性支付总额 (元)</label>
+          <input type="number" id="a-total-price" value="99" min="1" class="w-full bg-brand-light border border-brand-border rounded-lg p-2 font-mono text-brand-dark" />
+        </div>
+
+        <div>
+          <label class="block font-medium text-brand-dark mb-1">每月重置流量 (GB/月)</label>
+          <input type="number" id="a-monthly-traffic" value="69" min="1" class="w-full bg-brand-light border border-brand-border rounded-lg p-2 font-mono text-brand-dark" />
+        </div>
+
+        <!-- Output Box A -->
+        <div class="pt-4 border-t border-brand-border space-y-2 bg-brand-light/60 p-3 rounded-lg">
+          <div class="flex justify-between items-center">
+            <span class="text-brand-muted">真实月均支出:</span>
+            <span class="font-mono text-base font-bold text-brand-teal" id="a-out-monthly">¥8.25 /月</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-brand-muted">周期累计总流量:</span>
+            <span class="font-mono text-brand-dark font-bold" id="a-out-total-traffic">828 GB</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-brand-muted">每 GB 理论单价:</span>
+            <span class="font-mono text-brand-dark font-bold" id="a-out-per-gb">¥0.12 /GB</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scenario B: 一次性不过期流量包 -->
+      <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-4 text-xs">
+        <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+          <h2 class="font-bold text-sm text-brand-dark">方案 B：一次性付费 (流量不过期)</h2>
+          <span class="px-2 py-0.5 rounded bg-purple-50 text-purple-700 text-[10px] font-bold">永久/一次性</span>
+        </div>
+
+        <div>
+          <label class="block font-medium text-brand-dark mb-1">一次性购买总价 (元)</label>
+          <input type="number" id="b-total-price" value="147" min="1" class="w-full bg-brand-light border border-brand-border rounded-lg p-2 font-mono text-brand-dark" />
+        </div>
+
+        <div>
+          <label class="block font-medium text-brand-dark mb-1">包含的总流量 (GB，不按月重置)</label>
+          <input type="number" id="b-total-traffic" value="247" min="1" class="w-full bg-brand-light border border-brand-border rounded-lg p-2 font-mono text-brand-dark" />
+        </div>
+
+        <div>
+          <label class="block font-medium text-brand-dark mb-1">预估用完这笔流量所需月数 (月)</label>
+          <input type="number" id="b-assumed-months" value="12" min="1" max="60" class="w-full bg-brand-light border border-brand-border rounded-lg p-2 font-mono text-brand-dark" />
+          <span class="text-[10px] text-brand-muted">一次性套餐不能假定每月重置，月均成本取决于您的消耗速度</span>
+        </div>
+
+        <!-- Output Box B -->
+        <div class="pt-4 border-t border-brand-border space-y-2 bg-brand-light/60 p-3 rounded-lg">
+          <div class="flex justify-between items-center">
+            <span class="text-brand-muted">折算月均支出:</span>
+            <span class="font-mono text-base font-bold text-purple-700" id="b-out-monthly">¥12.25 /月</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-brand-muted">每月可用流量:</span>
+            <span class="font-mono text-brand-dark font-bold" id="b-out-monthly-traffic">~20.6 GB/月</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-brand-muted">每 GB 绝对单价:</span>
+            <span class="font-mono text-brand-dark font-bold" id="b-out-per-gb">¥0.60 /GB</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Comparative Conclusion Analysis -->
+    <div class="mt-8 bg-brand-navy border border-gray-800 rounded-xl p-5 text-white text-xs shadow-md space-y-3">
+      <div class="text-xs font-mono text-gray-400">COST ARBITRAGE ANALYSIS · 财务决策建议</div>
+      <div class="text-sm font-bold text-emerald-300" id="calc-verdict">
+        正在计算对比结果...
+      </div>
+      <p class="text-gray-300 leading-relaxed text-[11px]" id="calc-advice">
+        周期套餐适合每月用量稳定的主力用户，单位 GB 成本低；一次性不过期套餐单位 GB 单价较高（通常在 ¥0.6 - ¥1.2 /GB），但胜在没有月租压力，适合作为极低频备用应急节点。
+      </p>
+    </div>
+
+  </div>
+</BaseLayout>
+
+<script>
+  function initCostCalculator() {
+    const aCycle = document.getElementById('a-cycle') as HTMLSelectElement;
+    const aTotalPrice = document.getElementById('a-total-price') as HTMLInputElement;
+    const aMonthlyTraffic = document.getElementById('a-monthly-traffic') as HTMLInputElement;
+
+    const bTotalPrice = document.getElementById('b-total-price') as HTMLInputElement;
+    const bTotalTraffic = document.getElementById('b-total-traffic') as HTMLInputElement;
+    const bAssumedMonths = document.getElementById('b-assumed-months') as HTMLInputElement;
+
+    const aOutMonthly = document.getElementById('a-out-monthly');
+    const aOutTotalTraffic = document.getElementById('a-out-total-traffic');
+    const aOutPerGb = document.getElementById('a-out-per-gb');
+
+    const bOutMonthly = document.getElementById('b-out-monthly');
+    const bOutMonthlyTraffic = document.getElementById('b-out-monthly-traffic');
+    const bOutPerGb = document.getElementById('b-out-per-gb');
+
+    const verdictEl = document.getElementById('calc-verdict');
+    const adviceEl = document.getElementById('calc-advice');
+
+    if (!aCycle || !aOutMonthly) return;
+
+    function recalculate() {
+      // Plan A
+      const monthsA = parseInt(aCycle.value) || 1;
+      const priceA = parseFloat(aTotalPrice.value) || 0;
+      const trafficMonthA = parseFloat(aMonthlyTraffic.value) || 0;
+
+      const monthlyEquivA = priceA / monthsA;
+      const totalTrafficA = trafficMonthA * monthsA;
+      const perGbA = totalTrafficA > 0 ? (priceA / totalTrafficA) : 0;
+
+      aOutMonthly!.textContent = `¥${monthlyEquivA.toFixed(2)} /月`;
+      aOutTotalTraffic!.textContent = `${totalTrafficA} GB`;
+      aOutPerGb!.textContent = `¥${perGbA.toFixed(2)} /GB`;
+
+      // Plan B
+      const priceB = parseFloat(bTotalPrice.value) || 0;
+      const totalTrafficB = parseFloat(bTotalTraffic.value) || 0;
+      const assumedMonthsB = Math.max(1, parseFloat(bAssumedMonths.value) || 1);
+
+      const monthlyEquivB = priceB / assumedMonthsB;
+      const trafficMonthB = totalTrafficB / assumedMonthsB;
+      const perGbB = totalTrafficB > 0 ? (priceB / totalTrafficB) : 0;
+
+      bOutMonthly!.textContent = `¥${monthlyEquivB.toFixed(2)} /月`;
+      bOutMonthlyTraffic!.textContent = `~${trafficMonthB.toFixed(1)} GB/月`;
+      bOutPerGb!.textContent = `¥${perGbB.toFixed(2)} /GB`;
+
+      // Verdict
+      if (perGbA < perGbB) {
+        const ratio = (perGbB / (perGbA || 0.01)).toFixed(1);
+        verdictEl!.textContent = `方案 A (周期计费) 的每 GB 成本比 方案 B 便宜约 ${ratio} 倍`;
+        adviceEl!.textContent = `如果您每月都有固定上网需求，方案 A 能提供充裕得多的流量；方案 B (不限时) 单价为 ¥${perGbB.toFixed(2)}/GB，只有在您使用极其偶尔、几个月才消耗几 GB 时，才比持续续费方案 A 更省钱。`;
+      } else {
+        verdictEl!.textContent = `方案 B (一次性包) 在您当前假设的使用周期下更具单价优势`;
+        adviceEl!.textContent = `以当前假设看，一次性套餐在超长周期分摊下显现出经济性。但请务必确认该服务商是否能稳定存续至您预计的使用月数，防范中途关停风险。`;
+      }
+    }
+
+    [aCycle, aTotalPrice, aMonthlyTraffic, bTotalPrice, bTotalTraffic, bAssumedMonths].forEach(el => {
+      el.addEventListener('input', recalculate);
+    });
+
+    recalculate();
+  }
+
+  document.addEventListener('DOMContentLoaded', initCostCalculator);
+</script>

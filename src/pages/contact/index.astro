@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = '联系我们与沟通准则 · 机场指南';
+const description = '机场指南官方沟通渠道与反馈指引。欢迎就数据勘误、测评建议、学术交流及合规商业合作进行沟通，公开沟通准则与反不正当竞争立场。';
+const breadcrumbs = [
+  { name: '联系我们', url: '/contact/' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-xs text-brand-muted leading-relaxed space-y-8">
+    
+    <header class="border-b border-brand-border pb-6">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-brand-teal text-xs font-semibold border border-emerald-200 mb-3">
+        <span>📮 诚意沟通与透明反馈准则</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-brand-dark tracking-tight">
+        联系我们与沟通准则
+      </h1>
+      <p class="text-sm text-brand-muted mt-2">
+        我们欢迎基于客观事实的建设性反馈、技术勘误与合规商务对接。为提高沟通效率，请仔细阅读以下细分联络通道与沟通规范。
+      </p>
+    </header>
+
+    <!-- 1. 官方联系渠道 -->
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-4">
+      <h2 class="text-base sm:text-lg font-bold text-brand-dark flex items-center gap-2">
+        <span>📬 1. 官方细分联络通道</span>
+      </h2>
+      <p class="text-xs text-brand-muted">
+        请根据您的具体事由选择对应的电子邮箱，以确保您的邮件能在第一时间流转至负责的编辑或技术工程师：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+        <div class="p-4 bg-brand-light rounded-xl border border-brand-border space-y-1.5">
+          <div class="font-bold text-brand-dark text-sm">读者反馈与技术建议</div>
+          <div class="text-[11px] text-brand-muted">针对客户端配置教程、网络原理解析及新工具功能需求</div>
+          <div><code class="text-brand-teal font-mono font-bold text-xs select-all">feedback@jichang.biz</code></div>
+        </div>
+
+        <div class="p-4 bg-brand-light rounded-xl border border-brand-border space-y-1.5">
+          <div class="font-bold text-brand-dark text-sm">数据勘误与证据提供</div>
+          <div class="text-[11px] text-brand-muted">价格变更、线路调整、跑路前兆通报或测速误差校正</div>
+          <div><code class="text-brand-teal font-mono font-bold text-xs select-all">corrections@jichang.biz</code></div>
+        </div>
+
+        <div class="p-4 bg-brand-light rounded-xl border border-brand-border space-y-1.5">
+          <div class="font-bold text-brand-dark text-sm">商务合作与广告对接</div>
+          <div class="text-[11px] text-brand-muted">经目标市场法律允许且通过合规核验的服务商商务接洽</div>
+          <div><code class="text-brand-dark font-mono font-bold text-xs select-all">business@jichang.biz</code></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 勘误受理流程与 SLA -->
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base sm:text-lg font-bold text-brand-dark flex items-center gap-2">
+        <span>⏱️ 2. 数据勘误受理流程与 SLA 承诺</span>
+      </h2>
+      <p>
+        跨境网络服务商的价格体系、节点可用性与客户端版本处于高频变动之中。我们建立了透明的勘误处理工作流：
+      </p>
+      <ul class="space-y-2 list-disc list-inside text-brand-dark pl-1">
+        <li><strong>初步确认 (24 小时以内)</strong>：收到包含有效凭据（官网最新截图、结账账单、测速回传日志）的勘误邮件后，值班编辑将在 24 小时内回复受理通知。</li>
+        <li><strong>技术复测 (48 小时以内)</strong>：技术组将调用自动化探针或实机进行多线路比对验证，确认该变更属于常态化调整还是临时突发偶发故障。</li>
+        <li><strong>正文公示更新 (72 小时以内)</strong>：确认属实的数据修正将第一时间同步至站点对应页面，并在 <a href="/corrections/" class="text-brand-teal hover:underline font-bold">全站勘误与更正日志</a> 中透明公开修改记录、提交人代称及版本变更哈希。</li>
+      </ul>
+    </div>
+
+    <!-- 3. 严正立场声明 -->
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base sm:text-lg font-bold text-brand-dark flex items-center gap-2">
+        <span>🛡️ 3. 严正立场声明：拒绝“付费买排名”与“恶意黑公关”</span>
+      </h2>
+      <p>
+        「机场指南」作为独立的选购决策与技术帮助平台，坚决恪守商业与学术道德红线：
+      </p>
+      <div class="space-y-2 text-brand-dark">
+        <div class="p-3 bg-rose-50 border border-rose-200 rounded-lg">
+          <strong class="text-rose-900">严禁付费买榜与粉饰缺陷：</strong>
+          任何品牌无论赞助规模大小，绝不能通过资金买通编辑部修改综合质量评分、虚构“晚高峰0丢包”神话，或要求隐藏真实存在的并发限制与硬伤。
+        </div>
+        <div class="p-3 bg-amber-50 border border-amber-200 rounded-lg">
+          <strong class="text-amber-900">坚决抵制同行恶意构陷：</strong>
+          编辑部不采纳任何无切实证据支持的匿名抹黑、无公章或无公网证据的跑路指控。所有下架或风险警示均需基于客观自动化监测日志或多源交叉印证。
+        </div>
+        <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+          <strong class="text-blue-900">绝不接受勒索式公关：</strong>
+          服务商若因技术故障被记录真实投诉，唯有积极修复网络、公开向受损用户履约赔付后方可申请复测复核；试图通过施压或删帖交易者一律公开留档。
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 安全披露与加密沟通 -->
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base sm:text-lg font-bold text-brand-dark flex items-center gap-2">
+        <span>🔐 4. 安全漏洞通报与加密通信</span>
+      </h2>
+      <p>
+        若您发现了本站的潜在安全漏洞、代码缺陷或涉及极其敏感的商业欺诈举证线索，欢迎使用 PGP 加密方式与我们的核心技术团队取得联系。
+      </p>
+      <div class="p-3 bg-brand-light rounded-lg border border-brand-border text-[11px] font-mono space-y-1">
+        <div>PGP Key Fingerprint: <span class="text-brand-dark font-bold">8F2D 4B91 7C3A E592 1A83 6F0D 9B4C 2E71 A354 D890</span></div>
+        <div class="text-brand-muted">邮件主题请注明：[SECURITY-DISCLOSURE] 或 [URGENT-EVIDENCE]</div>
+      </div>
+    </div>
+
+    <!-- 5. 知识产权与转载许可 -->
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base sm:text-lg font-bold text-brand-dark flex items-center gap-2">
+        <span>📜 5. 原创内容引用与知识产权声明</span>
+      </h2>
+      <p>
+        本站所有深度评测文章、网络架构图谱（SVG）、自研决策计算器源码及原创数据矩阵均享有受法律保护的著作权。
+      </p>
+      <p>
+        个人非商业用途学习、技术博客适度引用须严格标注来源出处与原文超链接（<code>https://jichang.biz/...</code>）。任何商业机构、自媒体账号严禁全文抓取抄袭、洗稿或用于训练商业专有闭源模型，违者本站保留追究法律责任的一切权利。
+      </p>
+    </div>
+
+  </div>
+</BaseLayout>

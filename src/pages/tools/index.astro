@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { TOOL_ITEMS } from '../../data/site';
+
+const title = '机场选购与比较决策工具集 (Tools) · 机场指南';
+const description = '提供智能套餐筛选器、月度流量估算器、真实成本折算器及品牌同屏并排对比工具，帮助跨境办公与网络使用者理性核算、防范虚标套路。';
+const breadcrumbs = [
+  { name: '决策工具', url: '/tools/' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs} type="collection">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <div class="max-w-3xl mb-8">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-brand-teal text-xs font-semibold border border-emerald-200 mb-3">
+        <span>🛠️ 消费决策辅助工具集</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+        选购决策与成本核算工具集
+      </h1>
+      <p class="text-sm text-brand-muted mt-2 leading-relaxed">
+        所有工具均在您的浏览器本地进行纯客户端计算，不抓取您的隐私，不虚构实测数字。通过理性的数据建模，破除营销话术陷阱。
+      </p>
+    </div>
+
+    <!-- Tools Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- Tool 1: Plan Finder -->
+      <a href="/tools/plan-finder/" class="bg-white border border-brand-border rounded-xl p-6 hover:border-brand-teal hover:shadow-md transition-all group block space-y-3">
+        <div class="w-10 h-10 rounded-lg bg-emerald-50 text-brand-teal flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+          🧭
+        </div>
+        <div>
+          <h2 class="text-base font-bold text-brand-dark group-hover:text-brand-teal transition-colors">
+            智能套餐筛选器 (Plan Finder)
+          </h2>
+          <p class="text-xs text-brand-muted mt-1 leading-relaxed">
+            输入您的月度最高预算、期望流量规模、是否接受年付以及客户端偏好，系统从 31 个品牌百余档真实套餐中即刻筛选最匹配方案。
+          </p>
+        </div>
+        <div class="text-xs font-bold text-brand-teal flex items-center gap-1 pt-2">
+          <span>立即使用筛选器</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <!-- Tool 2: Traffic Calculator -->
+      <a href="/tools/traffic-calculator/" class="bg-white border border-brand-border rounded-xl p-6 hover:border-purple-600 hover:shadow-md transition-all group block space-y-3">
+        <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-700 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+          📊
+        </div>
+        <div>
+          <h2 class="text-base font-bold text-brand-dark group-hover:text-purple-700 transition-colors">
+            月度流量消耗估算器 (Traffic Calculator)
+          </h2>
+          <p class="text-xs text-brand-muted mt-1 leading-relaxed">
+            根据您每天刷推特、看 1080P/4K 视频、与 ChatGPT/Claude 交互以及下载大文件的实际时长，科学测算每月需要的真实流量，避免买多浪费。
+          </p>
+        </div>
+        <div class="text-xs font-bold text-purple-700 flex items-center gap-1 pt-2">
+          <span>测算我的月用量</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <!-- Tool 3: Cost Calculator -->
+      <a href="/tools/cost-calculator/" class="bg-white border border-brand-border rounded-xl p-6 hover:border-amber-600 hover:shadow-md transition-all group block space-y-3">
+        <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-800 flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+          💰
+        </div>
+        <div>
+          <h2 class="text-base font-bold text-brand-dark group-hover:text-amber-800 transition-colors">
+            实际成本与每GB折算器 (Cost Calculator)
+          </h2>
+          <p class="text-xs text-brand-muted mt-1 leading-relaxed">
+            揭开“年付低价偷换月付”与“不限时流量包假装每月重置”的套路。精准折算周期总价对应的真实月均支出与每 GB 绝对单价。
+          </p>
+        </div>
+        <div class="text-xs font-bold text-amber-800 flex items-center gap-1 pt-2">
+          <span>折算真实成本</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <!-- Tool 4: Compare -->
+      <a href="/compare/" class="bg-white border border-brand-border rounded-xl p-6 hover:border-blue-600 hover:shadow-md transition-all group block space-y-3">
+        <div class="w-10 h-10 rounded-lg bg-blue-50 text-brand-info flex items-center justify-center text-xl group-hover:scale-105 transition-transform">
+          ⚖️
+        </div>
+        <div>
+          <h2 class="text-base font-bold text-brand-dark group-hover:text-brand-info transition-colors">
+            品牌并排对比工具 (Side-by-Side Compare)
+          </h2>
+          <p class="text-xs text-brand-muted mt-1 leading-relaxed">
+            支持自由勾选 2 到 4 家品牌同屏对比，全维度比对价格、线路架构、Clash 兼容性、AI 解锁及风险提示，同时提供热门深度对决专题。
+          </p>
+        </div>
+        <div class="text-xs font-bold text-brand-info flex items-center gap-1 pt-2">
+          <span>进入并排对比</span>
+          <span>→</span>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</BaseLayout>

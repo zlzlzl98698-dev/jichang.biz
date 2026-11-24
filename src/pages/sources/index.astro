@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = '数据来源与版本快照记录 · 机场指南';
+const description = '公开机场指南数据库所依赖的初始数据来源、历史测试快照采样时间与官方核验通道，保障数据链条可审计、可追溯。';
+const breadcrumbs = [
+  { name: '数据来源', url: '/sources/' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-xs text-brand-muted leading-relaxed space-y-6">
+    
+    <header class="border-b border-brand-border pb-6">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 text-brand-info text-xs font-semibold border border-blue-200 mb-3">
+        <span>🗄️ 数据库可溯源记录</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+        数据来源与版本快照记录
+      </h1>
+      <p class="text-sm text-brand-muted mt-2">
+        坚持所有数据可追溯，不采用来源不明的匿名谣言或截图。
+      </p>
+    </header>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base font-bold text-brand-dark">1. 初始资料归档与哈希去重</h2>
+      <p>
+        本站数据库初始化基于编辑部经授权引入的 5 份初始来源文件。原始文本安全归档于非公开内部目录 <code class="bg-brand-light px-1.5 py-0.5 rounded font-mono text-gray-800">sources/raw/</code>（在构建生产产物时被严格排除，杜绝敏感凭据外泄），经实体去重后确立了 31 个唯一服务商实体。
+      </p>
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base font-bold text-brand-dark">2. 历史测速与兼容性抽样快照</h2>
+      <ul class="list-disc list-inside space-y-2">
+        <li><strong>2026-10-19 快照</strong>：对光速云、暮光加速、飞猫云、微风网络、二猫云、星岛梦等 10 余家主流品牌进行的单次测速抽样（原文明确标注为非晚高峰，仅供技术参考）；</li>
+        <li><strong>2026-08-09 快照</strong>：对浪网、边缘节点 EdgeNova、Firefly 萤火虫历史版本的套餐结构与支付渠道记录；</li>
+        <li><strong>2026-07-21 快照</strong>：对灵动云珠海联通 9Gbps 环境下的 60 测速与 60 解锁多轮长周期日志记录。</li>
+      </ul>
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base font-bold text-brand-dark">3. 客户端软件官方来源</h2>
+      <p>
+        所有推荐的客户端软件（Clash Verge Rev、v2rayN、sing-box、FlClash、Hiddify 等）直接映射至开发者官方 GitHub Releases 或苹果 App Store 官方上架页面，不通过任何第三方网盘或重打包镜像分发。
+      </p>
+    </div>
+
+  </div>
+</BaseLayout>

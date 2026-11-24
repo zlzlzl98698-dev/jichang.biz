@@ -1,0 +1,27 @@
+# Build & Dependencies
+node_modules/
+dist/
+.astro/
+
+# Sensitive Data & Raw Source Exports
+sources/raw/
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

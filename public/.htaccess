@@ -1,0 +1,33 @@
+# ==============================================================================
+# Apache / OpenLiteSpeed 静态部署 rewrite 与安全规则
+# 站点规范域名: https://jichang.biz/
+# ==============================================================================
+
+RewriteEngine On
+
+# 1. 强制统一裸域名 (www 301 重定向至正式根域名)
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# 2. 强制使用 HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 3. 统一追加尾部斜杠 (trailing slash) 保持与 Astro 静态生成一致
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !(.[a-zA-Z0-9]{1,5})$
+RewriteCond %{REQUEST_URI} !(/$)
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1/ [L,R=301]
+
+# 4. Sitemap 搜索引擎友好兼容别名
+RewriteRule ^sitemap\.xml$ /sitemap-index.xml [L]
+
+# 5. 自定义 404 错误页面
+ErrorDocument 404 /404.html
+
+# 6. 浏览器安全响应头与缓存策略
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

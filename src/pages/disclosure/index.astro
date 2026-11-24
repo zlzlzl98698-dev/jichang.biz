@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { GLOBAL_DISCLOSURE } from '../../data/links';
+
+const title = '商业合作与透明度披露声明 · 机场指南';
+const description = '公开机场指南的商业推广模式、佣金披露政策及赞助链接规范。恪守不冒充官方、不隐瞒商业关系、不篡改评测数据的合规准绳。';
+const breadcrumbs = [
+  { name: '商业披露', url: '/disclosure/' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-xs text-brand-muted leading-relaxed space-y-6">
+    
+    <header class="border-b border-brand-border pb-6">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-semibold border border-amber-200 mb-3">
+        <span>📜 商业透明度准则</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+        商业合作与透明度披露声明
+      </h1>
+      <p class="text-sm text-brand-muted mt-2">
+        公开透明是评测决策平台赖以生存的基石。
+      </p>
+    </header>
+
+    <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-5 text-amber-900 leading-relaxed font-medium">
+      {GLOBAL_DISCLOSURE}
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base font-bold text-brand-dark">1. 推广链接属性与属性规范</h2>
+      <p>
+        全站所有涉及第三方服务商的注册跳转链接均统一集中管理，严格附加 <code class="bg-brand-light px-1.5 py-0.5 rounded font-mono text-gray-800">target="_blank" rel="nofollow sponsored noopener"</code> 属性。我们不在页面中埋藏恶意自动跳转、不使用多重中转伪装目标域名、不弹窗诱导注册。
+      </p>
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base font-bold text-brand-dark">2. 光速云合作展示说明</h2>
+      <p>
+        光速云是本站的重点合作展示品牌。我们在首页首屏、品牌卡片与档案顶部为其设置了明确的“合作品牌商业展示”标识。与此同时，光速云评测档案中保留了对其实际测速非晚高峰背景、入门套餐 59G 与 69G 冲突记录、以及定制套餐不退款风险的完整披露，商业合作不享有修改评测事实的特权。
+      </p>
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base font-bold text-brand-dark">3. 用户支付价格一致性承诺</h2>
+      <p>
+        通过本站提供的公开优惠代码与官方直达链接注册，用户支付的金额绝不高于服务商官方公示价。若发现任何链接产生额外溢价，我们将立即停用并向服务商追责。
+      </p>
+    </div>
+
+  </div>
+</BaseLayout>

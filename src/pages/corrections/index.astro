@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = '勘误与数据修正机制 (Corrections) · 机场指南';
+const description = '机场指南公开的勘误流程与更正记录。欢迎读者与服务商就价格变动、协议更新、测速缺口提供可核验凭证，保障数据准确性。';
+const breadcrumbs = [
+  { name: '勘误机制', url: '/corrections/' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-xs text-brand-muted leading-relaxed space-y-6">
+    
+    <header class="border-b border-brand-border pb-6">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-brand-teal text-xs font-semibold border border-emerald-200 mb-3">
+        <span>✏️ 持续校准与事实更正</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+        勘误与数据修正政策
+      </h1>
+      <p class="text-sm text-brand-muted mt-2">
+        网络服务价格与节点动态性高，我们建立常态化更正机制维护事实准确。
+      </p>
+    </header>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base font-bold text-brand-dark">1. 勘误处理原则</h2>
+      <p>
+        无论是广大读者、技术极客，还是相关服务商官方运营人员，只要您发现本站某篇评测中存在<strong>价格变动、协议更新、实测数据过时、或存在错别字与技术概念误差</strong>，均可向编辑部提交勘误申请。只要具备可验证的官方链接或测速凭据，我们将在 2 个工作日内核验并予以公开修正。
+      </p>
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base font-bold text-brand-dark">2. 勘误反馈指引</h2>
+      <p>提交勘误邮件时，建议包含以下关键要素以便快速跟进：</p>
+      <ul class="list-disc list-inside space-y-1.5">
+        <li>相关页面 URL（例如：<code class="bg-brand-light px-1 py-0.5 rounded font-mono">https://jichang.biz/brands/guangsu/</code>）；</li>
+        <li>存在疑义的具体字段或段落文字；</li>
+        <li>建议更正的正确内容及可验证凭证（如服务商官方最新公告截图、公开仪表盘链接或第三方开源日志）；</li>
+        <li>发送至反馈邮箱：<code class="text-brand-teal font-mono">corrections@jichang.biz</code>。</li>
+      </ul>
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base font-bold text-brand-dark">3. 更新记录与版本可溯性</h2>
+      <p>
+        对于所有产生实质性结论变动的修改，我们会在该品牌档案的“最近更新”字段同步修改时间，并在项目内部的 PROGRESS.md 中形成版本修订备忘录，拒绝暗箱操作。
+      </p>
+    </div>
+
+  </div>
+</BaseLayout>

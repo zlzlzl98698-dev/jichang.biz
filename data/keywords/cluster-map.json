@@ -1,0 +1,783 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-11-24",
+  "total_clusters_l1": 12,
+  "clusters": [
+    {
+      "id": "recommend",
+      "name": "机场推荐",
+      "url": "/recommend/",
+      "subclusters": [
+        {
+          "id": "rankings",
+          "name": "机场排行榜",
+          "url": "/recommend/rankings/"
+        },
+        {
+          "id": "reliable",
+          "name": "靠谱机场",
+          "url": "/recommend/reliable/"
+        },
+        {
+          "id": "stable",
+          "name": "稳定机场",
+          "url": "/recommend/stable/"
+        },
+        {
+          "id": "beginner",
+          "name": "小白新手入门",
+          "url": "/recommend/beginner/"
+        },
+        {
+          "id": "cost-effective",
+          "name": "高性价比精选",
+          "url": "/recommend/cost-effective/"
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "name": "价格与套餐",
+      "url": "/pricing/",
+      "subclusters": [
+        {
+          "id": "cheap",
+          "name": "便宜机场",
+          "url": "/pricing/cheap/"
+        },
+        {
+          "id": "1-yuan",
+          "name": "一元机场",
+          "url": "/pricing/1-yuan/"
+        },
+        {
+          "id": "monthly",
+          "name": "月付周期",
+          "url": "/pricing/monthly/"
+        },
+        {
+          "id": "non-expiring",
+          "name": "不限时流量包",
+          "url": "/pricing/non-expiring/"
+        },
+        {
+          "id": "cost-performance",
+          "name": "极致性价比",
+          "url": "/pricing/cost-performance/"
+        }
+      ]
+    },
+    {
+      "id": "reviews",
+      "name": "品牌深度评测",
+      "url": "/reviews/",
+      "subclusters": [
+        {
+          "id": "guangsu",
+          "name": "光速云 评测",
+          "url": "/reviews/guangsu/",
+          "mapped_entity": "guangsu"
+        },
+        {
+          "id": "muguang",
+          "name": "暮光加速 评测",
+          "url": "/reviews/muguang/",
+          "mapped_entity": "muguang"
+        },
+        {
+          "id": "feimao",
+          "name": "飞猫云 评测",
+          "url": "/reviews/feimao/",
+          "mapped_entity": "feimao"
+        },
+        {
+          "id": "weifeng",
+          "name": "微风网络 评测",
+          "url": "/reviews/weifeng/",
+          "mapped_entity": "weifeng"
+        },
+        {
+          "id": "dalaoyun",
+          "name": "大佬云 评测",
+          "url": "/reviews/dalaoyun/",
+          "mapped_entity": "dalaoyun"
+        },
+        {
+          "id": "xingdaomeng",
+          "name": "星岛梦 评测",
+          "url": "/reviews/xingdaomeng/",
+          "mapped_entity": "xingdaomeng"
+        },
+        {
+          "id": "ermao",
+          "name": "二猫云 评测",
+          "url": "/reviews/ermao/",
+          "mapped_entity": "ermao"
+        },
+        {
+          "id": "wuyou",
+          "name": "无忧链接 评测",
+          "url": "/reviews/wuyou/",
+          "mapped_entity": "wuyou"
+        },
+        {
+          "id": "weitu",
+          "name": "唯兔云 评测",
+          "url": "/reviews/weitu/",
+          "mapped_entity": "weitu"
+        },
+        {
+          "id": "firefly",
+          "name": "Firefly 评测",
+          "url": "/reviews/firefly/",
+          "mapped_entity": "firefly"
+        },
+        {
+          "id": "yuzhou",
+          "name": "宇宙云 评测",
+          "url": "/reviews/yuzhou/",
+          "mapped_entity": "yuzhou"
+        },
+        {
+          "id": "u1s1",
+          "name": "U1S1 评测",
+          "url": "/reviews/u1s1/",
+          "mapped_entity": "u1s1"
+        },
+        {
+          "id": "lingmao",
+          "name": "灵猫网络 评测",
+          "url": "/reviews/lingmao/",
+          "mapped_entity": "lingmao"
+        },
+        {
+          "id": "jilian",
+          "name": "极连云 评测",
+          "url": "/reviews/jilian/",
+          "mapped_entity": "jilian"
+        },
+        {
+          "id": "guangnian",
+          "name": "光年梯 评测",
+          "url": "/reviews/guangnian/",
+          "mapped_entity": "guangnian"
+        },
+        {
+          "id": "yifan",
+          "name": "一翻云 评测",
+          "url": "/reviews/yifan/",
+          "mapped_entity": "yifan"
+        },
+        {
+          "id": "sogo",
+          "name": "SOGO云 评测",
+          "url": "/reviews/sogo/",
+          "mapped_entity": "sogo"
+        },
+        {
+          "id": "kexin",
+          "name": "可信云 评测",
+          "url": "/reviews/kexin/",
+          "mapped_entity": "kexin"
+        },
+        {
+          "id": "sujie",
+          "name": "速界 评测",
+          "url": "/reviews/sujie/",
+          "mapped_entity": "sujie"
+        },
+        {
+          "id": "shanyue",
+          "name": "闪跃 评测",
+          "url": "/reviews/shanyue/",
+          "mapped_entity": "shanyue"
+        },
+        {
+          "id": "quanqiu",
+          "name": "全球云 评测",
+          "url": "/reviews/quanqiu/",
+          "mapped_entity": "quanqiu"
+        },
+        {
+          "id": "shandianshu",
+          "name": "闪电鼠 评测",
+          "url": "/reviews/shandianshu/",
+          "mapped_entity": "shandianshu"
+        },
+        {
+          "id": "yunjiexian",
+          "name": "云界线 评测",
+          "url": "/reviews/yunjiexian/",
+          "mapped_entity": "yunjiexian"
+        },
+        {
+          "id": "liulianyun",
+          "name": "榴莲云 评测",
+          "url": "/reviews/liulianyun/",
+          "mapped_entity": "liulianyun"
+        },
+        {
+          "id": "shenxing",
+          "name": "神行加速 评测",
+          "url": "/reviews/shenxing/",
+          "mapped_entity": "shenxing"
+        },
+        {
+          "id": "huanqiuti",
+          "name": "环球梯 评测",
+          "url": "/reviews/huanqiuti/",
+          "mapped_entity": "huanqiuti"
+        },
+        {
+          "id": "yinxingren",
+          "name": "隐形人 评测",
+          "url": "/reviews/yinxingren/",
+          "mapped_entity": "yinxingren"
+        },
+        {
+          "id": "tiziyun",
+          "name": "梯子云 评测",
+          "url": "/reviews/tiziyun/",
+          "mapped_entity": "tiziyun"
+        },
+        {
+          "id": "lingdong",
+          "name": "灵动云 评测",
+          "url": "/reviews/lingdong/",
+          "mapped_entity": "lingdong"
+        },
+        {
+          "id": "langwang",
+          "name": "浪网 评测",
+          "url": "/reviews/langwang/",
+          "mapped_entity": "langwang"
+        },
+        {
+          "id": "edgenova",
+          "name": "边缘节点 EdgeNova 评测",
+          "url": "/reviews/edgenova/",
+          "mapped_entity": "edgenova"
+        }
+      ]
+    },
+    {
+      "id": "brands",
+      "name": "品牌档案与官网核验",
+      "url": "/brands/",
+      "subclusters": [
+        {
+          "id": "guangsu",
+          "name": "光速云 档案",
+          "url": "/brands/guangsu/",
+          "mapped_entity": "guangsu"
+        },
+        {
+          "id": "muguang",
+          "name": "暮光加速 档案",
+          "url": "/brands/muguang/",
+          "mapped_entity": "muguang"
+        },
+        {
+          "id": "feimao",
+          "name": "飞猫云 档案",
+          "url": "/brands/feimao/",
+          "mapped_entity": "feimao"
+        },
+        {
+          "id": "weifeng",
+          "name": "微风网络 档案",
+          "url": "/brands/weifeng/",
+          "mapped_entity": "weifeng"
+        },
+        {
+          "id": "dalaoyun",
+          "name": "大佬云 档案",
+          "url": "/brands/dalaoyun/",
+          "mapped_entity": "dalaoyun"
+        },
+        {
+          "id": "xingdaomeng",
+          "name": "星岛梦 档案",
+          "url": "/brands/xingdaomeng/",
+          "mapped_entity": "xingdaomeng"
+        },
+        {
+          "id": "ermao",
+          "name": "二猫云 档案",
+          "url": "/brands/ermao/",
+          "mapped_entity": "ermao"
+        },
+        {
+          "id": "wuyou",
+          "name": "无忧链接 档案",
+          "url": "/brands/wuyou/",
+          "mapped_entity": "wuyou"
+        },
+        {
+          "id": "weitu",
+          "name": "唯兔云 档案",
+          "url": "/brands/weitu/",
+          "mapped_entity": "weitu"
+        },
+        {
+          "id": "firefly",
+          "name": "Firefly 档案",
+          "url": "/brands/firefly/",
+          "mapped_entity": "firefly"
+        },
+        {
+          "id": "yuzhou",
+          "name": "宇宙云 档案",
+          "url": "/brands/yuzhou/",
+          "mapped_entity": "yuzhou"
+        },
+        {
+          "id": "u1s1",
+          "name": "U1S1 档案",
+          "url": "/brands/u1s1/",
+          "mapped_entity": "u1s1"
+        },
+        {
+          "id": "lingmao",
+          "name": "灵猫网络 档案",
+          "url": "/brands/lingmao/",
+          "mapped_entity": "lingmao"
+        },
+        {
+          "id": "jilian",
+          "name": "极连云 档案",
+          "url": "/brands/jilian/",
+          "mapped_entity": "jilian"
+        },
+        {
+          "id": "guangnian",
+          "name": "光年梯 档案",
+          "url": "/brands/guangnian/",
+          "mapped_entity": "guangnian"
+        },
+        {
+          "id": "yifan",
+          "name": "一翻云 档案",
+          "url": "/brands/yifan/",
+          "mapped_entity": "yifan"
+        },
+        {
+          "id": "sogo",
+          "name": "SOGO云 档案",
+          "url": "/brands/sogo/",
+          "mapped_entity": "sogo"
+        },
+        {
+          "id": "kexin",
+          "name": "可信云 档案",
+          "url": "/brands/kexin/",
+          "mapped_entity": "kexin"
+        },
+        {
+          "id": "sujie",
+          "name": "速界 档案",
+          "url": "/brands/sujie/",
+          "mapped_entity": "sujie"
+        },
+        {
+          "id": "shanyue",
+          "name": "闪跃 档案",
+          "url": "/brands/shanyue/",
+          "mapped_entity": "shanyue"
+        },
+        {
+          "id": "quanqiu",
+          "name": "全球云 档案",
+          "url": "/brands/quanqiu/",
+          "mapped_entity": "quanqiu"
+        },
+        {
+          "id": "shandianshu",
+          "name": "闪电鼠 档案",
+          "url": "/brands/shandianshu/",
+          "mapped_entity": "shandianshu"
+        },
+        {
+          "id": "yunjiexian",
+          "name": "云界线 档案",
+          "url": "/brands/yunjiexian/",
+          "mapped_entity": "yunjiexian"
+        },
+        {
+          "id": "liulianyun",
+          "name": "榴莲云 档案",
+          "url": "/brands/liulianyun/",
+          "mapped_entity": "liulianyun"
+        },
+        {
+          "id": "shenxing",
+          "name": "神行加速 档案",
+          "url": "/brands/shenxing/",
+          "mapped_entity": "shenxing"
+        },
+        {
+          "id": "huanqiuti",
+          "name": "环球梯 档案",
+          "url": "/brands/huanqiuti/",
+          "mapped_entity": "huanqiuti"
+        },
+        {
+          "id": "yinxingren",
+          "name": "隐形人 档案",
+          "url": "/brands/yinxingren/",
+          "mapped_entity": "yinxingren"
+        },
+        {
+          "id": "tiziyun",
+          "name": "梯子云 档案",
+          "url": "/brands/tiziyun/",
+          "mapped_entity": "tiziyun"
+        },
+        {
+          "id": "lingdong",
+          "name": "灵动云 档案",
+          "url": "/brands/lingdong/",
+          "mapped_entity": "lingdong"
+        },
+        {
+          "id": "langwang",
+          "name": "浪网 档案",
+          "url": "/brands/langwang/",
+          "mapped_entity": "langwang"
+        },
+        {
+          "id": "edgenova",
+          "name": "边缘节点 EdgeNova 档案",
+          "url": "/brands/edgenova/",
+          "mapped_entity": "edgenova"
+        }
+      ]
+    },
+    {
+      "id": "compare",
+      "name": "竞品对比决策",
+      "url": "/compare/",
+      "subclusters": [
+        {
+          "id": "guangsu-vs-muguang",
+          "name": "光速云 vs 暮光云",
+          "url": "/compare/guangsu-vs-muguang/"
+        },
+        {
+          "id": "feimao-vs-weifeng",
+          "name": "飞猫云 vs 微风网络",
+          "url": "/compare/feimao-vs-weifeng/"
+        },
+        {
+          "id": "weitu-vs-firefly",
+          "name": "唯兔云 vs Firefly萤火虫",
+          "url": "/compare/weitu-vs-firefly/"
+        },
+        {
+          "id": "jilian-vs-guangnian",
+          "name": "极连快线 vs 光年网络",
+          "url": "/compare/jilian-vs-guangnian/"
+        },
+        {
+          "id": "dalaoyun-vs-shandianshu",
+          "name": "大佬云 vs 闪电鼠",
+          "url": "/compare/dalaoyun-vs-shandianshu/"
+        },
+        {
+          "id": "sogo-vs-yinxingren",
+          "name": "SogoCloud vs 隐形人加速器",
+          "url": "/compare/sogo-vs-yinxingren/"
+        },
+        {
+          "id": "xingdaomeng-vs-ermao",
+          "name": "星岛梦 vs 二猫云",
+          "url": "/compare/xingdaomeng-vs-ermao/"
+        },
+        {
+          "id": "u1s1-vs-sujie",
+          "name": "U1S1 vs 速捷网络",
+          "url": "/compare/u1s1-vs-sujie/"
+        },
+        {
+          "id": "guangsu-vs-weitu",
+          "name": "光速云 vs 唯兔云",
+          "url": "/compare/guangsu-vs-weitu/"
+        },
+        {
+          "id": "muguang-vs-ermao",
+          "name": "暮光云 vs 二猫云",
+          "url": "/compare/muguang-vs-ermao/"
+        },
+        {
+          "id": "feimao-vs-lingmao",
+          "name": "飞猫云 vs 灵猫云",
+          "url": "/compare/feimao-vs-lingmao/"
+        },
+        {
+          "id": "weifeng-vs-jilian",
+          "name": "微风网络 vs 极连快线",
+          "url": "/compare/weifeng-vs-jilian/"
+        },
+        {
+          "id": "shandianshu-vs-yunjiexian",
+          "name": "闪电鼠 vs 云界线",
+          "url": "/compare/shandianshu-vs-yunjiexian/"
+        },
+        {
+          "id": "dalaoyun-vs-liulianyun",
+          "name": "大佬云 vs 榴莲云",
+          "url": "/compare/dalaoyun-vs-liulianyun/"
+        },
+        {
+          "id": "xingdaomeng-vs-tiziyun",
+          "name": "星岛梦 vs 梯子云",
+          "url": "/compare/xingdaomeng-vs-tiziyun/"
+        },
+        {
+          "id": "sujie-vs-kexin",
+          "name": "速捷网络 vs 可信网络",
+          "url": "/compare/sujie-vs-kexin/"
+        },
+        {
+          "id": "shanyue-vs-firefly",
+          "name": "山岳网络 vs Firefly萤火虫",
+          "url": "/compare/shanyue-vs-firefly/"
+        },
+        {
+          "id": "quanqiu-vs-sogo",
+          "name": "环球梯 vs SogoCloud",
+          "url": "/compare/quanqiu-vs-sogo/"
+        },
+        {
+          "id": "shenxing-vs-guangnian",
+          "name": "神行网络 vs 光年网络",
+          "url": "/compare/shenxing-vs-guangnian/"
+        },
+        {
+          "id": "lingdong-vs-edgenova",
+          "name": "灵动云 vs EdgeNova",
+          "url": "/compare/lingdong-vs-edgenova/"
+        }
+      ]
+    },
+    {
+      "id": "guides",
+      "name": "使用教程",
+      "url": "/guides/",
+      "subclusters": [
+        {
+          "id": "clash-verge-rev-tutorial",
+          "name": "Clash Verge Rev 教程",
+          "url": "/guides/clash-verge-rev-tutorial/"
+        },
+        {
+          "id": "shadowrocket-setup",
+          "name": "Shadowrocket 小火箭配置",
+          "url": "/guides/shadowrocket-setup/"
+        },
+        {
+          "id": "tun-mode-explained",
+          "name": "TUN 虚拟网卡模式",
+          "url": "/guides/tun-mode-explained/"
+        },
+        {
+          "id": "rule-routing-guide",
+          "name": "分流规则原理",
+          "url": "/guides/rule-routing-guide/"
+        },
+        {
+          "id": "v2rayn-windows-guide",
+          "name": "v2rayN Windows 指南",
+          "url": "/guides/v2rayn-windows-guide/"
+        },
+        {
+          "id": "openclash-router-guide",
+          "name": "OpenClash 软路由配置",
+          "url": "/guides/openclash-router-guide/"
+        },
+        {
+          "id": "safe-subscription-management",
+          "name": "订阅安全与防泄露",
+          "url": "/guides/safe-subscription-management/"
+        }
+      ]
+    },
+    {
+      "id": "troubleshooting",
+      "name": "故障排查",
+      "url": "/troubleshooting/",
+      "subclusters": [
+        {
+          "id": "node-timeout",
+          "name": "节点全部超时",
+          "url": "/troubleshooting/node-timeout/"
+        },
+        {
+          "id": "subscription-update-failed",
+          "name": "订阅更新失败",
+          "url": "/troubleshooting/subscription-update-failed/"
+        },
+        {
+          "id": "connected-no-internet",
+          "name": "连上但无法上网",
+          "url": "/troubleshooting/connected-no-internet/"
+        },
+        {
+          "id": "dns-leak-and-pollution",
+          "name": "DNS 污染与泄漏",
+          "url": "/troubleshooting/dns-leak-and-pollution/"
+        },
+        {
+          "id": "port-conflict-7890",
+          "name": "7890 端口冲突",
+          "url": "/troubleshooting/port-conflict-7890/"
+        },
+        {
+          "id": "ai-access-denied-1020",
+          "name": "AI 访问受限 1020",
+          "url": "/troubleshooting/ai-access-denied-1020/"
+        },
+        {
+          "id": "system-proxy-reset",
+          "name": "系统代理未关闭打不开网页",
+          "url": "/troubleshooting/system-proxy-reset/"
+        }
+      ]
+    },
+    {
+      "id": "compatibility",
+      "name": "AI与流媒体兼容",
+      "url": "/compatibility/",
+      "subclusters": [
+        {
+          "id": "chatgpt-node-guide",
+          "name": "ChatGPT 节点选择",
+          "url": "/compatibility/chatgpt-node-guide/"
+        },
+        {
+          "id": "claude-clean-ip",
+          "name": "Claude 纯净 IP",
+          "url": "/compatibility/claude-clean-ip/"
+        },
+        {
+          "id": "netflix-4k-unlock",
+          "name": "Netflix 4K 解锁",
+          "url": "/compatibility/netflix-4k-unlock/"
+        },
+        {
+          "id": "tiktok-crossborder-setup",
+          "name": "TikTok 跨境网络",
+          "url": "/compatibility/tiktok-crossborder-setup/"
+        }
+      ]
+    },
+    {
+      "id": "network",
+      "name": "线路与性能",
+      "url": "/network/",
+      "subclusters": [
+        {
+          "id": "iepl-vs-iplc",
+          "name": "IEPL 与 IPLC 对比",
+          "url": "/network/iepl-vs-iplc/"
+        },
+        {
+          "id": "latency-jitter-packet-loss",
+          "name": "时延抖动与丢包",
+          "url": "/network/latency-jitter-packet-loss/"
+        },
+        {
+          "id": "rate-multiplier-explained",
+          "name": "倍率套路解析",
+          "url": "/network/rate-multiplier-explained/"
+        },
+        {
+          "id": "residential-ip-truth",
+          "name": "原生住宅 IP 真相",
+          "url": "/network/residential-ip-truth/"
+        }
+      ]
+    },
+    {
+      "id": "risk",
+      "name": "风险与替代",
+      "url": "/risk/",
+      "subclusters": [
+        {
+          "id": "airport-runaway-signs",
+          "name": "跑路前兆识别",
+          "url": "/risk/airport-runaway-signs/"
+        },
+        {
+          "id": "dual-airport-redundancy",
+          "name": "双机场容灾配置",
+          "url": "/risk/dual-airport-redundancy/"
+        },
+        {
+          "id": "refund-terms-analysis",
+          "name": "退款争议处理",
+          "url": "/risk/refund-terms-analysis/"
+        }
+      ]
+    },
+    {
+      "id": "clients",
+      "name": "客户端软件",
+      "url": "/clients/",
+      "subclusters": [
+        {
+          "id": "clash-verge-rev",
+          "name": "Clash Verge Rev",
+          "url": "/clients/clash-verge-rev/"
+        },
+        {
+          "id": "v2rayn",
+          "name": "v2rayN",
+          "url": "/clients/v2rayn/"
+        },
+        {
+          "id": "shadowrocket",
+          "name": "Shadowrocket",
+          "url": "/clients/shadowrocket/"
+        },
+        {
+          "id": "sing-box",
+          "name": "sing-box",
+          "url": "/clients/sing-box/"
+        },
+        {
+          "id": "openclash",
+          "name": "OpenClash",
+          "url": "/clients/openclash/"
+        }
+      ]
+    },
+    {
+      "id": "vpn",
+      "name": "VPN与加速器",
+      "url": "/vpn/",
+      "subclusters": [
+        {
+          "id": "recommend",
+          "name": "正规VPN推荐",
+          "url": "/vpn/recommend/"
+        },
+        {
+          "id": "free",
+          "name": "免费VPN警示",
+          "url": "/vpn/free/"
+        },
+        {
+          "id": "mobile",
+          "name": "手机VPN设置",
+          "url": "/vpn/mobile/"
+        },
+        {
+          "id": "gaming",
+          "name": "游戏加速器辨析",
+          "url": "/vpn/gaming/"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+---
+import type { PlanItem } from '../types/brand';
+
+interface Props {
+  plans: PlanItem[];
+  brandName: string;
+}
+
+const { plans, brandName } = Astro.props;
+
+const cycleMap: Record<string, string> = {
+  monthly: '按月计费',
+  quarterly: '季付 (3个月)',
+  halfYear: '半年付 (6个月)',
+  yearly: '年付 (12个月)',
+  twoYear: '两年付 (24个月)',
+  threeYear: '三年付 (36个月)',
+  oneTime: '一次性付费 (流量不过期)'
+};
+---
+
+<div class="my-6">
+  <div class="flex items-center justify-between mb-2">
+    <h2 class="text-base sm:text-lg font-bold text-brand-dark flex items-center gap-1.5">
+      <span>💳 {brandName} · 官方资费与套餐详细清单</span>
+    </h2>
+    <span class="text-xs text-brand-muted">共收录 {plans.length} 档套餐规格</span>
+  </div>
+
+  <div class="table-responsive-wrapper">
+    <table class="w-full text-left text-xs border-collapse">
+      <thead>
+        <tr class="bg-gray-50 border-b border-brand-border text-brand-muted font-medium">
+          <th class="py-2.5 px-3">套餐名称</th>
+          <th class="py-2.5 px-3">计费周期</th>
+          <th class="py-2.5 px-3 font-mono-numbers">标价 (元)</th>
+          <th class="py-2.5 px-3 font-mono-numbers">月均折算 (元/月)</th>
+          <th class="py-2.5 px-3 font-mono-numbers">流量配额</th>
+          <th class="py-2.5 px-3">重置机制</th>
+          <th class="py-2.5 px-3 font-mono-numbers">单价成本 (~元/GB)</th>
+          <th class="py-2.5 px-3">说明与限制</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-brand-border font-sans">
+        {plans.map(p => {
+          const unitCost = p.trafficGB > 0 ? (p.monthlyEquivalentYuan / p.trafficGB).toFixed(2) : '—';
+          return (
+            <tr class:list={['hover:bg-brand-light/60 transition-colors', p.isPopular ? 'bg-emerald-50/40' : '']}>
+              <td class="py-3 px-3 font-semibold text-brand-dark">
+                <div class="flex items-center gap-1.5">
+                  <span>{p.name}</span>
+                  {p.isPopular && (
+                    <span class="px-1.5 py-0.2 rounded text-[10px] bg-emerald-100 text-emerald-800 font-normal">热选</span>
+                  )}
+                </div>
+              </td>
+              <td class="py-3 px-3 text-brand-muted">
+                {cycleMap[p.billingCycle] || p.billingCycle}
+              </td>
+              <td class="py-3 px-3 font-bold text-brand-dark font-mono-numbers">
+                ¥{p.priceYuan}
+              </td>
+              <td class="py-3 px-3 font-mono-numbers">
+                <strong class="text-brand-teal text-sm">¥{p.monthlyEquivalentYuan}</strong>
+                <span class="text-gray-400 font-normal">/月</span>
+              </td>
+              <td class="py-3 px-3 font-bold text-brand-dark font-mono-numbers">
+                {p.trafficGB} GB
+              </td>
+              <td class="py-3 px-3 text-xs">
+                {p.resetPolicy === 'monthly' ? (
+                  <span class="text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200">每月重置</span>
+                ) : (
+                  <span class="text-purple-700 bg-purple-50 px-1.5 py-0.5 rounded border border-purple-200">不过期 (一次性)</span>
+                )}
+              </td>
+              <td class="py-3 px-3 font-mono-numbers text-brand-muted">
+                ¥{unitCost}
+              </td>
+              <td class="py-3 px-3 text-brand-muted max-w-xs">
+                {p.notes || '—'}
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+  
+  <p class="text-[11px] text-brand-muted mt-1.5">
+    * 说明：年付折算价为套餐总金额除以12个月所得的理论成本，需要用户一次性全额付清，不能按月扣款；一次性套餐不过期，使用期取决于个人消耗节奏。
+  </p>
+</div>

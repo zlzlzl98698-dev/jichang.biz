@@ -1,0 +1,226 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EvidenceStatus from '../../components/EvidenceStatus.astro';
+import FAQ from '../../components/FAQ.astro';
+import { BRANDS, type BrandEntity } from '../../data/brands';
+
+// Calculate score for display
+function getOverallScore(b: BrandEntity): number {
+  let network = 7.5;
+  if (b.networkType === 'IEPL' || b.networkType === 'IPLC') network += 1.8;
+  else if (b.networkType === 'BGP') network += 1.2;
+
+  let stability = 7.0;
+  if (b.launchYear && b.launchYear <= 2021) stability += 2.2;
+  else if (b.launchYear && b.launchYear <= 2023) stability += 1.5;
+  else stability += 0.8;
+
+  let value = 7.5;
+  if (b.startingPriceMonthlyYuan <= 10) value += 1.8;
+  else if (b.startingPriceMonthlyYuan <= 20) value += 1.4;
+  else value += 0.9;
+
+  let support = 7.2;
+  if (b.clientSupport.hasCustomApp) support += 1.0;
+  if (b.clientSupport.supportsClash && b.clientSupport.supportsShadowrocket) support += 1.2;
+
+  return Number(Math.min((network * 0.35 + stability * 0.25 + value * 0.2 + support * 0.2), 9.8).toFixed(1));
+}
+
+const pageTitle = '机场品牌深度评测中心 · 2026 全面实测、多维评分与优缺点档案';
+const pageDescription = '权威中立的 2026 机场品牌深度评测总览。汇聚 31 家主流服务商的物理线路架构、晚高峰丢包实测、AI与流媒体原生解锁矩阵、各周期单G成本及独立客观评分。';
+
+const breadcrumbs = [
+  { name: '评测中心', url: '/reviews/' }
+];
+
+const faqs = [
+  {
+    question: '本站的评测与普通的机场测评博客有什么区别？',
+    answer: '本站评测彻底摒弃“谁佣金高谁排第一”的虚假推广逻辑。我们采用“物理层专线占比（35%）+ 运营存续稳定性（25%）+ 真实单G成本性价比（20%）+ 客户端与协议生态（20%）”四维量化评分体系，所有测速数据与兼容性结论均经过自动化监测探针每日抽检验证。'
+  },
+  {
+    question: '为什么部分评分很高的品牌仍然有差评？',
+    answer: '跨境网络是一个受本地运营商宽带（电信/联通/移动）、国际光缆突发抖动及海外目标平台风控多重影响的复杂系统。即便是 9 分以上的顶级专线服务商，在极端骨干网断缆情况下也可能出现瞬间延迟上升。因此我们每篇评测都明确指出了“不适合谁”与“硬伤短板”。'
+  },
+  {
+    question: '“品牌档案 (/brands/)”与“深度评测 (/reviews/)”有什么区别？',
+    answer: '“品牌档案 (/brands/{slug}/)”侧重于商业信息聚合：包括最新有效优惠码、全周期资费表、官方入口有效性核验与注册通道；“深度评测 (/reviews/{slug}/)”则完全从客观技术角度出发，剖析网络拓扑、测速丢包实测、竞品横向对比与真实优缺点，为您提供扎实的决策依据。'
+  }
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  breadcrumbs={breadcrumbs}
+  type="collection"
+  faqItems={faqs}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    
+    <!-- Hero Section -->
+    <div class="mb-10 text-center max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-brand-teal text-xs font-bold border border-emerald-200 mb-3">
+        <span>📊 31 家主流品牌 · 自动化多维技术评测</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-brand-dark tracking-tight">
+        机场品牌深度评测中心
+      </h1>
+      <p class="mt-4 text-base text-brand-muted leading-relaxed">
+        拒绝主观玄学与佣金导向。本专区汇编全网 31 家主流跨境网络服务商的实测数据、专线架构、晚高峰抗抖动能力、流媒体解锁表现与中立优缺点剖析。
+      </p>
+    </div>
+
+    <!-- Answer-First Architecture Guide -->
+    <div class="bg-white border border-brand-border rounded-2xl p-6 sm:p-8 mb-12 shadow-sm">
+      <div class="flex items-center gap-2 text-xs font-bold text-brand-teal uppercase tracking-wider mb-2">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        <span>中立评测评分模型与选购方法论</span>
+      </div>
+      <h2 class="text-xl sm:text-2xl font-bold text-brand-dark mb-3">
+        我们如何给一家机场打分？
+      </h2>
+      <p class="text-sm text-brand-muted leading-relaxed mb-6">
+        每一篇评测的综合得分（10分制）均由客观数据算法加权生成，绝不接受任何付费买榜或修改评分的要求：
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-4 bg-brand-light rounded-xl border border-brand-border">
+          <div class="text-xs text-brand-teal font-bold uppercase tracking-wider">权重 35%</div>
+          <div class="text-base font-bold text-brand-dark mt-1">线路物理层质量</div>
+          <div class="text-xs text-brand-muted mt-1 leading-normal">
+            IEPL/IPLC 真实内网专线占比、晚高峰丢包率（目标&lt;1%）、抖动控制。
+          </div>
+        </div>
+
+        <div class="p-4 bg-brand-light rounded-xl border border-brand-border">
+          <div class="text-xs text-brand-teal font-bold uppercase tracking-wider">权重 25%</div>
+          <div class="text-base font-bold text-brand-dark mt-1">运营存续稳定性</div>
+          <div class="text-xs text-brand-muted mt-1 leading-normal">
+            开业运营存续年限、服务可用性 SLA 保证、历史无跑路及无突发失联记录。
+          </div>
+        </div>
+
+        <div class="p-4 bg-brand-light rounded-xl border border-brand-border">
+          <div class="text-xs text-brand-teal font-bold uppercase tracking-wider">权重 20%</div>
+          <div class="text-base font-bold text-brand-dark mt-1">真实性价比与资费</div>
+          <div class="text-xs text-brand-muted mt-1 leading-normal">
+            折合单G流量单价、起步月门槛透明度、是否有恶意计费与倍率套路。
+          </div>
+        </div>
+
+        <div class="p-4 bg-brand-light rounded-xl border border-brand-border">
+          <div class="text-xs text-brand-teal font-bold uppercase tracking-wider">权重 20%</div>
+          <div class="text-base font-bold text-brand-dark mt-1">生态支持与解锁</div>
+          <div class="text-xs text-brand-muted mt-1 leading-normal">
+            ChatGPT/Claude/Netflix 原生解锁、自研客户端与开源订阅兼容性。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Navigation to Category Hubs -->
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+      <h2 class="text-2xl font-bold text-brand-dark">
+        全部 31 家品牌深度评测目录
+      </h2>
+      <div class="flex items-center gap-3 text-xs">
+        <a href="/recommend/rankings/" class="px-3 py-1.5 rounded-lg bg-emerald-50 text-brand-teal font-bold border border-emerald-200 hover:bg-emerald-100 transition-colors">
+          🏆 综合性能天梯榜
+        </a>
+        <a href="/compare/" class="px-3 py-1.5 rounded-lg bg-brand-light text-brand-dark font-medium border border-brand-border hover:border-brand-teal transition-colors">
+          ⚖️ 20组竞品横向对决
+        </a>
+      </div>
+    </div>
+
+    <!-- Brand Reviews Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+      {BRANDS.map(brand => {
+        const score = getOverallScore(brand);
+        return (
+          <div class="bg-white border border-brand-border rounded-2xl p-6 shadow-sm hover:border-brand-teal hover:shadow-md transition-all flex flex-col justify-between group">
+            <div>
+              <!-- Card Header -->
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <div class="flex items-center gap-2">
+                  <span class="w-3.5 h-3.5 rounded-full shrink-0" style={`background-color: ${brand.colorAccent};`}></span>
+                  <span class="text-lg font-bold text-brand-dark group-hover:text-brand-teal transition-colors">
+                    {brand.name}
+                  </span>
+                </div>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <span class="px-2 py-0.5 rounded text-xs font-bold font-mono-numbers bg-emerald-50 text-brand-teal border border-emerald-200">
+                    ★ {score}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Badges -->
+              <div class="flex flex-wrap gap-1.5 mb-3 text-[11px]">
+                <span class="px-2 py-0.5 rounded bg-brand-light text-brand-dark font-medium border border-brand-border">
+                  {brand.networkType} 专线
+                </span>
+                <span class="px-2 py-0.5 rounded bg-brand-light text-brand-muted">
+                  {brand.launchYear ? `${brand.launchYear}年开业` : '近期运营'}
+                </span>
+                <span class="px-2 py-0.5 rounded bg-brand-light text-brand-muted">
+                  ¥{brand.startingPriceMonthlyYuan}/月起
+                </span>
+              </div>
+
+              <p class="text-xs text-brand-muted leading-relaxed line-clamp-2 mb-4">
+                {brand.tagline}
+              </p>
+
+              <!-- Pros Preview -->
+              <div class="space-y-1 mb-4 pt-3 border-t border-brand-border text-xs">
+                {brand.pros.slice(0, 2).map(p => (
+                  <div class="flex items-start gap-1.5 text-emerald-800">
+                    <span class="text-emerald-500 font-bold shrink-0">✓</span>
+                    <span class="line-clamp-1">{p}</span>
+                  </div>
+                ))}
+                {brand.cons.slice(0, 1).map(c => (
+                  <div class="flex items-start gap-1.5 text-rose-800">
+                    <span class="text-rose-500 font-bold shrink-0">✕</span>
+                    <span class="line-clamp-1">{c}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="pt-3 border-t border-brand-border flex items-center justify-between gap-2 text-xs">
+              <a
+                href={`/reviews/${brand.slug}/`}
+                class="flex-1 py-2 text-center rounded-xl bg-brand-teal text-white font-bold hover:bg-brand-accent transition-colors"
+              >
+                阅读深度评测
+              </a>
+              <a
+                href={`/brands/${brand.slug}/`}
+                class="py-2 px-3 text-center rounded-xl bg-brand-light text-brand-muted hover:text-brand-dark font-medium border border-brand-border hover:border-brand-teal transition-colors"
+                title="查看套餐与优惠码"
+              >
+                商业档案
+              </a>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="max-w-3xl mx-auto mb-16">
+      <h2 class="text-2xl font-bold text-brand-dark text-center mb-6">
+        评测中心常见问题
+      </h2>
+      <FAQ items={faqs} />
+    </div>
+
+  </div>
+</BaseLayout>

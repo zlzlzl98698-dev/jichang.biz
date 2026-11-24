@@ -1,0 +1,273 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+import { parseMarkdown } from '../../utils/markdown';
+
+export async function getStaticPaths() {
+  const articles = [
+    {
+      slug: 'clash-verge-rev-tutorial',
+      title: 'Clash Verge Rev 完整上手与配置教程 (Win/Mac/Linux) · 2026 最新版',
+      description: '从安装、订阅导入、分流模式选择到 TUN 虚拟网卡配置，全方位指导现代主流代理客户端 Clash Verge Rev 的使用。',
+      author: '机场指南技术组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      content: `
+### 一、为什么 Clash Verge Rev 成为现代桌面首选？
+在旧版 Clash for Windows 停更之后，基于 Mihomo（Clash.Meta）内核开发的 **Clash Verge Rev** 迅速成为跨平台桌面端的主流首选。它不仅原生支持 VLESS、Hysteria 2、TUIC 等新一代协议，还内置了功能完备的 TUN 虚拟网卡模式，UI 简洁直观且支持深色模式。
+
+### 二、安装与初次启动
+1. **下载官方安装包**：前往官方 GitHub Releases 页面，根据操作系统下载安装包：
+   - Windows：推荐选择 \`.exe\` 安装版（如 \`Clash.Verge_x64-setup.exe\`）；
+   - macOS：Apple Silicon 芯片选择 \`aarch64.dmg\`，Intel 芯片选择 \`x64.dmg\`；
+   - Linux：提供 \`.deb\`、\`.rpm\` 及 \`AppImage\` 格式。
+2. **初次启动授权**：在 macOS 上初次打开若提示未签名，请在“系统设置 -> 隐私与安全性”中点击“仍要打开”；Windows 用户允许防火墙通信。
+
+### 三、订阅导入与节点更新
+1. 登录机场服务商用户后台，复制对应的 **Clash 订阅链接**；
+2. 打开 Clash Verge Rev，在左侧导航栏点击 **“订阅 (Profiles)”**；
+3. 将链接粘贴至顶部输入框，点击 **“保存 (Save)”**；
+4. 客户端将自动发起 HTTPS 请求下载远端 YAML 配置文件。下载完成后，右键该配置可设置自动更新周期（建议设置为 24 小时自动更新）。
+
+### 四、代理模式选择：Rule、Global 与 Direct
+在左侧点击 **“代理 (Proxies)”**，顶部提供三种模式：
+- **规则模式 (Rule - 强烈推荐)**：根据内置的分流规则库，国内流量（百度、微信、知乎）直接走本地家庭宽带，国外网站（Google、GitHub、Netflix）自动走代理节点。这是日常使用最省心、最省流量的模式。
+- **全局模式 (Global)**：所有网络请求无论国内外均强制走选中的节点。仅在遇到特定冷门网站无法识别分流时临时使用。
+- **直连模式 (Direct)**：彻底不经过任何代理节点，等同于关闭软件。
+
+### 五、进阶操作：开启 TUN 模式接管全机流量
+常规系统代理模式只能接管遵循系统代理环境变量的软件（如浏览器）。而终端命令行（git / curl）、游戏客户端或特定桌面软件可能漏跑。
+1. 在左侧点击 **“设置 (Settings)”**；
+2. 找到 **“服务模式 (Service Mode)”**，点击右侧安装齿轮并授予系统管理员权限；
+3. 安装成功后，打开 **“TUN 模式 (TUN Mode)”** 开关。此时系统网络适配器中将出现一张名为 \`Mihomo\` 的虚拟网卡，全机所有出站流量均被无缝拦截并按规则分流。
+      `,
+      faqs: [
+        { question: '导入订阅时提示 Network Error 怎么解决？', answer: '这通常是订阅域名被本地运营商临时 DNS 污染阻断。可以在浏览器中先尝试直接打开订阅 URL，或者在服务商后台寻找“防阻断备用订阅地址”。' },
+        { question: 'TUN 模式和系统代理可以同时开启吗？', answer: '可以同时开启，TUN 模式会以更底层的虚拟网卡接管流量，确保任何漏网应用均能被正常代理分流。' }
+      ]
+    },
+    {
+      slug: 'shadowrocket-setup',
+      title: 'Shadowrocket (小火箭) 添加与管理订阅完全指南 (iOS/iPadOS)',
+      description: 'iOS 平台上普及率最高的规则代理工具 Shadowrocket 的完整配置教程。详解订阅添加、节点测速、分流策略与自动化更新。',
+      author: '机场指南技术组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      content: `
+### 一、Shadowrocket 软件定位
+Shadowrocket（俗称“小火箭”）是 iOS/iPadOS 平台上极其成熟的商业规则代理客户端。它性能稳定、省电，且对 Shadowsocks、VMess、VLESS、Trojan、Hysteria 2 等全协议支持极为完备。
+
+### 二、获取正版小火箭
+小火箭未在中国大陆 App Store 上架。请使用非大陆区 Apple ID（如美区、港区）登录 App Store 购买下载（官方售价约 $2.99）。切勿在主设备设置登录陌生人共享的 iCloud，防范锁机风险。
+
+### 三、添加订阅链接步骤
+1. 打开 Shadowrocket，点击右上角的 **“+”** 加号；
+2. 在“类型 (Type)”下拉菜单中，选择 **“Subscribe (订阅)”**；
+3. 在“URL”栏目粘贴从服务商处复制的订阅地址；
+4. 在“备注 (Remark)”栏填写品牌名称（如“光速云”或“微风网络”）；
+5. 点击右上角 **“保存 (Save)”**，小火箭将自动拉取全部节点列表。
+
+### 四、路由模式设置
+在小火箭首页底部：
+- **全局路由**：务必选择 **“配置 (Config)”**，此模式即智能分流；不要选择“代理 (Proxy)”全局模式，否则会导致国内 App 加载变慢。
+- **节点选择**：点击展开节点列表，点击“连通性测试 (Ping)”即可测试所有节点延迟，挑选 20-50ms 左右的低延迟专线节点点击选中。
+- **开启连接**：滑动顶部“未连接”开关，初次连接系统会弹出“添加 VPN 配置”系统对话框，使用 Face ID / Touch ID 验证通过即可。
+      `,
+      faqs: [
+        { question: '小火箭如何设置定时自动更新订阅？', answer: '在小火箭底部进入“设置” -> “订阅”，开启“打开时更新”与“自动后台更新”，即可保持节点列表常新。' }
+      ]
+    },
+    {
+      slug: 'tun-mode-explained',
+      title: 'TUN 虚拟网卡模式深度解析：工作原理、开启步骤与防漏网排查',
+      description: '深入剖析 TUN 模式与传统系统代理（System Proxy）的底层网络差异。解决终端命令行、游戏客户端与后台服务不走代理的问题。',
+      author: '机场指南网络实验室',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      content: `
+### 一、系统代理 (System Proxy) 的天生短板
+普通的代理客户端通过修改操作系统的代理设置（在注册表或网络设置中写入 \`127.0.0.1:7890\`）。这种方式存在先天局限：
+- 很多软件（如 Git、Node.js、Python、Docker、Telegram Desktop 甚至 Steam）默认根本不读取操作系统的代理注册表；
+- UDP 流量（很多在线游戏、语音会议协议）完全无法通过标准 HTTP/SOCKS5 系统代理转发。
+
+### 二、TUN 虚拟网卡模式的核心原理
+TUN（Network TUNnel）是一种运行在操作系统网络层（OSI 第 3 层）的虚拟点对点网络设备驱动：
+1. 客户端在操作系统内核中注册一张虚拟网络适配器；
+2. 操作系统将所有未在局域网内广播的出站 IP 数据包强制路由至该虚拟网卡；
+3. 内核将原始三层 IP 包解包为 TCP/UDP 数据流，由分流规则引擎进行域名嗅探（Domain Sniffing）与目标 IP 匹配；
+4. 真正做到了对操作系统内任何软件的“无感知透明拦截与分流”。
+      `,
+      faqs: [
+        { question: '开启 TUN 模式后电脑很卡或者打不开网页？', answer: '请检查 TUN 驱动版本是否冲突。通常在客户端中卸载服务模式后重新以管理员身份安装即可解决。' }
+      ]
+    },
+    {
+      slug: 'rule-routing-guide',
+      title: '代理分流规则详解：DIRECT 直连、PROXY 代理与分流策略组原理',
+      description: '全面拆解 Clash 与 sing-box 规则引擎。解析域名后缀规则（DOMAIN-SUFFIX）、IP段分流（IP-CIDR）与广告拦截（REJECT）。',
+      author: '机场指南技术组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      content: `
+### 一、什么是分流规则？
+分流规则是现代网络代理软件的大脑。它决定了当您的电脑发出一笔网络请求时，该请求究竟是“直接访问本地互联网”、“通过特定境外专线过境”、还是“直接本地阻断”。
+
+### 二、核心的三大动作行为
+1. **DIRECT (直连)**：绕过所有代理核心，直接通过本地运营商宽带出口访问目标服务器。适用于中国大陆境内所有知名域名与服务。
+2. **PROXY (代理)**：将数据流量加密后，送往客户端当前选中的远程节点出口。适用于被封锁或需要加速的海外服务。
+3. **REJECT (拦截)**：客户端在本地直接丢弃该数据包并返回错误响应。常用于拦截各类恶意广告、行为追踪分析器。
+
+### 三、常见的策略组设计
+高级分流规则中常包含“策略组 (Proxy Group)”：
+- **节点选择 (Selector)**：由用户手动在多个节点之间点击切换；
+- **自动选择 (URL-Test)**：客户端定时向测速服务器（如 Google/Cloudflare）发送测速包，自动将流量分发至当前延迟最低的节点；
+- **故障转移 (Fallback)**：优先使用第一节点，当第一节点超时断开时自动顺延至第二节点。
+      `,
+      faqs: [
+        { question: '分流规则库多久更新一次比较好？', answer: '主流的规则库（如 Loyalsoldier 或 ACL4SSR）每周维护更新，建议每月更新一次规则配置文件。' }
+      ]
+    },
+    {
+      slug: 'v2rayn-windows-guide',
+      title: 'v2rayN Windows 客户端核心内核切换与测速管理完全指南',
+      description: 'Windows 平台上老牌强大的多协议客户端 v2rayN 实战手册。支持 Xray、sing-box 与 Mihomo 核心，实现大批量节点管理与真连接测速。',
+      author: '机场指南技术组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      content: `
+### 一、v2rayN 的核心定位
+v2rayN 是 Windows 平台上资历最深、兼容协议最广泛的开源客户端。不同于 Clash 系列强依赖 YAML 配置文件，v2rayN 采用极简的节点列表管理模式，适合需要直观批量测试节点真连接延迟、以及管理多协议混合节点的用户。
+
+### 二、多内核架构切换
+v2rayN 本身是一个图形界面壳程序，其底层支持挂载多种业界成熟的核心（Core）：
+- **Xray-core**：对 VLESS、VMess、Trojan 等协议支持极度成熟稳定；
+- **sing-box-core**：对 Hysteria 2、TUIC、ShadowTLS 等新协议支持极佳；
+- 用户可以在“设置 -> 核心类型设置”中自由切换默认内核。
+
+### 三、真实连接测速 (Real Delay Test)
+在节点列表中按下 \`Ctrl+A\` 全选节点，右键选择 **“测试服务真连接延迟 (Real Delay)”**：
+- 很多客户端的 Ping 测试仅仅测量本地到国内中转入口的握手延迟（常显示虚假的 10ms）；
+- 真连接延迟则是通过节点完整向 Google 或 Cloudflare 发送 HTTP 请求并收到回应的端到端真实耗时，数值通常在 30ms–150ms 之间，能够最真实反映晚高峰可用性。
+      `,
+      faqs: [
+        { question: 'v2rayN 底部图标为什么有红蓝两色？', answer: '蓝色图标表示已清除系统代理（直连），红色图标表示已成功启用系统代理。' }
+      ]
+    },
+    {
+      slug: 'openclash-router-guide',
+      title: 'OpenClash 软路由全屋透明网关部署指南 (OpenWrt)',
+      description: '在软路由系统 OpenWrt 上部署 OpenClash 插件。实现全屋手机、电视盒子、游戏主机无需单独安装客户端即可无感加速。',
+      author: '机场指南网络实验室',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      content: `
+### 一、软路由透明网关的价值
+在家用或小微办公网络中，如果在每台手机、电脑上都要单独打开客户端不仅繁琐，而且 Apple TV、PS5 游戏主机或 Switch 等设备本身无法安装常规代理软件。
+通过在局域网网关（如 x86 软路由、畅网微主机）上部署 **OpenClash**，所有接入家庭 Wi-Fi 的设备即可自动享受规则分流。
+
+### 二、部署前的前置硬件要求
+1. OpenWrt 固件版本建议不低于 22.03 或 23.05；
+2. 软路由 CPU 具备硬件 AES 加密指令集（如 Intel N100、J4125 等）；
+3. 内存不低于 1GB，确保在突发千兆高并发下核心进程不被 OOM Killer 杀掉。
+
+### 三、运行模式推荐：Fake-IP 与 Redir-Host
+在 OpenClash 设置中：
+- **Fake-IP 模式 (推荐)**：DNS 查询直接由软路由本地快速分配一个虚假私有 IP（如 \`198.18.0.0/16\`），并由内核在远端节点发起真实 DNS 解析。网页秒开率极高，彻底杜绝本地 DNS 污染；
+- 需注意在旁路由组网下，主路由 DHCP 的网关与 DNS 必须正确指向软路由 IP。
+      `,
+      faqs: [
+        { question: '软路由透明网关能防止某些国内银行 App 报风险吗？', answer: '正确配置大陆白名单规则（China Direct）后，银行与微信流量完全直连本地宽带，不会触发异地登录风控。' }
+      ]
+    },
+    {
+      slug: 'safe-subscription-management',
+      title: '机场订阅链接安全保管、Token 防盗刷与防泄露实战手册',
+      description: '订阅链接安全红线科普。详解 Token 认证机制、订阅被爬虫泄露的严重后果，以及如何定期重置凭据防范盗用。',
+      author: '机场指南安全响应中心',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      content: `
+### 一、订阅链接中隐藏的核心机密
+很多新手以为订阅链接只是一个普通网址，随意将其截图或分享给朋友。
+实际上，绝大多数机场的订阅链接结构形如：
+\`https://domain.com/api/v1/client/subscribe?token=a8f9c7e2b104...\`
+其中的 **Token 字符串** 是您在该服务商系统中唯一的无密码身份识别凭证。拥有该链接的任何人，都等同于拥有了您套餐的使用权。
+
+### 二、订阅泄露的四大灾难性后果
+1. **流量被暗中盗用**：盗用者可将您的订阅配置在自己的大流量下载设备上，几天内耗尽您全月的几百 GB 流量；
+2. **多地并发触发封号**：很多服务商限制了单个订阅的同时在线设备 IP 数量。当盗用者在异地并发连接时，服务商风控系统会自动判定为违规转售而直接停封账号；
+3. **节点被恶意扫描滥用**：公开在 GitHub 或公开论坛的订阅会被恶意黑客批量用于发起 CC 攻击或网络扫描，导致服务商落地 IP 被封，进而牵连全节点不可用；
+4. **个人隐私暴露**：某些服务商的订阅接口支持反查用户注册邮箱与套餐到期时间。
+
+### 三、安全自查与补救措施
+- **禁止公开上传**：切勿将包含订阅 URL 的配置文件上传到任何公开代码仓库（如 GitHub public repo）或公开 pastebin；
+- **一键重置 Token**：若怀疑订阅已被泄露，请立即登录机场官网后台，在仪表盘点击 **“重置订阅链接”或“更改 Token”**。旧链接将即刻失效，生成全新 URL 后重新导入客户端。
+      `,
+      faqs: [
+        { question: '重置订阅链接后，旧客户端会怎样？', answer: '旧客户端中配置的旧链接将无法再拉取节点列表，原节点在下一次更新或证书过期时将无法连接，需手动在客户端更新为新 URL。' }
+      ]
+    }
+  ];
+
+  return articles.map(art => ({
+    params: { slug: art.slug },
+    props: { article: art }
+  }));
+}
+
+const { article } = Astro.props;
+
+const breadcrumbs = [
+  { name: '使用教程', url: '/guides/' },
+  { name: article.title, url: `/guides/${article.slug}/` }
+];
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.description}
+  breadcrumbs={breadcrumbs}
+  type="article"
+  publishDate={`${article.date}T08:00:00+08:00`}
+  modifiedDate={`${article.updated}T12:00:00+08:00`}
+  faqItems={article.faqs}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Article Header -->
+    <header class="border-b border-brand-border pb-6 mb-8">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-brand-teal text-xs font-semibold border border-emerald-200 mb-3">
+        <span>📖 实战配置手册</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight leading-tight">
+        {article.title}
+      </h1>
+      <div class="flex items-center gap-4 text-xs text-brand-muted mt-3">
+        <span>作者: {article.author}</span>
+        <span>发布: {article.date}</span>
+        <span>核验更新: {article.updated}</span>
+      </div>
+    </header>
+
+    <!-- Article Content with Rich Typography -->
+    <article class="bg-white border border-brand-border rounded-2xl p-6 sm:p-10 shadow-sm leading-relaxed text-brand-dark">
+      <div set:html={parseMarkdown(article.content)} />
+    </article>
+
+    <!-- FAQs -->
+    <div class="mt-8">
+      <FAQ items={article.faqs} title="相关疑难解答" />
+    </div>
+
+    <!-- Related Links -->
+    <div class="mt-8 pt-6 border-t border-brand-border flex items-center justify-between text-xs">
+      <a href="/guides/" class="text-brand-teal hover:underline font-bold">
+        ← 返回使用教程主目录
+      </a>
+      <a href="/clients/" class="text-brand-dark hover:underline">
+        前往客户端软件下载 →
+      </a>
+    </div>
+
+  </div>
+</BaseLayout>

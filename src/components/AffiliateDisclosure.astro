@@ -1,0 +1,34 @@
+---
+import { GLOBAL_DISCLOSURE } from '../data/links';
+
+interface Props {
+  isPartner?: boolean;
+  brandName?: string;
+}
+
+const { isPartner = false, brandName } = Astro.props;
+---
+
+<div class="bg-amber-50/60 border border-amber-200/80 rounded-xl p-4 my-6 text-xs text-amber-900 flex items-start gap-3">
+  <svg class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+  <div class="space-y-1">
+    <div class="font-bold flex items-center gap-2">
+      <span>商业合作与透明度声明</span>
+      {isPartner && (
+        <span class="px-1.5 py-0.2 rounded text-[10px] bg-amber-200 text-amber-900 font-semibold">
+          {brandName || '合作品牌'} 商业展示位
+        </span>
+      )}
+    </div>
+    <p class="text-amber-800/90 leading-relaxed">
+      {GLOBAL_DISCLOSURE}
+    </p>
+    {isPartner && (
+      <p class="text-[11px] text-amber-800/80 pt-1 border-t border-amber-200/50">
+        注：光速云为本站重点合作展示品牌，展示位与商业推荐入口已明确标注；评测文章中记载的 59G/69G 冲突标记、非晚高峰测速背景及退款限制均如实保留，客观排序不因商业合作而受到暗中固定或篡改。
+      </p>
+    )}
+  </div>
+</div>

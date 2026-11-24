@@ -1,0 +1,44 @@
+---
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FAQItem[];
+  title?: string;
+  description?: string;
+}
+
+const { items, title = '常见问题与选购答疑 (FAQ)', description = '以下问答均对应正文真实数据与客观事实，为您解答决策过程中的常见疑惑。' } = Astro.props;
+---
+
+<section class="my-8">
+  <div class="mb-4">
+    <h2 class="text-base sm:text-lg font-bold text-brand-dark flex items-center gap-2">
+      <span>❓ {title}</span>
+    </h2>
+    {description && (
+      <p class="text-xs text-brand-muted mt-1">{description}</p>
+    )}
+  </div>
+
+  <div class="space-y-3">
+    {items.map((item) => (
+      <details class="group bg-white border border-brand-border rounded-lg p-4 transition-all duration-150 open:bg-brand-light/50 open:border-brand-teal/40">
+        <summary class="font-bold text-sm text-brand-dark cursor-pointer list-none flex items-center justify-between gap-3 focus:outline-none">
+          <span class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-teal"></span>
+            <span>{item.question}</span>
+          </span>
+          <svg class="w-4 h-4 text-brand-muted group-open:rotate-180 transition-transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="text-xs text-brand-muted mt-3 pt-3 border-t border-brand-border/60 leading-relaxed space-y-1">
+          <p>{item.answer}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>

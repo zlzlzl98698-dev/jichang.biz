@@ -1,0 +1,24 @@
+# jichang.biz - 机场指南知识索引
+
+> 平台定位：面向合法合规授权使用场景的网络服务选购、套餐对比、品牌数据与技术帮助平台。
+> 官方网站：https://jichang.biz/
+
+## 核心选购与比较栏目
+- 机场推荐与选购指南: https://jichang.biz/recommend/
+- 价格与计费对比: https://jichang.biz/pricing/
+- 31个品牌详细档案与评测: https://jichang.biz/brands/
+- 客户端下载与支持: https://jichang.biz/clients/
+- AI 与流媒体解锁支持: https://jichang.biz/compatibility/
+- 专线与节点知识: https://jichang.biz/network/
+- 使用教程: https://jichang.biz/guides/
+- 故障排查: https://jichang.biz/troubleshooting/
+- 风险警示与替代方案: https://jichang.biz/risk/
+
+## 选购工具
+- 智能套餐筛选器: https://jichang.biz/tools/plan-finder/
+- 流量用量估算器: https://jichang.biz/tools/traffic-calculator/
+- 实际成本折算器: https://jichang.biz/tools/cost-calculator/
+- 品牌并排比较: https://jichang.biz/compare/
+
+## 声明
+所有数据标注来源、核验时间与状态（verified / vendor / historical / unknown / conflict）。涉及商业合作的内容已在页面明确披露。

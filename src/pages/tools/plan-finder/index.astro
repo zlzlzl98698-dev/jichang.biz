@@ -1,0 +1,297 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { BRANDS } from '../../../data/brands';
+import AffiliateDisclosure from '../../../components/AffiliateDisclosure.astro';
+
+const title = '智能机场套餐筛选器 (Plan Finder) · 精准匹配预算与流量需求';
+const description = '纯客户端计算的机场选购工具。输入您的每月预算、预计月用量、客户端偏好及是否接受年付，系统仅从已核验数据库中为您实时筛选最佳套餐方案。';
+const breadcrumbs = [
+  { name: '决策工具', url: '/tools/' },
+  { name: '智能套餐筛选器', url: '/tools/plan-finder/' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Header -->
+    <div class="max-w-3xl mb-8">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-brand-teal text-xs font-semibold border border-emerald-200 mb-3">
+        <span>🧭 选购决策工具 · 纯客户端计算</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+        智能机场套餐筛选器 (Plan Finder)
+      </h1>
+      <p class="text-sm text-brand-muted mt-2 leading-relaxed">
+        根据您的真实预算、月流量预估、设备环境及计费偏好，即时筛选符合条件的已核验套餐。拒绝虚标价格与虚构流量，未知字段单独列出。
+      </p>
+    </div>
+
+    <!-- Filter Configuration Card -->
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm mb-8 space-y-6">
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+        
+        <!-- Budget -->
+        <div>
+          <label class="block font-bold text-brand-dark mb-1.5">1. 每月最高预算</label>
+          <select id="finder-budget" class="w-full bg-brand-light border border-brand-border rounded-lg p-2.5 text-xs text-brand-dark focus:ring-2 focus:ring-brand-teal">
+            <option value="any">不限预算</option>
+            <option value="10">≤ 10 元/月 (极限平价)</option>
+            <option value="20">≤ 20 元/月 (性价比档)</option>
+            <option value="35">≤ 35 元/月 (中端专线)</option>
+            <option value="70">≤ 70 元/月 (大容量专线)</option>
+          </select>
+        </div>
+
+        <!-- Monthly Traffic -->
+        <div>
+          <label class="block font-bold text-brand-dark mb-1.5">2. 预期每月流量需求</label>
+          <select id="finder-traffic" class="w-full bg-brand-light border border-brand-border rounded-lg p-2.5 text-xs text-brand-dark focus:ring-2 focus:ring-brand-teal">
+            <option value="any">不限流量</option>
+            <option value="50">≥ 50 GB/月 (轻度查资料)</option>
+            <option value="100">≥ 100 GB/月 (常规视频与办公)</option>
+            <option value="200">≥ 200 GB/月 (多端中度看剧)</option>
+            <option value="500">≥ 500 GB/月 (重度大流量)</option>
+          </select>
+        </div>
+
+        <!-- Accept Yearly Billing -->
+        <div>
+          <label class="block font-bold text-brand-dark mb-1.5">3. 是否接受年付一次性交清？</label>
+          <select id="finder-yearly" class="w-full bg-brand-light border border-brand-border rounded-lg p-2.5 text-xs text-brand-dark focus:ring-2 focus:ring-brand-teal">
+            <option value="both">接受年付与月付</option>
+            <option value="monthly-only">仅限普通月付 (不愿一次性付一年)</option>
+            <option value="yearly-only">仅看年付优惠档</option>
+          </select>
+        </div>
+
+        <!-- Third Party Client -->
+        <div>
+          <label class="block font-bold text-brand-dark mb-1.5">4. 是否必须支持 Clash / 小火箭？</label>
+          <select id="finder-client" class="w-full bg-brand-light border border-brand-border rounded-lg p-2.5 text-xs text-brand-dark focus:ring-2 focus:ring-brand-teal">
+            <option value="any">无所谓（自研客户端或通用订阅皆可）</option>
+            <option value="clash-required">必须支持通用订阅 (Clash/Shadowrocket)</option>
+            <option value="custom-app-preferred">偏好自研专属客户端 (新手开箱即连)</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="pt-4 border-t border-brand-border flex items-center justify-between">
+        <div class="text-xs text-brand-muted">
+          数据基准：基于 31 个品牌共计百余档真实已审核套餐计算，严禁虚构低价。
+        </div>
+        <button id="finder-reset-btn" class="text-xs text-brand-teal hover:underline font-semibold">
+          重置所有筛选条件
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Results Container -->
+    <div class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-base font-bold text-brand-dark flex items-center gap-2">
+          <span>🎯 符合条件的精选方案</span>
+          <span id="results-count" class="px-2 py-0.5 rounded-full bg-brand-teal text-white text-xs font-mono font-bold">0</span>
+        </h2>
+        <span class="text-xs text-brand-muted">按月均折算成本由低到高排列</span>
+      </div>
+
+      <!-- Results Table -->
+      <div class="table-responsive-wrapper">
+        <table class="w-full text-left text-xs border-collapse" id="finder-table">
+          <thead>
+            <tr class="bg-gray-50 border-b border-brand-border text-brand-muted font-medium">
+              <th class="py-2.5 px-3">品牌 / 套餐</th>
+              <th class="py-2.5 px-3">计费周期</th>
+              <th class="py-2.5 px-3 font-mono-numbers">总付款标价</th>
+              <th class="py-2.5 px-3 font-mono-numbers">月均折算成本</th>
+              <th class="py-2.5 px-3 font-mono-numbers">月度流量配额</th>
+              <th class="py-2.5 px-3">客户端兼容性</th>
+              <th class="py-2.5 px-3">操作与评测</th>
+            </tr>
+          </thead>
+          <tbody id="results-tbody" class="divide-y divide-brand-border font-sans">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty Result State -->
+      <div id="finder-empty" class="hidden bg-white border border-brand-border rounded-xl p-10 text-center">
+        <div class="text-3xl mb-2">🔭</div>
+        <div class="text-sm font-bold text-brand-dark">未找到完全符合所有严格条件的方案</div>
+        <p class="text-xs text-brand-muted mt-1 max-w-md mx-auto">
+          可能原因：您选择了“仅限普通月付”且“预算 ≤ 10元/月”，在真实市场中该预算多为年付小包折算价。建议放宽预算至 20 元/月或接受年付。
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Commercial Disclosure Callout -->
+    <div class="mt-8">
+      <AffiliateDisclosure />
+    </div>
+
+  </div>
+</BaseLayout>
+
+<script define:vars={{ BRANDS }}>
+  function initPlanFinder() {
+    const budgetSelect = document.getElementById('finder-budget');
+    const trafficSelect = document.getElementById('finder-traffic');
+    const yearlySelect = document.getElementById('finder-yearly');
+    const clientSelect = document.getElementById('finder-client');
+    const countEl = document.getElementById('results-count');
+    const tbody = document.getElementById('results-tbody');
+    const emptyEl = document.getElementById('finder-empty');
+    const resetBtn = document.getElementById('finder-reset-btn');
+
+    if (!budgetSelect || !tbody) return;
+
+    // Flatten all plans with brand metadata
+    const allPlans = [];
+    BRANDS.forEach(brand => {
+      brand.plans.forEach(plan => {
+        allPlans.push({
+          brandName: brand.name,
+          brandSlug: brand.slug,
+          brandIsPartner: brand.isPartner,
+          supportsClash: brand.clientSupport.supportsClash,
+          hasCustomApp: brand.clientSupport.hasCustomApp,
+          affiliateUrl: brand.affiliateUrl,
+          planName: plan.name,
+          billingCycle: plan.billingCycle,
+          priceYuan: plan.priceYuan,
+          monthlyEquivalentYuan: plan.monthlyEquivalentYuan,
+          trafficGB: plan.trafficGB,
+          resetPolicy: plan.resetPolicy,
+          notes: plan.notes || ''
+        });
+      });
+    });
+
+    const cycleTextMap = {
+      monthly: '普通月付',
+      quarterly: '季付',
+      halfYear: '半年付',
+      yearly: '年付 (12个月)',
+      twoYear: '两年付',
+      threeYear: '三年付',
+      oneTime: '一次性不过期'
+    };
+
+    function runFilter() {
+      const budget = budgetSelect.value;
+      const traffic = trafficSelect.value;
+      const yearly = yearlySelect.value;
+      const client = clientSelect.value;
+
+      const filtered = allPlans.filter(p => {
+        // Exclude oneTime packages from monthly quota filter unless desired
+        if (p.resetPolicy === 'oneTime' && traffic !== 'any') {
+          return false;
+        }
+
+        // 1. Budget
+        if (budget !== 'any') {
+          const maxBudget = parseFloat(budget);
+          if (p.monthlyEquivalentYuan > maxBudget) return false;
+        }
+
+        // 2. Traffic
+        if (traffic !== 'any') {
+          const minTraffic = parseFloat(traffic);
+          if (p.trafficGB < minTraffic) return false;
+        }
+
+        // 3. Yearly vs Monthly
+        if (yearly === 'monthly-only') {
+          if (p.billingCycle !== 'monthly') return false;
+        } else if (yearly === 'yearly-only') {
+          if (p.billingCycle !== 'yearly') return false;
+        }
+
+        // 4. Client
+        if (client === 'clash-required' && !p.supportsClash) return false;
+        if (client === 'custom-app-preferred' && !p.hasCustomApp) return false;
+
+        return true;
+      });
+
+      // Sort by monthly equivalent price ascending
+      filtered.sort((a, b) => a.monthlyEquivalentYuan - b.monthlyEquivalentYuan);
+
+      // Render Table
+      tbody.innerHTML = '';
+      if (countEl) countEl.textContent = filtered.length.toString();
+
+      if (filtered.length === 0) {
+        if (emptyEl) emptyEl.classList.remove('hidden');
+        return;
+      }
+
+      if (emptyEl) emptyEl.classList.add('hidden');
+
+      filtered.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-brand-light/70 transition-colors';
+        tr.innerHTML = `
+          <td class="py-3 px-3">
+            <div class="font-bold text-brand-dark flex items-center gap-1.5">
+              <a href="/brands/${item.brandSlug}/" class="hover:text-brand-teal transition-colors">${item.brandName}</a>
+              ${item.brandIsPartner ? '<span class="text-[9px] px-1.5 py-0.2 bg-emerald-100 text-brand-teal rounded font-bold">合作品牌</span>' : ''}
+            </div>
+            <div class="text-[11px] text-brand-muted mt-0.5">${item.planName}</div>
+          </td>
+          <td class="py-3 px-3 text-brand-muted">
+            ${cycleTextMap[item.billingCycle] || item.billingCycle}
+          </td>
+          <td class="py-3 px-3 font-mono font-bold text-brand-dark">
+            ¥${item.priceYuan}
+          </td>
+          <td class="py-3 px-3 font-mono">
+            <strong class="text-brand-teal text-sm">¥${item.monthlyEquivalentYuan}</strong>
+            <span class="text-gray-400 font-normal">/月</span>
+          </td>
+          <td class="py-3 px-3 font-mono font-bold text-brand-dark">
+            ${item.trafficGB} GB
+          </td>
+          <td class="py-3 px-3">
+            <span class="inline-block px-1.5 py-0.5 rounded text-[10px] ${item.supportsClash ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-gray-100 text-gray-600'}">
+              ${item.supportsClash ? '支持Clash/通用订阅' : '仅自研App'}
+            </span>
+          </td>
+          <td class="py-3 px-3">
+            <a href="/brands/${item.brandSlug}/" class="text-brand-teal hover:underline font-semibold text-xs">
+              评测与官网入口 →
+            </a>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    budgetSelect.addEventListener('change', runFilter);
+    trafficSelect.addEventListener('change', runFilter);
+    yearlySelect.addEventListener('change', runFilter);
+    clientSelect.addEventListener('change', runFilter);
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        budgetSelect.value = 'any';
+        trafficSelect.value = 'any';
+        yearlySelect.value = 'both';
+        clientSelect.value = 'any';
+        runFilter();
+      });
+    }
+
+    // Run initial filter
+    runFilter();
+  }
+
+  document.addEventListener('DOMContentLoaded', initPlanFinder);
+</script>

@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { BRANDS } from '../../data/brands';
+import AffiliateDisclosure from '../../components/AffiliateDisclosure.astro';
+
+const title = '机场并排参数对比 (Compare) · 2-4家品牌全维度参数同屏比对';
+const description = '自由选择 2 至 4 家机场品牌进行同屏并排对比。直观比较月付门槛、年付折算、专线架构、自研与 Clash 客户端支持、AI 解锁及退款风险。';
+const breadcrumbs = [
+  { name: '决策工具', url: '/tools/' },
+  { name: '品牌并排对比', url: '/compare/' }
+];
+
+const notableMatchups = [
+  { slug: 'guangsu-vs-muguang', nameA: '光速云', nameB: '暮光加速', desc: '老牌综合双专线 vs BGP多设备跨平台同时在线' },
+  { slug: 'feimao-vs-weifeng', nameA: '飞猫云', nameB: '微风网络', desc: '7元专属客户端即连新手 vs 7元IEPL通用订阅性价比' },
+  { slug: 'weitu-vs-firefly', nameA: '唯兔云', nameB: 'Firefly', desc: 'IPLC专线节假日特惠 vs IPLC骨干原生IP专线' },
+  { slug: 'jilian-vs-guangnian', nameA: '极连云', nameB: '光年梯', desc: '18元档100GB聚焦AI vs 18元档110GB流量微增' },
+  { slug: 'dalaoyun-vs-shandianshu', nameA: '大佬云', nameB: '闪电鼠', desc: '5.6元极限平价档同质化横评与差异鉴别' },
+  { slug: 'sogo-vs-yinxingren', nameA: 'SOGO云', nameB: '隐形人', desc: '15国覆盖自研客户端 vs 企业级IPLC晚高峰直连' },
+  { slug: 'xingdaomeng-vs-ermao', nameA: '星岛梦', nameB: '二猫云', desc: '2020年老牌不限设备 vs 2023年专线定制客户端' },
+  { slug: 'u1s1-vs-sujie', nameA: 'U1S1', nameB: '速界', desc: '2025新品牌2000Mbps宣称 vs 25元档聚焦AI生产力' },
+  { slug: 'guangsu-vs-weitu', nameA: '光速云', nameB: '唯兔云', desc: '老牌双专线与IPLC特惠专线如何抉择？' },
+  { slug: 'muguang-vs-ermao', nameA: '暮光加速', nameB: '二猫云', desc: '多设备同时在线与定制客户端专线对决' },
+  { slug: 'feimao-vs-lingmao', nameA: '飞猫云', nameB: '灵猫网络', desc: '纯专属客户端免配置即连模式横评' },
+  { slug: 'weifeng-vs-jilian', nameA: '微风网络', nameB: '极连云', desc: '入门IEPL专线与聚焦AI生产力专线对比' },
+  { slug: 'shandianshu-vs-yunjiexian', nameA: '闪电鼠', nameB: '云界线', desc: '5.6元极限平价档标准方案与链接格式差异' },
+  { slug: 'dalaoyun-vs-liulianyun', nameA: '大佬云', nameB: '榴莲云', desc: '5.6元档明确VLESS协议与协议未明品牌对比' },
+  { slug: 'xingdaomeng-vs-tiziyun', nameA: '星岛梦', nameB: '梯子云', desc: '2020年老牌不限设备与自研通用双支持对比' },
+  { slug: 'sujie-vs-kexin', nameA: '速界', nameB: '可信云', desc: '25元档聚焦AI生产力与诚实中立态度对决' },
+  { slug: 'shanyue-vs-firefly', nameA: '闪跃', nameB: 'Firefly', desc: '纯IPLC骨干专线与原生IP专线深度横评' },
+  { slug: 'quanqiu-vs-sogo', nameA: '全球云', nameB: 'SOGO云', desc: '60+节点双协议与覆盖15国节点专线对比' },
+  { slug: 'shenxing-vs-guangnian', nameA: '神行加速', nameB: '光年梯', desc: '14元120G年付中间档与18元110G专线对比' },
+  { slug: 'lingdong-vs-edgenova', nameA: '灵动云', nameB: '边缘节点 EdgeNova', desc: '实测AI高解锁专线与自动线路调度对比' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs} type="collection">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Hero Header -->
+    <div class="max-w-3xl mb-8">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 text-brand-info text-xs font-semibold border border-blue-200 mb-3">
+        <span>⚖️ 消费决策比对 · 纯客户端交互</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+        机场服务商并排对比工具
+      </h1>
+      <p class="text-sm text-brand-muted mt-2 leading-relaxed">
+        自由勾选 2 到 4 家品牌进行同屏参数横向对比。对比维度涵盖月均资费、协议架构、客户端生态、测速样本与风险条款，缺失项诚实标为未提供。
+      </p>
+    </div>
+
+    <!-- Notable Pre-analyzed Matchups -->
+    <div class="mb-8">
+      <h2 class="text-xs font-bold text-brand-muted uppercase tracking-wider mb-3">
+        热门深度对决专题 (点击查看独立分析)
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {notableMatchups.map(m => (
+          <a
+            href={`/compare/${m.slug}/`}
+            class="bg-white border border-brand-border rounded-lg p-3 hover:border-brand-teal hover:shadow-sm transition-all group"
+          >
+            <div class="font-bold text-xs text-brand-dark group-hover:text-brand-teal transition-colors flex items-center justify-between">
+              <span>{m.nameA} VS {m.nameB}</span>
+              <span class="text-brand-teal text-[10px]">详情 →</span>
+            </div>
+            <p class="text-[11px] text-brand-muted mt-1 line-clamp-1">{m.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Interactive Selector Toolbar -->
+    <div class="bg-white border border-brand-border rounded-xl p-5 mb-8 shadow-sm space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-brand-border">
+        <div class="text-xs font-bold text-brand-dark">
+          从 31 家品牌中勾选 2–4 家进行同屏对比：
+        </div>
+        <div class="text-xs text-brand-muted">
+          已选择: <strong id="selected-count" class="text-brand-teal font-mono font-bold">2</strong> / 4 家
+        </div>
+      </div>
+
+      <!-- Checkboxes Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 text-xs" id="brands-checkbox-grid">
+        {BRANDS.map((b, idx) => (
+          <label class="flex items-center gap-1.5 p-2 rounded border border-brand-border hover:bg-brand-light cursor-pointer select-none transition-colors has-[:checked]:bg-emerald-50 has-[:checked]:border-brand-teal">
+            <input
+              type="checkbox"
+              name="compare-brand"
+              value={b.slug}
+              checked={idx === 0 || idx === 1}
+              class="rounded text-brand-teal focus:ring-brand-teal"
+            />
+            <span class="font-medium text-brand-dark truncate">{b.name}</span>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <!-- Live Comparison Table Container -->
+    <div id="comparison-result-card" class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-base font-bold text-brand-dark">并排参数对决矩阵</h2>
+        <span class="text-xs text-brand-muted">向右横向滑动查看全维度对比</span>
+      </div>
+
+      <div class="table-responsive-wrapper">
+        <table class="w-full text-left text-xs border-collapse" id="comparison-table">
+          <!-- Populated by JS -->
+        </table>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <AffiliateDisclosure />
+    </div>
+
+  </div>
+</BaseLayout>
+
+<script define:vars={{ BRANDS }}>
+  function initComparator() {
+    const checkboxes = Array.from(document.querySelectorAll('input[name="compare-brand"]'));
+    const countEl = document.getElementById('selected-count');
+    const table = document.getElementById('comparison-table');
+
+    if (!checkboxes.length || !table) return;
+
+    function renderTable() {
+      const selectedSlugs = checkboxes.filter(cb => cb.checked).map(cb => cb.value);
+      if (countEl) countEl.textContent = selectedSlugs.length.toString();
+
+      const selectedBrands = BRANDS.filter(b => selectedSlugs.includes(b.slug));
+
+      if (selectedBrands.length === 0) {
+        table.innerHTML = '<tr><td class="p-6 text-center text-brand-muted">请至少选择 2 家品牌进行对比</td></tr>';
+        return;
+      }
+
+      // Define comparison rows
+      const rows = [
+        { label: '品牌主色 / 标识', render: b => `<span class="inline-block w-3 h-3 rounded-full mr-1.5" style="background-color: ${b.colorAccent}"></span><strong class="text-sm font-bold">${b.name}</strong> ${b.isPartner ? '<span class="text-[9px] bg-emerald-100 text-brand-teal px-1 rounded font-bold">合作</span>' : ''}` },
+        { label: '开业年份', render: b => b.launchYear ? `${b.launchYear} 年` : '待核验' },
+        { label: '最低起步月成本', render: b => `<strong class="text-brand-teal text-sm font-mono">¥${b.startingPriceMonthlyYuan}</strong> /月起` },
+        { label: '线路架构类型', render: b => `<span class="font-bold text-brand-dark">${b.networkType} 专线</span>` },
+        { label: '支持加密协议', render: b => `<code class="font-mono">${b.protocols.join(', ')}</code>` },
+        { label: '自研客户端 App', render: b => b.clientSupport.hasCustomApp ? '<span class="text-emerald-700 font-bold">已提供 (一键登录)</span>' : '<span class="text-gray-400">未提供</span>' },
+        { label: '第三方通用订阅 (Clash)', render: b => b.clientSupport.supportsClash ? '<span class="text-blue-700 font-bold">全面支持</span>' : '<span class="text-rose-700 font-bold">不支持 (仅限专属App)</span>' },
+        { label: 'AI 工具支持情况', render: b => b.unlockMatrix.chatgpt === 'supported' ? 'ChatGPT 解锁良好' : (b.unlockMatrix.chatgpt === 'partial' ? '视落地节点而定' : '未提供实测证据') },
+        { label: '流媒体解锁支持', render: b => b.unlockMatrix.netflix === 'supported' ? 'Netflix / YouTube 4K 支持' : '基础支持 / 视节点' },
+        { label: '核心优势亮点', render: b => `<ul class="list-disc list-inside space-y-1 text-emerald-900">${b.pros.slice(0, 2).map(p => `<li>${p}</li>`).join('')}</ul>` },
+        { label: '主要缺点与局限', render: b => `<ul class="list-disc list-inside space-y-1 text-rose-900">${b.cons.slice(0, 2).map(c => `<li>${c}</li>`).join('')}</ul>` },
+        { label: '详细评测与入口', render: b => `<a href="/brands/${b.slug}/" class="inline-block py-1.5 px-3 rounded bg-brand-light text-brand-teal font-bold hover:underline text-xs">查看完整档案 →</a>` }
+      ];
+
+      let html = '<thead><tr class="bg-gray-50 border-b border-brand-border"><th class="py-3 px-3 text-brand-muted font-medium w-40">比对维度</th>';
+      selectedBrands.forEach(b => {
+        html += `<th class="py-3 px-3 text-brand-dark font-bold min-w-[200px]">${b.name}</th>`;
+      });
+      html += '</tr></thead><tbody class="divide-y divide-brand-border">';
+
+      rows.forEach(r => {
+        html += `<tr class="hover:bg-brand-light/50"><td class="py-3 px-3 font-semibold text-brand-muted bg-gray-50/50">${r.label}</td>`;
+        selectedBrands.forEach(b => {
+          html += `<td class="py-3 px-3">${r.render(b)}</td>`;
+        });
+        html += '</tr>';
+      });
+
+      html += '</tbody>';
+      table.innerHTML = html;
+    }
+
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        const checkedCount = checkboxes.filter(c => c.checked).length;
+        if (checkedCount > 4) {
+          cb.checked = false;
+          alert('并排对比最多支持同时勾选 4 家品牌，请先取消某一项后再添加。');
+          return;
+        }
+        renderTable();
+      });
+    });
+
+    renderTable();
+  }
+
+  document.addEventListener('DOMContentLoaded', initComparator);
+</script>

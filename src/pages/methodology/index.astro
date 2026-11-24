@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = '评测与数据核验方法论 (Methodology) · 机场指南';
+const description = '详细公开机场指南编辑部对 31 家品牌数据的采集、交叉核验、冲突标注及客观评分准绳，保障评测透明与中立。';
+const breadcrumbs = [
+  { name: '测评方法论', url: '/methodology/' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-xs text-brand-muted leading-relaxed space-y-6">
+    
+    <header class="border-b border-brand-border pb-6">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-brand-teal text-xs font-semibold border border-emerald-200 mb-3">
+        <span>📐 严谨可核验准则</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+        测评与数据核验方法论
+      </h1>
+      <p class="text-sm text-brand-muted mt-2">
+        最后更新：2026-11-24 · 机场指南质量管理委员会
+      </p>
+    </header>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-4">
+      <h2 class="text-base font-bold text-brand-dark">1. 证据与商业展示完全分离原则</h2>
+      <p>
+        本站坚决摒弃“谁佣金高就把谁排在排行榜第一位”的行业恶习。合作品牌的商业展示位在页面顶部或侧边予以明确标注，但品牌的客观参数（价格、测速、协议、缺口与风险警示）严格按照公开资料与真实测试记录如实陈述。当用户在品牌库或筛选器中自主切换排序规则时，系统绝不暗中固定或操纵展示位。
+      </p>
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-4">
+      <h2 class="text-base font-bold text-brand-dark">2. 数据五态核验分类机制</h2>
+      <p>为防止模棱两可或误导读者，数据库中的所有字段均带有明确的状态标识：</p>
+      <ul class="list-disc list-inside space-y-1.5">
+        <li><strong>实测核验 (verified)</strong>：已通过第三方多源测试或独立网络日志交叉验证；</li>
+        <li><strong>商家宣称 (vendor)</strong>：来自服务商官方公开文案（如“晚高峰0丢包”、“1小时修复”），未获第三方独立复现前一律注明为宣称；</li>
+        <li><strong>历史记录 (historical)</strong>：基于早期公共测试快照，保留其历史参考价值并注明采样时间；</li>
+        <li><strong>记录冲突 (conflict)</strong>：当官方不同页面或摘要与表格出现价格/流量冲突时，诚实呈现并标注冲突待核实；</li>
+        <li><strong>待核实 (unknown)</strong>：数据缺乏确凿证据时，统一显示为待补充，绝不胡乱编造填空。</li>
+      </ul>
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-4">
+      <h2 class="text-base font-bold text-brand-dark">3. 测速与可观测性采样规范</h2>
+      <p>
+        单次瞬时跑分受到本地家庭宽带签约速率、Wi-Fi 损耗、骨干网突发抖动等多重因素影响。本站测速图表均采用专业网络可观测性规范，标明测试工具（如 Clash Verge Rev）、时间点（晚高峰 vs 非晚高峰）与测速地区。我们严禁利用瞬时峰值推断长期稳定性，并将 Mbps 与 MB/s 单位严格区分换算。
+      </p>
+    </div>
+
+  </div>
+</BaseLayout>

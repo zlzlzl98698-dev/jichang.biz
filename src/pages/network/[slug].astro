@@ -1,0 +1,222 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NetworkConceptDiagram from '../../components/NetworkConceptDiagram.astro';
+import FAQ from '../../components/FAQ.astro';
+import { parseMarkdown } from '../../utils/markdown';
+
+export async function getStaticPaths() {
+  const articles = [
+    {
+      slug: 'iepl-vs-iplc',
+      title: 'IEPL 与 IPLC 物理专线深度科普：技术原理、晚高峰表现与造假鉴别',
+      description: '全面解析什么是真正不过公网的内网专线。对比 IEPL 与 IPLC 的底层差异，揭秘不良服务商用公网隧道冒充真专线的常见套路。',
+      author: '机场指南网络实验室',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      lineType: 'IEPL / IPLC 专线',
+      targetAudience: '追求晚高峰极致零抖动、外贸开会与低延迟游戏用户',
+      content: `
+### 一、什么是真正不过公网的物理专线？
+普通公网中转节点在跨过境时，数据包必须经过国内运营商的公网国际出口路由。在每晚 20:00–23:00 的晚高峰时段，公网国际出口常常发生严重的拥塞与 QoS（服务质量等级）限速，导致普通节点出现高丢包与严重跳 ping。
+
+**IPLC (International Private Leased Circuit)** 与 **IEPL (International Ethernet Private Line)** 则是电信运营商直接在海底光缆或跨境陆缆中为企业客户划分的专属二层/三层物理专线：
+- **端到端闭环**：国内入口服务器与境外落地服务器直接通过运营商专网光纤连接；
+- **不经过公网国际出口**：数据在物理上完全与公网出口隔离；
+- **晚高峰坚挺如初**：即使公网拥堵至瘫痪，专线内部带宽依然保持恒定速率与微秒级极低抖动。
+
+### 二、IEPL 与 IPLC 的底层差异
+1. **网络层级**：
+   - IPLC 属于最传统的 TDM 时分复用电路，通常基于 SDH/SONET 硬件传输网，配置固定且带宽变更相对笨重；
+   - IEPL 属于现代二层以太网私线，基于以太网虚拟化封装，带宽升级与弹性调度更为灵活快捷。
+2. **用户实际感知**：
+   - 对于网络代理用户而言，两者的延迟体验、抗抖动性能以及抗封锁稳定性几乎 100% 一致。无论服务商标称 IPLC 还是 IEPL，关键看其采购的真实专线带宽是否充足。
+
+### 三、如何鉴别“真专线”与“假冒伪劣专线”？
+某些低价小机场为了宣传噱头，会将极其廉价的“公网隧道中转”包装为“全节点 IEPL 专线”。你可以通过以下标准辨别：
+- **晚高峰丢包测试**：在晚上 21:30 晚高峰发起连续 500 个数据包 Ping 测试。真专线的丢包率通常稳定在 0%–0.5% 之间；而伪装专线会瞬间飙升至 10%–30% 丢包；
+- **价格逻辑常理**：正规电信运营商的 1Gbps 跨境专线月租成本高达数万元人民币。如果某机场声称“5元/月无限流量 IEPL 专线”，在财务模型上绝无可能是真专线，必属超售严重的公网中继或虚假标注。
+      `,
+      faqs: [
+        { question: '专线节点如果遇到海底光缆中断怎么办？', answer: '正规优质机场会接入多条不同运营商的专线（例如一条走上海-日本海缆，一条走深圳-香港陆缆），在发生光缆事故时自动无感热切换。' }
+      ]
+    },
+    {
+      slug: 'latency-jitter-packet-loss',
+      title: '网络延迟、抖动与丢包率概念详解：看懂测速结果背后的网络健康度',
+      description: '不再只看 Ping 绿色数字。详解往返时延 (RTT)、物理光速极限、网络抖动 (Jitter) 与丢包率 (Packet Loss) 对网页、视频与游戏的不同影响。',
+      author: '机场指南网络实验室',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      lineType: '网络基础指标',
+      targetAudience: '希望科学理解网络测速与连接质量评估的进阶用户',
+      content: `
+### 一、往返时延 (RTT) 与光速的物理极限
+**延迟 (Latency / RTT)** 指一个数据包从本地出发到达目标服务器、再返回本地所经历的完整时间，单位为毫秒 (ms)。
+
+很多用户误以为“延迟越低越好，美国节点也应该只有 20ms”。这是违背物理常识的：
+- 真空中光速为 30 万公里/秒，光纤玻璃介质中的光速折减至约 20 万公里/秒（折射率约 1.5）；
+- 中国沿海到美国西海岸直线距离约 10,000 公里，海缆实际铺设路由接近 11,000–12,000 公里；
+- 数据包在光纤中往返一次的**纯物理理论极限**就需要约 110ms–120ms。加上沿途路由器交换芯片处理时延与国内骨干网接入，美国节点正常的最佳延迟在 **130ms–160ms** 之间。
+- 若客户端中美国节点显示 20ms，那测出来的仅仅是你与国内入口服务器的距离，绝非到美国的实际落地延迟！
+
+### 二、网络抖动 (Jitter)：被忽视的体验杀手
+**抖动 (Jitter)** 是指前后两个连续数据包到达时间差的变化量。
+- 如果你的延迟一直稳定在 150ms（抖动 < 2ms），你观看 4K 视频或视频会议会非常平稳流畅；
+- 但如果延迟一秒钟 30ms、下一秒飙升到 300ms（抖动高达 270ms），即使平均延迟看起来不高，你的语音通话也会频繁断续、游戏角色也会瞬移拉扯。
+
+### 三、丢包率 (Packet Loss)：导致网页转圈的罪魁祸首
+丢包是指发送出去的数据包在途经的网络交换机发生队列溢出而被强行丢弃。
+- TCP 协议遇到丢包会触发“拥塞控制算法”，主动将发送速率腰斩并启动重传机制；
+- 丢包率哪怕只有 2%，TCP 传输速度就会暴跌 50% 以上；丢包率达到 10% 时，网页将几乎无法打开，出现持续转圈。
+      `,
+      faqs: [
+        { question: '看 4K YouTube 视频主要看延迟还是丢包？', answer: '主要看丢包率与持续吞吐带宽。视频播放器有几十秒的前向缓冲池，对静态延迟不敏感，但丢包会导致 TCP 吞吐骤降，造成视频频繁缓冲。' }
+      ]
+    },
+    {
+      slug: 'rate-multiplier-explained',
+      title: '节点倍率真相与扣量陷阱：为什么你的套餐流量用得这么快？',
+      description: '揭秘机场节点名称中 0.1x、1.0x、2.0x、5.0x 甚至 10.0x 倍率的计费机制。教你避开超高倍率陷阱，合理规划套餐配额。',
+      author: '机场指南技术组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      lineType: '计费与流量策略',
+      targetAudience: '每月流量捉襟见肘、怀疑服务商“偷流量”的选购者',
+      content: `
+### 一、什么是节点倍率？
+在代理客户端的节点列表里，你经常会看到节点名称带有类似后缀：
+- \`香港 01 | IEPL [1.0x]\`
+- \`日本 03 | 纯净原生 [2.0x]\`
+- \`美国 08 | 应急下载 [0.2x]\`
+- \`英国 01 | 极速大带宽 [5.0x]\`
+
+**倍率**本质上是服务商对不同采购成本节点的计费缩放系数：
+- 基础公式：**实际扣除套餐流量 = 真实传输数据量 × 节点倍率**。
+
+### 二、倍率的实际算账演示
+假设你在某服务商处购买了 100GB/月的套餐，你通过代理下载了一个 10GB 的大文件：
+- 若连接 **1.0x 倍率**节点：扣除 $10 \\times 1.0 = 10\\text{GB}$ 流量，剩余 90GB；
+- 若连接 **0.2x 低倍率**节点：仅扣除 $10 \\times 0.2 = 2\\text{GB}$ 流量，剩余 98GB；
+- 若连接 **5.0x 高倍率**节点：将瞬间扣除 $10 \\times 5.0 = 50\\text{GB}$ 流量，套餐瞬间减半！
+
+### 三、常见的“倍率套路”与自保建议
+1. **自动节点选择 (URL-Test / Auto) 误选高倍率**：
+   - 很多用户在客户端开启了“自动选择最佳节点”功能。然而自动测速策略通常只看延迟高低，如果服务商把一个 5.0x 的专线节点做到了延迟极低，客户端会自动把流量全都分流到这个高倍率节点上，不知不觉中套餐被快速耗尽；
+2. **防坑操作指南**：
+   - 除非有必须使用原生 IP 跑 AI 的特殊需求，日常看剧、看视频请主动手动选择 0.5x–1.0x 倍率节点；
+   - 仔细审视节点列表中是否存在 10x 等不合理天价倍率节点，在配置中将其加入禁用名单。
+      `,
+      faqs: [
+        { question: '低倍率（如 0.1x）节点速度会变慢吗？', answer: '低倍率节点通常是服务商利用冷门公网大带宽闲置资源搭建的，晚高峰稳定性可能略逊于专线，但只要能跑满你的本地宽带，用于大文件下载性价比极高。' }
+      ]
+    },
+    {
+      slug: 'residential-ip-truth',
+      title: '原生住宅 IP 真伪鉴别与广播 IP 差异：解锁风控的终极秘密',
+      description: '深入辨析机房广播 IP (Datacenter)、商业原生 IP (ISP/Commercial) 与真实家庭宽带住宅 IP (Residential) 的风控评级与鉴别工具。',
+      author: '机场指南数据实验室',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      lineType: 'IP 属性与风控体系',
+      targetAudience: '跨境电商运营、海外社媒养号与 AI 重度用户',
+      content: `
+### 一、三大 IP 属性分类与信任度天梯
+在互联网风控体系（如 Cloudflare、MaxMind、IPinfo、Ipdata）中，IP 地址被赋予了严格的类别标识：
+1. **真实住宅 IP (Residential IP - 信任度最高 ★★★★★)**：
+   - 由海外本地电信运营商（如美国 Comcast、AT&T、Verizon，香港 PCCW、HKT）分配给普通真实居民家庭宽带的动态 IP。因背后是普通家庭消费者，几乎不会被 AI 或流媒体误杀拦截；
+2. **双 ISP / 机房原生静态 IP (DataCenter / ISP Native - 信任度较高 ★★★★☆)**：
+   - 落地服务器位于商业数据中心机房，但其 IP 广播 ASN 在数据库中被注册为本地宽带 ISP。兼具机房的大带宽稳定性与接近住宅 IP 的声誉；
+3. **广播机房 IP (Hosting / Datacenter - 信任度较低 ★★☆☆☆)**：
+   - 廉价批量机房 IP，所有人均可轻易租用。极易触发 Cloudflare 5秒盾验证、Google 频繁弹出 Recaptcha 人机验证，以及 ChatGPT 1020 拒绝访问。
+
+### 二、如何自己动手鉴别节点的真实 IP 属性？
+连接该节点后，在浏览器中打开权威 IP 数据库测试网站进行验证：
+- **IPinfo 测试站 (\`https://ipinfo.io/\`)**：
+  - 查看 \`Type\` 字段：若显示 \`isp\` 则说明是原生或优质商宽；若显示 \`hosting\` 则说明是普通机房托管 IP。
+- **Scamalytics 欺诈风险分测试 (\`https://scamalytics.com/\`)**：
+  - 查看该 IP 的 Fraud Score（欺诈分数）：0–15 分为极其安全的极纯净 IP；超过 50 分代表被风控系统高度怀疑为恶意代理节点。
+      `,
+      faqs: [
+        { question: '为什么机场的原生住宅 IP 节点通常需要高倍率或单独付费？', answer: '真实住宅 IP 必须向海外本土电信运营商按月支付昂贵的高端宽带租金，采购成本是普通批量机房 IP 的 5 到 10 倍以上，因此服务商通常会设置 2x–3x 倍率平衡收支。' }
+      ]
+    }
+  ];
+
+  return articles.map(art => ({
+    params: { slug: art.slug },
+    props: { article: art }
+  }));
+}
+
+const { article } = Astro.props;
+
+const breadcrumbs = [
+  { name: '线路与节点', url: '/network/' },
+  { name: article.title, url: `/network/${article.slug}/` }
+];
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.description}
+  breadcrumbs={breadcrumbs}
+  type="article"
+  publishDate={`${article.date}T08:00:00+08:00`}
+  modifiedDate={`${article.updated}T12:00:00+08:00`}
+  faqItems={article.faqs}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Article Header -->
+    <header class="border-b border-brand-border pb-6 mb-8">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 text-brand-info text-xs font-semibold border border-blue-200 mb-3">
+        <span>🌐 线路网络深度科普与工程解析</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight leading-tight">
+        {article.title}
+      </h1>
+      
+      <!-- Metadata Box -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-brand-light p-3.5 rounded-xl border border-brand-border mt-4 text-xs">
+        <div>
+          <span class="text-brand-muted block">线路类型:</span>
+          <span class="font-bold text-brand-dark">{article.lineType}</span>
+        </div>
+        <div>
+          <span class="text-brand-muted block">适用人群:</span>
+          <span class="font-bold text-brand-dark">{article.targetAudience}</span>
+        </div>
+        <div>
+          <span class="text-brand-muted block">最后核验:</span>
+          <span class="font-bold text-brand-dark">{article.updated}</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Network Concept Diagram -->
+    <div class="my-6">
+      <NetworkConceptDiagram brandName="通用专线与中继节点" networkType={article.lineType} isSpecific={false} />
+    </div>
+
+    <!-- Article Content with Rich Typography -->
+    <article class="bg-white border border-brand-border rounded-2xl p-6 sm:p-10 shadow-sm leading-relaxed text-brand-dark">
+      <div set:html={parseMarkdown(article.content)} />
+    </article>
+
+    <!-- FAQs -->
+    <div class="mt-8">
+      <FAQ items={article.faqs} title="相关线路知识疑难解答" />
+    </div>
+
+    <!-- Related Links -->
+    <div class="mt-8 pt-6 border-t border-brand-border flex items-center justify-between text-xs">
+      <a href="/network/" class="text-brand-teal hover:underline font-bold">
+        ← 返回线路与节点科普主目录
+      </a>
+      <a href="/recommend/" class="text-brand-dark hover:underline">
+        查看精选优质专线机场推荐 →
+      </a>
+    </div>
+
+  </div>
+</BaseLayout>

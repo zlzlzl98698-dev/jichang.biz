@@ -1,0 +1,436 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+import { parseMarkdown } from '../../utils/markdown';
+
+export async function getStaticPaths() {
+  const articles = [
+    {
+      slug: 'node-timeout',
+      title: '节点大面积超时 (Timeout / -1ms) 根因定位与标准化排错 SOP',
+      description: '解决代理客户端节点全红或全部显示 Timeout 的高发疑难。详解系统时间偏差、入口 IP 阻断、欠费停机与 TLS 握手失败的排查步骤。',
+      author: '机场指南故障应急组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      content: `
+## 一、故障现象定义与典型表现
+
+当你在任何主流代理客户端（如 Clash Verge Rev、v2rayN、Shadowrocket、Sing-box 等）中点击“测试全部节点延迟”或“连通性测试”时，界面上所有或绝大部分节点出现以下异常：
+- 节点延迟数值显示为 \`Timeout\`、\`-1ms\`、\`Fail\` 或红色感叹号；
+- 无论手动切换选中哪一个节点，均无法建立出站连接，浏览器访问任何外部网站均提示无法连接；
+- 但此时本地网络正常，国内网站（如百度、微信、知乎）可以正常浏览。
+
+> [!TIP]
+> **30秒极速自救四步口诀**：  
+> ① 立即校准本地系统时间（60% 的根因所在）；  
+> ② 登录服务商后台检查套餐是否欠费或当月流量耗尽；  
+> ③ 右键重新更新一次订阅拉取最新入口 IP；  
+> ④ 手机断开 WiFi 改用 4G/5G 蜂窝热点测试排查宽带阻断。
+
+## 二、四大根本原因技术透视（按发生概率从高到低排序）
+
+### 1. 本地系统时钟严重偏差（发生概率约 60%）
+现代安全加密代理协议（包括 VMess、VLESS Reality、Trojan、Shadowsocks-2022）为了抵御黑客的**“重放攻击 (Replay Attack)”**，在握手协议层均设计了极其严格的时间戳鉴权机制：
+- 客户端在发起握手请求时，会在密文数据包中嵌入当前的 UTC 绝对时间；
+- 服务端收到数据包后，会对比自己的系统时钟。如果双方的时间差超过了 **60 秒（部分严格服务商甚至设定为 30 秒）**，服务端会直接将该数据包判定为恶意伪造或重放请求，并在防火墙层级静默丢弃，绝不做出任何响应；
+- **表现结果**：客户端界面发起的延迟测试全部判定为超时失败（Timeout）。
+
+### 2. 服务商国内中转入口服务器遭到临时阻断或机房切换
+专线或隧道中转机场依赖国内入口服务器（如位于上海、广州、深圳、徐州的 BGP 机房）接收用户流量并转发至跨境内网光缆：
+- 当入口服务器的域名或公网 IP 遭遇运营商机房巡检或封锁时，旧入口会在瞬间失联；
+- 服务商通常会在几分钟内在后台调配备用入口 IP，但如果用户客户端未及时更新订阅，客户端仍将持续向已被废弃的旧 IP 发送请求，导致节点全红。
+
+### 3. 用户账户套餐已过期、欠费或流量耗尽
+许多用户在使用过程中由于没有留意账单周期，套餐在到期后服务商自动暂停了对应 Token 的 API 鉴权。此时节点服务器直接切断与该 UUID 或密匙的传输通道，客户端测速表现为全量超时。
+
+### 4. 本地防火墙或第三方杀毒软件误杀监听端口
+安全防护软件（如 Windows Defender、火绒、360、卡巴斯基等）在病毒库更新后，可能会将客户端底层调用的 \`mihomo.exe\` 或 \`xray.exe\` 误标记为高危网络监听程序，强行切断其本地 Socket 监听端口（如 7890、10808），导致所有出站探测无法离开本地操作系统。
+
+## 三、标准化逐项排查与恢复执行指南 (SOP)
+
+1. **第一步：强制校准系统时间与时区**：
+   - **Windows 用户**：按下快捷键 \`Win + I\` 打开设置，进入“时间和语言 -> 日期和时间”，找到“立即同步”按钮并点击。确保提示“上次成功同步时间”为当前几秒内；
+   - **macOS 用户**：打开“系统设置 -> 通用 -> 日期与时间”，关闭并重新打开“自动设置时间”；
+   - **手机用户 (iOS/Android)**：在系统设置中开启“自动设置时间”，若仍不准可开启飞行模式 10 秒后关闭，强制基站同步网络时间。
+
+2. **第二步：登录服务商官网控制台自查**：
+   - 登录你的机场官网后台，检查“我的服务 / 仪表盘”；
+   - 核实三项硬指标：① 订阅套餐是否处于【有效 (Active)】状态；② 到期时间是否已过；③ 剩余可用流量是否大于 0；
+   - 查看官网首页或官方 Telegram 公告频道，确认当前是否正在进行机房紧急切割维护。
+
+3. **第三步：全量更新客户端订阅**：
+   - 在客户端内找到当前正在使用的订阅配置，右键选择 **“更新 (Update)”**；
+   - 观察更新日志是否成功刷出。更新完成后再次发起连通性测试，观察节点是否转绿。
+
+4. **第四步：切换网络环境进行排除法验证**：
+   - 手机关闭 Wi-Fi，改用移动蜂窝移动数据网络（4G/5G）测试；
+   - 电脑可连接手机发射的个人热点进行对比测试。若蜂窝网络下节点全部恢复正常，则说明是你所使用的家庭宽带运营商（如移动宽带或二级小宽带商）对中转入口 IP 实施了阶段性 QoS 丢包或路由阻断。
+      `,
+      faqs: [
+        {
+          question: '系统时间已经同步成功，为什么测速依然全是 Timeout？',
+          answer: '请检查电脑上是否同时开着其他加速器（如游戏加速器、Steam 社区修复工具），它们可能会修改系统的 WinSock 网络栈造成冲突；其次尝试在客户端设置中更换测速服务器地址为 http://www.google.com/generate_204。'
+        },
+        {
+          question: '为什么部分节点是绿色的几十毫秒，部分节点是红色的超时？',
+          answer: '这是正常的局部维护现象。单家机场通常拥有数十个节点，部分冷门地区的落地服务器或特定中转机器临时离线维护属于正常波动，只要主力常用节点（如香港、日本、新加坡）可用即可正常使用。'
+        }
+      ]
+    },
+    {
+      slug: 'subscription-update-failed',
+      title: '订阅更新失败、无法解析或下载为空排查全解',
+      description: '客户端提示 Network Error、Invalid Subscription、Decode Base64 失败或拉取内容为空？手把手教你排查订阅域名拦截、格式转换与备用链接替换方案。',
+      author: '机场指南技术组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      content: `
+## 一、典型报错现象分类与速查字典
+
+在各类代理客户端（Clash Verge Rev、Shadowrocket、v2rayN、Sing-box）中点击更新订阅时，界面通常会弹出错误提示。不同报错信息直接对应着不同的故障根源：
+
+| 客户端报错提示信息 | 底层网络根因判定 | 优先级处理方案 |
+| :--- | :--- | :--- |
+| \`Failed to fetch subscription: Network Error\` | 订阅分发域名被本地运营商 DNS 污染阻断 | 换用蜂窝热点，或使用服务商提供的防阻断备用域名 |
+| \`Decode base64 failed / Invalid YAML content\` | 服务端返回了非配置内容（如 Cloudflare 拦截页） | 浏览器直接打开订阅链接排查是否弹出 5 秒盾 |
+| \`Download profile failed (status code: 403)\` | 订阅 Token 已被吊销，或用户套餐已到期停用 | 登录官网后台重新重置并获取全新订阅 Token |
+| \`Download profile failed (status code: 404 / 502)\` | 服务商订阅分发 API 接口服务离线或网关崩溃 | 联系服务商客服工单，或使用离线备份配置 |
+| \`SSL peer handshake failed / certificate has expired\` | 服务商订阅域名 SSL 证书过期，或本地时钟不准 | 客户端开启“跳过证书验证 (Skip Cert Verify)” |
+
+> [!DANGER]
+> **典型死锁陷阱：“鸡生蛋、蛋生鸡”难题**  
+> 很多用户之所以持续报错 \`Network Error\`，是因为客户端此时正开启着“全局系统代理”！而旧节点已经全部失效。此时客户端向远端发起拉取新订阅的请求，依然试图通过已经死掉的旧节点发出去，导致请求永远无法出站，陷入死循环！**第一步必须彻底关闭客户端的系统代理开关！**
+
+## 二、四大根本原因技术深度透视
+
+### 1. 订阅分发域名遭遇本地运营商 DNS 污染阻断
+机场服务商通常会向数千名用户公开发放下发配置的二级域名（如 \`sub.example.com\`）。由于这些域名每天承受海量高频调用，极易引起骨干网防火墙或本地运营商（中国电信/联通/移动）的自动化探针注意，导致域名在 DNS 层面被投毒解析为 \`127.0.0.1\` 或不可达 IP。
+
+### 2. 服务端 Cloudflare WAF 盾开启拦截导致格式错乱
+当服务商官网遭受黑客 DDoS 攻击时，管理员通常会在 Cloudflare 等 CDN 防护面板中开启“Under Attack（5 秒盾）”或严格的风控人机验证。当你的客户端软件（Clash 或小火箭）发送轻量 HTTP GET 请求时，Cloudflare 拦截了请求并返回了一段包含人机挑战验证码的 HTML 网页代码。客户端解析器原本期望收到 YAML 或 Base64 节点配置，结果收到了 HTML 标签，便立即报错 \`Invalid YAML / Decode base64 failed\`。
+
+### 3. 服务端风控拦截了客户端默认 User-Agent
+很多商业机场为了防范网络爬虫自动化批量扫描节点信息，在后端 API 中设置了请求头检查。如果客户端发送的 \`User-Agent\` 字段缺失、或者版本号过于生僻，服务商网关会直接返回 HTTP 403 Forbidden 拒绝响应。
+
+### 4. 账户鉴权 Token 被恶意刷取或官方重置
+机场用户后台的订阅链接中包含着一段代表个人身份的唯一密钥字符串（Token）。若该链接曾在公共群聊中泄露，服务商系统检测到多地频繁下载后可能会触发安全保护机制，自动将该 Token 标记为作废。
+
+## 三、标准化逐步排查与恢复执行手册 (SOP)
+
+1. **第一阶段：解除客户端本地网络死锁（关键！）**：
+   - 将 Clash Verge Rev 的 **“系统代理”** 与 **“TUN 模式”** 彻底拨回关闭状态；
+   - 将 Shadowrocket 或 v2rayN 的主连接开关彻底关闭；
+   - 确保当前电脑或手机使用的是本地宽带的**纯净原生直连网络**。
+
+2. **第二阶段：浏览器直接验证法（精准定界）**：
+   - 复制出现报错的订阅 URL 链接；
+   - 打开 Chrome、Edge 或 Safari 浏览器，将订阅链接粘贴进浏览器地址栏并按回车访问；
+   - **结果判定**：
+     - **情况 A (正常)**：浏览器瞬间下载了一个文本文件（\`.yaml\`）或在网页上展示出密密麻麻的 Base64 编码字符。→ 证明链接完全正常，问题纯粹出在客户端软件设置或本地端口；
+     - **情况 B (被拦截)**：页面提示“请点击勾选确认您是人类”或 Cloudflare 验证页面。→ 证明服务商开启了高防盾，需要向服务商索取免盾直连地址；
+     - **情况 C (403/404)**：页面提示拒绝访问。→ 证明 Token 失效，必须登录官网后台重置订阅链接。
+
+3. **第三阶段：获取防阻断备用订阅与短链替换**：
+   - 登录服务商后台控制台，在订阅管理区域寻找如下备用方案：
+     - **“防阻断订阅地址”**（通常采用经常轮换的生僻二级域名）；
+     - **“短链接转换”**（采用短链服务规避关键词阻断）；
+     - **“原生免转换直连地址”**。
+   - 将新地址粘贴到客户端中替换旧地址，再次点击更新。
+
+4. **第四阶段：客户端高级设置优化**：
+   - **开启跳过证书验证**：在订阅配置卡片的高级设置中，勾选“跳过证书检查 (Skip Certificate Verify)”，防止由于服务商中间证书链不全导致 SSL 握手终止；
+   - **修改 User-Agent 标识**：在客户端高级设置中，将下载请求的 User-Agent 手动修改为标准浏览器标识（例如 \`Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\`）或主流客户端标识（\`clash-verge/v1.7.0\`）。
+      `,
+      faqs: [
+        {
+          question: '提示 403 Forbidden 是什么意思？如何解决？',
+          answer: '403 代表服务商服务器鉴权失败，通常意味着你的订阅 Token 已经失效，或者账户已因欠费被系统冻结。请登录机场官网后台查看套餐状态，并点击“重置订阅链接”获取全新地址重新导入。'
+        },
+        {
+          question: '公共第三方在线订阅转换器安全吗？',
+          answer: '存在严重安全隐患。公共在线订阅转换平台能够完全获取你提交的订阅 Token 与完整节点 IP。不良维护者甚至会利用后台脚本窃取节点流量或植入挖矿重定向。强烈建议使用服务商第一方提供的订阅地址，或使用本地开源脱机转换工具。'
+        }
+      ]
+    },
+    {
+      slug: 'connected-no-internet',
+      title: '节点连接成功但打不开外网网页排查全指南',
+      description: '测速显示绿色几十毫秒低延迟，但打开 Google 或 YouTube 提示无网络或找不到服务器？排查 DNS 污染、规则失效与路由循环。',
+      author: '机场指南排障组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      content: `
+## 一、核心矛盾解析：“Ping 得通”绝不等于“能上网”
+
+许多新手用户经常遇到令其困惑的网络现象：“为什么在小火箭或 Clash 中测速显示 35ms 绿色低延迟，但打开浏览器访问 Google 或 YouTube 却一直转圈，最后提示连接超时或 DNS_PROBE_FINISHED_NXDOMAIN？”
+
+必须从网络通信原理上澄清这一误区：
+- **客户端界面展示的“测速结果”**：绝大多数情况下只是向国内中转入口服务器发送了一个 ICMP Ping 或 TCP 握手探测包。这只能证明**你到国内中转机器之间的网络通路是通畅的**；
+- **真实上网通信链路**：需要经历“你 $\to$ 国内中转入口 $\to$ 跨境专线光纤 $\to$ 境外落地服务器 $\to$ 目标网站服务器”长达五段的完整往返。中转机到落地机的内网隧道是否在线、落地节点能否正确解析外部 DNS、以及你的系统代理规则是否正确，单凭前置 Ping 是完全无法验证的。
+
+## 二、四步精准排查与故障恢复流程
+
+1. **第一步：切换为“全局模式 (Global)”排查规则失效**：
+   - 将客户端路由从“规则模式 (Rule)”手动切换为“全局模式 (Global)”，并明确勾选一个主力可用节点；
+   - 刷新浏览器页面。如果此时能够正常秒开海外网页，说明**当前使用的分流规则文件存在缺陷或漏判**（例如访问的目标域名未被包含在海外代理规则集内，被错误判定为了直连）；
+   - **解决方案**：在客户端中更新规则集（Rule Provider），或使用覆盖面更广的社区标准规则包（如 Loyalsoldier）。
+
+2. **第二步：检查系统代理注册表是否真正接管了流量**：
+   - 打开 Windows“设置 -> 网络和 Internet -> 代理”；
+   - 观察“手动设置代理”是否处于开启状态，且地址是否为 \`127.0.0.1\`，端口是否与客户端一致（通常为 \`7890\`）；
+   - 检查浏览器是否安装了诸如 SwitchyOmega 等代理管理扩展。部分扩展如果处于“系统代理”之外的特定情景模式，会直接抢占网络控制权。
+
+3. **第三步：开启 TUN 模式排查本地 DNS 投毒与阻断**：
+   - 很多时候网页打不开不是因为 TCP 不通，而是本地宽带运营商返回了被污染的虚假 IP；
+   - 在 Clash Verge Rev 中开启 **TUN Mode（虚拟网卡模式）**。TUN 模式会从系统底层接管所有出站 UDP 53 请求，强制使用内置的加密 DNS 节点进行远端解析，彻底免疫本地 DNS 污染。
+
+4. **第四步：排查落地机房的 IP 纯净度与被封锁状态**：
+   - 尝试在节点列表中切换至其他物理国家或地区的节点（例如由香港节点切换至日本、新加坡或美国节点）；
+   - 很多时候是因为当前节点所在的海外机房 IP 遭到特定网站（如 Google Scholar、Cloudflare）的全局 WAF 拦截。
+      `,
+      faqs: [
+        {
+          question: '为什么国内微信、百度正常打开，唯独所有海外网站打不开？',
+          answer: '这说明分流规则已经生效，但代理节点出站出现故障。主要原因是中转服务器到落地机房的过境通道中断，或者节点未配置正确的落地 DNS。尝试更换不同服务商或切换备用节点。'
+        }
+      ]
+    },
+    {
+      slug: 'dns-leak-and-pollution',
+      title: 'DNS 污染与 DNS 泄露深度诊断与终极防御',
+      description: '深入剖析 DNS 投毒（Pollution）与隐私泄露（Leak）的技术机理，手把手配置基于 Clash/Mihomo 的防污染分流策略与 DoH 安全解析。',
+      author: '机场指南网络实验室',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      content: `
+## 一、DNS 污染与 DNS 泄露的本质区别剖析
+
+在讨论科学网络安全时，**DNS 污染 (Pollution)** 与 **DNS 泄露 (Leak)** 是两个完全不同维度但紧密相关的技术概念：
+
+### 1. DNS 污染（导致“打不开网页”）
+- 当你的设备向网络发起明文 UDP 53 端口的域名查询时（例如查询 \`google.com\` 对应的 IP）；
+- 处于主干网链路上的网络审查设备，会先于真实的海外权威 DNS 服务器，伪造一个错误的 IP 地址（如 \`127.0.0.1\` 或不可达死链 IP）强行应答你的设备；
+- 你的操作系统由于遵循先到先得原则，采纳了该虚假 IP，随后向错误地址发起连接，最终导致网页无法访问。
+
+### 2. DNS 泄露（导致“隐私完全暴露”）
+- 即使你已经成功开启了代理软件，所有网页流量都经过加密专线传输；
+- 但如果在客户端配置不当，你的设备在解析海外目标网站的域名时，依然向**本地家庭宽带运营商（中国电信/联通/移动）的本地 DNS 服务器**发送了查询请求；
+- **危害后果**：本地运营商可以清晰无误地完整记录下你所访问过的每一个敏感海外网站的域名清单和精确时间戳！这在网络安全中被称为严重的“DNS 泄露”。
+
+## 二、标准化在线诊断检测方法
+
+1. 打开浏览器，访问全球公认权威的 DNS 泄露检测站点：
+   - 访问 \`https://browserleaks.com/dns\` 或 \`https://ipleak.net/\`；
+2. 保持客户端代理处于开启状态，点击页面上的“开始测试 (Standard Test)”；
+3. 仔细查看测试结果中列出的所有 **DNS 递归解析服务器 (Resolvers) 的国家与归属运营商**：
+   - 🚨 **危险状态**：如果列表中出现了你当前所在的中国城市、或出现了中国电信、中国联通、中国移动的字样，证明存在**严重的 DNS 泄露**；
+   - 🛡️ **安全状态**：测试结果中仅包含代理节点落地国所在地的机房 DNS，或 Google (8.8.8.8)、Cloudflare (1.1.1.1) 的安全端点，国内列表中一条都没有出现。
+
+## 三、终极防御策略：Fake-IP 与 DoH 结合
+
+最彻底根除 DNS 污染与泄露的行业标准方案是采用 **Fake-IP 模式**（Mihomo / Clash 内核原生支持）：
+- 当本地浏览器发起域名查询时，客户端在本地瞬间返回一个虚构的保留私网 IP（如 \`198.18.0.x\`）；
+- 设备随后向该虚构 IP 发起 TCP 请求，客户端内核拦截该数据包并将其打包送入专线隧道；
+- **域名不在本地进行任何解析**，而是由海外远端落地节点在境外直接完成安全的 DNS 解析，彻底杜绝了本地运营商监听到任何查询请求的可能性。
+      `,
+      faqs: [
+        {
+          question: 'Fake-IP 模式会不会影响国内应用的访问速度？',
+          answer: '完全不会。现代规则分流内核配置了纯净的 Domestic Nameserver（国内优先 DNS），遇到国内主流域名（如 geosite:cn）时会自动使用阿里 (223.5.5.5) 或腾讯 DNS 解析出最优的国内 CDN 本地 IP，实现千兆无损直连。'
+        }
+      ]
+    },
+    {
+      slug: 'port-conflict-7890',
+      title: '本地端口 7890 冲突报错根治与端口自定义',
+      description: '启动代理客户端提示 listen tcp 127.0.0.1:7890: bind: address already in use？详解使用 cmd 查找冲突 PID 进程并根除冲突的完整 SOP。',
+      author: '机场指南技术组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      content: `
+## 一、报错原因与端口机制解析
+
+在启动 Clash Verge Rev、Clash for Windows 或各类第三方网络工具时，最常见的崩溃报错之一便是：
+\`listen tcp 127.0.0.1:7890: bind: address already in use\`
+
+这是因为在 TCP/IP 协议规范中，一个指定的本地 Socket 端口（如 \`7890\`）在同一时间内只能被单一系统进程独占监听：
+- 如果该端口已经被旧进程或其他网络工具占用；
+- 新启动的客户端便无法绑定该端口，导致核心启动失败，软件闪退或提示红字错误。
+
+## 二、三步彻底根治排查流程
+
+1. **第一方案：修改客户端默认端口（最快、30秒解决）**：
+   - 打开 Clash Verge Rev 设置中的“网络设置 (Network)”；
+   - 将“混合端口 (Mixed Port)”由默认的 \`7890\` 修改为任意不冲突的随机数字，例如 **\`7895\`**、**\`10808\`** 或 **\`27890\`**；
+   - 保存后点击重启核心，端口冲突瞬间解除。
+
+2. **第二方案：使用 CMD 命令行排查并强杀冲突进程**：
+   - 按下快捷键 \`Win + R\`，输入 \`cmd\` 并按回车打开命令提示符；
+   - 输入命令：\`netstat -ano | findstr :7890\` 并按回车；
+   - 终端最右侧会列出一个数字，这就是占用该端口的系统进程编号（**PID**），例如 \`14520\`；
+   - 输入强制终止命令：\`taskkill /F /PID 14520\`；
+   - 看到“成功: 已终止 PID 为 14520 的进程”后，重新启动客户端即可。
+      `,
+      faqs: [
+        {
+          question: '为什么有时候杀掉旧进程后，过几分钟又冲突了？',
+          answer: '这通常是因为你在系统后台开启了“开机自启动”的其他同类代理软件（如旧版 CFW 或某些网络游戏加速器后台服务），它在后台自动拉起并占用了端口。请在任务管理器“启动项”中禁用旧软件的自启。'
+        }
+      ]
+    },
+    {
+      slug: 'ai-access-denied-1020',
+      title: 'ChatGPT 与 Claude 1020 报错与 Cloudflare 风控破局指南',
+      description: '访问 OpenAI、ChatGPT 或 Claude 提示 Access Denied、Error 1020 或死循环人机验证码？详解原生住宅 IP 选型与干净节点分流配置。',
+      author: '机场指南技术组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      content: `
+## 一、为什么 AI 大模型平台的风控如此苛刻？
+
+与常规视频网站不同，OpenAI (ChatGPT) 与 Anthropic (Claude) 是全球遭遇网络黑产、批量垃圾爬虫轰炸最严重的平台。因此两家公司接入了全球防御等级最高的 **Cloudflare Enterprise WAF** 反欺诈风控引擎。
+
+当用户通过代理访问时，风控系统会实时进行多维度探针审查：
+- **IP 属性审查 (ASN / IP Type)**：商业数据中心机房 IP（Hosting / DataCenter）信誉评分极低，很多机房整段 IP 均处于全局黑名单中；
+- **并发指纹审查**：同一出口 IP 上如果有数百个账号同时在调用 API，会被直接标记为滥用并弹出 **Error 1020 Access Denied**；
+- **浏览器环境与 WebRTC 泄露**：如果浏览器语言、系统时区与当前节点所在国家严重背离，也会直接触发风控拦截。
+
+## 二、解决 1020 报错与人机验证死循环的实战 SOP
+
+1. **优选原生住宅 IP (Residential IP) 或纯净商宽节点**：
+   - 在选择服务商或切换节点时，挑选明确标有“原生商宽”、“住宅 IP”或“解锁 OpenAI”的特定优质节点；
+   - 优先选择**新加坡 (Singapore)**、**日本 (Japan)** 或 **美国 (United States)** 节点，避免使用香港或其它未正式开放国家地区的落地节点访问 ChatGPT。
+
+2. **解决 WebRTC 与 DNS 本地泄露**：
+   - 在 Chrome 浏览器中安装 WebRTC Control 扩展，禁用 WebRTC 本地真实局域网 IP 暴露；
+   - 在客户端开启 TUN 模式，确保所有 DNS 解析均由境外纯净端点完成。
+
+3. **清除旧 Cookie 与浏览器缓存**：
+   - 很多时候是浏览器中旧的被拦截 Cookie 导致死循环。按快捷键 \`Ctrl + Shift + Delete\` 清空过去 24 小时的 Cookie 和缓存，重新开启无痕窗口（Incognito）尝试登录。
+      `,
+      faqs: [
+        {
+          question: '为什么有些机场宣称“100% 永久解锁 ChatGPT”不可信？',
+          answer: '因为 OpenAI 与 Cloudflare 的风控封禁策略每隔数天就会动态演进。任何声称“永久绝对不被封”的服务商都是夸大宣传。靠谱的服务商拥有动态 IP 轮换池与多落地冗余，当某一批 IP 被识别后能快速切割上架新 IP。'
+        }
+      ]
+    },
+    {
+      slug: 'system-proxy-reset',
+      title: '电脑关机重启后无法上网 / 系统代理未正确释放一键修复',
+      description: '没有开代理软件时电脑打不开任何网页，必须打开代理软件才能上网？手把手教你一分钟重置 Windows/Mac 系统代理注册表设置。',
+      author: '机场指南故障应急组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      content: `
+## 一、故障根本诱因：注册表残留与异常退出
+
+这是一种极具欺骗性的经典故障：
+- 很多用户在关机或电脑意外休眠前，没有提前在代理软件中点击“断开连接”或关闭“系统代理”开关；
+- 当操作系统强制终止后台程序时，代理软件未来得及将 Windows 注册表中的代理开关恢复为初始值；
+- **后果**：第二天开机后，Windows 系统依然盲目地把所有网络流量塞给本地的 \`127.0.0.1:7890\` 端口，但此时代理软件根本没有运行，端口没有程序监听，导致整台电脑所有浏览器全线断网报错 \`ERR_PROXY_CONNECTION_FAILED\`！
+
+## 二、Windows 平台 30 秒极速修复步骤
+
+1. 按下快捷键 **\`Win + I\`** 打开 Windows 系统设置面板；
+2. 点击进入 **“网络和 Internet”**，在左侧或右侧列表中找到 **“代理 (Proxy)”**；
+3. 向下滚动到 **“手动设置代理 (Manual proxy setup)”**；
+4. 将 **“使用代理服务器 (Use a proxy server)”** 的开关从“开”手动拨至 **【关】**；
+5. 点击下方的“保存”按钮；
+6. 重新打开浏览器刷新网页，网络瞬间全线恢复通畅！
+
+## 三、macOS 平台修复步骤
+
+1. 打开屏幕左上角苹果菜单，点击 **“系统设置 (System Settings)”**；
+2. 进入 **“网络 (Network)”**，点击你当前正在连接的“Wi-Fi”或“以太网”；
+3. 点击右侧的 **“详细信息 (Details) -> 代理 (Proxies)”** 标签页；
+4. 将列表中所有已勾选的代理协议（包括网页代理 HTTP、安全网页代理 HTTPS、SOCKS 代理）**全部取消勾选**；
+5. 点击“好”保存退出即可。
+      `,
+      faqs: [
+        {
+          question: '如何彻底避免每次重启都要手动关代理？',
+          answer: '在 Clash Verge Rev 或 v2rayN 的软件通用设置中，找到并勾选“退出软件时自动恢复系统代理设置”以及“开机时自动清理代理设置”。养成在关机前提前退出代理客户端的良好习惯。'
+        }
+      ]
+    }
+  ];
+
+  return articles.map(art => ({
+    params: { slug: art.slug },
+    props: { article: art }
+  }));
+}
+
+const { article } = Astro.props;
+
+const breadcrumbs = [
+  { name: '故障排查', url: '/troubleshooting/' },
+  { name: article.title, url: `/troubleshooting/${article.slug}/` }
+];
+
+const renderedContent = parseMarkdown(article.content);
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.description}
+  breadcrumbs={breadcrumbs}
+  type="article"
+  publishDate={`${article.date}T08:00:00+08:00`}
+  modifiedDate={`${article.updated}T12:00:00+08:00`}
+  faqItems={article.faqs}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    
+    <!-- Article Header -->
+    <header class="border-b border-brand-border pb-6 sm:pb-8 mb-8">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 text-rose-800 text-xs font-semibold border border-rose-200 mb-4">
+        <span>🔧 应急排障手册 · 标准操作规程 (SOP)</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-dark tracking-tight leading-tight">
+        {article.title}
+      </h1>
+      <div class="flex flex-wrap items-center gap-4 text-xs text-brand-muted mt-4">
+        <span class="flex items-center gap-1.5 font-medium text-brand-dark">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>技术核验维护: {article.author}</span>
+        </span>
+        <span>首次发布: {article.date}</span>
+        <span class="font-mono bg-brand-light px-2 py-0.5 rounded border border-brand-border">规则更新: {article.updated}</span>
+      </div>
+    </header>
+
+    <!-- Emergency Diagnostic Alert Banner -->
+    <div class="mb-8 p-4 rounded-xl bg-amber-50/70 border border-amber-200 text-xs sm:text-sm text-amber-900 flex items-start gap-3 shadow-2xs">
+      <span class="text-lg shrink-0 mt-0.5">⚠️</span>
+      <div class="leading-relaxed">
+        <strong class="font-bold block mb-1">排障安全铁律：</strong>
+        在执行任何高级排查步骤之前，请先将客户端系统代理关闭，确保在本地原生网络环境下核实物理连通性。严禁在未知来源的公共网页直接粘贴包含个人订阅 Token 的敏感配置。
+      </div>
+    </div>
+
+    <!-- Article Content with Rich Typography -->
+    <article class="bg-white border border-brand-border rounded-2xl p-6 sm:p-10 shadow-sm leading-relaxed text-brand-dark">
+      <div set:html={renderedContent} />
+    </article>
+
+    <!-- FAQs -->
+    <div class="mt-10">
+      <FAQ items={article.faqs} title="相关高频排障疑难解答" />
+    </div>
+
+    <!-- Related Links -->
+    <div class="mt-10 pt-6 border-t border-brand-border flex items-center justify-between text-xs sm:text-sm">
+      <a href="/troubleshooting/" class="text-brand-teal hover:underline font-bold flex items-center gap-1">
+        <span>←</span>
+        <span>返回故障排查主目录</span>
+      </a>
+      <a href="/guides/" class="text-brand-dark hover:underline font-semibold flex items-center gap-1">
+        <span>查看客户端配置上手手册</span>
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+</BaseLayout>

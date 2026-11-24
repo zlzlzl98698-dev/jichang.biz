@@ -1,0 +1,567 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const title = '网络代理故障排查急诊室 · 节点超时、订阅失败、退出断网与DNS排错全景 SOP';
+const description = '结构化排障全景手册。快速排查机场节点大面积超时、订阅更新死锁、退出客户端后国内网络断开、7890端口冲突、TUN 虚拟网卡异常与 ChatGPT 1020 报错，按最小风险顺序恢复网络。';
+const breadcrumbs = [
+  { name: '故障排查', url: '/troubleshooting/' }
+];
+
+const faqItems = [
+  {
+    question: '节点全部显示超时（Timeout / -1ms），但别人说很正常，为什么？',
+    answer: '最常见的原因是本地电脑系统时间不准（误差超过 60 秒会导致 VLESS/Trojan/Shadowsocks 加密握手彻底失效）；其次是本地宽带运营商拦截了机场的国内中转 IP；第三是误将客户端模式设为了错误的监听端口。请先校准系统北京时间，再更新订阅重试。'
+  },
+  {
+    question: '为什么关掉代理客户端后，电脑连国内网站（百度/淘宝）也打不开了？',
+    answer: '这是因为客户端在退出时没有正常清理 Windows 系统代理注册表设置（系统代理残留指向了 127.0.0.1:7890，而客户端已关闭，导致本地所有流量被送入黑洞）。解决办法：打开 Windows 设置 -> 网络和 Internet -> 代理，将“使用代理服务器”手动关闭即可 3 秒恢复。'
+  },
+  {
+    question: '提示“订阅链接无法解析或下载为空”是什么原因？',
+    answer: '1. 您在服务商处的套餐已到期或流量已耗尽；2. 服务商的订阅分发域名被临时阻断，可在服务商后台查看是否提供了防阻断备用订阅域名；3. 客户端未开启“跳过证书验证”或本地网络环境 DNS 解析失败；4. 本地正处于代理死锁状态（客户端开着代理但节点全断，导致连订阅也无法下载）。'
+  },
+  {
+    question: '客户端日志提示“i/o timeout”和“connection refused”有什么区别？',
+    answer: '“i/o timeout”表示请求数据包发出后，在规定时间内未收到对端服务器的任何响应，通常是过境专线中断、GFW 阻断或节点服务器宕机；而“connection refused”表示目标 IP 成功收到了请求，但该端口没有代理服务程序在监听，通常是机场后端节点配置错误或端口号填错。'
+  },
+  {
+    question: '为什么手机连代理很正常，电脑却怎么也连不上？',
+    answer: '排查顺序：1. 检查电脑系统时间是否与网络同步；2. 检查电脑是否安装了 360、火绒等第三方安全杀毒软件拦截了 TUN 虚拟网卡驱动或本地 7890 端口；3. 检查电脑 Windows 防火墙是否将客户端网络权限设为了禁止；4. 检查两端是否使用了完全一致的订阅配置。'
+  },
+  {
+    question: '开启 TUN 模式提示“wintun.dll not found”或启动闪退？',
+    answer: '这是由于 Windows 系统缺少 Wintun 驱动或管理员权限不足。解决办法：右键以“管理员身份运行”客户端；在客户端设置中重新点击“安装服务模式 (Service Mode)”；如果依然报错，需手动前往 GitHub 下载对应架构的 wintun.dll 放置在客户端运行目录下。'
+  },
+  {
+    question: '访问 ChatGPT / Claude 提示“Access Denied (Error 1020)”怎么办？',
+    answer: '该错误是由 Cloudflare WAF 安全网关触发，表明当前节点的境外落地 IP 被识别为机房爬虫或高风险代理。解决办法：1. 在客户端节点列表中切换为新加坡或美国的原生住宅 IP 节点；2. 开启浏览器的无痕隐身窗口；3. 避开香港、俄罗斯等 OpenAI 官方明确未支持的地区节点。'
+  },
+  {
+    question: '如何用“对照组排除法”1分钟确认是自己的问题还是机场炸了？',
+    answer: '极简判定：将手机断开家庭 Wi-Fi，开启手机 4G/5G 蜂窝移动网络并打开客户端测速。如果手机蜂窝网络下节点全绿且正常上网，则 100% 为本地家庭宽带/路由器/电脑设置问题；如果手机蜂窝网络下同样全红超时，且打开机场官网也打不开，则 100% 为机场服务商服务器故障或跑路。'
+  }
+];
+
+const tocItems = [
+  { id: 'decision-tree', title: 'Answer-First 故障现象 10 秒速查定位树' },
+  { id: 'issue-timeout', title: '故障 01：节点全红、大面积超时 (Timeout / -1ms)' },
+  { id: 'issue-subscription', title: '故障 02：订阅更新失败、死锁与下载为空' },
+  { id: 'issue-no-internet', title: '故障 03：节点测速正常但打不开任何网页' },
+  { id: 'issue-exit-disconnect', title: '故障 04：退出客户端后国内网络断开 (3秒自愈)' },
+  { id: 'issue-port-conflict', title: '故障 05：端口冲突 7890 与客户端崩溃闪退' },
+  { id: 'issue-tun-mode', title: '故障 06：TUN 虚拟网卡启动失败与全局断网' },
+  { id: 'issue-site-blocked', title: '故障 07：特定网站无法访问 (ChatGPT/Claude/Netflix)' },
+  { id: 'issue-slow-speed', title: '故障 08：网速极慢、频繁跳 Ping 与严重丢包' },
+  { id: 'cross-platform-diffs', title: '跨平台系统级排障差异对照表 (Win/Mac/Android/iOS)' },
+  { id: 'control-group-test', title: '本地网络 vs 机场故障：标准对照组判定法' },
+  { id: 'logs-reading', title: '客户端日志 (Logs) 与经典错误代码解读速查' },
+  { id: 'ticket-sop', title: '联系客服与工单提交流程规范 (避免无效沟通)' },
+  { id: 'articles-directory', title: '故障排查精选手册 (7篇 SOP 专栏)' },
+  { id: 'faq', title: '网络故障高频答疑 (FAQ)' },
+  { id: 'next-steps', title: '关联替代品牌与检测工具' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs} faqItems={faqItems} type="collection">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Hero Header -->
+    <div class="mb-8 border-b border-brand-border pb-6">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-50 text-rose-800 text-xs font-semibold border border-rose-200 mb-3">
+        <span>🔧 结构化排错 SOP · 最小风险顺序检查</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-brand-dark tracking-tight">
+        网络代理故障排查急诊室：节点超时、订阅失败与系统排错全景指南
+      </h1>
+      <p class="text-sm sm:text-base text-brand-muted mt-3 leading-relaxed">
+        按照“现象识别 ➔ 根因分析 ➔ 最小风险测试 ➔ 验证恢复”的标准流程组织内容。不盲目重装操作系统，不随意重置路由器。帮助您在遇到网络异常时，以网络工程师的视角在 1–3 分钟内精准定位并自愈。
+      </p>
+    </div>
+
+    <!-- In-Page TOC Anchor Navigation -->
+    <nav class="my-6 p-4 bg-brand-light border border-brand-border rounded-xl shadow-xs" aria-label="页面目录导航">
+      <div class="flex items-center justify-between pb-2 mb-2 border-b border-brand-border text-xs font-bold text-brand-dark">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-rose-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+          故障急诊科章节目录 (TOC)
+        </span>
+        <span class="text-brand-muted font-normal">点击快速跳转</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-1.5 text-xs">
+        {tocItems.map(item => (
+          <a href={`#${item.id}`} class="text-brand-dark hover:text-rose-700 hover:underline truncate py-0.5">
+            · {item.title}
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    <!-- MODULE 2: Answer-First Interactive Decision Tree -->
+    <section id="decision-tree" class="my-8 scroll-mt-20">
+      <div class="p-5 bg-linear-to-br from-rose-50/60 via-white to-amber-50/40 border-2 border-rose-200 rounded-2xl shadow-sm">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-2 py-0.5 rounded bg-rose-700 text-white text-xs font-bold tracking-wide">Answer-First 快速定位</span>
+          <span class="text-xs text-brand-muted font-mono">10秒急诊分流</span>
+        </div>
+        <h2 class="text-lg font-bold text-brand-dark mb-2">对号入座：根据当前遇见的症状直接跳转解决方案</h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs pt-2">
+          <a href="#issue-timeout" class="p-3 bg-white rounded-xl border border-brand-border hover:border-rose-300 hover:shadow-2xs transition block">
+            <div class="font-bold text-rose-800 mb-1">🚨 节点全红 / Timeout</div>
+            <div class="text-brand-muted line-clamp-2">测速全显 -1ms 或 Timeout。重点检查系统时间同步与订阅更新。</div>
+          </a>
+          <a href="#issue-exit-disconnect" class="p-3 bg-white rounded-xl border border-brand-border hover:border-rose-300 hover:shadow-2xs transition block">
+            <div class="font-bold text-rose-800 mb-1">🔌 关了软件连不上国内网</div>
+            <div class="text-brand-muted line-clamp-2">百度淘宝打不开。系统代理注册表 127.0.0.1:7890 残留，3秒自愈。</div>
+          </a>
+          <a href="#issue-no-internet" class="p-3 bg-white rounded-xl border border-brand-border hover:border-rose-300 hover:shadow-2xs transition block">
+            <div class="font-bold text-rose-800 mb-1">🌐 连上了但打不开外网</div>
+            <div class="text-brand-muted line-clamp-2">节点显示几十毫秒，但浏览器转圈。重点排查分流规则与 Fake-IP。</div>
+          </a>
+          <a href="#issue-subscription" class="p-3 bg-white rounded-xl border border-brand-border hover:border-rose-300 hover:shadow-2xs transition block">
+            <div class="font-bold text-rose-800 mb-1">📥 订阅更新失败 / 为空</div>
+            <div class="text-brand-muted line-clamp-2">拉取不到节点。排查本地代理死锁、订阅域名阻断与套餐欠费。</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 3: Issue 1 - Node Timeout -->
+    <section id="issue-timeout" class="my-10 scroll-mt-20 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+          故障 01：节点全红、大面积超时 (Timeout / -1ms)
+        </h2>
+        <span class="text-xs px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold">发生率 65%</span>
+      </div>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        客户端点击测速后，所有节点毫无反应、显示红色 -1ms 或直接提示 Timeout。请按以下顺序由浅入深排错：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-3 text-xs">
+        <div class="space-y-2">
+          <div class="p-3 bg-brand-light rounded-lg space-y-1">
+            <strong class="text-brand-dark block text-sm">第 1 步：校准本地系统时间（极其致命却最常被忽视的原因！）</strong>
+            <p class="text-brand-muted leading-relaxed">
+              现代代理协议（VLESS、Trojan、Shadowsocks-2022、VMess）高度依赖 TLS/AEAD 时间戳认证。<strong>如果本地时间与网络授时时间偏差超过 60 秒，服务端将直接判定为重放攻击而无条件拒绝握手！</strong><br/>
+              <strong>解决操作：</strong>前往 Windows「设置 ➔ 时间和语言 ➔ 日期和时间」，点击「立即同步」；macOS 用户在「系统设置 ➔ 日期与时间」中重新勾选自动设置。
+            </p>
+          </div>
+
+          <div class="p-3 bg-brand-light rounded-lg space-y-1">
+            <strong class="text-brand-dark block text-sm">第 2 步：核对服务商账户与套餐状态</strong>
+            <p class="text-brand-muted leading-relaxed">
+              登录机场官网用户后台，确认套餐是否已到期、本月流量是否已跑满 100%，或者因多设备违规并发被系统临时阻断。若已耗尽，续费后方可恢复。
+            </p>
+          </div>
+
+          <div class="p-3 bg-brand-light rounded-lg space-y-1">
+            <strong class="text-brand-dark block text-sm">第 3 步：更新订阅配置拉取最新入口 IP</strong>
+            <p class="text-brand-muted leading-relaxed">
+              服务商国内入口服务器可能因运营商机房光缆割接或攻击而临时更换了 IP。右键订阅配置点击「Update/更新」，重新拉取节点列表。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 4: Issue 2 - Subscription Failed -->
+    <section id="issue-subscription" class="my-10 scroll-mt-20 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+          故障 02：订阅更新失败、死锁与下载为空
+        </h2>
+        <span class="text-xs px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-bold">发生率 20%</span>
+      </div>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        点击订阅更新时，弹出「Network Error」、「Download Failed」或解析出的配置节点数为 0。核心排查手段：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm">解除「本地代理死锁」状态</div>
+          <p class="text-brand-muted leading-relaxed">
+            如果当前客户端已开启了“系统代理”，但已有节点全部不可用，此时客户端试图通过已坏掉的节点去下载新订阅，形成死锁闭环。<br/>
+            <strong>解除办法：</strong>在客户端设置中先<strong>关闭系统代理</strong>，或临时连上手机热点后再点击更新订阅。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm">检查订阅下发域名防阻断</div>
+          <p class="text-brand-muted leading-relaxed">
+            部分小机场的订阅下发域名被国内运营商 DNS 污染。登录机场后台，查看是否提供了免翻墙备用订阅链接、或将订阅链接复制到浏览器看能否直接下载 YAML 文本。若浏览器也打不开，说明该域名已失效，需获取最新地址。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 5: Issue 3 - Connected but No Internet -->
+    <section id="issue-no-internet" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+        故障 03：节点测速正常但打不开任何网页
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        节点 Ping 显示绿色 30ms，但浏览器访问 Google 或 YouTube 时持续转圈最终提示 ERR_TIMED_OUT。根因分析与排错：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-3 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="p-3 bg-brand-light rounded-lg border border-brand-border">
+            <div class="font-bold text-brand-dark mb-1">测试 1：切换为全局模式 (Global)</div>
+            <div class="text-brand-muted">将模式从 Rule 改为 Global 测试。若 Global 能上网，说明是本地分流规则（GeoSite/GeoIP）损坏或缺少规则，需更新规则库。</div>
+          </div>
+          <div class="p-3 bg-brand-light rounded-lg border border-brand-border">
+            <div class="font-bold text-brand-dark mb-1">测试 2：开启 TUN 模式避开本地 DNS</div>
+            <div class="text-brand-muted">本地运营商劫持了 DNS 解析。在 Clash Verge Rev 中开启 TUN Mode，强制将 DNS 查询交给内核 Fake-IP 处理。</div>
+          </div>
+          <div class="p-3 bg-brand-light rounded-lg border border-brand-border">
+            <div class="font-bold text-brand-dark mb-1">测试 3：刷新本地系统 DNS 缓存</div>
+            <div class="text-brand-muted">在终端执行 <code>ipconfig /flushdns</code>，并重启浏览器关闭所有残留 Keep-Alive 长连接标签页。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 6: Issue 4 - Exit Disconnect (3s Self-Heal) -->
+    <section id="issue-exit-disconnect" class="my-10 scroll-mt-20 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+          故障 04：退出客户端后国内网络断开 (3秒自愈指南)
+        </h2>
+        <span class="text-xs px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">新手最高频痛点</span>
+      </div>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        许多新手关闭代理软件后，惊慌地发现电脑连百度、微信、QQ 也打不开了。<strong>这绝非网络损坏，而是系统代理残留未清理！</strong>
+      </p>
+
+      <div class="p-4 bg-emerald-50/70 border border-emerald-300 rounded-xl space-y-3 text-xs">
+        <div class="font-bold text-emerald-900 text-sm">💡 3 秒彻底自愈操作步骤：</div>
+        <ol class="list-decimal list-inside space-y-1.5 text-emerald-950 font-medium">
+          <li>按键盘快捷键 <code>Win + i</code> 打开 Windows 设置（macOS 前往系统设置 ➔ 网络 ➔ 代理）；</li>
+          <li>点击 <strong>“网络和 Internet” ➔ “代理”</strong>；</li>
+          <li>在“手动设置代理”区域，找到 <strong>“使用代理服务器”</strong>，将其开关<strong>手动拨至“关”</strong>，并点击保存；</li>
+          <li>无需重启电脑，国内网络瞬间恢复！后续每次退出客户端前，建议先在客户端界面内关闭“系统代理”开关再彻底退出。</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- MODULE 7: Issue 5 - Port Conflict 7890 -->
+    <section id="issue-port-conflict" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+        故障 05：端口冲突 7890 与客户端崩溃闪退
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        启动客户端报错 <code>listen tcp 127.0.0.1:7890: bind: address already in use</code> 或软件直接闪退退出：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-3 text-xs">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="space-y-1.5">
+            <div class="font-bold text-brand-dark text-sm">方法 A：彻底清理僵尸后台进程</div>
+            <p class="text-brand-muted leading-relaxed">
+              客户端之前异常退出时，底层内核进程未能正常杀死。按 <code>Ctrl + Shift + Esc</code> 打开任务管理器，在“详细信息”页找到 <code>mihomo.exe</code>、<code>clash-meta.exe</code> 或 <code>v2rayN.exe</code>，右键强制“结束任务树”。
+            </p>
+          </div>
+          <div class="space-y-1.5">
+            <div class="font-bold text-brand-dark text-sm">方法 B：修改客户端默认监听端口</div>
+            <p class="text-brand-muted leading-relaxed">
+              在客户端设置的“网络”或“端口”选项中，将默认的 Mixed Port（混合端口）从 <code>7890</code> 更改为 <code>7895</code>、<code>10808</code> 或 <code>20808</code> 等其他空闲高位端口，彻底避开端口竞争冲突。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 8: Issue 6 - TUN Mode Failure -->
+    <section id="issue-tun-mode" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+        故障 06：TUN 虚拟网卡启动失败与全局断网
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        开启 TUN 模式后出现整个电脑无法上网，或者提示驱动加载失败：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+        <div class="p-3 bg-white border border-brand-border rounded-xl">
+          <div class="font-bold text-brand-dark mb-1">1. 权限不足拦截</div>
+          <p class="text-brand-muted">创建系统虚拟网卡需要 Windows 管理员权限。彻底退出客户端，鼠标右键客户端图标选择<strong>“以管理员身份运行”</strong>。</p>
+        </div>
+        <div class="p-3 bg-white border border-brand-border rounded-xl">
+          <div class="font-bold text-brand-dark mb-1">2. 杀毒软件误拦截驱动</div>
+          <p class="text-brand-muted">部分安全卫士会拦截 <code>wintun.sys</code> 驱动安装。在杀毒软件防护日志中将客户端及内核加入信任白名单。</p>
+        </div>
+        <div class="p-3 bg-white border border-brand-border rounded-xl">
+          <div class="font-bold text-brand-dark mb-1">3. 多网卡路由跃点冲突</div>
+          <p class="text-brand-muted">若电脑同时安装了 VMware/VirtualBox 虚拟机网卡，TUN 路由跃点可能错乱。在网络连接面板中临时禁用虚拟机虚拟网卡。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 9: Issue 7 - Site Blocked (AI / Netflix) -->
+    <section id="issue-site-blocked" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+        故障 07：特定网站无法访问 (ChatGPT/Claude/Netflix)
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        常规网页访问完全正常，但打开特定平台时遭遇阻断或风控拦截：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-3 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="p-3 bg-brand-light rounded-lg border border-brand-border">
+            <div class="font-bold text-brand-dark mb-1">ChatGPT 报错 1020 / Access Denied</div>
+            <div class="text-brand-muted">Cloudflare WAF 拦截。立即切换为美国或新加坡的原生 ISP 住宅节点，严禁使用香港节点，并开启浏览器隐私模式。</div>
+          </div>
+          <div class="p-3 bg-brand-light rounded-lg border border-brand-border">
+            <div class="font-bold text-brand-dark mb-1">Claude 提示 App Unavailable in Area</div>
+            <div class="text-brand-muted">落地 IP 属于数据中心黑名单。切换至低负载美西原生节点，并清理浏览器 LocalStorage 与 Cookies。</div>
+          </div>
+          <div class="p-3 bg-brand-light rounded-lg border border-brand-border">
+            <div class="font-bold text-brand-dark mb-1">Netflix 仅能看自制剧 (Originals)</div>
+            <div class="text-brand-muted">落地未通过当地版权原生解锁检测。在客户端选择标注有“Netflix/NF/流媒体”专属后缀的落地节点。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 10: Issue 8 - Slow Speed & High Jitter -->
+    <section id="issue-slow-speed" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+        故障 08：网速极慢、频繁跳 Ping 与严重丢包
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        网页可以打开，但 4K 视频严重卡顿、游戏频繁卡顿瞬移。排错清单如下：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm">排查 1：晚高峰骨干网 QoS 拥塞</div>
+          <p class="text-brand-muted leading-relaxed">
+            若仅在每天 20:00–23:00 卡顿，白天流畅，说明当前机场使用的是普通公网中转或公网直连线路，无法抵御国际出口拥堵。解决根治办法是切换至具备 SLA 协议保障的 <a href="/network/iepl-vs-iplc/" class="text-brand-teal hover:underline font-bold">IEPL/IPLC 内网专线</a>。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm">排查 2：本地 Wi-Fi 频段与信号干扰</div>
+          <p class="text-brand-muted leading-relaxed">
+            使用 2.4GHz Wi-Fi 频段时，蓝牙、微波炉及邻居家路由会产生严重同频干扰，导致本地局域网丢包率高达 5% 以上。请务必将电脑/手机连接至 <strong>5GHz Wi-Fi</strong> 频段，或直接插网线排查。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 11: Cross-Platform Differences Table -->
+    <section id="cross-platform-diffs" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        跨平台系统级排障差异对照表 (Win/Mac/Android/iOS)
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        不同操作系统的底层网络栈与沙盒权限模型差异巨大，排错重点各不相同：
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse border border-brand-border bg-white rounded-xl shadow-xs">
+          <thead>
+            <tr class="bg-brand-light text-brand-dark font-bold border-b border-brand-border">
+              <th class="p-3">操作系统平台</th>
+              <th class="p-3">最脆弱的断网诱因</th>
+              <th class="p-3">最核心的系统设置排查入口</th>
+              <th class="p-3">快速重置网络命令/手段</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border text-brand-muted">
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">Windows 10/11</td>
+              <td class="p-3 text-rose-700">注册表系统代理残留、7890 端口占用</td>
+              <td class="p-3">设置 ➔ 网络和 Internet ➔ 代理</td>
+              <td class="p-3 font-mono">ipconfig /flushdns</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">macOS (Sequoia/Sonoma)</td>
+              <td class="p-3 text-rose-700">网络扩展未授权、Helper Tool 权限丢失</td>
+              <td class="p-3">系统设置 ➔ 网络 ➔ Wi-Fi 详细信息 ➔ 代理</td>
+              <td class="p-3 font-mono">sudo dscacheutil -flushcache</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">Android</td>
+              <td class="p-3 text-rose-700">厂商省电策略杀后台、分应用代理漏选</td>
+              <td class="p-3">应用信息 ➔ 电池 ➔ 无限制后台运行</td>
+              <td class="p-3">开关飞行模式 5 秒重置基带</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">iOS / iPadOS</td>
+              <td class="p-3 text-rose-700">全局路由误设为代理、多个 VPN 配置文件冲突</td>
+              <td class="p-3">设置 ➔ 通用 ➔ VPN与设备管理</td>
+              <td class="p-3">删除旧 VPN 描述文件并重新添加</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MODULE 12: Control Group Test -->
+    <section id="control-group-test" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        本地网络 vs 机场故障：标准对照组判定法
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        面对断网，切忌盲目乱猜。通过一套严密的“对照组测试流程”，可以在 60 秒内将责任方精准切分：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-3 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-3 rounded-lg bg-rose-50/60 border border-rose-200">
+            <strong class="text-rose-900 block mb-1">测试 A：手机切换 4G/5G 蜂窝数据</strong>
+            <p class="text-rose-800 leading-relaxed">
+              手机断开 Wi-Fi，仅用手机自带移动流量开启客户端。若手机能够流畅上网，则<strong>100% 证实机场服务器完全正常</strong>，故障根源在本地家庭宽带/路由器或电脑系统设置中。
+            </p>
+          </div>
+
+          <div class="p-3 rounded-lg bg-blue-50/60 border border-blue-200">
+            <strong class="text-blue-900 block mb-1">测试 B：直连访问机场官网后台</strong>
+            <p class="text-blue-800 leading-relaxed">
+              在未开代理状态下直接在浏览器访问机场官网。若官网完全打不开且多地 Ping 超时，说明机场全套基础设施（官网+入口机房）正面临严重灾难或大面积网络故障。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 13: Logs Reading & Error Codes -->
+    <section id="logs-reading" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        客户端日志 (Logs) 与经典错误代码解读速查
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        遇到疑难杂症时，客户端的“日志 (Logs)”选项是终极答案。经典错误日志含义速查：
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse border border-brand-border bg-white rounded-xl shadow-xs font-mono">
+          <thead>
+            <tr class="bg-brand-light text-brand-dark font-bold border-b border-brand-border font-sans">
+              <th class="p-3">错误日志关键字</th>
+              <th class="p-3">网络底层实际状态</th>
+              <th class="p-3">标准修复方案</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border text-brand-muted">
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 text-rose-700 font-bold">i/o timeout</td>
+              <td class="p-3 font-sans">发出 TCP SYN 包后在设定期限内未收到 ACK 应答</td>
+              <td class="p-3 font-sans">中转入口失联或链路中断，切换至备用节点</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 text-rose-700 font-bold">connection refused</td>
+              <td class="p-3 font-sans">目标主机主动回复了 TCP RST 复位包，拒绝握手</td>
+              <td class="p-3 font-sans">机场节点服务未启动或端口被关闭，更新订阅</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 text-amber-700 font-bold">handshake failure / cert invalid</td>
+              <td class="p-3 font-sans">TLS 握手协商失败，证书不匹配或系统时钟偏差</td>
+              <td class="p-3 font-sans"><strong>立即同步系统本地时间</strong>，或勾选跳过证书校验</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 text-brand-muted font-bold">EOF / unexpected EOF</td>
+              <td class="p-3 font-sans">传输中途连接被对端异常强行关闭或被中间网关阻断</td>
+              <td class="p-3 font-sans">多为公网中转晚高峰丢包所致，换用 IEPL 专线节点</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MODULE 14: Ticket SOP & Customer Support -->
+    <section id="ticket-sop" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        联系客服与工单提交流程规范 (避免无效沟通)
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        当自行排查确认是服务端问题后，提交规范清晰的工单能让客服在 5 分钟内为您解决，避免“一句‘连不上’来回扯皮半天”：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-3 text-xs">
+        <div class="p-3 bg-brand-light rounded-lg font-mono text-xs text-brand-dark space-y-1">
+          <div class="text-brand-muted font-bold">// 推荐工单提问模板示例：</div>
+          <div>1. 本地宽带运营商：[例如：广东电信 1000M / 手机广东联通 5G]</div>
+          <div>2. 使用设备与客户端版本：[例如：Windows 11 / Clash Verge Rev v1.7.5]</div>
+          <div>3. 出现故障的具体节点名称：[例如：香港 01 IEPL 专线]</div>
+          <div>4. 故障现象与报错提示：[例如：已校准北京时间，但所有香港节点提示 i/o timeout，日本节点正常]</div>
+          <div>5. 附带客户端日志截图与系统时间截图。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 15: Sub-articles Directory (7 SOP Guides) -->
+    <section id="articles-directory" class="my-10 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-lg font-bold text-brand-dark flex items-center gap-2">
+          <span>🔧 故障排查精选手册 (7篇 SOP 专栏)</span>
+        </h2>
+        <span class="text-xs text-brand-muted">按发生概率排序</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+        <a href="/troubleshooting/node-timeout/" class="p-3 bg-white border border-brand-border hover:border-rose-300 rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-rose-700 mb-1">🚨 节点大面积超时 (Timeout / -1ms) 根因与排错</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2">系统时间偏差、入口阻断、欠费停机与 TLS 握手故障排查。</div>
+        </a>
+        <a href="/troubleshooting/subscription-update-failed/" class="p-3 bg-white border border-brand-border hover:border-rose-300 rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-rose-700 mb-1">📥 订阅更新失败、无法解析或下载为空排查</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2">订阅域名污染阻断、死锁状态与备用链接替换方案。</div>
+        </a>
+        <a href="/troubleshooting/connected-no-internet/" class="p-3 bg-white border border-brand-border hover:border-rose-300 rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-rose-700 mb-1">🌐 节点连接成功但打不开外网网页排查</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2">为什么 Ping 得通却打不开网页？DNS 污染与分流规则死循环。</div>
+        </a>
+        <a href="/troubleshooting/dns-leak-and-pollution/" class="p-3 bg-white border border-brand-border hover:border-rose-300 rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-rose-700 mb-1">🛡️ DNS 污染与 DNS 泄露诊断处理</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2">Fake-IP 虚拟 IP 分配、DoH 加密解析与本地 DNS 劫持防御。</div>
+        </a>
+        <a href="/troubleshooting/port-conflict-7890/" class="p-3 bg-white border border-brand-border hover:border-rose-300 rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-rose-700 mb-1">🛑 客户端报错 7890 端口占用或崩溃闪退</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2">多客户端竞争、卡死进程快速定位与端口修改指南。</div>
+        </a>
+        <a href="/troubleshooting/ai-access-denied-1020/" class="p-3 bg-white border border-brand-border hover:border-rose-300 rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-rose-700 mb-1">🤖 ChatGPT/Claude 提示 Access Denied 1020 报错</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2">Cloudflare WAF 防火墙拦截原因与高纯净度节点选择。</div>
+        </a>
+        <a href="/troubleshooting/system-proxy-reset/" class="p-3 bg-white border border-brand-border hover:border-rose-300 rounded-xl shadow-xs transition block group sm:col-span-2">
+          <div class="font-bold text-brand-dark group-hover:text-rose-700 mb-1">🔌 退出客户端后电脑无法访问国内网络？系统代理残留修复</div>
+          <div class="text-brand-muted text-[11px]">3 秒恢复 Windows / macOS 系统代理注册表残留，彻底解决退出断网问题。</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- MODULE 16: FAQ -->
+    <section id="faq" class="my-10 scroll-mt-20">
+      <FAQ items={faqItems} title="网络故障与排除高频疑惑解答 (FAQ)" />
+    </section>
+
+    <!-- MODULE 17: Next Steps & Tools Cross-Links -->
+    <section id="next-steps" class="my-10 p-6 bg-brand-light border border-brand-border rounded-2xl shadow-xs">
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-brand-border">
+        <h2 class="text-base font-bold text-brand-dark">服务商长期瘫痪？评估风险与备用替代方案</h2>
+        <span class="text-xs text-rose-700 font-medium">防患于未然</span>
+      </div>
+      <p class="text-xs text-brand-muted leading-relaxed mb-4">
+        如果当前使用的服务商长时间失联且无官方公告，建议查看跑路风险识别指南，并建立双机场互备冗余策略：
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+        <a href="/risk/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-rose-300 text-center font-bold text-brand-dark hover:text-rose-700 transition block">
+          🛡️ 风险与跑路避坑全景
+        </a>
+        <a href="/risk/dual-airport-redundancy/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-rose-300 text-center font-bold text-brand-dark hover:text-rose-700 transition block">
+          🔄 双机场主备容灾配置指南
+        </a>
+        <a href="/recommend/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          🏆 高稳定专线替代品牌推荐
+        </a>
+        <a href="/tools/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          🧮 流量与成本在线计算器
+        </a>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>

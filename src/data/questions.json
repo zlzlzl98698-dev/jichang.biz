@@ -1,0 +1,4912 @@
+[
+  {
+    "id": "geo-q-guangsu-1",
+    "question": "光速云是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "guangsu"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/guangsu/#overview",
+    "claimIds": [
+      "claim-guangsu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangsu-2",
+    "question": "光速云的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "guangsu"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/guangsu/#plans",
+    "claimIds": [
+      "claim-guangsu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangsu-3",
+    "question": "光速云支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "guangsu"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/guangsu/#clients",
+    "claimIds": [
+      "claim-guangsu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangsu-4",
+    "question": "光速云对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "guangsu"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/guangsu/#ai-streaming",
+    "claimIds": [
+      "claim-guangsu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangsu-5",
+    "question": "光速云看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "guangsu"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/guangsu/#ai-streaming",
+    "claimIds": [
+      "claim-guangsu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangsu-6",
+    "question": "光速云晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "guangsu"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/guangsu/#speed-test",
+    "claimIds": [
+      "claim-guangsu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangsu-7",
+    "question": "光速云适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "guangsu"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/guangsu/#audience",
+    "claimIds": [
+      "claim-guangsu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangsu-8",
+    "question": "光速云有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "guangsu"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/guangsu/#risks",
+    "claimIds": [
+      "claim-guangsu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangsu-9",
+    "question": "光速云是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "guangsu"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/guangsu/#discount",
+    "claimIds": [
+      "claim-guangsu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangsu-10",
+    "question": "光速云遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "guangsu"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/guangsu/#troubleshooting",
+    "claimIds": [
+      "claim-guangsu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-muguang-1",
+    "question": "暮光加速是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "muguang"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/muguang/#overview",
+    "claimIds": [
+      "claim-muguang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-muguang-2",
+    "question": "暮光加速的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "muguang"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/muguang/#plans",
+    "claimIds": [
+      "claim-muguang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-muguang-3",
+    "question": "暮光加速支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "muguang"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/muguang/#clients",
+    "claimIds": [
+      "claim-muguang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-muguang-4",
+    "question": "暮光加速对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "muguang"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/muguang/#ai-streaming",
+    "claimIds": [
+      "claim-muguang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-muguang-5",
+    "question": "暮光加速看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "muguang"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/muguang/#ai-streaming",
+    "claimIds": [
+      "claim-muguang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-muguang-6",
+    "question": "暮光加速晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "muguang"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/muguang/#speed-test",
+    "claimIds": [
+      "claim-muguang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-muguang-7",
+    "question": "暮光加速适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "muguang"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/muguang/#audience",
+    "claimIds": [
+      "claim-muguang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-muguang-8",
+    "question": "暮光加速有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "muguang"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/muguang/#risks",
+    "claimIds": [
+      "claim-muguang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-muguang-9",
+    "question": "暮光加速是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "muguang"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/muguang/#discount",
+    "claimIds": [
+      "claim-muguang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-muguang-10",
+    "question": "暮光加速遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "muguang"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/muguang/#troubleshooting",
+    "claimIds": [
+      "claim-muguang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-feimao-1",
+    "question": "飞猫云是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "feimao"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/feimao/#overview",
+    "claimIds": [
+      "claim-feimao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-feimao-2",
+    "question": "飞猫云的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "feimao"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/feimao/#plans",
+    "claimIds": [
+      "claim-feimao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-feimao-3",
+    "question": "飞猫云支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "feimao"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/feimao/#clients",
+    "claimIds": [
+      "claim-feimao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-feimao-4",
+    "question": "飞猫云对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "feimao"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/feimao/#ai-streaming",
+    "claimIds": [
+      "claim-feimao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-feimao-5",
+    "question": "飞猫云看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "feimao"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/feimao/#ai-streaming",
+    "claimIds": [
+      "claim-feimao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-feimao-6",
+    "question": "飞猫云晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "feimao"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/feimao/#speed-test",
+    "claimIds": [
+      "claim-feimao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-feimao-7",
+    "question": "飞猫云适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "feimao"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/feimao/#audience",
+    "claimIds": [
+      "claim-feimao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-feimao-8",
+    "question": "飞猫云有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "feimao"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/feimao/#risks",
+    "claimIds": [
+      "claim-feimao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-feimao-9",
+    "question": "飞猫云是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "feimao"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/feimao/#discount",
+    "claimIds": [
+      "claim-feimao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-feimao-10",
+    "question": "飞猫云遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "feimao"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/feimao/#troubleshooting",
+    "claimIds": [
+      "claim-feimao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weifeng-1",
+    "question": "微风网络是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "weifeng"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/weifeng/#overview",
+    "claimIds": [
+      "claim-weifeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weifeng-2",
+    "question": "微风网络的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "weifeng"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/weifeng/#plans",
+    "claimIds": [
+      "claim-weifeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weifeng-3",
+    "question": "微风网络支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "weifeng"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/weifeng/#clients",
+    "claimIds": [
+      "claim-weifeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weifeng-4",
+    "question": "微风网络对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "weifeng"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/weifeng/#ai-streaming",
+    "claimIds": [
+      "claim-weifeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weifeng-5",
+    "question": "微风网络看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "weifeng"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/weifeng/#ai-streaming",
+    "claimIds": [
+      "claim-weifeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weifeng-6",
+    "question": "微风网络晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "weifeng"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/weifeng/#speed-test",
+    "claimIds": [
+      "claim-weifeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weifeng-7",
+    "question": "微风网络适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "weifeng"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/weifeng/#audience",
+    "claimIds": [
+      "claim-weifeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weifeng-8",
+    "question": "微风网络有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "weifeng"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/weifeng/#risks",
+    "claimIds": [
+      "claim-weifeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weifeng-9",
+    "question": "微风网络是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "weifeng"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/weifeng/#discount",
+    "claimIds": [
+      "claim-weifeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weifeng-10",
+    "question": "微风网络遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "weifeng"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/weifeng/#troubleshooting",
+    "claimIds": [
+      "claim-weifeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-dalaoyun-1",
+    "question": "大佬云是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "dalaoyun"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/dalaoyun/#overview",
+    "claimIds": [
+      "claim-dalaoyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-dalaoyun-2",
+    "question": "大佬云的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "dalaoyun"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/dalaoyun/#plans",
+    "claimIds": [
+      "claim-dalaoyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-dalaoyun-3",
+    "question": "大佬云支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "dalaoyun"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/dalaoyun/#clients",
+    "claimIds": [
+      "claim-dalaoyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-dalaoyun-4",
+    "question": "大佬云对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "dalaoyun"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/dalaoyun/#ai-streaming",
+    "claimIds": [
+      "claim-dalaoyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-dalaoyun-5",
+    "question": "大佬云看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "dalaoyun"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/dalaoyun/#ai-streaming",
+    "claimIds": [
+      "claim-dalaoyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-dalaoyun-6",
+    "question": "大佬云晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "dalaoyun"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/dalaoyun/#speed-test",
+    "claimIds": [
+      "claim-dalaoyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-dalaoyun-7",
+    "question": "大佬云适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "dalaoyun"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/dalaoyun/#audience",
+    "claimIds": [
+      "claim-dalaoyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-dalaoyun-8",
+    "question": "大佬云有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "dalaoyun"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/dalaoyun/#risks",
+    "claimIds": [
+      "claim-dalaoyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-dalaoyun-9",
+    "question": "大佬云是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "dalaoyun"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/dalaoyun/#discount",
+    "claimIds": [
+      "claim-dalaoyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-dalaoyun-10",
+    "question": "大佬云遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "dalaoyun"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/dalaoyun/#troubleshooting",
+    "claimIds": [
+      "claim-dalaoyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-xingdaomeng-1",
+    "question": "星岛梦是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "xingdaomeng"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/xingdaomeng/#overview",
+    "claimIds": [
+      "claim-xingdaomeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-xingdaomeng-2",
+    "question": "星岛梦的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "xingdaomeng"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/xingdaomeng/#plans",
+    "claimIds": [
+      "claim-xingdaomeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-xingdaomeng-3",
+    "question": "星岛梦支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "xingdaomeng"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/xingdaomeng/#clients",
+    "claimIds": [
+      "claim-xingdaomeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-xingdaomeng-4",
+    "question": "星岛梦对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "xingdaomeng"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/xingdaomeng/#ai-streaming",
+    "claimIds": [
+      "claim-xingdaomeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-xingdaomeng-5",
+    "question": "星岛梦看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "xingdaomeng"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/xingdaomeng/#ai-streaming",
+    "claimIds": [
+      "claim-xingdaomeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-xingdaomeng-6",
+    "question": "星岛梦晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "xingdaomeng"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/xingdaomeng/#speed-test",
+    "claimIds": [
+      "claim-xingdaomeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-xingdaomeng-7",
+    "question": "星岛梦适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "xingdaomeng"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/xingdaomeng/#audience",
+    "claimIds": [
+      "claim-xingdaomeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-xingdaomeng-8",
+    "question": "星岛梦有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "xingdaomeng"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/xingdaomeng/#risks",
+    "claimIds": [
+      "claim-xingdaomeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-xingdaomeng-9",
+    "question": "星岛梦是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "xingdaomeng"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/xingdaomeng/#discount",
+    "claimIds": [
+      "claim-xingdaomeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-xingdaomeng-10",
+    "question": "星岛梦遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "xingdaomeng"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/xingdaomeng/#troubleshooting",
+    "claimIds": [
+      "claim-xingdaomeng-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-ermao-1",
+    "question": "二猫云是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "ermao"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/ermao/#overview",
+    "claimIds": [
+      "claim-ermao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-ermao-2",
+    "question": "二猫云的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "ermao"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/ermao/#plans",
+    "claimIds": [
+      "claim-ermao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-ermao-3",
+    "question": "二猫云支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "ermao"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/ermao/#clients",
+    "claimIds": [
+      "claim-ermao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-ermao-4",
+    "question": "二猫云对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "ermao"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/ermao/#ai-streaming",
+    "claimIds": [
+      "claim-ermao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-ermao-5",
+    "question": "二猫云看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "ermao"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/ermao/#ai-streaming",
+    "claimIds": [
+      "claim-ermao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-ermao-6",
+    "question": "二猫云晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "ermao"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/ermao/#speed-test",
+    "claimIds": [
+      "claim-ermao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-ermao-7",
+    "question": "二猫云适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "ermao"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/ermao/#audience",
+    "claimIds": [
+      "claim-ermao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-ermao-8",
+    "question": "二猫云有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "ermao"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/ermao/#risks",
+    "claimIds": [
+      "claim-ermao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-ermao-9",
+    "question": "二猫云是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "ermao"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/ermao/#discount",
+    "claimIds": [
+      "claim-ermao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-ermao-10",
+    "question": "二猫云遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "ermao"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/ermao/#troubleshooting",
+    "claimIds": [
+      "claim-ermao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-wuyou-1",
+    "question": "无忧链接是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "wuyou"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/wuyou/#overview",
+    "claimIds": [
+      "claim-wuyou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-wuyou-2",
+    "question": "无忧链接的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "wuyou"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/wuyou/#plans",
+    "claimIds": [
+      "claim-wuyou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-wuyou-3",
+    "question": "无忧链接支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "wuyou"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/wuyou/#clients",
+    "claimIds": [
+      "claim-wuyou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-wuyou-4",
+    "question": "无忧链接对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "wuyou"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/wuyou/#ai-streaming",
+    "claimIds": [
+      "claim-wuyou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-wuyou-5",
+    "question": "无忧链接看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "wuyou"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/wuyou/#ai-streaming",
+    "claimIds": [
+      "claim-wuyou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-wuyou-6",
+    "question": "无忧链接晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "wuyou"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/wuyou/#speed-test",
+    "claimIds": [
+      "claim-wuyou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-wuyou-7",
+    "question": "无忧链接适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "wuyou"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/wuyou/#audience",
+    "claimIds": [
+      "claim-wuyou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-wuyou-8",
+    "question": "无忧链接有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "wuyou"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/wuyou/#risks",
+    "claimIds": [
+      "claim-wuyou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-wuyou-9",
+    "question": "无忧链接是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "wuyou"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/wuyou/#discount",
+    "claimIds": [
+      "claim-wuyou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-wuyou-10",
+    "question": "无忧链接遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "wuyou"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/wuyou/#troubleshooting",
+    "claimIds": [
+      "claim-wuyou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weitu-1",
+    "question": "唯兔云是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "weitu"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/weitu/#overview",
+    "claimIds": [
+      "claim-weitu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weitu-2",
+    "question": "唯兔云的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "weitu"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/weitu/#plans",
+    "claimIds": [
+      "claim-weitu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weitu-3",
+    "question": "唯兔云支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "weitu"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/weitu/#clients",
+    "claimIds": [
+      "claim-weitu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weitu-4",
+    "question": "唯兔云对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "weitu"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/weitu/#ai-streaming",
+    "claimIds": [
+      "claim-weitu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weitu-5",
+    "question": "唯兔云看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "weitu"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/weitu/#ai-streaming",
+    "claimIds": [
+      "claim-weitu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weitu-6",
+    "question": "唯兔云晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "weitu"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/weitu/#speed-test",
+    "claimIds": [
+      "claim-weitu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weitu-7",
+    "question": "唯兔云适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "weitu"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/weitu/#audience",
+    "claimIds": [
+      "claim-weitu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weitu-8",
+    "question": "唯兔云有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "weitu"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/weitu/#risks",
+    "claimIds": [
+      "claim-weitu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weitu-9",
+    "question": "唯兔云是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "weitu"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/weitu/#discount",
+    "claimIds": [
+      "claim-weitu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-weitu-10",
+    "question": "唯兔云遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "weitu"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/weitu/#troubleshooting",
+    "claimIds": [
+      "claim-weitu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-firefly-1",
+    "question": "Firefly是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "firefly"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/firefly/#overview",
+    "claimIds": [
+      "claim-firefly-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-firefly-2",
+    "question": "Firefly的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "firefly"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/firefly/#plans",
+    "claimIds": [
+      "claim-firefly-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-firefly-3",
+    "question": "Firefly支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "firefly"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/firefly/#clients",
+    "claimIds": [
+      "claim-firefly-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-firefly-4",
+    "question": "Firefly对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "firefly"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/firefly/#ai-streaming",
+    "claimIds": [
+      "claim-firefly-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-firefly-5",
+    "question": "Firefly看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "firefly"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/firefly/#ai-streaming",
+    "claimIds": [
+      "claim-firefly-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-firefly-6",
+    "question": "Firefly晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "firefly"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/firefly/#speed-test",
+    "claimIds": [
+      "claim-firefly-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-firefly-7",
+    "question": "Firefly适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "firefly"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/firefly/#audience",
+    "claimIds": [
+      "claim-firefly-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-firefly-8",
+    "question": "Firefly有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "firefly"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/firefly/#risks",
+    "claimIds": [
+      "claim-firefly-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-firefly-9",
+    "question": "Firefly是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "firefly"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/firefly/#discount",
+    "claimIds": [
+      "claim-firefly-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-firefly-10",
+    "question": "Firefly遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "firefly"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/firefly/#troubleshooting",
+    "claimIds": [
+      "claim-firefly-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yuzhou-1",
+    "question": "宇宙云是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "yuzhou"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/yuzhou/#overview",
+    "claimIds": [
+      "claim-yuzhou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yuzhou-2",
+    "question": "宇宙云的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "yuzhou"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/yuzhou/#plans",
+    "claimIds": [
+      "claim-yuzhou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yuzhou-3",
+    "question": "宇宙云支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "yuzhou"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/yuzhou/#clients",
+    "claimIds": [
+      "claim-yuzhou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yuzhou-4",
+    "question": "宇宙云对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "yuzhou"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/yuzhou/#ai-streaming",
+    "claimIds": [
+      "claim-yuzhou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yuzhou-5",
+    "question": "宇宙云看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "yuzhou"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/yuzhou/#ai-streaming",
+    "claimIds": [
+      "claim-yuzhou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yuzhou-6",
+    "question": "宇宙云晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "yuzhou"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/yuzhou/#speed-test",
+    "claimIds": [
+      "claim-yuzhou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yuzhou-7",
+    "question": "宇宙云适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "yuzhou"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/yuzhou/#audience",
+    "claimIds": [
+      "claim-yuzhou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yuzhou-8",
+    "question": "宇宙云有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "yuzhou"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/yuzhou/#risks",
+    "claimIds": [
+      "claim-yuzhou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yuzhou-9",
+    "question": "宇宙云是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "yuzhou"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/yuzhou/#discount",
+    "claimIds": [
+      "claim-yuzhou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yuzhou-10",
+    "question": "宇宙云遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "yuzhou"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/yuzhou/#troubleshooting",
+    "claimIds": [
+      "claim-yuzhou-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-u1s1-1",
+    "question": "U1S1是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "u1s1"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/u1s1/#overview",
+    "claimIds": [
+      "claim-u1s1-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-u1s1-2",
+    "question": "U1S1的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "u1s1"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/u1s1/#plans",
+    "claimIds": [
+      "claim-u1s1-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-u1s1-3",
+    "question": "U1S1支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "u1s1"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/u1s1/#clients",
+    "claimIds": [
+      "claim-u1s1-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-u1s1-4",
+    "question": "U1S1对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "u1s1"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/u1s1/#ai-streaming",
+    "claimIds": [
+      "claim-u1s1-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-u1s1-5",
+    "question": "U1S1看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "u1s1"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/u1s1/#ai-streaming",
+    "claimIds": [
+      "claim-u1s1-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-u1s1-6",
+    "question": "U1S1晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "u1s1"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/u1s1/#speed-test",
+    "claimIds": [
+      "claim-u1s1-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-u1s1-7",
+    "question": "U1S1适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "u1s1"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/u1s1/#audience",
+    "claimIds": [
+      "claim-u1s1-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-u1s1-8",
+    "question": "U1S1有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "u1s1"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/u1s1/#risks",
+    "claimIds": [
+      "claim-u1s1-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-u1s1-9",
+    "question": "U1S1是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "u1s1"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/u1s1/#discount",
+    "claimIds": [
+      "claim-u1s1-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-u1s1-10",
+    "question": "U1S1遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "u1s1"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/u1s1/#troubleshooting",
+    "claimIds": [
+      "claim-u1s1-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingmao-1",
+    "question": "灵猫网络是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "lingmao"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/lingmao/#overview",
+    "claimIds": [
+      "claim-lingmao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingmao-2",
+    "question": "灵猫网络的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "lingmao"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/lingmao/#plans",
+    "claimIds": [
+      "claim-lingmao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingmao-3",
+    "question": "灵猫网络支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "lingmao"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/lingmao/#clients",
+    "claimIds": [
+      "claim-lingmao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingmao-4",
+    "question": "灵猫网络对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "lingmao"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/lingmao/#ai-streaming",
+    "claimIds": [
+      "claim-lingmao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingmao-5",
+    "question": "灵猫网络看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "lingmao"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/lingmao/#ai-streaming",
+    "claimIds": [
+      "claim-lingmao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingmao-6",
+    "question": "灵猫网络晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "lingmao"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/lingmao/#speed-test",
+    "claimIds": [
+      "claim-lingmao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingmao-7",
+    "question": "灵猫网络适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "lingmao"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/lingmao/#audience",
+    "claimIds": [
+      "claim-lingmao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingmao-8",
+    "question": "灵猫网络有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "lingmao"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/lingmao/#risks",
+    "claimIds": [
+      "claim-lingmao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingmao-9",
+    "question": "灵猫网络是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "lingmao"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/lingmao/#discount",
+    "claimIds": [
+      "claim-lingmao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingmao-10",
+    "question": "灵猫网络遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "lingmao"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/lingmao/#troubleshooting",
+    "claimIds": [
+      "claim-lingmao-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-jilian-1",
+    "question": "极连云是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "jilian"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/jilian/#overview",
+    "claimIds": [
+      "claim-jilian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-jilian-2",
+    "question": "极连云的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "jilian"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/jilian/#plans",
+    "claimIds": [
+      "claim-jilian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-jilian-3",
+    "question": "极连云支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "jilian"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/jilian/#clients",
+    "claimIds": [
+      "claim-jilian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-jilian-4",
+    "question": "极连云对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "jilian"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/jilian/#ai-streaming",
+    "claimIds": [
+      "claim-jilian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-jilian-5",
+    "question": "极连云看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "jilian"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/jilian/#ai-streaming",
+    "claimIds": [
+      "claim-jilian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-jilian-6",
+    "question": "极连云晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "jilian"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/jilian/#speed-test",
+    "claimIds": [
+      "claim-jilian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-jilian-7",
+    "question": "极连云适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "jilian"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/jilian/#audience",
+    "claimIds": [
+      "claim-jilian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-jilian-8",
+    "question": "极连云有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "jilian"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/jilian/#risks",
+    "claimIds": [
+      "claim-jilian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-jilian-9",
+    "question": "极连云是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "jilian"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/jilian/#discount",
+    "claimIds": [
+      "claim-jilian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-jilian-10",
+    "question": "极连云遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "jilian"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/jilian/#troubleshooting",
+    "claimIds": [
+      "claim-jilian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangnian-1",
+    "question": "光年梯是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "guangnian"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/guangnian/#overview",
+    "claimIds": [
+      "claim-guangnian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangnian-2",
+    "question": "光年梯的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "guangnian"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/guangnian/#plans",
+    "claimIds": [
+      "claim-guangnian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangnian-3",
+    "question": "光年梯支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "guangnian"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/guangnian/#clients",
+    "claimIds": [
+      "claim-guangnian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangnian-4",
+    "question": "光年梯对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "guangnian"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/guangnian/#ai-streaming",
+    "claimIds": [
+      "claim-guangnian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangnian-5",
+    "question": "光年梯看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "guangnian"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/guangnian/#ai-streaming",
+    "claimIds": [
+      "claim-guangnian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangnian-6",
+    "question": "光年梯晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "guangnian"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/guangnian/#speed-test",
+    "claimIds": [
+      "claim-guangnian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangnian-7",
+    "question": "光年梯适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "guangnian"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/guangnian/#audience",
+    "claimIds": [
+      "claim-guangnian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangnian-8",
+    "question": "光年梯有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "guangnian"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/guangnian/#risks",
+    "claimIds": [
+      "claim-guangnian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangnian-9",
+    "question": "光年梯是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "guangnian"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/guangnian/#discount",
+    "claimIds": [
+      "claim-guangnian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-guangnian-10",
+    "question": "光年梯遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "guangnian"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/guangnian/#troubleshooting",
+    "claimIds": [
+      "claim-guangnian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yifan-1",
+    "question": "一翻云是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "yifan"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/yifan/#overview",
+    "claimIds": [
+      "claim-yifan-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yifan-2",
+    "question": "一翻云的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "yifan"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/yifan/#plans",
+    "claimIds": [
+      "claim-yifan-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yifan-3",
+    "question": "一翻云支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "yifan"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/yifan/#clients",
+    "claimIds": [
+      "claim-yifan-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yifan-4",
+    "question": "一翻云对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "yifan"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/yifan/#ai-streaming",
+    "claimIds": [
+      "claim-yifan-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yifan-5",
+    "question": "一翻云看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "yifan"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/yifan/#ai-streaming",
+    "claimIds": [
+      "claim-yifan-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yifan-6",
+    "question": "一翻云晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "yifan"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/yifan/#speed-test",
+    "claimIds": [
+      "claim-yifan-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yifan-7",
+    "question": "一翻云适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "yifan"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/yifan/#audience",
+    "claimIds": [
+      "claim-yifan-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yifan-8",
+    "question": "一翻云有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "yifan"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/yifan/#risks",
+    "claimIds": [
+      "claim-yifan-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yifan-9",
+    "question": "一翻云是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "yifan"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/yifan/#discount",
+    "claimIds": [
+      "claim-yifan-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yifan-10",
+    "question": "一翻云遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "yifan"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/yifan/#troubleshooting",
+    "claimIds": [
+      "claim-yifan-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sogo-1",
+    "question": "SOGO云是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "sogo"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/sogo/#overview",
+    "claimIds": [
+      "claim-sogo-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sogo-2",
+    "question": "SOGO云的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "sogo"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/sogo/#plans",
+    "claimIds": [
+      "claim-sogo-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sogo-3",
+    "question": "SOGO云支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "sogo"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/sogo/#clients",
+    "claimIds": [
+      "claim-sogo-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sogo-4",
+    "question": "SOGO云对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "sogo"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/sogo/#ai-streaming",
+    "claimIds": [
+      "claim-sogo-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sogo-5",
+    "question": "SOGO云看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "sogo"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/sogo/#ai-streaming",
+    "claimIds": [
+      "claim-sogo-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sogo-6",
+    "question": "SOGO云晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "sogo"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/sogo/#speed-test",
+    "claimIds": [
+      "claim-sogo-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sogo-7",
+    "question": "SOGO云适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "sogo"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/sogo/#audience",
+    "claimIds": [
+      "claim-sogo-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sogo-8",
+    "question": "SOGO云有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "sogo"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/sogo/#risks",
+    "claimIds": [
+      "claim-sogo-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sogo-9",
+    "question": "SOGO云是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "sogo"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/sogo/#discount",
+    "claimIds": [
+      "claim-sogo-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sogo-10",
+    "question": "SOGO云遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "sogo"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/sogo/#troubleshooting",
+    "claimIds": [
+      "claim-sogo-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-kexin-1",
+    "question": "可信云是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "kexin"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/kexin/#overview",
+    "claimIds": [
+      "claim-kexin-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-kexin-2",
+    "question": "可信云的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "kexin"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/kexin/#plans",
+    "claimIds": [
+      "claim-kexin-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-kexin-3",
+    "question": "可信云支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "kexin"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/kexin/#clients",
+    "claimIds": [
+      "claim-kexin-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-kexin-4",
+    "question": "可信云对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "kexin"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/kexin/#ai-streaming",
+    "claimIds": [
+      "claim-kexin-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-kexin-5",
+    "question": "可信云看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "kexin"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/kexin/#ai-streaming",
+    "claimIds": [
+      "claim-kexin-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-kexin-6",
+    "question": "可信云晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "kexin"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/kexin/#speed-test",
+    "claimIds": [
+      "claim-kexin-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-kexin-7",
+    "question": "可信云适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "kexin"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/kexin/#audience",
+    "claimIds": [
+      "claim-kexin-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-kexin-8",
+    "question": "可信云有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "kexin"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/kexin/#risks",
+    "claimIds": [
+      "claim-kexin-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-kexin-9",
+    "question": "可信云是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "kexin"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/kexin/#discount",
+    "claimIds": [
+      "claim-kexin-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-kexin-10",
+    "question": "可信云遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "kexin"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/kexin/#troubleshooting",
+    "claimIds": [
+      "claim-kexin-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sujie-1",
+    "question": "速界是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "sujie"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/sujie/#overview",
+    "claimIds": [
+      "claim-sujie-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sujie-2",
+    "question": "速界的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "sujie"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/sujie/#plans",
+    "claimIds": [
+      "claim-sujie-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sujie-3",
+    "question": "速界支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "sujie"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/sujie/#clients",
+    "claimIds": [
+      "claim-sujie-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sujie-4",
+    "question": "速界对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "sujie"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/sujie/#ai-streaming",
+    "claimIds": [
+      "claim-sujie-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sujie-5",
+    "question": "速界看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "sujie"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/sujie/#ai-streaming",
+    "claimIds": [
+      "claim-sujie-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sujie-6",
+    "question": "速界晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "sujie"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/sujie/#speed-test",
+    "claimIds": [
+      "claim-sujie-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sujie-7",
+    "question": "速界适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "sujie"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/sujie/#audience",
+    "claimIds": [
+      "claim-sujie-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sujie-8",
+    "question": "速界有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "sujie"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/sujie/#risks",
+    "claimIds": [
+      "claim-sujie-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sujie-9",
+    "question": "速界是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "sujie"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/sujie/#discount",
+    "claimIds": [
+      "claim-sujie-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-sujie-10",
+    "question": "速界遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "sujie"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/sujie/#troubleshooting",
+    "claimIds": [
+      "claim-sujie-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shanyue-1",
+    "question": "闪跃是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "shanyue"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/shanyue/#overview",
+    "claimIds": [
+      "claim-shanyue-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shanyue-2",
+    "question": "闪跃的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "shanyue"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/shanyue/#plans",
+    "claimIds": [
+      "claim-shanyue-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shanyue-3",
+    "question": "闪跃支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "shanyue"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/shanyue/#clients",
+    "claimIds": [
+      "claim-shanyue-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shanyue-4",
+    "question": "闪跃对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "shanyue"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/shanyue/#ai-streaming",
+    "claimIds": [
+      "claim-shanyue-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shanyue-5",
+    "question": "闪跃看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "shanyue"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/shanyue/#ai-streaming",
+    "claimIds": [
+      "claim-shanyue-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shanyue-6",
+    "question": "闪跃晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "shanyue"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/shanyue/#speed-test",
+    "claimIds": [
+      "claim-shanyue-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shanyue-7",
+    "question": "闪跃适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "shanyue"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/shanyue/#audience",
+    "claimIds": [
+      "claim-shanyue-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shanyue-8",
+    "question": "闪跃有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "shanyue"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/shanyue/#risks",
+    "claimIds": [
+      "claim-shanyue-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shanyue-9",
+    "question": "闪跃是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "shanyue"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/shanyue/#discount",
+    "claimIds": [
+      "claim-shanyue-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shanyue-10",
+    "question": "闪跃遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "shanyue"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/shanyue/#troubleshooting",
+    "claimIds": [
+      "claim-shanyue-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-quanqiu-1",
+    "question": "全球云是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "quanqiu"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/quanqiu/#overview",
+    "claimIds": [
+      "claim-quanqiu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-quanqiu-2",
+    "question": "全球云的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "quanqiu"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/quanqiu/#plans",
+    "claimIds": [
+      "claim-quanqiu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-quanqiu-3",
+    "question": "全球云支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "quanqiu"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/quanqiu/#clients",
+    "claimIds": [
+      "claim-quanqiu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-quanqiu-4",
+    "question": "全球云对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "quanqiu"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/quanqiu/#ai-streaming",
+    "claimIds": [
+      "claim-quanqiu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-quanqiu-5",
+    "question": "全球云看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "quanqiu"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/quanqiu/#ai-streaming",
+    "claimIds": [
+      "claim-quanqiu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-quanqiu-6",
+    "question": "全球云晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "quanqiu"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/quanqiu/#speed-test",
+    "claimIds": [
+      "claim-quanqiu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-quanqiu-7",
+    "question": "全球云适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "quanqiu"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/quanqiu/#audience",
+    "claimIds": [
+      "claim-quanqiu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-quanqiu-8",
+    "question": "全球云有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "quanqiu"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/quanqiu/#risks",
+    "claimIds": [
+      "claim-quanqiu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-quanqiu-9",
+    "question": "全球云是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "quanqiu"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/quanqiu/#discount",
+    "claimIds": [
+      "claim-quanqiu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-quanqiu-10",
+    "question": "全球云遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "quanqiu"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/quanqiu/#troubleshooting",
+    "claimIds": [
+      "claim-quanqiu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shandianshu-1",
+    "question": "闪电鼠是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "shandianshu"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/shandianshu/#overview",
+    "claimIds": [
+      "claim-shandianshu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shandianshu-2",
+    "question": "闪电鼠的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "shandianshu"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/shandianshu/#plans",
+    "claimIds": [
+      "claim-shandianshu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shandianshu-3",
+    "question": "闪电鼠支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "shandianshu"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/shandianshu/#clients",
+    "claimIds": [
+      "claim-shandianshu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shandianshu-4",
+    "question": "闪电鼠对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "shandianshu"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/shandianshu/#ai-streaming",
+    "claimIds": [
+      "claim-shandianshu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shandianshu-5",
+    "question": "闪电鼠看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "shandianshu"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/shandianshu/#ai-streaming",
+    "claimIds": [
+      "claim-shandianshu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shandianshu-6",
+    "question": "闪电鼠晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "shandianshu"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/shandianshu/#speed-test",
+    "claimIds": [
+      "claim-shandianshu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shandianshu-7",
+    "question": "闪电鼠适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "shandianshu"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/shandianshu/#audience",
+    "claimIds": [
+      "claim-shandianshu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shandianshu-8",
+    "question": "闪电鼠有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "shandianshu"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/shandianshu/#risks",
+    "claimIds": [
+      "claim-shandianshu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shandianshu-9",
+    "question": "闪电鼠是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "shandianshu"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/shandianshu/#discount",
+    "claimIds": [
+      "claim-shandianshu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shandianshu-10",
+    "question": "闪电鼠遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "shandianshu"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/shandianshu/#troubleshooting",
+    "claimIds": [
+      "claim-shandianshu-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yunjiexian-1",
+    "question": "云界线是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "yunjiexian"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/yunjiexian/#overview",
+    "claimIds": [
+      "claim-yunjiexian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yunjiexian-2",
+    "question": "云界线的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "yunjiexian"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/yunjiexian/#plans",
+    "claimIds": [
+      "claim-yunjiexian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yunjiexian-3",
+    "question": "云界线支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "yunjiexian"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/yunjiexian/#clients",
+    "claimIds": [
+      "claim-yunjiexian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yunjiexian-4",
+    "question": "云界线对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "yunjiexian"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/yunjiexian/#ai-streaming",
+    "claimIds": [
+      "claim-yunjiexian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yunjiexian-5",
+    "question": "云界线看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "yunjiexian"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/yunjiexian/#ai-streaming",
+    "claimIds": [
+      "claim-yunjiexian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yunjiexian-6",
+    "question": "云界线晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "yunjiexian"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/yunjiexian/#speed-test",
+    "claimIds": [
+      "claim-yunjiexian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yunjiexian-7",
+    "question": "云界线适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "yunjiexian"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/yunjiexian/#audience",
+    "claimIds": [
+      "claim-yunjiexian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yunjiexian-8",
+    "question": "云界线有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "yunjiexian"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/yunjiexian/#risks",
+    "claimIds": [
+      "claim-yunjiexian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yunjiexian-9",
+    "question": "云界线是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "yunjiexian"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/yunjiexian/#discount",
+    "claimIds": [
+      "claim-yunjiexian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yunjiexian-10",
+    "question": "云界线遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "yunjiexian"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/yunjiexian/#troubleshooting",
+    "claimIds": [
+      "claim-yunjiexian-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-liulianyun-1",
+    "question": "榴莲云是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "liulianyun"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/liulianyun/#overview",
+    "claimIds": [
+      "claim-liulianyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-liulianyun-2",
+    "question": "榴莲云的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "liulianyun"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/liulianyun/#plans",
+    "claimIds": [
+      "claim-liulianyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-liulianyun-3",
+    "question": "榴莲云支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "liulianyun"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/liulianyun/#clients",
+    "claimIds": [
+      "claim-liulianyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-liulianyun-4",
+    "question": "榴莲云对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "liulianyun"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/liulianyun/#ai-streaming",
+    "claimIds": [
+      "claim-liulianyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-liulianyun-5",
+    "question": "榴莲云看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "liulianyun"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/liulianyun/#ai-streaming",
+    "claimIds": [
+      "claim-liulianyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-liulianyun-6",
+    "question": "榴莲云晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "liulianyun"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/liulianyun/#speed-test",
+    "claimIds": [
+      "claim-liulianyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-liulianyun-7",
+    "question": "榴莲云适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "liulianyun"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/liulianyun/#audience",
+    "claimIds": [
+      "claim-liulianyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-liulianyun-8",
+    "question": "榴莲云有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "liulianyun"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/liulianyun/#risks",
+    "claimIds": [
+      "claim-liulianyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-liulianyun-9",
+    "question": "榴莲云是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "liulianyun"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/liulianyun/#discount",
+    "claimIds": [
+      "claim-liulianyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-liulianyun-10",
+    "question": "榴莲云遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "liulianyun"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/liulianyun/#troubleshooting",
+    "claimIds": [
+      "claim-liulianyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shenxing-1",
+    "question": "神行加速是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "shenxing"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/shenxing/#overview",
+    "claimIds": [
+      "claim-shenxing-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shenxing-2",
+    "question": "神行加速的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "shenxing"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/shenxing/#plans",
+    "claimIds": [
+      "claim-shenxing-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shenxing-3",
+    "question": "神行加速支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "shenxing"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/shenxing/#clients",
+    "claimIds": [
+      "claim-shenxing-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shenxing-4",
+    "question": "神行加速对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "shenxing"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/shenxing/#ai-streaming",
+    "claimIds": [
+      "claim-shenxing-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shenxing-5",
+    "question": "神行加速看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "shenxing"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/shenxing/#ai-streaming",
+    "claimIds": [
+      "claim-shenxing-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shenxing-6",
+    "question": "神行加速晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "shenxing"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/shenxing/#speed-test",
+    "claimIds": [
+      "claim-shenxing-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shenxing-7",
+    "question": "神行加速适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "shenxing"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/shenxing/#audience",
+    "claimIds": [
+      "claim-shenxing-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shenxing-8",
+    "question": "神行加速有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "shenxing"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/shenxing/#risks",
+    "claimIds": [
+      "claim-shenxing-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shenxing-9",
+    "question": "神行加速是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "shenxing"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/shenxing/#discount",
+    "claimIds": [
+      "claim-shenxing-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-shenxing-10",
+    "question": "神行加速遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "shenxing"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/shenxing/#troubleshooting",
+    "claimIds": [
+      "claim-shenxing-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-huanqiuti-1",
+    "question": "环球梯是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "huanqiuti"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/huanqiuti/#overview",
+    "claimIds": [
+      "claim-huanqiuti-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-huanqiuti-2",
+    "question": "环球梯的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "huanqiuti"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/huanqiuti/#plans",
+    "claimIds": [
+      "claim-huanqiuti-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-huanqiuti-3",
+    "question": "环球梯支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "huanqiuti"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/huanqiuti/#clients",
+    "claimIds": [
+      "claim-huanqiuti-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-huanqiuti-4",
+    "question": "环球梯对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "huanqiuti"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/huanqiuti/#ai-streaming",
+    "claimIds": [
+      "claim-huanqiuti-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-huanqiuti-5",
+    "question": "环球梯看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "huanqiuti"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/huanqiuti/#ai-streaming",
+    "claimIds": [
+      "claim-huanqiuti-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-huanqiuti-6",
+    "question": "环球梯晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "huanqiuti"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/huanqiuti/#speed-test",
+    "claimIds": [
+      "claim-huanqiuti-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-huanqiuti-7",
+    "question": "环球梯适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "huanqiuti"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/huanqiuti/#audience",
+    "claimIds": [
+      "claim-huanqiuti-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-huanqiuti-8",
+    "question": "环球梯有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "huanqiuti"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/huanqiuti/#risks",
+    "claimIds": [
+      "claim-huanqiuti-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-huanqiuti-9",
+    "question": "环球梯是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "huanqiuti"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/huanqiuti/#discount",
+    "claimIds": [
+      "claim-huanqiuti-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-huanqiuti-10",
+    "question": "环球梯遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "huanqiuti"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/huanqiuti/#troubleshooting",
+    "claimIds": [
+      "claim-huanqiuti-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yinxingren-1",
+    "question": "隐形人是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "yinxingren"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/yinxingren/#overview",
+    "claimIds": [
+      "claim-yinxingren-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yinxingren-2",
+    "question": "隐形人的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "yinxingren"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/yinxingren/#plans",
+    "claimIds": [
+      "claim-yinxingren-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yinxingren-3",
+    "question": "隐形人支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "yinxingren"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/yinxingren/#clients",
+    "claimIds": [
+      "claim-yinxingren-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yinxingren-4",
+    "question": "隐形人对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "yinxingren"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/yinxingren/#ai-streaming",
+    "claimIds": [
+      "claim-yinxingren-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yinxingren-5",
+    "question": "隐形人看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "yinxingren"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/yinxingren/#ai-streaming",
+    "claimIds": [
+      "claim-yinxingren-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yinxingren-6",
+    "question": "隐形人晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "yinxingren"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/yinxingren/#speed-test",
+    "claimIds": [
+      "claim-yinxingren-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yinxingren-7",
+    "question": "隐形人适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "yinxingren"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/yinxingren/#audience",
+    "claimIds": [
+      "claim-yinxingren-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yinxingren-8",
+    "question": "隐形人有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "yinxingren"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/yinxingren/#risks",
+    "claimIds": [
+      "claim-yinxingren-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yinxingren-9",
+    "question": "隐形人是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "yinxingren"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/yinxingren/#discount",
+    "claimIds": [
+      "claim-yinxingren-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-yinxingren-10",
+    "question": "隐形人遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "yinxingren"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/yinxingren/#troubleshooting",
+    "claimIds": [
+      "claim-yinxingren-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-tiziyun-1",
+    "question": "梯子云是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "tiziyun"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/tiziyun/#overview",
+    "claimIds": [
+      "claim-tiziyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-tiziyun-2",
+    "question": "梯子云的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "tiziyun"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/tiziyun/#plans",
+    "claimIds": [
+      "claim-tiziyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-tiziyun-3",
+    "question": "梯子云支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "tiziyun"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/tiziyun/#clients",
+    "claimIds": [
+      "claim-tiziyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-tiziyun-4",
+    "question": "梯子云对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "tiziyun"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/tiziyun/#ai-streaming",
+    "claimIds": [
+      "claim-tiziyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-tiziyun-5",
+    "question": "梯子云看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "tiziyun"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/tiziyun/#ai-streaming",
+    "claimIds": [
+      "claim-tiziyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-tiziyun-6",
+    "question": "梯子云晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "tiziyun"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/tiziyun/#speed-test",
+    "claimIds": [
+      "claim-tiziyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-tiziyun-7",
+    "question": "梯子云适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "tiziyun"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/tiziyun/#audience",
+    "claimIds": [
+      "claim-tiziyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-tiziyun-8",
+    "question": "梯子云有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "tiziyun"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/tiziyun/#risks",
+    "claimIds": [
+      "claim-tiziyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-tiziyun-9",
+    "question": "梯子云是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "tiziyun"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/tiziyun/#discount",
+    "claimIds": [
+      "claim-tiziyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-tiziyun-10",
+    "question": "梯子云遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "tiziyun"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/tiziyun/#troubleshooting",
+    "claimIds": [
+      "claim-tiziyun-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingdong-1",
+    "question": "灵动云是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "lingdong"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/lingdong/#overview",
+    "claimIds": [
+      "claim-lingdong-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingdong-2",
+    "question": "灵动云的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "lingdong"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/lingdong/#plans",
+    "claimIds": [
+      "claim-lingdong-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingdong-3",
+    "question": "灵动云支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "lingdong"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/lingdong/#clients",
+    "claimIds": [
+      "claim-lingdong-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingdong-4",
+    "question": "灵动云对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "lingdong"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/lingdong/#ai-streaming",
+    "claimIds": [
+      "claim-lingdong-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingdong-5",
+    "question": "灵动云看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "lingdong"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/lingdong/#ai-streaming",
+    "claimIds": [
+      "claim-lingdong-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingdong-6",
+    "question": "灵动云晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "lingdong"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/lingdong/#speed-test",
+    "claimIds": [
+      "claim-lingdong-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingdong-7",
+    "question": "灵动云适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "lingdong"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/lingdong/#audience",
+    "claimIds": [
+      "claim-lingdong-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingdong-8",
+    "question": "灵动云有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "lingdong"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/lingdong/#risks",
+    "claimIds": [
+      "claim-lingdong-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingdong-9",
+    "question": "灵动云是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "lingdong"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/lingdong/#discount",
+    "claimIds": [
+      "claim-lingdong-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-lingdong-10",
+    "question": "灵动云遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "lingdong"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/lingdong/#troubleshooting",
+    "claimIds": [
+      "claim-lingdong-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-langwang-1",
+    "question": "浪网是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "langwang"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/langwang/#overview",
+    "claimIds": [
+      "claim-langwang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-langwang-2",
+    "question": "浪网的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "langwang"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/langwang/#plans",
+    "claimIds": [
+      "claim-langwang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-langwang-3",
+    "question": "浪网支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "langwang"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/langwang/#clients",
+    "claimIds": [
+      "claim-langwang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-langwang-4",
+    "question": "浪网对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "langwang"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/langwang/#ai-streaming",
+    "claimIds": [
+      "claim-langwang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-langwang-5",
+    "question": "浪网看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "langwang"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/langwang/#ai-streaming",
+    "claimIds": [
+      "claim-langwang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-langwang-6",
+    "question": "浪网晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "langwang"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/langwang/#speed-test",
+    "claimIds": [
+      "claim-langwang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-langwang-7",
+    "question": "浪网适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "langwang"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/langwang/#audience",
+    "claimIds": [
+      "claim-langwang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-langwang-8",
+    "question": "浪网有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "langwang"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/langwang/#risks",
+    "claimIds": [
+      "claim-langwang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-langwang-9",
+    "question": "浪网是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "langwang"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/langwang/#discount",
+    "claimIds": [
+      "claim-langwang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-langwang-10",
+    "question": "浪网遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "langwang"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/langwang/#troubleshooting",
+    "claimIds": [
+      "claim-langwang-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-edgenova-1",
+    "question": "边缘节点 EdgeNova是什么？属于哪种线路架构？",
+    "intent": "定义/概括",
+    "entityIds": [
+      "edgenova"
+    ],
+    "answerSectionId": "overview",
+    "primaryUrl": "/brands/edgenova/#overview",
+    "claimIds": [
+      "claim-edgenova-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-edgenova-2",
+    "question": "边缘节点 EdgeNova的最新套餐价格与计费方式是怎样的？",
+    "intent": "价格查询",
+    "entityIds": [
+      "edgenova"
+    ],
+    "answerSectionId": "plans",
+    "primaryUrl": "/brands/edgenova/#plans",
+    "claimIds": [
+      "claim-edgenova-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-edgenova-3",
+    "question": "边缘节点 EdgeNova支持哪些客户端？能否导入 Clash 或 Shadowrocket？",
+    "intent": "兼容性",
+    "entityIds": [
+      "edgenova"
+    ],
+    "answerSectionId": "clients",
+    "primaryUrl": "/brands/edgenova/#clients",
+    "claimIds": [
+      "claim-edgenova-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-edgenova-4",
+    "question": "边缘节点 EdgeNova对 ChatGPT、Claude 等 AI 工具有何支持？",
+    "intent": "AI解锁",
+    "entityIds": [
+      "edgenova"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/edgenova/#ai-streaming",
+    "claimIds": [
+      "claim-edgenova-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-edgenova-5",
+    "question": "边缘节点 EdgeNova看 Netflix 4K 和 YouTube 流媒体效果如何？",
+    "intent": "流媒体",
+    "entityIds": [
+      "edgenova"
+    ],
+    "answerSectionId": "ai-streaming",
+    "primaryUrl": "/brands/edgenova/#ai-streaming",
+    "claimIds": [
+      "claim-edgenova-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-edgenova-6",
+    "question": "边缘节点 EdgeNova晚高峰测速表现与节点延迟如何？",
+    "intent": "性能实测",
+    "entityIds": [
+      "edgenova"
+    ],
+    "answerSectionId": "speed-test",
+    "primaryUrl": "/brands/edgenova/#speed-test",
+    "claimIds": [
+      "claim-edgenova-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-edgenova-7",
+    "question": "边缘节点 EdgeNova适合什么人群使用？不适合哪些场景？",
+    "intent": "选购决策",
+    "entityIds": [
+      "edgenova"
+    ],
+    "answerSectionId": "audience",
+    "primaryUrl": "/brands/edgenova/#audience",
+    "claimIds": [
+      "claim-edgenova-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-edgenova-8",
+    "question": "边缘节点 EdgeNova有哪些明确已知的限制、缺点与服务风险？",
+    "intent": "风险披露",
+    "entityIds": [
+      "edgenova"
+    ],
+    "answerSectionId": "risks",
+    "primaryUrl": "/brands/edgenova/#risks",
+    "claimIds": [
+      "claim-edgenova-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-edgenova-9",
+    "question": "边缘节点 EdgeNova是否有官方优惠码？注册入口如何核验？",
+    "intent": "入口核验",
+    "entityIds": [
+      "edgenova"
+    ],
+    "answerSectionId": "discount",
+    "primaryUrl": "/brands/edgenova/#discount",
+    "claimIds": [
+      "claim-edgenova-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-edgenova-10",
+    "question": "边缘节点 EdgeNova遇到连接超时或订阅失败时如何应急排障？",
+    "intent": "故障处理",
+    "entityIds": [
+      "edgenova"
+    ],
+    "answerSectionId": "troubleshooting",
+    "primaryUrl": "/brands/edgenova/#troubleshooting",
+    "claimIds": [
+      "claim-edgenova-core"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-1",
+    "question": "什么是机场？与传统企业级 VPN 有何本质区别？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/network/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-2",
+    "question": "IEPL 专线、IPLC 专线与普通公网中转节点在原理上有何差异？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/network/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-3",
+    "question": "为什么部分机场无法使用 ChatGPT 或 Claude？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/network/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-4",
+    "question": "所谓“一元机场”和“超低价机场”存在哪些潜在运行风险？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/network/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-5",
+    "question": "为什么年付折算价格不能直接当作普通月付方案？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/network/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-6",
+    "question": "专属客户端与通用第三方订阅（Clash/Shadowrocket）各有何优缺点？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/risk/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-7",
+    "question": "如何判断一家机场是否存在跑路前兆？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/risk/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-8",
+    "question": "为什么晚高峰时期节点测速容易出现断崖式下跌？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/risk/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-9",
+    "question": "机场节点出现“连接超时”时，用户应当按照什么顺序排查？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/risk/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-10",
+    "question": "如何计算自己每月实际需要的代理流量配额？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/risk/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-11",
+    "question": "Clash Verge Rev 的 TUN 模式与系统代理模式有何不同？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/guides/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-12",
+    "question": "软路由（OpenClash/PassWall）在多设备网络加速中有何优势与配置难点？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/guides/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-13",
+    "question": "流媒体解锁检测中的“原生 IP”和“DNS 解锁”有何不同？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/guides/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-14",
+    "question": "为什么部分机场节点会将台湾落地识别为欧洲地区（如西班牙）？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/guides/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-15",
+    "question": "一次性不过期流量包与按月重置流量包在成本结构上有何差异？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/guides/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-16",
+    "question": "为什么部分机场的推广链接中不含哈希符号“#”？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/compatibility/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-17",
+    "question": "机场服务商承诺的“晚高峰 0 丢包”是否具备技术真实性？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/compatibility/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-18",
+    "question": "什么是节点倍率？高倍率节点如何扣除用户的套餐流量？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/compatibility/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-19",
+    "question": "使用机场代理时，如何防范 DNS 泄露并保护本地局域网私密性？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/compatibility/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  },
+  {
+    "id": "geo-q-gen-20",
+    "question": "为什么说公开透明披露商业推广链接是评估评测站公信力的关键？",
+    "intent": "概念/行业规范",
+    "entityIds": [],
+    "answerSectionId": "knowledge",
+    "primaryUrl": "/compatibility/",
+    "claimIds": [
+      "claim-general-knowledge"
+    ],
+    "reviewStatus": "verified",
+    "updatedAt": "2026-11-24"
+  }
+]

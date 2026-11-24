@@ -1,0 +1,3227 @@
+{
+  "/reviews/guangsu/": {
+    "article_id": "art-review-guangsu",
+    "title": "光速云 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/guangsu/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "guangsu",
+    "intent": "Comparison",
+    "primary_keyword": "光速云怎么样",
+    "secondary_keywords": [
+      "光速云评测2026",
+      "光速云测速实测",
+      "光速云优缺点",
+      "光速云适合谁"
+    ],
+    "semantic_variations": [
+      "光速云好用吗",
+      "光速云稳定不稳定",
+      "光速云跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 10000,
+    "status": "published"
+  },
+  "/brands/guangsu/": {
+    "article_id": "art-brand-guangsu",
+    "title": "光速云 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/guangsu/",
+    "cluster_l1": "brands",
+    "cluster_l2": "guangsu",
+    "intent": "Commercial",
+    "primary_keyword": "光速云官网入口",
+    "secondary_keywords": [
+      "光速云优惠码",
+      "光速云套餐价格",
+      "光速云注册"
+    ],
+    "semantic_variations": [
+      "光速云最新网址",
+      "光速云打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/muguang/": {
+    "article_id": "art-review-muguang",
+    "title": "暮光加速 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/muguang/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "muguang",
+    "intent": "Comparison",
+    "primary_keyword": "暮光加速怎么样",
+    "secondary_keywords": [
+      "暮光加速评测2026",
+      "暮光加速测速实测",
+      "暮光加速优缺点",
+      "暮光加速适合谁"
+    ],
+    "semantic_variations": [
+      "暮光加速好用吗",
+      "暮光加速稳定不稳定",
+      "暮光加速跑路风险"
+    ],
+    "lsi_keywords": [
+      "BGP",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/muguang/": {
+    "article_id": "art-brand-muguang",
+    "title": "暮光加速 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/muguang/",
+    "cluster_l1": "brands",
+    "cluster_l2": "muguang",
+    "intent": "Commercial",
+    "primary_keyword": "暮光加速官网入口",
+    "secondary_keywords": [
+      "暮光加速优惠码",
+      "暮光加速套餐价格",
+      "暮光加速注册"
+    ],
+    "semantic_variations": [
+      "暮光加速最新网址",
+      "暮光加速打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/feimao/": {
+    "article_id": "art-review-feimao",
+    "title": "飞猫云 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/feimao/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "feimao",
+    "intent": "Comparison",
+    "primary_keyword": "飞猫云怎么样",
+    "secondary_keywords": [
+      "飞猫云评测2026",
+      "飞猫云测速实测",
+      "飞猫云优缺点",
+      "飞猫云适合谁"
+    ],
+    "semantic_variations": [
+      "飞猫云好用吗",
+      "飞猫云稳定不稳定",
+      "飞猫云跑路风险"
+    ],
+    "lsi_keywords": [
+      "Mixed",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/feimao/": {
+    "article_id": "art-brand-feimao",
+    "title": "飞猫云 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/feimao/",
+    "cluster_l1": "brands",
+    "cluster_l2": "feimao",
+    "intent": "Commercial",
+    "primary_keyword": "飞猫云官网入口",
+    "secondary_keywords": [
+      "飞猫云优惠码",
+      "飞猫云套餐价格",
+      "飞猫云注册"
+    ],
+    "semantic_variations": [
+      "飞猫云最新网址",
+      "飞猫云打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/weifeng/": {
+    "article_id": "art-review-weifeng",
+    "title": "微风网络 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/weifeng/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "weifeng",
+    "intent": "Comparison",
+    "primary_keyword": "微风网络怎么样",
+    "secondary_keywords": [
+      "微风网络评测2026",
+      "微风网络测速实测",
+      "微风网络优缺点",
+      "微风网络适合谁"
+    ],
+    "semantic_variations": [
+      "微风网络好用吗",
+      "微风网络稳定不稳定",
+      "微风网络跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/weifeng/": {
+    "article_id": "art-brand-weifeng",
+    "title": "微风网络 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/weifeng/",
+    "cluster_l1": "brands",
+    "cluster_l2": "weifeng",
+    "intent": "Commercial",
+    "primary_keyword": "微风网络官网入口",
+    "secondary_keywords": [
+      "微风网络优惠码",
+      "微风网络套餐价格",
+      "微风网络注册"
+    ],
+    "semantic_variations": [
+      "微风网络最新网址",
+      "微风网络打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/dalaoyun/": {
+    "article_id": "art-review-dalaoyun",
+    "title": "大佬云 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/dalaoyun/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "dalaoyun",
+    "intent": "Comparison",
+    "primary_keyword": "大佬云怎么样",
+    "secondary_keywords": [
+      "大佬云评测2026",
+      "大佬云测速实测",
+      "大佬云优缺点",
+      "大佬云适合谁"
+    ],
+    "semantic_variations": [
+      "大佬云好用吗",
+      "大佬云稳定不稳定",
+      "大佬云跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/dalaoyun/": {
+    "article_id": "art-brand-dalaoyun",
+    "title": "大佬云 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/dalaoyun/",
+    "cluster_l1": "brands",
+    "cluster_l2": "dalaoyun",
+    "intent": "Commercial",
+    "primary_keyword": "大佬云官网入口",
+    "secondary_keywords": [
+      "大佬云优惠码",
+      "大佬云套餐价格",
+      "大佬云注册"
+    ],
+    "semantic_variations": [
+      "大佬云最新网址",
+      "大佬云打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/xingdaomeng/": {
+    "article_id": "art-review-xingdaomeng",
+    "title": "星岛梦 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/xingdaomeng/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "xingdaomeng",
+    "intent": "Comparison",
+    "primary_keyword": "星岛梦怎么样",
+    "secondary_keywords": [
+      "星岛梦评测2026",
+      "星岛梦测速实测",
+      "星岛梦优缺点",
+      "星岛梦适合谁"
+    ],
+    "semantic_variations": [
+      "星岛梦好用吗",
+      "星岛梦稳定不稳定",
+      "星岛梦跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/xingdaomeng/": {
+    "article_id": "art-brand-xingdaomeng",
+    "title": "星岛梦 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/xingdaomeng/",
+    "cluster_l1": "brands",
+    "cluster_l2": "xingdaomeng",
+    "intent": "Commercial",
+    "primary_keyword": "星岛梦官网入口",
+    "secondary_keywords": [
+      "星岛梦优惠码",
+      "星岛梦套餐价格",
+      "星岛梦注册"
+    ],
+    "semantic_variations": [
+      "星岛梦最新网址",
+      "星岛梦打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/ermao/": {
+    "article_id": "art-review-ermao",
+    "title": "二猫云 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/ermao/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "ermao",
+    "intent": "Comparison",
+    "primary_keyword": "二猫云怎么样",
+    "secondary_keywords": [
+      "二猫云评测2026",
+      "二猫云测速实测",
+      "二猫云优缺点",
+      "二猫云适合谁"
+    ],
+    "semantic_variations": [
+      "二猫云好用吗",
+      "二猫云稳定不稳定",
+      "二猫云跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/ermao/": {
+    "article_id": "art-brand-ermao",
+    "title": "二猫云 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/ermao/",
+    "cluster_l1": "brands",
+    "cluster_l2": "ermao",
+    "intent": "Commercial",
+    "primary_keyword": "二猫云官网入口",
+    "secondary_keywords": [
+      "二猫云优惠码",
+      "二猫云套餐价格",
+      "二猫云注册"
+    ],
+    "semantic_variations": [
+      "二猫云最新网址",
+      "二猫云打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/wuyou/": {
+    "article_id": "art-review-wuyou",
+    "title": "无忧链接 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/wuyou/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "wuyou",
+    "intent": "Comparison",
+    "primary_keyword": "无忧链接怎么样",
+    "secondary_keywords": [
+      "无忧链接评测2026",
+      "无忧链接测速实测",
+      "无忧链接优缺点",
+      "无忧链接适合谁"
+    ],
+    "semantic_variations": [
+      "无忧链接好用吗",
+      "无忧链接稳定不稳定",
+      "无忧链接跑路风险"
+    ],
+    "lsi_keywords": [
+      "Mixed",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/wuyou/": {
+    "article_id": "art-brand-wuyou",
+    "title": "无忧链接 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/wuyou/",
+    "cluster_l1": "brands",
+    "cluster_l2": "wuyou",
+    "intent": "Commercial",
+    "primary_keyword": "无忧链接官网入口",
+    "secondary_keywords": [
+      "无忧链接优惠码",
+      "无忧链接套餐价格",
+      "无忧链接注册"
+    ],
+    "semantic_variations": [
+      "无忧链接最新网址",
+      "无忧链接打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/weitu/": {
+    "article_id": "art-review-weitu",
+    "title": "唯兔云 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/weitu/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "weitu",
+    "intent": "Comparison",
+    "primary_keyword": "唯兔云怎么样",
+    "secondary_keywords": [
+      "唯兔云评测2026",
+      "唯兔云测速实测",
+      "唯兔云优缺点",
+      "唯兔云适合谁"
+    ],
+    "semantic_variations": [
+      "唯兔云好用吗",
+      "唯兔云稳定不稳定",
+      "唯兔云跑路风险"
+    ],
+    "lsi_keywords": [
+      "IPLC",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/weitu/": {
+    "article_id": "art-brand-weitu",
+    "title": "唯兔云 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/weitu/",
+    "cluster_l1": "brands",
+    "cluster_l2": "weitu",
+    "intent": "Commercial",
+    "primary_keyword": "唯兔云官网入口",
+    "secondary_keywords": [
+      "唯兔云优惠码",
+      "唯兔云套餐价格",
+      "唯兔云注册"
+    ],
+    "semantic_variations": [
+      "唯兔云最新网址",
+      "唯兔云打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/firefly/": {
+    "article_id": "art-review-firefly",
+    "title": "Firefly 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/firefly/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "firefly",
+    "intent": "Comparison",
+    "primary_keyword": "Firefly怎么样",
+    "secondary_keywords": [
+      "Firefly评测2026",
+      "Firefly测速实测",
+      "Firefly优缺点",
+      "Firefly适合谁"
+    ],
+    "semantic_variations": [
+      "Firefly好用吗",
+      "Firefly稳定不稳定",
+      "Firefly跑路风险"
+    ],
+    "lsi_keywords": [
+      "IPLC",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/firefly/": {
+    "article_id": "art-brand-firefly",
+    "title": "Firefly 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/firefly/",
+    "cluster_l1": "brands",
+    "cluster_l2": "firefly",
+    "intent": "Commercial",
+    "primary_keyword": "Firefly官网入口",
+    "secondary_keywords": [
+      "Firefly优惠码",
+      "Firefly套餐价格",
+      "Firefly注册"
+    ],
+    "semantic_variations": [
+      "Firefly最新网址",
+      "Firefly打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/yuzhou/": {
+    "article_id": "art-review-yuzhou",
+    "title": "宇宙云 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/yuzhou/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "yuzhou",
+    "intent": "Comparison",
+    "primary_keyword": "宇宙云怎么样",
+    "secondary_keywords": [
+      "宇宙云评测2026",
+      "宇宙云测速实测",
+      "宇宙云优缺点",
+      "宇宙云适合谁"
+    ],
+    "semantic_variations": [
+      "宇宙云好用吗",
+      "宇宙云稳定不稳定",
+      "宇宙云跑路风险"
+    ],
+    "lsi_keywords": [
+      "Mixed",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/yuzhou/": {
+    "article_id": "art-brand-yuzhou",
+    "title": "宇宙云 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/yuzhou/",
+    "cluster_l1": "brands",
+    "cluster_l2": "yuzhou",
+    "intent": "Commercial",
+    "primary_keyword": "宇宙云官网入口",
+    "secondary_keywords": [
+      "宇宙云优惠码",
+      "宇宙云套餐价格",
+      "宇宙云注册"
+    ],
+    "semantic_variations": [
+      "宇宙云最新网址",
+      "宇宙云打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/u1s1/": {
+    "article_id": "art-review-u1s1",
+    "title": "U1S1 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/u1s1/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "u1s1",
+    "intent": "Comparison",
+    "primary_keyword": "U1S1怎么样",
+    "secondary_keywords": [
+      "U1S1评测2026",
+      "U1S1测速实测",
+      "U1S1优缺点",
+      "U1S1适合谁"
+    ],
+    "semantic_variations": [
+      "U1S1好用吗",
+      "U1S1稳定不稳定",
+      "U1S1跑路风险"
+    ],
+    "lsi_keywords": [
+      "IPLC",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/u1s1/": {
+    "article_id": "art-brand-u1s1",
+    "title": "U1S1 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/u1s1/",
+    "cluster_l1": "brands",
+    "cluster_l2": "u1s1",
+    "intent": "Commercial",
+    "primary_keyword": "U1S1官网入口",
+    "secondary_keywords": [
+      "U1S1优惠码",
+      "U1S1套餐价格",
+      "U1S1注册"
+    ],
+    "semantic_variations": [
+      "U1S1最新网址",
+      "U1S1打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/lingmao/": {
+    "article_id": "art-review-lingmao",
+    "title": "灵猫网络 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/lingmao/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "lingmao",
+    "intent": "Comparison",
+    "primary_keyword": "灵猫网络怎么样",
+    "secondary_keywords": [
+      "灵猫网络评测2026",
+      "灵猫网络测速实测",
+      "灵猫网络优缺点",
+      "灵猫网络适合谁"
+    ],
+    "semantic_variations": [
+      "灵猫网络好用吗",
+      "灵猫网络稳定不稳定",
+      "灵猫网络跑路风险"
+    ],
+    "lsi_keywords": [
+      "Mixed",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/lingmao/": {
+    "article_id": "art-brand-lingmao",
+    "title": "灵猫网络 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/lingmao/",
+    "cluster_l1": "brands",
+    "cluster_l2": "lingmao",
+    "intent": "Commercial",
+    "primary_keyword": "灵猫网络官网入口",
+    "secondary_keywords": [
+      "灵猫网络优惠码",
+      "灵猫网络套餐价格",
+      "灵猫网络注册"
+    ],
+    "semantic_variations": [
+      "灵猫网络最新网址",
+      "灵猫网络打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/jilian/": {
+    "article_id": "art-review-jilian",
+    "title": "极连云 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/jilian/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "jilian",
+    "intent": "Comparison",
+    "primary_keyword": "极连云怎么样",
+    "secondary_keywords": [
+      "极连云评测2026",
+      "极连云测速实测",
+      "极连云优缺点",
+      "极连云适合谁"
+    ],
+    "semantic_variations": [
+      "极连云好用吗",
+      "极连云稳定不稳定",
+      "极连云跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/jilian/": {
+    "article_id": "art-brand-jilian",
+    "title": "极连云 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/jilian/",
+    "cluster_l1": "brands",
+    "cluster_l2": "jilian",
+    "intent": "Commercial",
+    "primary_keyword": "极连云官网入口",
+    "secondary_keywords": [
+      "极连云优惠码",
+      "极连云套餐价格",
+      "极连云注册"
+    ],
+    "semantic_variations": [
+      "极连云最新网址",
+      "极连云打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/guangnian/": {
+    "article_id": "art-review-guangnian",
+    "title": "光年梯 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/guangnian/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "guangnian",
+    "intent": "Comparison",
+    "primary_keyword": "光年梯怎么样",
+    "secondary_keywords": [
+      "光年梯评测2026",
+      "光年梯测速实测",
+      "光年梯优缺点",
+      "光年梯适合谁"
+    ],
+    "semantic_variations": [
+      "光年梯好用吗",
+      "光年梯稳定不稳定",
+      "光年梯跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/guangnian/": {
+    "article_id": "art-brand-guangnian",
+    "title": "光年梯 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/guangnian/",
+    "cluster_l1": "brands",
+    "cluster_l2": "guangnian",
+    "intent": "Commercial",
+    "primary_keyword": "光年梯官网入口",
+    "secondary_keywords": [
+      "光年梯优惠码",
+      "光年梯套餐价格",
+      "光年梯注册"
+    ],
+    "semantic_variations": [
+      "光年梯最新网址",
+      "光年梯打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/yifan/": {
+    "article_id": "art-review-yifan",
+    "title": "一翻云 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/yifan/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "yifan",
+    "intent": "Comparison",
+    "primary_keyword": "一翻云怎么样",
+    "secondary_keywords": [
+      "一翻云评测2026",
+      "一翻云测速实测",
+      "一翻云优缺点",
+      "一翻云适合谁"
+    ],
+    "semantic_variations": [
+      "一翻云好用吗",
+      "一翻云稳定不稳定",
+      "一翻云跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/yifan/": {
+    "article_id": "art-brand-yifan",
+    "title": "一翻云 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/yifan/",
+    "cluster_l1": "brands",
+    "cluster_l2": "yifan",
+    "intent": "Commercial",
+    "primary_keyword": "一翻云官网入口",
+    "secondary_keywords": [
+      "一翻云优惠码",
+      "一翻云套餐价格",
+      "一翻云注册"
+    ],
+    "semantic_variations": [
+      "一翻云最新网址",
+      "一翻云打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/sogo/": {
+    "article_id": "art-review-sogo",
+    "title": "SOGO云 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/sogo/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "sogo",
+    "intent": "Comparison",
+    "primary_keyword": "SOGO云怎么样",
+    "secondary_keywords": [
+      "SOGO云评测2026",
+      "SOGO云测速实测",
+      "SOGO云优缺点",
+      "SOGO云适合谁"
+    ],
+    "semantic_variations": [
+      "SOGO云好用吗",
+      "SOGO云稳定不稳定",
+      "SOGO云跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/sogo/": {
+    "article_id": "art-brand-sogo",
+    "title": "SOGO云 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/sogo/",
+    "cluster_l1": "brands",
+    "cluster_l2": "sogo",
+    "intent": "Commercial",
+    "primary_keyword": "SOGO云官网入口",
+    "secondary_keywords": [
+      "SOGO云优惠码",
+      "SOGO云套餐价格",
+      "SOGO云注册"
+    ],
+    "semantic_variations": [
+      "SOGO云最新网址",
+      "SOGO云打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/kexin/": {
+    "article_id": "art-review-kexin",
+    "title": "可信云 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/kexin/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "kexin",
+    "intent": "Comparison",
+    "primary_keyword": "可信云怎么样",
+    "secondary_keywords": [
+      "可信云评测2026",
+      "可信云测速实测",
+      "可信云优缺点",
+      "可信云适合谁"
+    ],
+    "semantic_variations": [
+      "可信云好用吗",
+      "可信云稳定不稳定",
+      "可信云跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/kexin/": {
+    "article_id": "art-brand-kexin",
+    "title": "可信云 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/kexin/",
+    "cluster_l1": "brands",
+    "cluster_l2": "kexin",
+    "intent": "Commercial",
+    "primary_keyword": "可信云官网入口",
+    "secondary_keywords": [
+      "可信云优惠码",
+      "可信云套餐价格",
+      "可信云注册"
+    ],
+    "semantic_variations": [
+      "可信云最新网址",
+      "可信云打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/sujie/": {
+    "article_id": "art-review-sujie",
+    "title": "速界 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/sujie/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "sujie",
+    "intent": "Comparison",
+    "primary_keyword": "速界怎么样",
+    "secondary_keywords": [
+      "速界评测2026",
+      "速界测速实测",
+      "速界优缺点",
+      "速界适合谁"
+    ],
+    "semantic_variations": [
+      "速界好用吗",
+      "速界稳定不稳定",
+      "速界跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/sujie/": {
+    "article_id": "art-brand-sujie",
+    "title": "速界 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/sujie/",
+    "cluster_l1": "brands",
+    "cluster_l2": "sujie",
+    "intent": "Commercial",
+    "primary_keyword": "速界官网入口",
+    "secondary_keywords": [
+      "速界优惠码",
+      "速界套餐价格",
+      "速界注册"
+    ],
+    "semantic_variations": [
+      "速界最新网址",
+      "速界打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/shanyue/": {
+    "article_id": "art-review-shanyue",
+    "title": "闪跃 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/shanyue/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "shanyue",
+    "intent": "Comparison",
+    "primary_keyword": "闪跃怎么样",
+    "secondary_keywords": [
+      "闪跃评测2026",
+      "闪跃测速实测",
+      "闪跃优缺点",
+      "闪跃适合谁"
+    ],
+    "semantic_variations": [
+      "闪跃好用吗",
+      "闪跃稳定不稳定",
+      "闪跃跑路风险"
+    ],
+    "lsi_keywords": [
+      "IPLC",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/shanyue/": {
+    "article_id": "art-brand-shanyue",
+    "title": "闪跃 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/shanyue/",
+    "cluster_l1": "brands",
+    "cluster_l2": "shanyue",
+    "intent": "Commercial",
+    "primary_keyword": "闪跃官网入口",
+    "secondary_keywords": [
+      "闪跃优惠码",
+      "闪跃套餐价格",
+      "闪跃注册"
+    ],
+    "semantic_variations": [
+      "闪跃最新网址",
+      "闪跃打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/quanqiu/": {
+    "article_id": "art-review-quanqiu",
+    "title": "全球云 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/quanqiu/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "quanqiu",
+    "intent": "Comparison",
+    "primary_keyword": "全球云怎么样",
+    "secondary_keywords": [
+      "全球云评测2026",
+      "全球云测速实测",
+      "全球云优缺点",
+      "全球云适合谁"
+    ],
+    "semantic_variations": [
+      "全球云好用吗",
+      "全球云稳定不稳定",
+      "全球云跑路风险"
+    ],
+    "lsi_keywords": [
+      "Mixed",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/quanqiu/": {
+    "article_id": "art-brand-quanqiu",
+    "title": "全球云 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/quanqiu/",
+    "cluster_l1": "brands",
+    "cluster_l2": "quanqiu",
+    "intent": "Commercial",
+    "primary_keyword": "全球云官网入口",
+    "secondary_keywords": [
+      "全球云优惠码",
+      "全球云套餐价格",
+      "全球云注册"
+    ],
+    "semantic_variations": [
+      "全球云最新网址",
+      "全球云打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/shandianshu/": {
+    "article_id": "art-review-shandianshu",
+    "title": "闪电鼠 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/shandianshu/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "shandianshu",
+    "intent": "Comparison",
+    "primary_keyword": "闪电鼠怎么样",
+    "secondary_keywords": [
+      "闪电鼠评测2026",
+      "闪电鼠测速实测",
+      "闪电鼠优缺点",
+      "闪电鼠适合谁"
+    ],
+    "semantic_variations": [
+      "闪电鼠好用吗",
+      "闪电鼠稳定不稳定",
+      "闪电鼠跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/shandianshu/": {
+    "article_id": "art-brand-shandianshu",
+    "title": "闪电鼠 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/shandianshu/",
+    "cluster_l1": "brands",
+    "cluster_l2": "shandianshu",
+    "intent": "Commercial",
+    "primary_keyword": "闪电鼠官网入口",
+    "secondary_keywords": [
+      "闪电鼠优惠码",
+      "闪电鼠套餐价格",
+      "闪电鼠注册"
+    ],
+    "semantic_variations": [
+      "闪电鼠最新网址",
+      "闪电鼠打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/yunjiexian/": {
+    "article_id": "art-review-yunjiexian",
+    "title": "云界线 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/yunjiexian/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "yunjiexian",
+    "intent": "Comparison",
+    "primary_keyword": "云界线怎么样",
+    "secondary_keywords": [
+      "云界线评测2026",
+      "云界线测速实测",
+      "云界线优缺点",
+      "云界线适合谁"
+    ],
+    "semantic_variations": [
+      "云界线好用吗",
+      "云界线稳定不稳定",
+      "云界线跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/yunjiexian/": {
+    "article_id": "art-brand-yunjiexian",
+    "title": "云界线 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/yunjiexian/",
+    "cluster_l1": "brands",
+    "cluster_l2": "yunjiexian",
+    "intent": "Commercial",
+    "primary_keyword": "云界线官网入口",
+    "secondary_keywords": [
+      "云界线优惠码",
+      "云界线套餐价格",
+      "云界线注册"
+    ],
+    "semantic_variations": [
+      "云界线最新网址",
+      "云界线打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/liulianyun/": {
+    "article_id": "art-review-liulianyun",
+    "title": "榴莲云 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/liulianyun/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "liulianyun",
+    "intent": "Comparison",
+    "primary_keyword": "榴莲云怎么样",
+    "secondary_keywords": [
+      "榴莲云评测2026",
+      "榴莲云测速实测",
+      "榴莲云优缺点",
+      "榴莲云适合谁"
+    ],
+    "semantic_variations": [
+      "榴莲云好用吗",
+      "榴莲云稳定不稳定",
+      "榴莲云跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/liulianyun/": {
+    "article_id": "art-brand-liulianyun",
+    "title": "榴莲云 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/liulianyun/",
+    "cluster_l1": "brands",
+    "cluster_l2": "liulianyun",
+    "intent": "Commercial",
+    "primary_keyword": "榴莲云官网入口",
+    "secondary_keywords": [
+      "榴莲云优惠码",
+      "榴莲云套餐价格",
+      "榴莲云注册"
+    ],
+    "semantic_variations": [
+      "榴莲云最新网址",
+      "榴莲云打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/shenxing/": {
+    "article_id": "art-review-shenxing",
+    "title": "神行加速 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/shenxing/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "shenxing",
+    "intent": "Comparison",
+    "primary_keyword": "神行加速怎么样",
+    "secondary_keywords": [
+      "神行加速评测2026",
+      "神行加速测速实测",
+      "神行加速优缺点",
+      "神行加速适合谁"
+    ],
+    "semantic_variations": [
+      "神行加速好用吗",
+      "神行加速稳定不稳定",
+      "神行加速跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/shenxing/": {
+    "article_id": "art-brand-shenxing",
+    "title": "神行加速 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/shenxing/",
+    "cluster_l1": "brands",
+    "cluster_l2": "shenxing",
+    "intent": "Commercial",
+    "primary_keyword": "神行加速官网入口",
+    "secondary_keywords": [
+      "神行加速优惠码",
+      "神行加速套餐价格",
+      "神行加速注册"
+    ],
+    "semantic_variations": [
+      "神行加速最新网址",
+      "神行加速打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/huanqiuti/": {
+    "article_id": "art-review-huanqiuti",
+    "title": "环球梯 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/huanqiuti/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "huanqiuti",
+    "intent": "Comparison",
+    "primary_keyword": "环球梯怎么样",
+    "secondary_keywords": [
+      "环球梯评测2026",
+      "环球梯测速实测",
+      "环球梯优缺点",
+      "环球梯适合谁"
+    ],
+    "semantic_variations": [
+      "环球梯好用吗",
+      "环球梯稳定不稳定",
+      "环球梯跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/huanqiuti/": {
+    "article_id": "art-brand-huanqiuti",
+    "title": "环球梯 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/huanqiuti/",
+    "cluster_l1": "brands",
+    "cluster_l2": "huanqiuti",
+    "intent": "Commercial",
+    "primary_keyword": "环球梯官网入口",
+    "secondary_keywords": [
+      "环球梯优惠码",
+      "环球梯套餐价格",
+      "环球梯注册"
+    ],
+    "semantic_variations": [
+      "环球梯最新网址",
+      "环球梯打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/yinxingren/": {
+    "article_id": "art-review-yinxingren",
+    "title": "隐形人 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/yinxingren/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "yinxingren",
+    "intent": "Comparison",
+    "primary_keyword": "隐形人怎么样",
+    "secondary_keywords": [
+      "隐形人评测2026",
+      "隐形人测速实测",
+      "隐形人优缺点",
+      "隐形人适合谁"
+    ],
+    "semantic_variations": [
+      "隐形人好用吗",
+      "隐形人稳定不稳定",
+      "隐形人跑路风险"
+    ],
+    "lsi_keywords": [
+      "IPLC",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/yinxingren/": {
+    "article_id": "art-brand-yinxingren",
+    "title": "隐形人 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/yinxingren/",
+    "cluster_l1": "brands",
+    "cluster_l2": "yinxingren",
+    "intent": "Commercial",
+    "primary_keyword": "隐形人官网入口",
+    "secondary_keywords": [
+      "隐形人优惠码",
+      "隐形人套餐价格",
+      "隐形人注册"
+    ],
+    "semantic_variations": [
+      "隐形人最新网址",
+      "隐形人打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/tiziyun/": {
+    "article_id": "art-review-tiziyun",
+    "title": "梯子云 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/tiziyun/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "tiziyun",
+    "intent": "Comparison",
+    "primary_keyword": "梯子云怎么样",
+    "secondary_keywords": [
+      "梯子云评测2026",
+      "梯子云测速实测",
+      "梯子云优缺点",
+      "梯子云适合谁"
+    ],
+    "semantic_variations": [
+      "梯子云好用吗",
+      "梯子云稳定不稳定",
+      "梯子云跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/tiziyun/": {
+    "article_id": "art-brand-tiziyun",
+    "title": "梯子云 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/tiziyun/",
+    "cluster_l1": "brands",
+    "cluster_l2": "tiziyun",
+    "intent": "Commercial",
+    "primary_keyword": "梯子云官网入口",
+    "secondary_keywords": [
+      "梯子云优惠码",
+      "梯子云套餐价格",
+      "梯子云注册"
+    ],
+    "semantic_variations": [
+      "梯子云最新网址",
+      "梯子云打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/lingdong/": {
+    "article_id": "art-review-lingdong",
+    "title": "灵动云 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/lingdong/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "lingdong",
+    "intent": "Comparison",
+    "primary_keyword": "灵动云怎么样",
+    "secondary_keywords": [
+      "灵动云评测2026",
+      "灵动云测速实测",
+      "灵动云优缺点",
+      "灵动云适合谁"
+    ],
+    "semantic_variations": [
+      "灵动云好用吗",
+      "灵动云稳定不稳定",
+      "灵动云跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/lingdong/": {
+    "article_id": "art-brand-lingdong",
+    "title": "灵动云 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/lingdong/",
+    "cluster_l1": "brands",
+    "cluster_l2": "lingdong",
+    "intent": "Commercial",
+    "primary_keyword": "灵动云官网入口",
+    "secondary_keywords": [
+      "灵动云优惠码",
+      "灵动云套餐价格",
+      "灵动云注册"
+    ],
+    "semantic_variations": [
+      "灵动云最新网址",
+      "灵动云打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/langwang/": {
+    "article_id": "art-review-langwang",
+    "title": "浪网 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/langwang/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "langwang",
+    "intent": "Comparison",
+    "primary_keyword": "浪网怎么样",
+    "secondary_keywords": [
+      "浪网评测2026",
+      "浪网测速实测",
+      "浪网优缺点",
+      "浪网适合谁"
+    ],
+    "semantic_variations": [
+      "浪网好用吗",
+      "浪网稳定不稳定",
+      "浪网跑路风险"
+    ],
+    "lsi_keywords": [
+      "IEPL",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/langwang/": {
+    "article_id": "art-brand-langwang",
+    "title": "浪网 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/langwang/",
+    "cluster_l1": "brands",
+    "cluster_l2": "langwang",
+    "intent": "Commercial",
+    "primary_keyword": "浪网官网入口",
+    "secondary_keywords": [
+      "浪网优惠码",
+      "浪网套餐价格",
+      "浪网注册"
+    ],
+    "semantic_variations": [
+      "浪网最新网址",
+      "浪网打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/reviews/edgenova/": {
+    "article_id": "art-review-edgenova",
+    "title": "边缘节点 EdgeNova 深度评测报告 (2026最新实测与优缺点)",
+    "target_url": "/reviews/edgenova/",
+    "cluster_l1": "reviews",
+    "cluster_l2": "edgenova",
+    "intent": "Comparison",
+    "primary_keyword": "边缘节点 EdgeNova怎么样",
+    "secondary_keywords": [
+      "边缘节点 EdgeNova评测2026",
+      "边缘节点 EdgeNova测速实测",
+      "边缘节点 EdgeNova优缺点",
+      "边缘节点 EdgeNova适合谁"
+    ],
+    "semantic_variations": [
+      "边缘节点 EdgeNova好用吗",
+      "边缘节点 EdgeNova稳定不稳定",
+      "边缘节点 EdgeNova跑路风险"
+    ],
+    "lsi_keywords": [
+      "IPLC",
+      "晚高峰丢包",
+      "流媒体解锁",
+      "套餐性价比",
+      "自研客户端"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/brands/edgenova/": {
+    "article_id": "art-brand-edgenova",
+    "title": "边缘节点 EdgeNova 官网入口核验、最新套餐与优惠码",
+    "target_url": "/brands/edgenova/",
+    "cluster_l1": "brands",
+    "cluster_l2": "edgenova",
+    "intent": "Commercial",
+    "primary_keyword": "边缘节点 EdgeNova官网入口",
+    "secondary_keywords": [
+      "边缘节点 EdgeNova优惠码",
+      "边缘节点 EdgeNova套餐价格",
+      "边缘节点 EdgeNova注册"
+    ],
+    "semantic_variations": [
+      "边缘节点 EdgeNova最新网址",
+      "边缘节点 EdgeNova打折活动"
+    ],
+    "lsi_keywords": [
+      "官方正版",
+      "AFF透明披露",
+      "套餐周期",
+      "VLESS协议"
+    ],
+    "word_count_target": 3500,
+    "status": "published"
+  },
+  "/compare/guangsu-vs-muguang/": {
+    "article_id": "art-compare-guangsu-vs-muguang",
+    "title": "光速云 vs 暮光云 深度横向评测与选购对比",
+    "target_url": "/compare/guangsu-vs-muguang/",
+    "cluster_l1": "compare",
+    "cluster_l2": "guangsu-vs-muguang",
+    "intent": "Comparison",
+    "primary_keyword": "光速云和暮光云哪个好",
+    "secondary_keywords": [
+      "光速云对比暮光云",
+      "光速云与暮光云延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买光速云还是买暮光云",
+      "光速云和暮光云谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/feimao-vs-weifeng/": {
+    "article_id": "art-compare-feimao-vs-weifeng",
+    "title": "飞猫云 vs 微风网络 深度横向评测与选购对比",
+    "target_url": "/compare/feimao-vs-weifeng/",
+    "cluster_l1": "compare",
+    "cluster_l2": "feimao-vs-weifeng",
+    "intent": "Comparison",
+    "primary_keyword": "飞猫云和微风网络哪个好",
+    "secondary_keywords": [
+      "飞猫云对比微风网络",
+      "飞猫云与微风网络延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买飞猫云还是买微风网络",
+      "飞猫云和微风网络谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/weitu-vs-firefly/": {
+    "article_id": "art-compare-weitu-vs-firefly",
+    "title": "唯兔云 vs Firefly萤火虫 深度横向评测与选购对比",
+    "target_url": "/compare/weitu-vs-firefly/",
+    "cluster_l1": "compare",
+    "cluster_l2": "weitu-vs-firefly",
+    "intent": "Comparison",
+    "primary_keyword": "唯兔云和Firefly萤火虫哪个好",
+    "secondary_keywords": [
+      "唯兔云对比Firefly萤火虫",
+      "唯兔云与Firefly萤火虫延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买唯兔云还是买Firefly萤火虫",
+      "唯兔云和Firefly萤火虫谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/jilian-vs-guangnian/": {
+    "article_id": "art-compare-jilian-vs-guangnian",
+    "title": "极连快线 vs 光年网络 深度横向评测与选购对比",
+    "target_url": "/compare/jilian-vs-guangnian/",
+    "cluster_l1": "compare",
+    "cluster_l2": "jilian-vs-guangnian",
+    "intent": "Comparison",
+    "primary_keyword": "极连快线和光年网络哪个好",
+    "secondary_keywords": [
+      "极连快线对比光年网络",
+      "极连快线与光年网络延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买极连快线还是买光年网络",
+      "极连快线和光年网络谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/dalaoyun-vs-shandianshu/": {
+    "article_id": "art-compare-dalaoyun-vs-shandianshu",
+    "title": "大佬云 vs 闪电鼠 深度横向评测与选购对比",
+    "target_url": "/compare/dalaoyun-vs-shandianshu/",
+    "cluster_l1": "compare",
+    "cluster_l2": "dalaoyun-vs-shandianshu",
+    "intent": "Comparison",
+    "primary_keyword": "大佬云和闪电鼠哪个好",
+    "secondary_keywords": [
+      "大佬云对比闪电鼠",
+      "大佬云与闪电鼠延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买大佬云还是买闪电鼠",
+      "大佬云和闪电鼠谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/sogo-vs-yinxingren/": {
+    "article_id": "art-compare-sogo-vs-yinxingren",
+    "title": "SogoCloud vs 隐形人加速器 深度横向评测与选购对比",
+    "target_url": "/compare/sogo-vs-yinxingren/",
+    "cluster_l1": "compare",
+    "cluster_l2": "sogo-vs-yinxingren",
+    "intent": "Comparison",
+    "primary_keyword": "SogoCloud和隐形人加速器哪个好",
+    "secondary_keywords": [
+      "SogoCloud对比隐形人加速器",
+      "SogoCloud与隐形人加速器延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买SogoCloud还是买隐形人加速器",
+      "SogoCloud和隐形人加速器谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/xingdaomeng-vs-ermao/": {
+    "article_id": "art-compare-xingdaomeng-vs-ermao",
+    "title": "星岛梦 vs 二猫云 深度横向评测与选购对比",
+    "target_url": "/compare/xingdaomeng-vs-ermao/",
+    "cluster_l1": "compare",
+    "cluster_l2": "xingdaomeng-vs-ermao",
+    "intent": "Comparison",
+    "primary_keyword": "星岛梦和二猫云哪个好",
+    "secondary_keywords": [
+      "星岛梦对比二猫云",
+      "星岛梦与二猫云延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买星岛梦还是买二猫云",
+      "星岛梦和二猫云谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/u1s1-vs-sujie/": {
+    "article_id": "art-compare-u1s1-vs-sujie",
+    "title": "U1S1 vs 速捷网络 深度横向评测与选购对比",
+    "target_url": "/compare/u1s1-vs-sujie/",
+    "cluster_l1": "compare",
+    "cluster_l2": "u1s1-vs-sujie",
+    "intent": "Comparison",
+    "primary_keyword": "U1S1和速捷网络哪个好",
+    "secondary_keywords": [
+      "U1S1对比速捷网络",
+      "U1S1与速捷网络延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买U1S1还是买速捷网络",
+      "U1S1和速捷网络谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/guangsu-vs-weitu/": {
+    "article_id": "art-compare-guangsu-vs-weitu",
+    "title": "光速云 vs 唯兔云 深度横向评测与选购对比",
+    "target_url": "/compare/guangsu-vs-weitu/",
+    "cluster_l1": "compare",
+    "cluster_l2": "guangsu-vs-weitu",
+    "intent": "Comparison",
+    "primary_keyword": "光速云和唯兔云哪个好",
+    "secondary_keywords": [
+      "光速云对比唯兔云",
+      "光速云与唯兔云延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买光速云还是买唯兔云",
+      "光速云和唯兔云谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/muguang-vs-ermao/": {
+    "article_id": "art-compare-muguang-vs-ermao",
+    "title": "暮光云 vs 二猫云 深度横向评测与选购对比",
+    "target_url": "/compare/muguang-vs-ermao/",
+    "cluster_l1": "compare",
+    "cluster_l2": "muguang-vs-ermao",
+    "intent": "Comparison",
+    "primary_keyword": "暮光云和二猫云哪个好",
+    "secondary_keywords": [
+      "暮光云对比二猫云",
+      "暮光云与二猫云延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买暮光云还是买二猫云",
+      "暮光云和二猫云谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/feimao-vs-lingmao/": {
+    "article_id": "art-compare-feimao-vs-lingmao",
+    "title": "飞猫云 vs 灵猫云 深度横向评测与选购对比",
+    "target_url": "/compare/feimao-vs-lingmao/",
+    "cluster_l1": "compare",
+    "cluster_l2": "feimao-vs-lingmao",
+    "intent": "Comparison",
+    "primary_keyword": "飞猫云和灵猫云哪个好",
+    "secondary_keywords": [
+      "飞猫云对比灵猫云",
+      "飞猫云与灵猫云延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买飞猫云还是买灵猫云",
+      "飞猫云和灵猫云谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/weifeng-vs-jilian/": {
+    "article_id": "art-compare-weifeng-vs-jilian",
+    "title": "微风网络 vs 极连快线 深度横向评测与选购对比",
+    "target_url": "/compare/weifeng-vs-jilian/",
+    "cluster_l1": "compare",
+    "cluster_l2": "weifeng-vs-jilian",
+    "intent": "Comparison",
+    "primary_keyword": "微风网络和极连快线哪个好",
+    "secondary_keywords": [
+      "微风网络对比极连快线",
+      "微风网络与极连快线延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买微风网络还是买极连快线",
+      "微风网络和极连快线谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/shandianshu-vs-yunjiexian/": {
+    "article_id": "art-compare-shandianshu-vs-yunjiexian",
+    "title": "闪电鼠 vs 云界线 深度横向评测与选购对比",
+    "target_url": "/compare/shandianshu-vs-yunjiexian/",
+    "cluster_l1": "compare",
+    "cluster_l2": "shandianshu-vs-yunjiexian",
+    "intent": "Comparison",
+    "primary_keyword": "闪电鼠和云界线哪个好",
+    "secondary_keywords": [
+      "闪电鼠对比云界线",
+      "闪电鼠与云界线延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买闪电鼠还是买云界线",
+      "闪电鼠和云界线谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/dalaoyun-vs-liulianyun/": {
+    "article_id": "art-compare-dalaoyun-vs-liulianyun",
+    "title": "大佬云 vs 榴莲云 深度横向评测与选购对比",
+    "target_url": "/compare/dalaoyun-vs-liulianyun/",
+    "cluster_l1": "compare",
+    "cluster_l2": "dalaoyun-vs-liulianyun",
+    "intent": "Comparison",
+    "primary_keyword": "大佬云和榴莲云哪个好",
+    "secondary_keywords": [
+      "大佬云对比榴莲云",
+      "大佬云与榴莲云延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买大佬云还是买榴莲云",
+      "大佬云和榴莲云谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/xingdaomeng-vs-tiziyun/": {
+    "article_id": "art-compare-xingdaomeng-vs-tiziyun",
+    "title": "星岛梦 vs 梯子云 深度横向评测与选购对比",
+    "target_url": "/compare/xingdaomeng-vs-tiziyun/",
+    "cluster_l1": "compare",
+    "cluster_l2": "xingdaomeng-vs-tiziyun",
+    "intent": "Comparison",
+    "primary_keyword": "星岛梦和梯子云哪个好",
+    "secondary_keywords": [
+      "星岛梦对比梯子云",
+      "星岛梦与梯子云延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买星岛梦还是买梯子云",
+      "星岛梦和梯子云谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/sujie-vs-kexin/": {
+    "article_id": "art-compare-sujie-vs-kexin",
+    "title": "速捷网络 vs 可信网络 深度横向评测与选购对比",
+    "target_url": "/compare/sujie-vs-kexin/",
+    "cluster_l1": "compare",
+    "cluster_l2": "sujie-vs-kexin",
+    "intent": "Comparison",
+    "primary_keyword": "速捷网络和可信网络哪个好",
+    "secondary_keywords": [
+      "速捷网络对比可信网络",
+      "速捷网络与可信网络延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买速捷网络还是买可信网络",
+      "速捷网络和可信网络谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/shanyue-vs-firefly/": {
+    "article_id": "art-compare-shanyue-vs-firefly",
+    "title": "山岳网络 vs Firefly萤火虫 深度横向评测与选购对比",
+    "target_url": "/compare/shanyue-vs-firefly/",
+    "cluster_l1": "compare",
+    "cluster_l2": "shanyue-vs-firefly",
+    "intent": "Comparison",
+    "primary_keyword": "山岳网络和Firefly萤火虫哪个好",
+    "secondary_keywords": [
+      "山岳网络对比Firefly萤火虫",
+      "山岳网络与Firefly萤火虫延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买山岳网络还是买Firefly萤火虫",
+      "山岳网络和Firefly萤火虫谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/quanqiu-vs-sogo/": {
+    "article_id": "art-compare-quanqiu-vs-sogo",
+    "title": "环球梯 vs SogoCloud 深度横向评测与选购对比",
+    "target_url": "/compare/quanqiu-vs-sogo/",
+    "cluster_l1": "compare",
+    "cluster_l2": "quanqiu-vs-sogo",
+    "intent": "Comparison",
+    "primary_keyword": "环球梯和SogoCloud哪个好",
+    "secondary_keywords": [
+      "环球梯对比SogoCloud",
+      "环球梯与SogoCloud延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买环球梯还是买SogoCloud",
+      "环球梯和SogoCloud谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/shenxing-vs-guangnian/": {
+    "article_id": "art-compare-shenxing-vs-guangnian",
+    "title": "神行网络 vs 光年网络 深度横向评测与选购对比",
+    "target_url": "/compare/shenxing-vs-guangnian/",
+    "cluster_l1": "compare",
+    "cluster_l2": "shenxing-vs-guangnian",
+    "intent": "Comparison",
+    "primary_keyword": "神行网络和光年网络哪个好",
+    "secondary_keywords": [
+      "神行网络对比光年网络",
+      "神行网络与光年网络延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买神行网络还是买光年网络",
+      "神行网络和光年网络谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/compare/lingdong-vs-edgenova/": {
+    "article_id": "art-compare-lingdong-vs-edgenova",
+    "title": "灵动云 vs EdgeNova 深度横向评测与选购对比",
+    "target_url": "/compare/lingdong-vs-edgenova/",
+    "cluster_l1": "compare",
+    "cluster_l2": "lingdong-vs-edgenova",
+    "intent": "Comparison",
+    "primary_keyword": "灵动云和EdgeNova哪个好",
+    "secondary_keywords": [
+      "灵动云对比EdgeNova",
+      "灵动云与EdgeNova延迟",
+      "两家机场区别"
+    ],
+    "semantic_variations": [
+      "买灵动云还是买EdgeNova",
+      "灵动云和EdgeNova谁更稳定"
+    ],
+    "lsi_keywords": [
+      "专线质量",
+      "晚高峰抖动",
+      "流媒体解锁差异",
+      "单G价格对比"
+    ],
+    "word_count_target": 4000,
+    "status": "published"
+  },
+  "/guides/clash-verge-rev-tutorial/": {
+    "article_id": "art-guides-clash-verge-rev-tutorial",
+    "title": "Clash Verge Rev 教程",
+    "target_url": "/guides/clash-verge-rev-tutorial/",
+    "cluster_l1": "guides",
+    "cluster_l2": "clash-verge-rev-tutorial",
+    "intent": "How-to",
+    "primary_keyword": "Clash Verge Rev使用教程",
+    "secondary_keywords": [
+      "Clash Verge Rev安装与订阅导入",
+      "Clash Verge Rev配置规则模式",
+      "Clash Verge Rev Mac安装打不开"
+    ],
+    "semantic_variations": [
+      "Clash Verge Rev使用教程怎么做",
+      "Clash Verge Rev使用教程解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/guides/shadowrocket-setup/": {
+    "article_id": "art-guides-shadowrocket-setup",
+    "title": "Shadowrocket 小火箭配置",
+    "target_url": "/guides/shadowrocket-setup/",
+    "cluster_l1": "guides",
+    "cluster_l2": "shadowrocket-setup",
+    "intent": "How-to",
+    "primary_keyword": "小火箭添加节点教程",
+    "secondary_keywords": [
+      "Shadowrocket订阅导入失败",
+      "Shadowrocket分流规则配置",
+      "iOS小火箭节点超时"
+    ],
+    "semantic_variations": [
+      "小火箭添加节点教程怎么做",
+      "小火箭添加节点教程解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/guides/tun-mode-explained/": {
+    "article_id": "art-guides-tun-mode-explained",
+    "title": "TUN 虚拟网卡模式",
+    "target_url": "/guides/tun-mode-explained/",
+    "cluster_l1": "guides",
+    "cluster_l2": "tun-mode-explained",
+    "intent": "How-to",
+    "primary_keyword": "TUN模式是什么意思",
+    "secondary_keywords": [
+      "Clash开启TUN模式没网",
+      "TUN模式与系统代理区别",
+      "游戏代理怎么开TUN"
+    ],
+    "semantic_variations": [
+      "TUN模式是什么意思怎么做",
+      "TUN模式是什么意思解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/guides/rule-routing-guide/": {
+    "article_id": "art-guides-rule-routing-guide",
+    "title": "分流规则原理",
+    "target_url": "/guides/rule-routing-guide/",
+    "cluster_l1": "guides",
+    "cluster_l2": "rule-routing-guide",
+    "intent": "How-to",
+    "primary_keyword": "Clash分流规则怎么写",
+    "secondary_keywords": [
+      "Rule直连与代理分流设置",
+      "如何让国内网站不走代理",
+      "自定义机场分流规则"
+    ],
+    "semantic_variations": [
+      "Clash分流规则怎么写怎么做",
+      "Clash分流规则怎么写解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/guides/v2rayn-windows-guide/": {
+    "article_id": "art-guides-v2rayn-windows-guide",
+    "title": "v2rayN Windows 指南",
+    "target_url": "/guides/v2rayn-windows-guide/",
+    "cluster_l1": "guides",
+    "cluster_l2": "v2rayn-windows-guide",
+    "intent": "How-to",
+    "primary_keyword": "v2rayN使用教程2026",
+    "secondary_keywords": [
+      "v2rayN导入VLESS节点",
+      "v2rayN设置系统代理无反应",
+      "v2rayN怎么开全局"
+    ],
+    "semantic_variations": [
+      "v2rayN使用教程2026怎么做",
+      "v2rayN使用教程2026解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/guides/openclash-router-guide/": {
+    "article_id": "art-guides-openclash-router-guide",
+    "title": "OpenClash 软路由配置",
+    "target_url": "/guides/openclash-router-guide/",
+    "cluster_l1": "guides",
+    "cluster_l2": "openclash-router-guide",
+    "intent": "How-to",
+    "primary_keyword": "OpenClash旁路由设置",
+    "secondary_keywords": [
+      "OpenClash透明代理DNS配置",
+      "软路由OpenClash节点无速度",
+      "OpenClash更新内核教程"
+    ],
+    "semantic_variations": [
+      "OpenClash旁路由设置怎么做",
+      "OpenClash旁路由设置解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/guides/safe-subscription-management/": {
+    "article_id": "art-guides-safe-subscription-management",
+    "title": "订阅安全与防泄露",
+    "target_url": "/guides/safe-subscription-management/",
+    "cluster_l1": "guides",
+    "cluster_l2": "safe-subscription-management",
+    "intent": "How-to",
+    "primary_keyword": "机场订阅链接泄露怎么办",
+    "secondary_keywords": [
+      "节点订阅被蹭网解决",
+      "自建订阅转换安全吗",
+      "如何重置机场订阅TOKEN"
+    ],
+    "semantic_variations": [
+      "机场订阅链接泄露怎么办怎么做",
+      "机场订阅链接泄露怎么办解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/troubleshooting/node-timeout/": {
+    "article_id": "art-troubleshooting-node-timeout",
+    "title": "节点全部超时",
+    "target_url": "/troubleshooting/node-timeout/",
+    "cluster_l1": "troubleshooting",
+    "cluster_l2": "node-timeout",
+    "intent": "Troubleshooting",
+    "primary_keyword": "机场节点全部超时不可用",
+    "secondary_keywords": [
+      "节点延迟测试全是Timeout",
+      "为什么节点突然全部红了",
+      "节点超时是不是机场跑路了"
+    ],
+    "semantic_variations": [
+      "机场节点全部超时不可用怎么做",
+      "机场节点全部超时不可用解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/troubleshooting/subscription-update-failed/": {
+    "article_id": "art-troubleshooting-subscription-update-failed",
+    "title": "订阅更新失败",
+    "target_url": "/troubleshooting/subscription-update-failed/",
+    "cluster_l1": "troubleshooting",
+    "cluster_l2": "subscription-update-failed",
+    "intent": "Troubleshooting",
+    "primary_keyword": "Clash订阅更新失败Network Error",
+    "secondary_keywords": [
+      "小火箭更新订阅提示解析错误",
+      "订阅链接浏览器能打开软件打不开",
+      "机场更新订阅403错误"
+    ],
+    "semantic_variations": [
+      "Clash订阅更新失败Network Error怎么做",
+      "Clash订阅更新失败Network Error解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/troubleshooting/connected-no-internet/": {
+    "article_id": "art-troubleshooting-connected-no-internet",
+    "title": "连上但无法上网",
+    "target_url": "/troubleshooting/connected-no-internet/",
+    "cluster_l1": "troubleshooting",
+    "cluster_l2": "connected-no-internet",
+    "intent": "Troubleshooting",
+    "primary_keyword": "代理连上了但是网页打不开",
+    "secondary_keywords": [
+      "Clash显示有速度但没有网络",
+      "节点测试通过但无法访问Google",
+      "连上梯子微信断网怎么解决"
+    ],
+    "semantic_variations": [
+      "代理连上了但是网页打不开怎么做",
+      "代理连上了但是网页打不开解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/troubleshooting/dns-leak-and-pollution/": {
+    "article_id": "art-troubleshooting-dns-leak-and-pollution",
+    "title": "DNS 污染与泄漏",
+    "target_url": "/troubleshooting/dns-leak-and-pollution/",
+    "cluster_l1": "troubleshooting",
+    "cluster_l2": "dns-leak-and-pollution",
+    "intent": "Troubleshooting",
+    "primary_keyword": "DNS泄漏怎么测试",
+    "secondary_keywords": [
+      "代理软件防DNS污染设置",
+      "国外网站解析成国内IP怎么修复",
+      "DoH与DoT安全配置"
+    ],
+    "semantic_variations": [
+      "DNS泄漏怎么测试怎么做",
+      "DNS泄漏怎么测试解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/troubleshooting/port-conflict-7890/": {
+    "article_id": "art-troubleshooting-port-conflict-7890",
+    "title": "7890 端口冲突",
+    "target_url": "/troubleshooting/port-conflict-7890/",
+    "cluster_l1": "troubleshooting",
+    "cluster_l2": "port-conflict-7890",
+    "intent": "Troubleshooting",
+    "primary_keyword": "端口7890被占用怎么解决",
+    "secondary_keywords": [
+      "Clash提示port 7890 occupied",
+      "修改Clash混合代理端口",
+      "Windows关闭占用7890端口的进程"
+    ],
+    "semantic_variations": [
+      "端口7890被占用怎么解决怎么做",
+      "端口7890被占用怎么解决解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/troubleshooting/ai-access-denied-1020/": {
+    "article_id": "art-troubleshooting-ai-access-denied-1020",
+    "title": "AI 访问受限 1020",
+    "target_url": "/troubleshooting/ai-access-denied-1020/",
+    "cluster_l1": "troubleshooting",
+    "cluster_l2": "ai-access-denied-1020",
+    "intent": "Troubleshooting",
+    "primary_keyword": "ChatGPT提示Error 1020 Access Denied",
+    "secondary_keywords": [
+      "Claude显示App unavailable in region",
+      "解决OpenAI屏蔽机房IP",
+      "访问ChatGPT节点怎么选"
+    ],
+    "semantic_variations": [
+      "ChatGPT提示Error 1020 Access Denied怎么做",
+      "ChatGPT提示Error 1020 Access Denied解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/troubleshooting/system-proxy-reset/": {
+    "article_id": "art-troubleshooting-system-proxy-reset",
+    "title": "系统代理未关闭打不开网页",
+    "target_url": "/troubleshooting/system-proxy-reset/",
+    "cluster_l1": "troubleshooting",
+    "cluster_l2": "system-proxy-reset",
+    "intent": "Troubleshooting",
+    "primary_keyword": "关掉代理后电脑断网",
+    "secondary_keywords": [
+      "关闭Clash后浏览器打不开网页",
+      "重置Windows系统代理设置",
+      "解决关闭梯子无法访问国内网站"
+    ],
+    "semantic_variations": [
+      "关掉代理后电脑断网怎么做",
+      "关掉代理后电脑断网解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/network/iepl-vs-iplc/": {
+    "article_id": "art-network-iepl-vs-iplc",
+    "title": "iepl-vs-iplc",
+    "target_url": "/network/iepl-vs-iplc/",
+    "cluster_l1": "network",
+    "cluster_l2": "iepl-vs-iplc",
+    "intent": "Informational",
+    "primary_keyword": "IEPL和IPLC的区别是什么",
+    "secondary_keywords": [
+      "内网专线和公网中转区别",
+      "为什么专线机场晚高峰不卡",
+      "游戏加速器用IEPL还是IPLC"
+    ],
+    "semantic_variations": [
+      "IEPL和IPLC的区别是什么怎么做",
+      "IEPL和IPLC的区别是什么解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/network/latency-jitter-packet-loss/": {
+    "article_id": "art-network-latency-jitter-packet-loss",
+    "title": "latency-jitter-packet-loss",
+    "target_url": "/network/latency-jitter-packet-loss/",
+    "cluster_l1": "network",
+    "cluster_l2": "latency-jitter-packet-loss",
+    "intent": "Informational",
+    "primary_keyword": "网络延迟与抖动丢包率怎么看",
+    "secondary_keywords": [
+      "晚高峰丢包严重的原因",
+      "Ping值低但是看视频卡顿",
+      "如何用MTR诊断网络节点"
+    ],
+    "semantic_variations": [
+      "网络延迟与抖动丢包率怎么看怎么做",
+      "网络延迟与抖动丢包率怎么看解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/network/rate-multiplier-explained/": {
+    "article_id": "art-network-rate-multiplier-explained",
+    "title": "rate-multiplier-explained",
+    "target_url": "/network/rate-multiplier-explained/",
+    "cluster_l1": "network",
+    "cluster_l2": "rate-multiplier-explained",
+    "intent": "Informational",
+    "primary_keyword": "机场流量倍率是什么意思",
+    "secondary_keywords": [
+      "高倍率节点跑流量太快",
+      "3倍率和0.1倍率节点区别",
+      "如何避免流量倍率陷阱"
+    ],
+    "semantic_variations": [
+      "机场流量倍率是什么意思怎么做",
+      "机场流量倍率是什么意思解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/network/residential-ip-truth/": {
+    "article_id": "art-network-residential-ip-truth",
+    "title": "residential-ip-truth",
+    "target_url": "/network/residential-ip-truth/",
+    "cluster_l1": "network",
+    "cluster_l2": "residential-ip-truth",
+    "intent": "Informational",
+    "primary_keyword": "原生住宅IP真假辨别",
+    "secondary_keywords": [
+      "机房IP和家庭宽带IP区别",
+      "跨境电商防关联原生IP",
+      "原生IP能解锁奈飞吗"
+    ],
+    "semantic_variations": [
+      "原生住宅IP真假辨别怎么做",
+      "原生住宅IP真假辨别解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/compatibility/chatgpt-node-guide/": {
+    "article_id": "art-compatibility-chatgpt-node-guide",
+    "title": "chatgpt-node-guide",
+    "target_url": "/compatibility/chatgpt-node-guide/",
+    "cluster_l1": "compatibility",
+    "cluster_l2": "chatgpt-node-guide",
+    "intent": "Informational",
+    "primary_keyword": "支持ChatGPT的机场节点推荐",
+    "secondary_keywords": [
+      "ChatGPT对节点IP的要求",
+      "为什么有的节点打不开OpenAI",
+      "ChatGPT注册干净IP推荐"
+    ],
+    "semantic_variations": [
+      "支持ChatGPT的机场节点推荐怎么做",
+      "支持ChatGPT的机场节点推荐解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/compatibility/claude-clean-ip/": {
+    "article_id": "art-compatibility-claude-clean-ip",
+    "title": "claude-clean-ip",
+    "target_url": "/compatibility/claude-clean-ip/",
+    "cluster_l1": "compatibility",
+    "cluster_l2": "claude-clean-ip",
+    "intent": "Informational",
+    "primary_keyword": "Claude可用节点挑选技巧",
+    "secondary_keywords": [
+      "Claude封号与IP纯净度",
+      "独享原生IP访问Claude",
+      "Claude网页版提示地区不支持"
+    ],
+    "semantic_variations": [
+      "Claude可用节点挑选技巧怎么做",
+      "Claude可用节点挑选技巧解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/compatibility/netflix-4k-unlock/": {
+    "article_id": "art-compatibility-netflix-4k-unlock",
+    "title": "netflix-4k-unlock",
+    "target_url": "/compatibility/netflix-4k-unlock/",
+    "cluster_l1": "compatibility",
+    "cluster_l2": "netflix-4k-unlock",
+    "intent": "Informational",
+    "primary_keyword": "奈飞4K原生解锁机场",
+    "secondary_keywords": [
+      "Netflix提示使用了代理/解锁失败",
+      "流媒体解锁DNS中转原理",
+      "非自制剧解锁是什么意思"
+    ],
+    "semantic_variations": [
+      "奈飞4K原生解锁机场怎么做",
+      "奈飞4K原生解锁机场解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/compatibility/tiktok-crossborder-setup/": {
+    "article_id": "art-compatibility-tiktok-crossborder-setup",
+    "title": "tiktok-crossborder-setup",
+    "target_url": "/compatibility/tiktok-crossborder-setup/",
+    "cluster_l1": "compatibility",
+    "cluster_l2": "tiktok-crossborder-setup",
+    "intent": "Informational",
+    "primary_keyword": "TikTok跨境电商专用网络环境",
+    "secondary_keywords": [
+      "TikTok零播放与节点IP黑名单",
+      "美国住宅IP运营TikTok",
+      "手机伪装度与网络环境配置"
+    ],
+    "semantic_variations": [
+      "TikTok跨境电商专用网络环境怎么做",
+      "TikTok跨境电商专用网络环境解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/risk/airport-runaway-signs/": {
+    "article_id": "art-risk-airport-runaway-signs",
+    "title": "airport-runaway-signs",
+    "target_url": "/risk/airport-runaway-signs/",
+    "cluster_l1": "risk",
+    "cluster_l2": "airport-runaway-signs",
+    "intent": "Informational",
+    "primary_keyword": "机场跑路前兆有哪些",
+    "secondary_keywords": [
+      "怎么判断机场是不是快跑路了",
+      "终身套餐能买吗",
+      "TG群全员禁言是不是跑路"
+    ],
+    "semantic_variations": [
+      "机场跑路前兆有哪些怎么做",
+      "机场跑路前兆有哪些解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/risk/dual-airport-redundancy/": {
+    "article_id": "art-risk-dual-airport-redundancy",
+    "title": "dual-airport-redundancy",
+    "target_url": "/risk/dual-airport-redundancy/",
+    "cluster_l1": "risk",
+    "cluster_l2": "dual-airport-redundancy",
+    "intent": "Informational",
+    "primary_keyword": "双机场备份方案怎么配置",
+    "secondary_keywords": [
+      "主备机场自动故障切换",
+      "防止一家机场跑路断网配置",
+      "高可用双订阅容灾技巧"
+    ],
+    "semantic_variations": [
+      "双机场备份方案怎么配置怎么做",
+      "双机场备份方案怎么配置解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/risk/refund-terms-analysis/": {
+    "article_id": "art-risk-refund-terms-analysis",
+    "title": "refund-terms-analysis",
+    "target_url": "/risk/refund-terms-analysis/",
+    "cluster_l1": "risk",
+    "cluster_l2": "refund-terms-analysis",
+    "intent": "Informational",
+    "primary_keyword": "机场买错可以退款吗",
+    "secondary_keywords": [
+      "机场服务条款退款争议",
+      "支付宝微信付款如何维权",
+      "虚拟货币付款不可逆风险"
+    ],
+    "semantic_variations": [
+      "机场买错可以退款吗怎么做",
+      "机场买错可以退款吗解决办法"
+    ],
+    "lsi_keywords": [
+      "代理节点",
+      "配置错误",
+      "网络协议",
+      "排障步骤"
+    ],
+    "word_count_target": 3000,
+    "status": "published"
+  },
+  "/recommend/rankings/": {
+    "article_id": "hub-l2-recommend-rankings",
+    "title": "2026综合性能最好的机场",
+    "target_url": "/recommend/rankings/",
+    "cluster_l1": "recommend",
+    "cluster_l2": "rankings",
+    "intent": "Comparison",
+    "primary_keyword": "2026综合性能最好的机场",
+    "secondary_keywords": [
+      "2026综合性能最好的机场实测",
+      "2026综合性能最好的机场选购指南"
+    ],
+    "semantic_variations": [
+      "2026综合性能最好的机场哪个好",
+      "2026综合性能最好的机场最新排名"
+    ],
+    "lsi_keywords": [
+      "IEPL专线",
+      "丢包率",
+      "SLA保障",
+      "月付防跑路"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/recommend/reliable/": {
+    "article_id": "hub-l2-recommend-reliable",
+    "title": "真正稳定靠谱的专线机场推荐",
+    "target_url": "/recommend/reliable/",
+    "cluster_l1": "recommend",
+    "cluster_l2": "reliable",
+    "intent": "Comparison",
+    "primary_keyword": "真正稳定靠谱的专线机场推荐",
+    "secondary_keywords": [
+      "真正稳定靠谱的专线机场推荐实测",
+      "真正稳定靠谱的专线机场推荐选购指南"
+    ],
+    "semantic_variations": [
+      "真正稳定靠谱的专线机场推荐哪个好",
+      "真正稳定靠谱的专线机场推荐最新排名"
+    ],
+    "lsi_keywords": [
+      "IEPL专线",
+      "丢包率",
+      "SLA保障",
+      "月付防跑路"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/recommend/stable/": {
+    "article_id": "hub-l2-recommend-stable",
+    "title": "晚高峰抗抖动稳定机场推荐",
+    "target_url": "/recommend/stable/",
+    "cluster_l1": "recommend",
+    "cluster_l2": "stable",
+    "intent": "Comparison",
+    "primary_keyword": "晚高峰抗抖动稳定机场推荐",
+    "secondary_keywords": [
+      "晚高峰抗抖动稳定机场推荐实测",
+      "晚高峰抗抖动稳定机场推荐选购指南"
+    ],
+    "semantic_variations": [
+      "晚高峰抗抖动稳定机场推荐哪个好",
+      "晚高峰抗抖动稳定机场推荐最新排名"
+    ],
+    "lsi_keywords": [
+      "IEPL专线",
+      "丢包率",
+      "SLA保障",
+      "月付防跑路"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/recommend/beginner/": {
+    "article_id": "hub-l2-recommend-beginner",
+    "title": "小白新手一键翻墙机场推荐",
+    "target_url": "/recommend/beginner/",
+    "cluster_l1": "recommend",
+    "cluster_l2": "beginner",
+    "intent": "Comparison",
+    "primary_keyword": "小白新手一键翻墙机场推荐",
+    "secondary_keywords": [
+      "小白新手一键翻墙机场推荐实测",
+      "小白新手一键翻墙机场推荐选购指南"
+    ],
+    "semantic_variations": [
+      "小白新手一键翻墙机场推荐哪个好",
+      "小白新手一键翻墙机场推荐最新排名"
+    ],
+    "lsi_keywords": [
+      "IEPL专线",
+      "丢包率",
+      "SLA保障",
+      "月付防跑路"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/recommend/cost-effective/": {
+    "article_id": "hub-l2-recommend-cost-effective",
+    "title": "平价高性价比学生党机场推荐",
+    "target_url": "/recommend/cost-effective/",
+    "cluster_l1": "recommend",
+    "cluster_l2": "cost-effective",
+    "intent": "Comparison",
+    "primary_keyword": "平价高性价比学生党机场推荐",
+    "secondary_keywords": [
+      "平价高性价比学生党机场推荐实测",
+      "平价高性价比学生党机场推荐选购指南"
+    ],
+    "semantic_variations": [
+      "平价高性价比学生党机场推荐哪个好",
+      "平价高性价比学生党机场推荐最新排名"
+    ],
+    "lsi_keywords": [
+      "IEPL专线",
+      "丢包率",
+      "SLA保障",
+      "月付防跑路"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/pricing/cheap/": {
+    "article_id": "hub-l2-pricing-cheap",
+    "title": "便宜好用机场推荐月付几块钱",
+    "target_url": "/pricing/cheap/",
+    "cluster_l1": "pricing",
+    "cluster_l2": "cheap",
+    "intent": "Commercial",
+    "primary_keyword": "便宜好用机场推荐月付几块钱",
+    "secondary_keywords": [
+      "便宜好用机场推荐月付几块钱实测",
+      "便宜好用机场推荐月付几块钱选购指南"
+    ],
+    "semantic_variations": [
+      "便宜好用机场推荐月付几块钱哪个好",
+      "便宜好用机场推荐月付几块钱最新排名"
+    ],
+    "lsi_keywords": [
+      "IEPL专线",
+      "丢包率",
+      "SLA保障",
+      "月付防跑路"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/pricing/1-yuan/": {
+    "article_id": "hub-l2-pricing-1-yuan",
+    "title": "一元机场靠谱吗真实测速",
+    "target_url": "/pricing/1-yuan/",
+    "cluster_l1": "pricing",
+    "cluster_l2": "1-yuan",
+    "intent": "Commercial",
+    "primary_keyword": "一元机场靠谱吗真实测速",
+    "secondary_keywords": [
+      "一元机场靠谱吗真实测速实测",
+      "一元机场靠谱吗真实测速选购指南"
+    ],
+    "semantic_variations": [
+      "一元机场靠谱吗真实测速哪个好",
+      "一元机场靠谱吗真实测速最新排名"
+    ],
+    "lsi_keywords": [
+      "IEPL专线",
+      "丢包率",
+      "SLA保障",
+      "月付防跑路"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/pricing/monthly/": {
+    "article_id": "hub-l2-pricing-monthly",
+    "title": "支持月付防跑路机场推荐",
+    "target_url": "/pricing/monthly/",
+    "cluster_l1": "pricing",
+    "cluster_l2": "monthly",
+    "intent": "Commercial",
+    "primary_keyword": "支持月付防跑路机场推荐",
+    "secondary_keywords": [
+      "支持月付防跑路机场推荐实测",
+      "支持月付防跑路机场推荐选购指南"
+    ],
+    "semantic_variations": [
+      "支持月付防跑路机场推荐哪个好",
+      "支持月付防跑路机场推荐最新排名"
+    ],
+    "lsi_keywords": [
+      "IEPL专线",
+      "丢包率",
+      "SLA保障",
+      "月付防跑路"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/pricing/non-expiring/": {
+    "article_id": "hub-l2-pricing-non-expiring",
+    "title": "不限时不过期流量包机场",
+    "target_url": "/pricing/non-expiring/",
+    "cluster_l1": "pricing",
+    "cluster_l2": "non-expiring",
+    "intent": "Commercial",
+    "primary_keyword": "不限时不过期流量包机场",
+    "secondary_keywords": [
+      "不限时不过期流量包机场实测",
+      "不限时不过期流量包机场选购指南"
+    ],
+    "semantic_variations": [
+      "不限时不过期流量包机场哪个好",
+      "不限时不过期流量包机场最新排名"
+    ],
+    "lsi_keywords": [
+      "IEPL专线",
+      "丢包率",
+      "SLA保障",
+      "月付防跑路"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/pricing/cost-performance/": {
+    "article_id": "hub-l2-pricing-cost-performance",
+    "title": "性价比最高的专线机场梯队",
+    "target_url": "/pricing/cost-performance/",
+    "cluster_l1": "pricing",
+    "cluster_l2": "cost-performance",
+    "intent": "Commercial",
+    "primary_keyword": "性价比最高的专线机场梯队",
+    "secondary_keywords": [
+      "性价比最高的专线机场梯队实测",
+      "性价比最高的专线机场梯队选购指南"
+    ],
+    "semantic_variations": [
+      "性价比最高的专线机场梯队哪个好",
+      "性价比最高的专线机场梯队最新排名"
+    ],
+    "lsi_keywords": [
+      "IEPL专线",
+      "丢包率",
+      "SLA保障",
+      "月付防跑路"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/vpn/recommend/": {
+    "article_id": "hub-l2-vpn-recommend",
+    "title": "好用的正规VPN推荐指南",
+    "target_url": "/vpn/recommend/",
+    "cluster_l1": "vpn",
+    "cluster_l2": "recommend",
+    "intent": "Comparison",
+    "primary_keyword": "好用的正规VPN推荐指南",
+    "secondary_keywords": [
+      "好用的正规VPN推荐指南实测",
+      "好用的正规VPN推荐指南选购指南"
+    ],
+    "semantic_variations": [
+      "好用的正规VPN推荐指南哪个好",
+      "好用的正规VPN推荐指南最新排名"
+    ],
+    "lsi_keywords": [
+      "IEPL专线",
+      "丢包率",
+      "SLA保障",
+      "月付防跑路"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/vpn/free/": {
+    "article_id": "hub-l2-vpn-free",
+    "title": "免费VPN软件安全吗有木马吗",
+    "target_url": "/vpn/free/",
+    "cluster_l1": "vpn",
+    "cluster_l2": "free",
+    "intent": "Informational",
+    "primary_keyword": "免费VPN软件安全吗有木马吗",
+    "secondary_keywords": [
+      "免费VPN软件安全吗有木马吗实测",
+      "免费VPN软件安全吗有木马吗选购指南"
+    ],
+    "semantic_variations": [
+      "免费VPN软件安全吗有木马吗哪个好",
+      "免费VPN软件安全吗有木马吗最新排名"
+    ],
+    "lsi_keywords": [
+      "IEPL专线",
+      "丢包率",
+      "SLA保障",
+      "月付防跑路"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/vpn/mobile/": {
+    "article_id": "hub-l2-vpn-mobile",
+    "title": "手机安卓苹果一键连接VPN",
+    "target_url": "/vpn/mobile/",
+    "cluster_l1": "vpn",
+    "cluster_l2": "mobile",
+    "intent": "How-to",
+    "primary_keyword": "手机安卓苹果一键连接VPN",
+    "secondary_keywords": [
+      "手机安卓苹果一键连接VPN实测",
+      "手机安卓苹果一键连接VPN选购指南"
+    ],
+    "semantic_variations": [
+      "手机安卓苹果一键连接VPN哪个好",
+      "手机安卓苹果一键连接VPN最新排名"
+    ],
+    "lsi_keywords": [
+      "IEPL专线",
+      "丢包率",
+      "SLA保障",
+      "月付防跑路"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  },
+  "/vpn/gaming/": {
+    "article_id": "hub-l2-vpn-gaming",
+    "title": "游戏加速器和机场节点有什么区别",
+    "target_url": "/vpn/gaming/",
+    "cluster_l1": "vpn",
+    "cluster_l2": "gaming",
+    "intent": "Informational",
+    "primary_keyword": "游戏加速器和机场节点有什么区别",
+    "secondary_keywords": [
+      "游戏加速器和机场节点有什么区别实测",
+      "游戏加速器和机场节点有什么区别选购指南"
+    ],
+    "semantic_variations": [
+      "游戏加速器和机场节点有什么区别哪个好",
+      "游戏加速器和机场节点有什么区别最新排名"
+    ],
+    "lsi_keywords": [
+      "IEPL专线",
+      "丢包率",
+      "SLA保障",
+      "月付防跑路"
+    ],
+    "word_count_target": 4500,
+    "status": "published"
+  }
+}

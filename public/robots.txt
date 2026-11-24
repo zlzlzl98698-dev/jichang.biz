@@ -1,0 +1,60 @@
+# ==============================================================================
+# Robots.txt for https://jichang.biz/ (机场指南)
+# Production Ready - Updated: 2026-11-24
+# ==============================================================================
+
+# Global Default Crawling Rules
+User-agent: *
+Allow: /
+Disallow: /search/
+Disallow: /drafts/
+
+# 1. Google (Googlebot)
+User-agent: Googlebot
+Allow: /
+Disallow: /search/
+Disallow: /drafts/
+
+# 2. Microsoft Bing (bingbot)
+User-agent: Bingbot
+Allow: /
+Disallow: /search/
+Disallow: /drafts/
+
+# 3. Baidu (Baiduspider)
+User-agent: Baiduspider
+Allow: /
+Disallow: /search/
+Disallow: /drafts/
+
+# 4. Shenma / UC / Quark (yisouspider)
+User-agent: yisouspider
+Allow: /
+Disallow: /search/
+Disallow: /drafts/
+
+# 5. Apple (Applebot)
+User-agent: Applebot
+Allow: /
+Disallow: /search/
+Disallow: /drafts/
+
+# 6. AI Search Engine Bots (GEO Optimization)
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /search/
+Disallow: /drafts/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /search/
+Disallow: /drafts/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /search/
+Disallow: /drafts/
+
+# XML Sitemaps
+Sitemap: https://jichang.biz/sitemap.xml
+Sitemap: https://jichang.biz/sitemap-index.xml

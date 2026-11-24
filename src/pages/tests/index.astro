@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PerformanceReport from '../../components/PerformanceReport.astro';
+import { BRANDS } from '../../data/brands';
+
+const title = '网络可观测性与测速实测记录汇总 · 机场指南';
+const description = '汇编 31 家品牌历史测速抽样记录、测试时间点、测试工具与节点物理延迟数据。真实记录晚高峰与非晚高峰表现，不作虚假美化。';
+const breadcrumbs = [
+  { name: '测速记录', url: '/tests/' }
+];
+
+const testedBrands = BRANDS.filter(b => b.speedTest && b.speedTest.nodes.length > 0);
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <div class="max-w-2xl mb-8">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-brand-teal text-xs font-semibold border border-emerald-200 mb-3">
+        <span>📈 网络可观测性数据中心</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+        网络可观测性与测速实测报告汇编
+      </h1>
+      <p class="text-sm text-brand-muted mt-2 leading-relaxed">
+        所有图表均严格标明数据采样日期与测试环境背景（如非晚高峰/单次抽样）。数据缺失的品牌诚实列出空缺说明，绝不根据瞬时峰值推断长期稳定性。
+      </p>
+    </div>
+
+    <div class="space-y-10 my-8">
+      {testedBrands.map(b => (
+        <section class="space-y-2">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base font-bold text-brand-dark flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full" style={`background-color: ${b.colorAccent};`}></span>
+              <span>{b.name} 实测报告</span>
+            </h2>
+            <a href={`/brands/${b.slug}/`} class="text-xs text-brand-teal hover:underline font-semibold">
+              查看品牌完整评测 →
+            </a>
+          </div>
+          <PerformanceReport record={b.speedTest} brandName={b.name} brandAccent={b.colorAccent} />
+        </section>
+      ))}
+    </div>
+
+  </div>
+</BaseLayout>

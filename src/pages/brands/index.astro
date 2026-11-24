@@ -1,0 +1,714 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BrandCard from '../../components/BrandCard.astro';
+import AffiliateDisclosure from '../../components/AffiliateDisclosure.astro';
+import FAQ from '../../components/FAQ.astro';
+import { BRANDS } from '../../data/brands';
+
+const title = '2026 机场品牌库与决策档案 · 31家主流服务商深度档案、官网核验与客观横评';
+const description = '权威收录并持续交叉核验 31 家主流机场服务商完整档案。涵盖真实 IEPL/IPLC 专线架构、VLESS/Trojan 协议生态、自研与 Clash 客户端兼容度、资费套餐及官网防伪入口，助您做出理性选购决策。';
+const breadcrumbs = [
+  { name: '品牌库', url: '/brands/' }
+];
+
+const faqItems = [
+  {
+    question: '本站品牌库一共收录了多少家品牌？是否有遗漏或重复？',
+    answer: '经对原始技术文档与公开服务商数据的严格去重和交叉审计，本站目前精准收录 31 个唯一品牌实体（如 Firefly 与 Firefly 萤火虫确认为同品牌别名合并为单一实体）。不凭空编造虚构第 32 个品牌，所有品牌均具备真实运营记录与可验证的套餐规格。'
+  },
+  {
+    question: '品牌卡片上的“核验状态 (Data Status)”代表什么含义？',
+    answer: '我们严格区分四类数据状态：① verified（官方核准/多源实测证实）；② vendor（商家官方宣称但尚未取得独立多源验证）；③ historical（历史版本记录，供对照溯源）；④ conflict / unknown（不同来源数据存在冲突或字段暂缺，诚实标注待核实）。'
+  },
+  {
+    question: '为什么有的品牌被标注为“商业展示位”？这会影响客观评分吗？',
+    answer: '不会影响技术客观性。光速云作为本站的重点商业合作品牌，其赞助展示位已严格按照广告法全站透明标注；但其技术参数、网络限制、价格与历史测速数据依然与其余 30 家品牌使用完全一致的客观审计标准，绝不接受商业买断评分或虚假粉饰。'
+  },
+  {
+    question: '如何在搜索引擎广告中识别真假“品牌官网”？',
+    answer: '很多热门品牌在搜索引擎（如 Google/Bing）中存在大量克隆山寨镜像站或第三方泛滥推广页。鉴别方法：查看域名是否与本站核验的官方主域名一致；正规官网注册必须有独立的无感验证码；绝不索要多余个人隐私信息。本站所有品牌主页均提供核验过的唯一入口。'
+  },
+  {
+    question: '老牌机场和新兴机场在选购上有何优劣？',
+    answer: '老牌机场（运营 3 年以上）优势在于上游专线资源稳定、极少突发跑路，但偶尔会因老用户过多产生晚高峰负载；新品牌（开业 1 年以内）初期通常带宽充沛、价格激进，但面临极高的存活期考验。建议以老牌专线作为主力，搭配平价小包作为备用。'
+  },
+  {
+    question: '如果我正在使用的品牌突然断网，如何快速找到“平替品牌”？',
+    answer: '平替的核心是“对标相同的线路架构与客户端生态”。如果是 IEPL 专线断网，平替首选同样具备 IEPL 专线的大厂（如微风网络、一翻云）；如果是自研客户端品牌，可平替为飞猫云或二猫云；若是低成本应急，平替首选大佬云或闪电鼠。'
+  },
+  {
+    question: '优惠码显示无效是什么原因？',
+    answer: '常见原因包括：① 优惠码已过期；② 优惠码仅限新用户首单使用，老用户续费无效；③ 仅适用于年付套餐，月付套餐不可用；④ 未达到服务商规定的最低消费门槛。'
+  },
+  {
+    question: '为什么有的品牌不提供通用的 Clash 订阅，只提供专属 App？',
+    answer: '部分主打非技术大众用户的品牌（如飞猫云、无忧链接）为了防止订阅链接被爬虫抓取盗刷，或者降低新手的配置门槛，会采用专有加密传输协议并仅封装在专属客户端中。这利于小白使用，但无法导入软路由或第三方工具。'
+  }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs} faqItems={faqItems} type="collection">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+    
+    <!-- Hero Header with Answer-First Summary -->
+    <header class="border-b border-brand-border pb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-4">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-brand-teal text-xs font-semibold border border-emerald-200">
+          <span class="w-2 h-2 rounded-full bg-brand-teal animate-pulse"></span>
+          <span>已收录 31 个去重品牌实体 · 持续交叉核验中</span>
+        </div>
+        <a href="/reviews/" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-brand-teal text-xs font-bold border border-emerald-300 hover:bg-emerald-200 transition-colors">
+          <span>📊 切换至：31 家独立深度评测中心 (/reviews/)</span>
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-brand-dark tracking-tight leading-tight">
+        2026 机场品牌库与决策档案
+      </h1>
+      <p class="text-sm sm:text-base text-brand-muted mt-3 max-w-4xl leading-relaxed">
+        本品牌库严格依据公开资料、第三方历史实测与品牌技术规格整理。区分实测核验与商家宣称，数据缺失诚实标记，不提供虚构评测。帮助您全景检索 31 家服务商的线路资质、价格梯队、客户端生态与官网防伪入口，助您做出理性决策。
+      </p>
+
+      <!-- Quick Answer Summary Box (GEO / AI Overviews Optimized) -->
+      <div class="mt-6 p-5 bg-white border border-brand-teal/40 rounded-2xl shadow-sm bg-gradient-to-r from-emerald-50/40 to-transparent">
+        <div class="text-xs font-bold text-brand-teal uppercase tracking-wider mb-2 flex items-center gap-1.5">
+          <span>⚡ 品牌库查验核心原则与结论 (Answer-First)</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-brand-dark">
+          <div class="p-3 bg-white/80 rounded-xl border border-brand-border space-y-1">
+            <span class="font-bold text-emerald-800 block">31 个唯一去重品牌实体</span>
+            <p class="text-brand-muted">杜绝同品牌更名引发的重复收录（如 Firefly 与 Firefly 萤火虫合并审计）。不凭空制造虚构品牌，确保每一份档案均有据可查。</p>
+          </div>
+          <div class="p-3 bg-white/80 rounded-xl border border-brand-border space-y-1">
+            <span class="font-bold text-blue-800 block">商业展示与技术证据分离</span>
+            <p class="text-brand-muted">重点合作品牌（如光速云）已全站透明标注，其技术指标依然遵循统一严谨的实测标准，绝不虚构评分或操纵排序。</p>
+          </div>
+          <div class="p-3 bg-white/80 rounded-xl border border-brand-border space-y-1">
+            <span class="font-bold text-purple-800 block">官网防伪与独立详情入口</span>
+            <p class="text-brand-muted">提供经过严格域名反查的官方入口，彻底防范克隆钓鱼站。每个品牌配备万字专属档案与全维度技术拓扑。</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- In-Page Table of Contents -->
+    <nav class="bg-brand-light p-5 rounded-2xl border border-brand-border text-xs">
+      <span class="font-bold text-brand-dark block mb-3 text-sm flex items-center gap-2">
+        <span>📑 品牌库专题深度导航 (快速跳转)</span>
+      </span>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 text-brand-muted">
+        <a href="#sec-toolbar" class="hover:text-brand-teal hover:underline">一、品牌实时检索与多维筛选工具</a>
+        <a href="#sec-taxonomy" class="hover:text-brand-teal hover:underline">二、31 家品牌分类学全景体系</a>
+        <a href="#sec-data-integrity" class="hover:text-brand-teal hover:underline">三、数据完整度说明与核验标准</a>
+        <a href="#sec-old-vs-new" class="hover:text-brand-teal hover:underline">四、老牌机场与新兴品牌深度对比</a>
+        <a href="#sec-line-positioning" class="hover:text-brand-teal hover:underline">五、不同品牌的线路架构定位</a>
+        <a href="#sec-clients-comparison" class="hover:text-brand-teal hover:underline">六、自研专属 App 与通用订阅对比</a>
+        <a href="#sec-plans-structure" class="hover:text-brand-teal hover:underline">七、品牌资费套餐结构横向分布</a>
+        <a href="#sec-support-sla" class="hover:text-brand-teal hover:underline">八、客户服务与工单响应考核标准</a>
+        <a href="#sec-operational-status" class="hover:text-brand-teal hover:underline">九、品牌运营状态与失联前兆判别</a>
+        <a href="#sec-reading-reviews" class="hover:text-brand-teal hover:underline">十、如何专业阅读独立品牌深度评测</a>
+        <a href="#sec-official-verification" class="hover:text-brand-teal hover:underline">十一、品牌官网入口防伪鉴别指南</a>
+        <a href="#sec-alternative-logic" class="hover:text-brand-teal hover:underline">十二、品牌突发断网时的平替方案</a>
+        <a href="#sec-faqs" class="hover:text-brand-teal hover:underline">十三、品牌库常见疑难解答 FAQ</a>
+      </div>
+    </nav>
+
+    <!-- Commercial Disclosure Callout -->
+    <AffiliateDisclosure />
+
+    <!-- SECTION 1: SEARCH & FILTER TOOLBAR -->
+    <section id="sec-toolbar" class="scroll-mt-20">
+      <div class="bg-white border border-brand-border rounded-xl p-4 sm:p-5 shadow-sm space-y-4" id="brand-filter-toolbar">
+        
+        <!-- Search Input & Quick Counts -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="relative flex-1 max-w-md">
+            <input
+              type="text"
+              id="brand-search-input"
+              placeholder="搜索品牌名称、别名或协议 (如 光速云、微风、VLESS)..."
+              class="w-full text-xs bg-brand-light border border-brand-border rounded-lg pl-9 pr-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-teal focus:bg-white text-brand-dark"
+            />
+            <svg class="w-4 h-4 text-brand-muted absolute left-3 top-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+
+          <div class="text-xs text-brand-muted shrink-0 flex items-center gap-2">
+            <span>当前筛选显示: <strong id="filter-count" class="text-brand-dark font-mono font-bold">31</strong> / 31 个品牌</span>
+            <button id="reset-filter-btn" class="text-brand-teal hover:underline text-xs hidden">重置全部条件</button>
+          </div>
+        </div>
+
+        <!-- Filter Pills -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-3 border-t border-brand-border text-xs">
+          
+          <!-- Network Type Filter -->
+          <div>
+            <label class="block text-[11px] font-semibold text-brand-muted mb-1">线路架构分类</label>
+            <select id="filter-network" class="w-full bg-brand-light border border-brand-border rounded-md px-2.5 py-1.5 text-xs text-brand-dark focus:outline-none focus:ring-1 focus:ring-brand-teal">
+              <option value="all">全部线路 (IEPL / IPLC / BGP)</option>
+              <option value="IEPL">仅 IEPL 内网物理专线</option>
+              <option value="IPLC">仅 IPLC 国际专线</option>
+              <option value="BGP">BGP / 公网中转线路</option>
+            </select>
+          </div>
+
+          <!-- Client Compatibility Filter -->
+          <div>
+            <label class="block text-[11px] font-semibold text-brand-muted mb-1">客户端兼容性</label>
+            <select id="filter-client" class="w-full bg-brand-light border border-brand-border rounded-md px-2.5 py-1.5 text-xs text-brand-dark focus:outline-none focus:ring-1 focus:ring-brand-teal">
+              <option value="all">全部客户端类型</option>
+              <option value="clash">支持 Clash / 通用开源订阅</option>
+              <option value="custom">提供自研专属客户端</option>
+              <option value="custom-only">仅专属客户端 (无通用订阅)</option>
+            </select>
+          </div>
+
+          <!-- Price Range Filter -->
+          <div>
+            <label class="block text-[11px] font-semibold text-brand-muted mb-1">月均起步预算</label>
+            <select id="filter-price" class="w-full bg-brand-light border border-brand-border rounded-md px-2.5 py-1.5 text-xs text-brand-dark focus:outline-none focus:ring-1 focus:ring-brand-teal">
+              <option value="all">全部价格区间</option>
+              <option value="under-10">¥10 元/月以下 (极限平价)</option>
+              <option value="10-20">¥10 - ¥20 元/月 (主流高性价比)</option>
+              <option value="over-20">¥20 元/月以上 (中高端专线)</option>
+            </select>
+          </div>
+
+          <!-- Sort Option -->
+          <div>
+            <label class="block text-[11px] font-semibold text-brand-muted mb-1">品牌排序维度</label>
+            <select id="sort-order" class="w-full bg-brand-light border border-brand-border rounded-md px-2.5 py-1.5 text-xs text-brand-dark focus:outline-none focus:ring-1 focus:ring-brand-teal">
+              <option value="default">综合默认 (合作展示与稳定推荐)</option>
+              <option value="price-asc">价格由低到高</option>
+              <option value="price-desc">价格由高到低</option>
+              <option value="year-desc">新开业品牌 (2025-2026)</option>
+              <option value="year-asc">老牌稳定优先 (2020-2023)</option>
+            </select>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Brands Grid Cards -->
+      <div id="brands-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-8">
+        {BRANDS.map((brand) => (
+          <div
+            class="brand-card-wrapper"
+            data-slug={brand.slug}
+            data-name={brand.name}
+            data-aliases={brand.aliases.join(',')}
+            data-network={brand.networkType}
+            data-price={brand.startingPriceMonthlyYuan}
+            data-year={brand.launchYear || 2024}
+            data-clash={brand.clientSupport.supportsClash ? 'true' : 'false'}
+            data-custom={brand.clientSupport.hasCustomApp ? 'true' : 'false'}
+            data-custom-only={!brand.clientSupport.supportsClash && brand.clientSupport.hasCustomApp ? 'true' : 'false'}
+            data-partner={brand.isPartner ? 'true' : 'false'}
+          >
+            <BrandCard brand={brand} />
+          </div>
+        ))}
+      </div>
+
+      <!-- Empty State -->
+      <div id="empty-state" class="hidden bg-white border border-brand-border rounded-xl p-12 text-center my-8">
+        <div class="text-3xl mb-3">🔍</div>
+        <h3 class="text-base font-bold text-brand-dark">未找到匹配的机场品牌</h3>
+        <p class="text-xs text-brand-muted mt-1 max-w-md mx-auto">
+          没有符合当前筛选条件的品牌。请尝试放宽价格区间、重置线路筛选或清除搜索关键词。
+        </p>
+        <button id="empty-reset-btn" class="mt-4 px-4 py-2 rounded-lg bg-brand-teal text-white text-xs font-semibold hover:bg-brand-accent transition-colors">
+          恢复全部 31 个品牌
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 2: BRAND TAXONOMY -->
+    <section id="sec-taxonomy" class="space-y-4 scroll-mt-20">
+      <div class="border-b border-brand-border pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+          <span>2. 31 家品牌分类学全景体系</span>
+        </h2>
+        <p class="text-xs text-brand-muted mt-1">按技术架构与用户定位，构建清晰的行业品牌图谱</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl shadow-sm space-y-2">
+          <span class="font-bold text-emerald-800 text-sm block">1. 企业级物理专线系</span>
+          <p class="text-brand-muted leading-relaxed">
+            核心骨干端到端采用 IEPL/IPLC 光缆，晚高峰不卡顿，追求极低抖动与高可靠性。
+          </p>
+          <div class="text-brand-dark font-medium pt-2 border-t border-brand-border">
+            代表：光速云、微风网络、一翻云、二猫云、闪跃
+          </div>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl shadow-sm space-y-2">
+          <span class="font-bold text-purple-800 text-sm block">2. AI 与纯净出海系</span>
+          <p class="text-brand-muted leading-relaxed">
+            专注落地 IP 洁净度，提供原生商宽与双 ISP 节点，完美支持 ChatGPT/Claude 与海外社媒。
+          </p>
+          <div class="text-brand-dark font-medium pt-2 border-t border-brand-border">
+            代表：速界、极连云、灵动云、光年云、唯兔云
+          </div>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl shadow-sm space-y-2">
+          <span class="font-bold text-blue-800 text-sm block">3. 极限平价与备用系</span>
+          <p class="text-brand-muted leading-relaxed">
+            起步月均在 10 元以下或提供一次性不过期包，大带宽中继调度，适合学生党与防断网容灾。
+          </p>
+          <div class="text-brand-dark font-medium pt-2 border-t border-brand-border">
+            代表：大佬云、闪电鼠、暮光加速、星岛梦
+          </div>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl shadow-sm space-y-2">
+          <span class="font-bold text-amber-800 text-sm block">4. 小白定制专属客户端系</span>
+          <p class="text-brand-muted leading-relaxed">
+            提供 Windows/Mac/Android 一键登录客户端，免除复杂的规则与 YAML 学习门槛。
+          </p>
+          <div class="text-brand-dark font-medium pt-2 border-t border-brand-border">
+            代表：飞猫云、无忧链接、梯子云
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: DATA INTEGRITY & AUDIT STANDARDS -->
+    <section id="sec-data-integrity" class="space-y-4 scroll-mt-20">
+      <div class="border-b border-brand-border pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+          <span>3. 品牌资料完整度说明与核验标准</span>
+        </h2>
+        <p class="text-xs text-brand-muted mt-1">诚实透明的数据哲学：区分实测核准与商家宣称，数据缺失诚实标注</p>
+      </div>
+
+      <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-4 text-xs text-brand-muted leading-relaxed">
+        <p>
+          网络代理行业长期存在严重的“虚假宣传”问题：小作坊将公网隧道宣传为 IEPL 专线、将普通机房广播 IP 宣传为原生住宅 IP、或者在测速图中进行人为调优。为了保护消费者的知情权，本站建立了严格的数据四级分级机制：
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
+          <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-lg">
+            <strong class="text-emerald-900 block mb-1">1. verified (官方核准)</strong>
+            通过第三方测试、公网 ASN 溯源及多源实测交叉核实的数据，可信度最高。
+          </div>
+          <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+            <strong class="text-blue-900 block mb-1">2. vendor (商家标称)</strong>
+            服务商官方文档宣称具备该特性，但由于测试条件受限，尚未取得独立多源第三方证实。
+          </div>
+          <div class="p-3 bg-amber-50 border border-amber-200 rounded-lg">
+            <strong class="text-amber-900 block mb-1">3. historical (历史数据)</strong>
+            过往测试记录或历史套餐规格，因服务商入口调整可能发生变动，仅作技术参考。
+          </div>
+          <div class="p-3 bg-rose-50 border border-rose-200 rounded-lg">
+            <strong class="text-rose-900 block mb-1">4. conflict / unknown (待核实)</strong>
+            不同来源数据存在矛盾（如光速云入门流量 59G vs 69G 冲突），诚实标注待核准，绝不自行编造。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: OLD VS NEW BRANDS -->
+    <section id="sec-old-vs-new" class="space-y-4 scroll-mt-20">
+      <div class="border-b border-brand-border pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+          <span>4. 老牌机场与新兴品牌深度对比：抗封能力与生命周期</span>
+        </h2>
+        <p class="text-xs text-brand-muted mt-1">选运营 4 年的老牌子，还是选刚开业 2 个月的新生代？</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs text-brand-muted leading-relaxed">
+        <div class="bg-white border border-brand-border rounded-xl p-5 shadow-sm space-y-2">
+          <span class="font-bold text-sm text-brand-dark block">老牌成熟服务商 (2020–2023 年开业)</span>
+          <p>
+            • <strong>核心优势：</strong>经历过多轮大规模敏感时期网络洗礼，拥有极其稳定的上游 IDC 商务渠道与备用入口冗余，跑路风险趋近于零。<br/>
+            • <strong>潜在劣势：</strong>知名度高导致注册用户庞大，部分热门节点在晚高峰可能会有微幅波动，优惠活动相对克制。<br/>
+            • <strong>代表品牌：</strong>星岛梦 (2020)、微风网络、一翻云、二猫云。
+          </p>
+        </div>
+
+        <div class="bg-white border border-brand-border rounded-xl p-5 shadow-sm space-y-2">
+          <span class="font-bold text-sm text-brand-dark block">新生代与技术新秀 (2024–2026 年开业)</span>
+          <p>
+            • <strong>核心优势：</strong>通常没有历史老协议包袱，全面拥抱 Hysteria 2、TUIC v5 或 sing-box 现代协议，初期用户少、带宽极空闲，测速极度惊艳。<br/>
+            • <strong>潜在劣势：</strong>运营团队与资金链尚未经受长周期市场检验，必须警惕中途跑路风险。<strong>初次购买坚决仅选月付。</strong><br/>
+            • <strong>代表品牌：</strong>灵动云、浪网、边缘节点 EdgeNova。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: LINE POSITIONING -->
+    <section id="sec-line-positioning" class="space-y-4 scroll-mt-20">
+      <div class="border-b border-brand-border pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+          <span>5. 不同品牌的线路定位与采购成本倒推</span>
+        </h2>
+        <p class="text-xs text-brand-muted mt-1">从服务商的底层线路，推断其实际稳定性与性价比</p>
+      </div>
+
+      <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3 text-xs text-brand-muted leading-relaxed">
+        <p>
+          在品牌库中，各品牌的线路架构主要分为三类：
+        </p>
+        <ul class="list-disc list-inside space-y-2 pl-2">
+          <li><strong>IEPL / IPLC 纯物理专线系</strong>：采购电信运营商的真实跨境光缆，端到端不过公网国际出口，晚高峰抗抖动性能最顶级，如光速云、微风网络、一翻云。</li>
+          <li><strong>BGP 智能多线中转系</strong>：国内入口采用联通/电信/移动三线 BGP 服务器就近接入，跨境走隧道加密。总带宽吞吐大，性价比较高，如暮光加速、大佬云。</li>
+          <li><strong>混合智能调度系</strong>：核心高倍率节点走 IEPL 专线保障办公与 AI，普通大流量节点走 BGP 中转保障 4K 流媒体下载，如极连云、速界。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION 6: CLIENTS COMPARISON -->
+    <section id="sec-clients-comparison" class="space-y-4 scroll-mt-20">
+      <div class="border-b border-brand-border pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+          <span>6. 自研专属 App 与开源通用订阅对比：如何按需取舍</span>
+        </h2>
+        <p class="text-xs text-brand-muted mt-1">不想折腾技术的小白与需要复杂分流的极客，应该如何选品牌？</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-brand-muted leading-relaxed">
+        <div class="bg-white border border-brand-border rounded-xl p-5 shadow-sm space-y-2">
+          <strong class="text-brand-dark text-sm block">选择自研客户端品牌（适合小白用户）</strong>
+          <p>
+            如飞猫云、无忧链接等品牌，主要面向完全不懂网络分流与客户端配置的用户。只要下载一个专属软件，输入用户名密码，节点列表自动同步，点击一键连接即可使用。免去了下载配置 Clash YAML 的繁琐过程。
+          </p>
+        </div>
+
+        <div class="bg-white border border-brand-border rounded-xl p-5 shadow-sm space-y-2">
+          <strong class="text-brand-dark text-sm block">选择通用订阅品牌（适合进阶极客）</strong>
+          <p>
+            支持标准 Clash / sing-box / v2rayN 订阅的品牌，用户可以自由配置 Direct 直连、Proxy 代理与 Reject 广告拦截规则，支持开启 TUN 虚拟网卡模式，并能够方便地将配置写入软路由 OpenClash 实现全屋透明加速。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: PLANS STRUCTURE -->
+    <section id="sec-plans-structure" class="space-y-4 scroll-mt-20">
+      <div class="border-b border-brand-border pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+          <span>7. 31 家品牌套餐结构横向分布规律</span>
+        </h2>
+        <p class="text-xs text-brand-muted mt-1">梳理整个品牌库的资费分布，看懂主流商业模型</p>
+      </div>
+
+      <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3 text-xs text-brand-muted leading-relaxed">
+        <p>
+          通过对 31 家品牌所有套餐的聚类分析，我们总结出当前市场的资费结构分布：
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+          <div class="p-3 bg-brand-light rounded-lg border border-brand-border">
+            <strong class="text-brand-dark block mb-1">平价入门包 (占比约 35%)</strong>
+            月均费用在 5–15 元区间，月流量配额在 50GB–100GB 左右。满足绝大多数文字阅读与轻量日常需求。
+          </div>
+          <div class="p-3 bg-brand-light rounded-lg border border-brand-border">
+            <strong class="text-brand-dark block mb-1">中端专线主力包 (占比约 50%)</strong>
+            月费在 15–30 元区间，月流量 100GB–250GB。全节点配备 IEPL 专线与流媒体解锁，是市场最主流的中流砥柱。
+          </div>
+          <div class="p-3 bg-brand-light rounded-lg border border-brand-border">
+            <strong class="text-brand-dark block mb-1">一次性不限时包 (占比约 15%)</strong>
+            标价 30–100 元，流量永久有效不重置。适合极低频轻度用户或作为终身备用节点。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: SUPPORT SLA -->
+    <section id="sec-support-sla" class="space-y-4 scroll-mt-20">
+      <div class="border-b border-brand-border pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+          <span>8. 客户服务与工单响应考核标准</span>
+        </h2>
+        <p class="text-xs text-brand-muted mt-1">断网时有没有人理你？售后保障是区分正规团队与小作坊的分水岭</p>
+      </div>
+
+      <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3 text-xs text-brand-muted leading-relaxed">
+        <p>
+          在评估一个机场品牌时，技术支持能力占据极其重要的权重：
+        </p>
+        <ul class="list-disc list-inside space-y-1.5 pl-2">
+          <li><strong>官方通知频道 (Announcement Channel)</strong>：正规服务商在进行机房切割、光缆维护时，均会提前数小时在 Telegram 频道或官网首页发布维护公告与预计恢复时间。</li>
+          <li><strong>在线工单响应时长 (Ticket SLA)</strong>：优质品牌通常在 2–6 小时内回复工单；部分具备较强实力的品牌（如微风网络）还配备了夜间 AI 客服或 7x24 小时值班运维。</li>
+          <li><strong>警惕失联特征</strong>：如果某品牌关闭了全部用户群聊，工单提交数日无人回应，说明团队运维人手严重不足或存在跑路风险。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION 9: OPERATIONAL STATUS & RED FLAGS -->
+    <section id="sec-operational-status" class="space-y-4 scroll-mt-20">
+      <div class="border-b border-brand-border pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+          <span>9. 品牌运营状态与失联前兆判别方法</span>
+        </h2>
+        <p class="text-xs text-brand-muted mt-1">如何精准区分“正常线路维护”与“管理团队跑路失联”</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-brand-muted leading-relaxed">
+        <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl space-y-1.5">
+          <strong class="text-emerald-900 block text-sm">正常临时线路维护特征</strong>
+          <p class="text-emerald-950/80">
+            • 官网频道提前同步通知，清晰说明故障原因（如某条海缆中断）；<br/>
+            • 仅部分特定地区节点暂时超时，备用备用节点依然通畅；<br/>
+            • 预计恢复时间明确，并在修复后发布补偿方案（如补偿 3 天使用期）。
+          </p>
+        </div>
+
+        <div class="p-4 bg-rose-50 border border-rose-200 rounded-xl space-y-1.5">
+          <strong class="text-rose-900 block text-sm">停运跑路高危特征</strong>
+          <p class="text-rose-950/80">
+            • 全节点持续数日超时全红，管理团队静默装死；<br/>
+            • 官方交流群开启全员永久禁言，工单系统被关闭；<br/>
+            • 跑路前夕曾推出“骨折级吸资促销”（如买一年送三年）；<br/>
+            • 官网主域名无法访问或解析被篡改。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 10: READING DEEP REVIEWS -->
+    <section id="sec-reading-reviews" class="space-y-4 scroll-mt-20">
+      <div class="border-b border-brand-border pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+          <span>10. 如何专业阅读本站独立品牌深度评测</span>
+        </h2>
+        <p class="text-xs text-brand-muted mt-1">看懂评测文章中的每一个技术模块，挖掘真实价值</p>
+      </div>
+
+      <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3 text-xs text-brand-muted leading-relaxed">
+        <p>
+          点击进入任意品牌的独立档案（如 <a href="/brands/guangsu/" class="text-brand-teal hover:underline font-bold">/brands/guangsu/</a>）后，推荐按以下结构重点查阅：
+        </p>
+        <ol class="list-decimal list-inside space-y-1.5 pl-2">
+          <li><strong>网络拓扑与架构图</strong>：查看国内入口机房与跨境光缆类别，明确是 IEPL 专线还是 BGP 中继；</li>
+          <li><strong>晚高峰实测数据报告</strong>：查看 21:00 晚高峰实测延迟、抖动与丢包率，拒绝无数据空谈；</li>
+          <li><strong>AI 与流媒体兼容矩阵</strong>：查看 ChatGPT、Claude、Netflix、TikTok 的实测解锁状态；</li>
+          <li><strong>套餐结构与起步月付</strong>：查看是否支持低门槛月付试水，防范年付捆绑；</li>
+          <li><strong>核验状态与已知局限性</strong>：关注页面底部的风险提示与待核实字段，做到心中有数。</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SECTION 11: OFFICIAL ENTRANCE VERIFICATION -->
+    <section id="sec-official-verification" class="space-y-4 scroll-mt-20">
+      <div class="border-b border-brand-border pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+          <span>11. 品牌官网入口防伪鉴别指南：远离山寨钓鱼镜像</span>
+        </h2>
+        <p class="text-xs text-brand-muted mt-1">搜索引擎广告泛滥，如何确保自己访问的是真正的官方网站</p>
+      </div>
+
+      <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3 text-xs text-brand-muted leading-relaxed">
+        <p>
+          由于网络代理行业的特殊性，部分不法分子会在搜索引擎投放竞价广告，克隆知名品牌的登录页面进行钓鱼盗号。防范钓鱼的四大铁律：
+        </p>
+        <ul class="list-disc list-inside space-y-1.5 pl-2">
+          <li><strong>认准权威导航核验链接</strong>：本站所有品牌主档案中的官网入口均经过反向 DNS 与社区官方证实，可安全点击访问；</li>
+          <li><strong>检查 SSL 证书颁发机构</strong>：正规服务商官网通常配置合规的 Cloudflare 或 Let's Encrypt 安全证书，浏览器地址栏必须显示绿色安全锁；</li>
+          <li><strong>核对登录页防机器人验证码</strong>：钓鱼网站通常没有复杂的 Turnstile 验证码，输入任意虚假账号密码都会提示登录成功以窃取凭据；</li>
+          <li><strong>警惕个人转账与异常二维码</strong>：正规服务商均接入了第三方签约商户收银台，若要求直接向个人微信或支付宝转账，必属山寨盗版。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION 12: ALTERNATIVE & REDUNDANCY LOGIC -->
+    <section id="sec-alternative-logic" class="space-y-4 scroll-mt-20">
+      <div class="border-b border-brand-border pb-3">
+        <h2 class="text-xl sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+          <span>12. 品牌突发断网或停运时的平替方案与对标矩阵</span>
+        </h2>
+        <p class="text-xs text-brand-muted mt-1">当您习惯使用的品牌涨价或维护时，如何快速平滑迁移</p>
+      </div>
+
+      <div class="overflow-x-auto bg-white border border-brand-border rounded-xl shadow-sm text-xs">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-brand-light border-b border-brand-border text-brand-dark font-bold">
+              <th class="p-3 whitespace-nowrap">当前品牌类型</th>
+              <th class="p-3 whitespace-nowrap">核心需求特征</th>
+              <th class="p-3 whitespace-nowrap">对标平替品牌建议</th>
+              <th class="p-3 whitespace-nowrap">迁移操作要点</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border text-brand-muted">
+            <tr class="hover:bg-brand-light/40 transition">
+              <td class="p-3 font-bold text-brand-dark whitespace-nowrap">IEPL 高品质专线系</td>
+              <td class="p-3 whitespace-nowrap">晚高峰抗抖动、开发运维、稳定办公</td>
+              <td class="p-3 font-bold text-brand-teal whitespace-nowrap">光速云、微风网络、一翻云</td>
+              <td class="p-3 whitespace-nowrap">导入新订阅，开启 TUN 模式即可无缝平替</td>
+            </tr>
+            <tr class="hover:bg-brand-light/40 transition">
+              <td class="p-3 font-bold text-brand-dark whitespace-nowrap">小白专属定制客户端系</td>
+              <td class="p-3 whitespace-nowrap">免配置、一键安装、账号密码登录</td>
+              <td class="p-3 font-bold text-brand-teal whitespace-nowrap">飞猫云、无忧链接、二猫云</td>
+              <td class="p-3 whitespace-nowrap">下载新品牌 App 登录，无需学习规则配置</td>
+            </tr>
+            <tr class="hover:bg-brand-light/40 transition">
+              <td class="p-3 font-bold text-brand-dark whitespace-nowrap">极限平价备用系</td>
+              <td class="p-3 whitespace-nowrap">月付 10 元以内、轻度查资料、充当安全气囊</td>
+              <td class="p-3 font-bold text-brand-teal whitespace-nowrap">大佬云、闪电鼠、暮光加速</td>
+              <td class="p-3 whitespace-nowrap">购买不过期流量包或小额月付，配置为备用策略组</td>
+            </tr>
+            <tr class="hover:bg-brand-light/40 transition">
+              <td class="p-3 font-bold text-brand-dark whitespace-nowrap">AI 生产力与出海原生系</td>
+              <td class="p-3 whitespace-nowrap">ChatGPT/Claude 防封、TikTok 电商原生 IP</td>
+              <td class="p-3 font-bold text-brand-teal whitespace-nowrap">速界、极连云、灵动云</td>
+              <td class="p-3 whitespace-nowrap">在客户端挑选原生商宽节点，清理浏览器旧指纹</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 13: FAQS -->
+    <section id="sec-faqs" class="scroll-mt-20">
+      <FAQ items={faqItems} title="机场品牌库、资质核验与评测常见疑难解答 (FAQ)" />
+    </section>
+
+    <!-- Interactive Tools & Compare Cross Links -->
+    <section class="my-10 bg-brand-light p-6 rounded-2xl border border-brand-border space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="font-bold text-sm text-brand-dark">⚖️ 寻找两个品牌之间的深度差异？</h3>
+          <p class="text-xs text-brand-muted">进入并排对决专题，全维度同屏比对线路、测速、套餐与解锁数据</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
+        <a href="/compare/guangsu-vs-muguang/" class="p-3 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-sm text-center font-bold text-brand-dark hover:text-brand-teal transition">
+          ⚔️ 光速云 vs 暮光加速
+        </a>
+        <a href="/compare/feimao-vs-weifeng/" class="p-3 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-sm text-center font-bold text-brand-dark hover:text-brand-teal transition">
+          ⚔️ 飞猫云 vs 微风网络
+        </a>
+        <a href="/compare/weitu-vs-firefly/" class="p-3 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-sm text-center font-bold text-brand-dark hover:text-brand-teal transition">
+          ⚔️ 唯兔云 vs Firefly萤火虫
+        </a>
+        <a href="/compare/" class="p-3 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-sm text-center font-bold text-brand-dark hover:text-brand-teal transition">
+          🔍 查看全部 20 组对决 →
+        </a>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<script>
+  function initBrandFilter() {
+    const searchInput = document.getElementById('brand-search-input') as HTMLInputElement;
+    const filterNetwork = document.getElementById('filter-network') as HTMLSelectElement;
+    const filterClient = document.getElementById('filter-client') as HTMLSelectElement;
+    const filterPrice = document.getElementById('filter-price') as HTMLSelectElement;
+    const sortOrder = document.getElementById('sort-order') as HTMLSelectElement;
+    const countEl = document.getElementById('filter-count');
+    const resetBtn = document.getElementById('reset-filter-btn');
+    const emptyResetBtn = document.getElementById('empty-reset-btn');
+    const emptyState = document.getElementById('empty-state');
+    const grid = document.getElementById('brands-grid');
+    const cards = Array.from(document.querySelectorAll('.brand-card-wrapper')) as HTMLElement[];
+
+    if (!searchInput || !cards.length) return;
+
+    function applyFilterAndSort() {
+      const query = searchInput.value.trim().toLowerCase();
+      const network = filterNetwork.value;
+      const client = filterClient.value;
+      const price = filterPrice.value;
+      const sort = sortOrder.value;
+
+      let visibleCards = cards.filter(card => {
+        const name = (card.dataset.name || '').toLowerCase();
+        const aliases = (card.dataset.aliases || '').toLowerCase();
+        const cNetwork = card.dataset.network || '';
+        const cPrice = parseFloat(card.dataset.price || '0');
+        const cClash = card.dataset.clash === 'true';
+        const cCustom = card.dataset.custom === 'true';
+        const cCustomOnly = card.dataset.customOnly === 'true';
+
+        // 1. Text Search
+        if (query && !name.includes(query) && !aliases.includes(query)) {
+          return false;
+        }
+
+        // 2. Network Type
+        if (network !== 'all' && !cNetwork.includes(network)) {
+          return false;
+        }
+
+        // 3. Client
+        if (client === 'clash' && !cClash) return false;
+        if (client === 'custom' && !cCustom) return false;
+        if (client === 'custom-only' && !cCustomOnly) return false;
+
+        // 4. Price
+        if (price === 'under-10' && cPrice >= 10) return false;
+        if (price === '10-20' && (cPrice < 10 || cPrice > 20)) return false;
+        if (price === 'over-20' && cPrice <= 20) return false;
+
+        return true;
+      });
+
+      // Sorting
+      if (sort === 'price-asc') {
+        visibleCards.sort((a, b) => parseFloat(a.dataset.price || '0') - parseFloat(b.dataset.price || '0'));
+      } else if (sort === 'price-desc') {
+        visibleCards.sort((a, b) => parseFloat(b.dataset.price || '0') - parseFloat(a.dataset.price || '0'));
+      } else if (sort === 'year-desc') {
+        visibleCards.sort((a, b) => parseInt(b.dataset.year || '0') - parseInt(a.dataset.year || '0'));
+      } else if (sort === 'year-asc') {
+        visibleCards.sort((a, b) => parseInt(a.dataset.year || '0') - parseInt(b.dataset.year || '0'));
+      } else {
+        // Default: Partner first, then stable brands
+        visibleCards.sort((a, b) => {
+          const aPartner = a.dataset.partner === 'true' ? 1 : 0;
+          const bPartner = b.dataset.partner === 'true' ? 1 : 0;
+          return bPartner - aPartner;
+        });
+      }
+
+      // Hide all first
+      cards.forEach(c => c.style.display = 'none');
+
+      // Re-append in sorted order and show
+      if (grid) {
+        visibleCards.forEach(c => {
+          c.style.display = '';
+          grid.appendChild(c);
+        });
+      }
+
+      // Update Count & Empty state
+      if (countEl) countEl.textContent = visibleCards.length.toString();
+      if (emptyState) {
+        emptyState.classList.toggle('hidden', visibleCards.length > 0);
+      }
+
+      // Show/Hide Reset Button
+      const hasFilter = query || network !== 'all' || client !== 'all' || price !== 'all' || sort !== 'default';
+      if (resetBtn) resetBtn.classList.toggle('hidden', !hasFilter);
+    }
+
+    function resetAll() {
+      searchInput.value = '';
+      filterNetwork.value = 'all';
+      filterClient.value = 'all';
+      filterPrice.value = 'all';
+      sortOrder.value = 'default';
+      applyFilterAndSort();
+    }
+
+    searchInput.addEventListener('input', applyFilterAndSort);
+    filterNetwork.addEventListener('change', applyFilterAndSort);
+    filterClient.addEventListener('change', applyFilterAndSort);
+    filterPrice.addEventListener('change', applyFilterAndSort);
+    sortOrder.addEventListener('change', applyFilterAndSort);
+    if (resetBtn) resetBtn.addEventListener('click', resetAll);
+    if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetAll);
+  }
+
+  document.addEventListener('DOMContentLoaded', initBrandFilter);
+</script>

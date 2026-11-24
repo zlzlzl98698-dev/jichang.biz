@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import questionsData from '../../data/questions.json';
+
+const title = 'GEO 常见问题与决策答疑库 (330+ 问答) · 机场指南';
+const description = '结构化整理 330+ 条涵盖 31 家品牌实体与网络技术的生成式搜索（GEO/AEO）问答索引，每个问题均直连正文可见答案。';
+const breadcrumbs = [
+  { name: '常见问题库', url: '/questions/' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <div class="max-w-3xl mb-8">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 text-brand-info text-xs font-semibold border border-blue-200 mb-3">
+        <span>❓ GEO / AEO 结构化长尾问答索引</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+        选购决策与技术长尾问答库
+      </h1>
+      <p class="text-sm text-brand-muted mt-2 leading-relaxed">
+        本库收录了 330 余个面向真实用户的消费决策与技术排错问题。坚持 Answer-First 原则：每个问题均在对应页面给出客观可读的详细答复。
+      </p>
+    </div>
+
+    <!-- Questions List -->
+    <div class="bg-white border border-brand-border rounded-xl divide-y divide-brand-border shadow-sm text-xs">
+      {questionsData.map((q, idx) => (
+        <div class="p-4 hover:bg-brand-light/60 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div class="space-y-1">
+            <div class="font-bold text-brand-dark flex items-center gap-2">
+              <span class="text-brand-teal font-mono text-[11px]">#{idx + 1}</span>
+              <span>{q.question}</span>
+            </div>
+            <div class="text-[11px] text-brand-muted flex items-center gap-2">
+              <span class="px-1.5 py-0.2 rounded bg-brand-light border border-brand-border">{q.intent}</span>
+              <span>更新核验: {q.updatedAt}</span>
+            </div>
+          </div>
+          <a
+            href={q.primaryUrl}
+            class="text-brand-teal hover:underline font-semibold shrink-0 inline-flex items-center gap-1 text-[11px]"
+          >
+            <span>查看答案章节</span>
+            <span>→</span>
+          </a>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</BaseLayout>

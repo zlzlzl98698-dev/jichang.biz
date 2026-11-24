@@ -1,0 +1,347 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+import { BRANDS } from '../../data/brands';
+
+export async function getStaticPaths() {
+  const topics = [
+    {
+      slug: 'recommend',
+      title: 'VPN 推荐指南 · 企业远程办公与跨国合规加密连接全景',
+      metaDescription: '权威辨析正规商业 VPN 与传统机场代理。为外企远程办公、学术科研加密传输与跨国商务协作提供客观产品选型与安全合规指引。',
+      badge: '🛡️ 虚拟专用网选型',
+      coreKeyword: 'VPN 推荐',
+      heading: 'VPN 推荐指南：企业远程办公与高隐私加密专网',
+      answerFirst: '选择 VPN 必须首先明确定位：您需要的是用于企业内网互联、高等级隐私加密的商业 VPN（OSI Layer 3 虚拟专用网），还是用于日常高速网页浏览与流媒体解锁的轻量级代理？正规商业 VPN 具备严格的独立无日志审计（No-Logs Audit）与企业级 AES-256 加密，适合跨国商务和机密科研；若单纯追求低延迟看 4K 视频，具备专线保障的机场代理往往能提供更高的吞吐性能。',
+      intro: '在鱼龙混杂的网络工具市场，许多人将代理软件与商业 VPN 混为一谈。本专题从通信协议层、加密强度与隐私审计维度，为您客观梳理 VPN 选型与合规使用边界。',
+      targetAudience: '跨国企业外派员工、跨境合规商务谈判人员、处理高敏感金融数据的专业用户。',
+      filterCriteria: (b: any) => b.isPartner || b.dataStatus === 'verified',
+      faqList: [
+        {
+          question: '商业 VPN 和机场代理在日常使用中有什么本质区别？',
+          answer: '商业 VPN 在操作系统网络层（Layer 3）建立全局虚拟网卡，强制加密接管所有出站数据包，核心目标是数据机密性与防窃听；机场代理主要工作在传输层与应用层（Layer 4/7），依靠规则分流让国内国外流量自动分道扬镳，核心目标是高吞吐与低延迟。'
+        },
+        {
+          question: '为什么有的 VPN 在国内连不上？',
+          answer: '传统通用 VPN 协议（如 OpenVPN、IPsec、IKEv2）的数据包特征极其明显，在跨越国际公网出口时极易被防火墙深度报文检测（DPI）识别并阻断。因此面向跨国加速的工具普遍采用经过混淆伪装的协议（如 TLS 加密隧道或 Shadowsocks）。'
+        },
+        {
+          question: '正规商业 VPN 的价格通常是多少？',
+          answer: '国际知名商业 VPN（如 ExpressVPN、NordVPN、Surfshark）按月购买通常在 $10–$13 美元/月（约合 ¥70–¥90 元/月），长期年付折合约 $3–$5 美元/月。'
+        }
+      ]
+    },
+    {
+      slug: 'free',
+      title: '免费 VPN 真实代价揭秘 · 隐私买卖、植入广告与安全避坑',
+      metaDescription: '天下没有免费的午餐。深度拆解“免费 VPN”、“永久免费加速器”背后的真实盈利模式，警惕用户数据转卖、流量劫持与恶意软件安全风险。',
+      badge: '⚠️ 安全隐私风险预警',
+      coreKeyword: '免费 VPN',
+      heading: '免费 VPN 的真实代价：隐私买卖与安全风险全景',
+      answerFirst: '“免费的往往是最昂贵的”。跨国服务器租赁与国际出口带宽每月都需要支付真金白银。声称“永久免费”的 VPN 软件其盈利模式无非四种：1. 疯狂弹窗与内置推广木马；2. 悄悄记录并在暗网打包出售用户的真实浏览历史与行为习惯；3. 将用户的手机和电脑变为对等网络（P2P）的僵尸出口节点，替黑客背锅；4. 极速诱饵后实施高额自动续费扣款。请坚决抵制不可信的免费 VPN。',
+      intro: '被应用商店里满屏的“免费加速器”所吸引？在点击下载之前，建议您了解其背后隐藏的数据交易与安全雷区。',
+      targetAudience: '贪图一时省钱、缺乏网络安全防范意识、准备在手机电脑上安装未知免费加速器的用户。',
+      filterCriteria: (b: any) => b.startingPriceMonthlyYuan <= 10,
+      faqList: [
+        {
+          question: '免费 VPN 真的会窃取我的账号密码吗？',
+          answer: '如果访问的是未加密的 HTTP 网站，免费 VPN 的服务器运营者完全可以明文读取你输入的账号、密码和聊天记录；即便是 HTTPS 加密流量，对方也能完整掌握你访问了哪些网站、停留了多长时间，形成精准的个人隐私画像并转卖变现。'
+        },
+        {
+          question: '有哪些相对安全的低成本替代方案？',
+          answer: '与其将隐私暴露给不可信的免费黑产软件，不如选择每月只需 ¥5.6 元的平价老牌合规机场（如闪电鼠、大佬云），既有正规团队维护，又无需承受安全威胁。'
+        },
+        {
+          question: '为什么手机装了免费 VPN 后电量消耗极快？',
+          answer: '许多恶意免费 VPN 会在手机后台常驻挖矿程序、或持续运行爬虫任务消耗你的计算资源与移动流量，导致手机发热严重、电池寿命骤降。'
+        }
+      ]
+    },
+    {
+      slug: 'mobile',
+      title: '手机 VPN 与移动加速指南 · Android / iOS 客户端配置与省电优化',
+      metaDescription: '手机移动端跨境连接全景指南。详解 iPhone (iOS) 与安卓 (Android) 系统网络扩展差异、分应用代理、后台防杀保活与流量节省最佳实践。',
+      badge: '📱 移动端生态配置',
+      coreKeyword: '手机 VPN',
+      heading: '手机 VPN 与移动加速：iOS 与安卓全平台配置指南',
+      answerFirst: '在移动设备上使用代理加速，核心痛点在于“后台保活”与“防止国内应用被误伤”。iOS 平台依赖 Apple 的 Network Extension 框架，Shadowrocket（小火箭）是体验最完善的标杆；Android 平台基于 VpnService 接口，Clash Meta for Android (CMFA) 具备极佳的“分应用代理”能力。核心操作是将微信、支付宝、高德地图等国内常用软件设为直连绕过，既省流量又防异地登录报警。',
+      intro: '手机随时随地需要查阅海外资讯、刷社交媒体或接收海外业务通知？本专题为您提供专属于智能手机的无感加速与系统级优化指南。',
+      targetAudience: '主要依赖 iPhone、iPad 或安卓手机进行移动跨境办公、外贸沟通与海外社交的用户。',
+      filterCriteria: (b: any) => b.clientSupport.supportsShadowrocket || b.clientSupport.hasCustomApp,
+      faqList: [
+        {
+          question: '为什么安卓手机锁屏一段时间后代理就自动断开了？',
+          answer: '这是由于国内手机厂商（小米/华为/OPPO/vivo）极度严格的电池省电策略在锁屏后强制杀死了后台客户端。解决办法：在手机设置中找到该应用，将其电池策略改为“无限制后台运行”，并允许“自启动”。'
+        },
+        {
+          question: 'iPhone 手机怎么下载正版 Shadowrocket？',
+          answer: 'Shadowrocket 仅在海外区（美区/港区/日区等）App Store 上架，售价 $2.99。需在手机 App Store 商店内切换登录一个海外 Apple ID 进行购买下载，切勿在系统 iCloud 中登录他人账号。'
+        },
+        {
+          question: '手机开着代理会多消耗很多流量吗？',
+          answer: '保持在“规则模式 (Rule)”下，国内微信、抖音等大流量应用走直连本地宽带，完全不消耗机场套餐流量；仅当您打开 Google、YouTube 等海外应用时才会计费。'
+        }
+      ]
+    },
+    {
+      slug: 'gaming',
+      title: '海外游戏加速器对比 · 竞技联机专线、UDP 丢包与传统代理差异',
+      metaDescription: '打外服游戏可以用机场代理吗？深度科普商业游戏加速器与机场物理专线的技术差异，解析电竞联机对 UDP 丢包率与网络抖动的严苛要求。',
+      badge: '🎮 电竞低时延加速',
+      coreKeyword: '游戏加速器',
+      heading: '海外游戏加速器与机场代理：电竞联机技术差异横评',
+      answerFirst: '“打外服竞技游戏能不能用机场代理？”答案是：普通公网中转机场绝对不行，但顶级 IEPL 物理专线配合 TUN 虚拟网卡可以完美胜任。网络竞技游戏（如 Steam、APEX、Valorant、CS2）的核心通信载体是 UDP 协议，对延迟抖动（Jitter < 3ms）和丢包率（Packet Loss < 0.2%）要求近乎苛刻。普通商业加速器（如网易UU、腾讯加速器）胜在傻瓜式一键配置；而配置得当的专线机场往往能提供更平直的物理海底光缆路由。',
+      intro: '经常遭遇延迟跳 Ping、丢包瞬移甚至掉线重连？本专题从传输层协议与路由交换工程，为您拆解海外电竞联机的网络优化方案。',
+      targetAudience: 'Steam、PlayStation、Nintendo Switch 外服联机电竞玩家及海外联机社区玩家。',
+      filterCriteria: (b: any) => b.networkType.includes('专线') || b.networkType.includes('IPLC') || b.name.includes('一翻云'),
+      faqList: [
+        {
+          question: '为什么普通机场节点打游戏频繁卡顿瞬移？',
+          answer: '因为许多普通中转机场对 UDP 流量做了限制甚至直接丢弃，且公网过境在晚高峰丢包严重。游戏数据包一旦丢失，本地客户端与服务器位置同步失败，就会出现被强行拉回原地的“回弹瞬移”。'
+        },
+        {
+          question: '电脑打游戏用代理，客户端需要开启什么模式？',
+          answer: '必须开启 **TUN 虚拟网卡模式**！因为绝大多数大型 PC 游戏客户端并不读取 Windows 传统的 HTTP 系统代理设置。只有通过 TUN 模式在系统底层创建虚拟网卡，才能强行接管游戏客户端的 UDP 数据报文。'
+        },
+        {
+          question: 'Switch / PS5 游戏机怎么用电脑代理加速？',
+          answer: '在电脑端客户端开启“允许局域网连接 (Allow LAN)”，然后在 Switch 或 PS5 的网络高级设置中将代理服务器 IP 设为电脑的内网 IPv4 地址（如 192.168.1.x）及对应端口即可。'
+        }
+      ]
+    }
+  ];
+
+  return topics.map(topic => ({
+    params: { slug: topic.slug },
+    props: { topic }
+  }));
+}
+
+const { topic } = Astro.props;
+
+const title = topic.title;
+const description = topic.metaDescription;
+const breadcrumbs = [
+  { name: 'VPN 与加速器', url: '/vpn/' },
+  { name: topic.coreKeyword, url: `/vpn/${topic.slug}/` }
+];
+
+const selectedBrands = BRANDS.filter(topic.filterCriteria);
+
+const tocItems = [
+  { id: 'answer-first', title: 'Answer-First 核心技术结论' },
+  { id: 'protocol-arch', title: '网络层级架构与核心差异' },
+  { id: 'brand-candidates', title: '代表性服务商与方案对比' },
+  { id: 'security-audit', title: '安全合规与隐私审计边界' },
+  { id: 'configuration-tips', title: '配置实战与避坑建议' },
+  { id: 'faq', title: '高频常见疑问 (FAQ)' },
+  { id: 'cross-links', title: '全站工具与关联专题' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs} faqItems={topic.faqList}>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Hero Header -->
+    <div class="mb-8 border-b border-brand-border pb-6">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-purple-50 text-purple-800 text-xs font-semibold border border-purple-200 mb-3">
+        <span>{topic.badge}</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-brand-dark tracking-tight">
+        {topic.heading}
+      </h1>
+      <p class="text-sm sm:text-base text-brand-muted mt-3 leading-relaxed">
+        {topic.intro}
+      </p>
+    </div>
+
+    <!-- In-Page TOC Anchor Navigation -->
+    <nav class="my-6 p-4 bg-brand-light border border-brand-border rounded-xl shadow-xs" aria-label="页面目录导航">
+      <div class="flex items-center justify-between pb-2 mb-2 border-b border-brand-border text-xs font-bold text-brand-dark">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-brand-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+          本 VPN 专题目录 (TOC)
+        </span>
+        <span class="text-brand-muted font-normal">点击快速跳转</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-1.5 text-xs">
+        {tocItems.map(item => (
+          <a href={`#${item.id}`} class="text-brand-dark hover:text-brand-teal hover:underline truncate py-0.5">
+            · {item.title}
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    <!-- MODULE 1: Answer-First Card -->
+    <section id="answer-first" class="my-8 scroll-mt-20">
+      <div class="p-5 bg-linear-to-br from-purple-50/70 via-white to-blue-50/50 border-2 border-purple-200 rounded-2xl shadow-sm">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-2 py-0.5 rounded bg-purple-700 text-white text-xs font-bold tracking-wide">Answer-First 核心结论</span>
+          <span class="text-xs text-brand-muted font-mono">定位：{topic.coreKeyword}</span>
+        </div>
+        <h2 class="text-lg font-bold text-brand-dark mb-2">30秒掌握本工具技术实质</h2>
+        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
+          {topic.answerFirst}
+        </p>
+        <div class="p-3 bg-white/80 rounded-xl border border-purple-200 text-xs text-brand-dark font-medium flex items-center gap-2">
+          <span>🎯 <strong>核心适用场景：</strong>{topic.targetAudience}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 2: Protocol Architecture -->
+    <section id="protocol-arch" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        网络层级架构与核心差异
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        根据 OSI 七层参考模型，理解不同加速方案在网络协议栈中所处的层级与工作方式：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-1.5 shadow-2xs">
+          <div class="font-bold text-brand-dark text-sm">企业级 VPN (Layer 3)</div>
+          <p class="text-brand-muted leading-relaxed">
+            工作在网络层。通过虚拟网络适配器对系统所有的 IP 报文进行无差别点对点加密（如 IPsec、WireGuard），保障通信隐私，但无法智能分流。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-1.5 shadow-2xs">
+          <div class="font-bold text-brand-dark text-sm">代理协议 (Layer 4 / 7)</div>
+          <p class="text-brand-muted leading-relaxed">
+            工作在传输层与应用层。通过本地客户端进行 GeoIP/Domain 智能路由分流（国内直连、海外代理），具备极高的吞吐性能与低带宽损耗。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-1.5 shadow-2xs">
+          <div class="font-bold text-brand-dark text-sm">游戏专用加速 (UDP专线)</div>
+          <p class="text-brand-muted leading-relaxed">
+            专注于游戏进程的 UDP 协议抓包与转发。通过端到端内网专线消除游戏服务器握手抖动，保障竞技状态无回弹。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 3: Brand Candidates -->
+    <section id="brand-candidates" class="my-10 scroll-mt-20 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+          精选合规服务商方案 ({selectedBrands.length} 家入围)
+        </h2>
+        <span class="text-xs text-brand-muted">真实专线与客户端支持核验</span>
+      </div>
+      <p class="text-xs text-brand-muted leading-relaxed">
+        下表列出支持全平台客户端导入、具备稳定内网过境能力的代表品牌：
+      </p>
+
+      <div class="table-responsive-wrapper">
+        <table class="w-full text-left text-xs border-collapse border border-brand-border bg-white rounded-xl shadow-xs">
+          <thead>
+            <tr class="bg-brand-light border-b border-brand-border text-brand-dark font-bold">
+              <th class="p-2.5">品牌名称</th>
+              <th class="p-2.5">线路类型</th>
+              <th class="p-2.5">起步月付</th>
+              <th class="p-2.5">移动/桌面客户端支持</th>
+              <th class="p-2.5">网络特性与定位</th>
+              <th class="p-2.5 text-right">核验入口</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border text-brand-muted">
+            {selectedBrands.map(b => (
+              <tr class="hover:bg-brand-light/50">
+                <td class="p-2.5 font-bold text-brand-dark whitespace-nowrap">
+                  <a href={`/brands/${b.slug}/`} class="hover:text-brand-teal hover:underline">{b.name}</a>
+                </td>
+                <td class="p-2.5 whitespace-nowrap font-medium text-emerald-800">
+                  {b.networkType}
+                </td>
+                <td class="p-2.5 font-mono font-bold text-brand-dark whitespace-nowrap">
+                  ¥{b.startingPriceMonthlyYuan.toFixed(2)}/月起
+                </td>
+                <td class="p-2.5 whitespace-nowrap text-[11px]">
+                  {b.clientSupport.hasCustomApp ? '自研客户端 + 通用' : '通用 Clash / 小火箭'}
+                </td>
+                <td class="p-2.5 max-w-xs truncate text-[11px]" title={b.summary}>
+                  {b.summary}
+                </td>
+                <td class="p-2.5 text-right whitespace-nowrap">
+                  <a href={`/brands/${b.slug}/`} class="text-brand-teal hover:underline font-medium">查看档案 →</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MODULE 4: Security & Audit -->
+    <section id="security-audit" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        安全合规与隐私审计边界
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        任何工具的使用都不能超越安全与合规的底线：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm">合规边界准则</div>
+          <p class="text-brand-muted leading-relaxed">
+            本平台仅面向跨国合法学术科研、合规商业出海贸易与正版数字流媒体娱乐场景提供技术解析。严禁将网络工具用于任何违反法律法规或破坏计算机信息系统的非法活动。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm">无日志策略鉴别</div>
+          <p class="text-brand-muted leading-relaxed">
+            真正的无日志承诺必须经过第三方独立四大会计师事务所（如 PwC、KPMG 等）的渗透测试与物理审计，而非运营者网站上的口头宣称。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 5: Configuration Tips -->
+    <section id="configuration-tips" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        配置实战与避坑建议
+      </h2>
+      <div class="p-4 bg-purple-50/70 border border-purple-200 rounded-xl space-y-2 text-xs text-purple-950">
+        <div class="font-bold text-sm text-purple-900">💡 资深网络工程师配置准则：</div>
+        <ul class="list-disc list-inside space-y-1.5 leading-relaxed">
+          <li><strong>游戏联机必开 TUN：</strong>玩 Steam/Apex 联机游戏时，客户端必须安装服务模式并开启“TUN 模式”，才能接管游戏的 UDP 数据流。</li>
+          <li><strong>手机避免滥开全局：</strong>手机端务必使用“配置/规则模式”，防止微信等国内即时通讯软件绕道海外导致延迟飙升。</li>
+          <li><strong>切勿使用来路不明的免费加速器：</strong>防止手机被植入后门程序成为黑产暗网的 P2P 抓包跳板。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- MODULE 6: FAQ -->
+    <section id="faq" class="my-10 scroll-mt-20">
+      <FAQ items={topic.faqList} title={`${topic.coreKeyword}常见高频问题解答 (FAQ)`} />
+    </section>
+
+    <!-- MODULE 7: Cross Links & Navigation -->
+    <section id="cross-links" class="my-10 p-6 bg-brand-light border border-brand-border rounded-2xl shadow-xs">
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-brand-border">
+        <h2 class="text-base font-bold text-brand-dark">探索其他 VPN 专题与决策工具</h2>
+        <a href="/vpn/" class="text-xs text-brand-teal hover:underline font-bold">返回 VPN 与加速器总览 →</a>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+        <a href="/vpn/recommend/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          🛡️ VPN 选型指南
+        </a>
+        <a href="/vpn/free/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          ⚠️ 免费 VPN 风险
+        </a>
+        <a href="/vpn/mobile/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          📱 手机加速专题
+        </a>
+        <a href="/vpn/gaming/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          🎮 游戏加速器对比
+        </a>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>

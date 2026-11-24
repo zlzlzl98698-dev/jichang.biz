@@ -1,0 +1,632 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const title = '网络代理与客户端全平台使用教程 · 订阅导入、TUN 模式与规则分流原理全景指南';
+const description = '面向合法合规使用场景的权威网络配置手册。全景指导 Windows、Android、iOS 与 macOS 四大平台客户端选择、订阅导入、TUN 虚拟网卡配置、Fake-IP 工作原理与防漏网排查。';
+const breadcrumbs = [
+  { name: '使用教程', url: '/guides/' }
+];
+
+const faqItems = [
+  {
+    question: '为什么我的订阅链接不能随意发给其他人或公开到网上？',
+    answer: '订阅链接（Subscription URL）中包含您在服务商系统中的唯一 Token 身份凭据。任何拿到您订阅链接的人，均可将其直接导入自己的客户端并消耗您的套餐流量，甚至可能因多地 IP 同时高频并发触发服务商的防盗刷风控而导致您的账号被封禁。请务必将订阅地址视同账号密码妥善保管。'
+  },
+  {
+    question: '开启 TUN 模式（虚拟网卡）和系统代理有什么区别？',
+    answer: '系统代理模式仅在操作系统层面对主动遵循 HTTP/HTTPS 代理环境的软件（如 Edge、Chrome 浏览器）生效；而很多终端命令行工具（git/curl/python）、Steam/Epic 游戏客户端或非标准应用并不走系统代理。开启 TUN 模式后，客户端会在系统中虚拟出一张独立网卡接管所有出站流量，实现全局接管分流，彻底解决终端或游戏漏跑直连的问题。'
+  },
+  {
+    question: '为什么有时候国内网站（如百度、淘宝）打不开了？',
+    answer: '这通常是误将客户端代理模式切换为了“全局模式（Global）”导致。在全局模式下，所有国内流量都会绕道海外节点再访问国内服务器，导致延迟飙升甚至被国内反诈防护拦截。日常使用务必保持在“规则模式（Rule）”，确保国内流量走 Direct 直连，境外流量走 Proxy 代理。'
+  },
+  {
+    question: '第三方在线订阅转换工具安全吗？有哪些潜在风险？',
+    answer: '存在极高的安全隐患。使用未经验证的第三方公共在线订阅转换服务时，您的订阅 Token 会完整发送至对方服务器。不良运营者可能会在后台抓取存储您的订阅凭据、注入恶意劫持规则、替换推广返利返佣，甚至盗用您的专线流量。强烈建议优先使用客户端原生支持的订阅格式（如 Clash/Mihomo 或 Sing-box），或在本地电脑通过开源 subconverter 自建转换。'
+  },
+  {
+    question: '客户端总是提示“订阅更新失败 (Network Error)”该如何解决？',
+    answer: '主要原因包括：1. 当前本地网络无法直接访问机场订阅下发域名（此时可先连接可用热点或开启现有节点代理后再更新）；2. 机场下发服务器正在遭受 DDOS 攻击或临时维护；3. 电脑本地系统时间与网络授时时间存在偏差超过 60 秒，导致 TLS 证书握手校验失败；4. 机场订阅格式变更，客户端内核过旧无法解析新语法。'
+  },
+  {
+    question: '什么是 Fake-IP 模式？它相比 Redir-Host 有什么优势？',
+    answer: 'Fake-IP 模式是现代代理客户端处理 DNS 的革命性机制。传统模式需要客户端先在本地向 DNS 查询真实 IP，容易引发严重的 DNS 污染与解析延迟。而 Fake-IP 模式下，当本地软件发起域名请求时，客户端内核直接返回一个虚构的保留私网 IP（如 198.18.0.1/16），并记录映射表；真实的目标 IP 解析交由远端境外落地服务器完成，不仅极大降低了握手延迟，还能 100% 免疫本地 DNS 污染。'
+  },
+  {
+    question: '如果订阅链接泄露了，该如何第一时间自救？',
+    answer: '请立即登录机场官网后台的用户仪表盘，找到“重置订阅凭据（Reset Token）”或“重置订阅链接”按钮并确认。重置后，原有的旧订阅 URL 会立即永久失效，防止他人继续盗用流量；随后在您所有设备的客户端中重新粘贴获取到的新订阅链接并更新即可。'
+  },
+  {
+    question: '在办公室或合租房，如何将电脑上的代理共享给同局域网的手机或 Switch？',
+    answer: '在电脑端客户端（如 Clash Verge Rev）设置中开启“允许来自局域网的连接 (Allow LAN)”，并记录电脑在局域网中的内网 IP（如 192.168.1.100）及混合代理端口（默认通常为 7897 或 7890）；然后在手机或 Switch 的 Wi-Fi 高级设置中，将 HTTP 代理设置为“手动”，输入电脑的内网 IP 和对应端口即可共享分流。'
+  }
+];
+
+const tocItems = [
+  { id: 'answer-first', title: 'Answer-First 新手上手标准 5 步 SOP' },
+  { id: 'security-principles', title: '前置准备与凭据安全合规红线' },
+  { id: 'client-decision-tree', title: '全平台主流客户端选型判定树' },
+  { id: 'sop-windows', title: 'Windows 平台配置实战：Clash Verge Rev' },
+  { id: 'sop-android', title: 'Android 平台配置实战：Clash Meta / Sing-box' },
+  { id: 'sop-ios', title: 'iOS 平台配置实战：Shadowrocket / Loon' },
+  { id: 'sop-macos', title: 'macOS 平台配置实战：系统权限与内核托管' },
+  { id: 'subscription-management', title: '订阅链接管理全景：导入、更新与防盗刷' },
+  { id: 'proxy-modes', title: '三大代理模式拆解：Rule vs Global vs Direct' },
+  { id: 'tun-vs-system-proxy', title: '系统代理 vs TUN 虚拟网卡：全面接管对比' },
+  { id: 'fake-ip-dns', title: 'DNS 泄漏防护与 Fake-IP 工作原理' },
+  { id: 'ruleset-customization', title: '规则集分流策略定制：GeoSite 与 GeoIP' },
+  { id: 'lan-sharing', title: '局域网共享与多设备同享设置 (Switch/TV)' },
+  { id: 'verification-sop', title: '配置验证与连通性验证标准化步骤' },
+  { id: 'articles-directory', title: '核心教程图文专栏 (7篇实战手册)' },
+  { id: 'faq', title: '高频常见问题 (FAQ)' },
+  { id: 'next-steps', title: '关联排障与工具页面入口' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs} faqItems={faqItems} type="collection">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Hero Header -->
+    <div class="mb-8 border-b border-brand-border pb-6">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-brand-teal text-xs font-semibold border border-emerald-200 mb-3">
+        <span>📖 实战配置手册 · 合规安全使用</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-brand-dark tracking-tight">
+        网络代理与客户端全平台使用教程：订阅导入、TUN 模式与规则分流
+      </h1>
+      <p class="text-sm sm:text-base text-brand-muted mt-3 leading-relaxed">
+        面向合法学术科研、海外开发与跨国商务协作场景。本文提供从零开始的全平台标准配置指南，涵盖 Windows、macOS、Android 与 iOS 四大系统的开源客户端选择、订阅凭据安全管理、虚拟网卡接管与 DNS 防泄漏最佳实践。
+      </p>
+    </div>
+
+    <!-- In-Page TOC Anchor Navigation -->
+    <nav class="my-6 p-4 bg-brand-light border border-brand-border rounded-xl shadow-xs" aria-label="页面目录导航">
+      <div class="flex items-center justify-between pb-2 mb-2 border-b border-brand-border text-xs font-bold text-brand-dark">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-brand-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+          本文核心教程目录 (TOC)
+        </span>
+        <span class="text-brand-muted font-normal">点击快速跳转</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-1.5 text-xs">
+        {tocItems.map(item => (
+          <a href={`#${item.id}`} class="text-brand-dark hover:text-brand-teal hover:underline truncate py-0.5">
+            · {item.title}
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    <!-- MODULE 2: Answer-First Core Process Diagram -->
+    <section id="answer-first" class="my-8 scroll-mt-20">
+      <div class="p-5 bg-linear-to-br from-emerald-50/70 via-white to-blue-50/50 border-2 border-brand-teal/40 rounded-2xl shadow-sm">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-2 py-0.5 rounded bg-brand-teal text-white text-xs font-bold tracking-wide">Answer-First 核心流程</span>
+          <span class="text-xs text-brand-muted font-mono">新手上手标准 5 步闭环</span>
+        </div>
+        <h2 class="text-lg font-bold text-brand-dark mb-2">无论什么系统与客户端，通用的标准配置链条</h2>
+        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
+          所有现代代理客户端的操作逻辑本质完全一致，遵循以下 5 步即可在 3 分钟内完成从下载到安全上网的全流程：
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-5 gap-2.5 text-xs">
+          <div class="p-3 bg-white rounded-xl border border-brand-border shadow-2xs">
+            <div class="font-bold text-brand-teal mb-1">步骤 1：下载客户端</div>
+            <div class="text-brand-muted">从 GitHub 官方发布页下载对应系统的稳定发行版，切勿使用来源不明的打包修改版。</div>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-brand-border shadow-2xs">
+            <div class="font-bold text-brand-teal mb-1">步骤 2：复制订阅地址</div>
+            <div class="text-brand-muted">登录机场用户中心，复制专属的 Clash / Universal 订阅链接，妥善保管其中的 Token。</div>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-brand-border shadow-2xs">
+            <div class="font-bold text-brand-teal mb-1">步骤 3：导入配置档案</div>
+            <div class="text-brand-muted">在客户端“配置 (Profiles)”界面粘贴订阅 URL 并下载，解析出完整的节点集群与分流规则。</div>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-brand-border shadow-2xs">
+            <div class="font-bold text-brand-teal mb-1">步骤 4：设定规则分流</div>
+            <div class="text-brand-muted">将代理模式设为“规则 (Rule)”，并在代理组中手动指定一个低延迟的优质落地节点。</div>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-brand-border shadow-2xs">
+            <div class="font-bold text-brand-teal mb-1">步骤 5：开启代理开关</div>
+            <div class="text-brand-muted">开启“系统代理”或安装服务模式开启“TUN 模式”，并在浏览器验证实际生效的外部 IP。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 3: Security & Principles Warning -->
+    <section id="security-principles" class="my-8 scroll-mt-20">
+      <div class="bg-amber-50/80 border-2 border-amber-300 rounded-xl p-5 text-xs text-amber-950 space-y-2 shadow-2xs">
+        <div class="font-bold text-sm flex items-center gap-2 text-amber-900">
+          <span>🔒 前置安全原则与网络合规防线</span>
+        </div>
+        <p class="leading-relaxed">
+          <strong>1. 凭据保密：</strong>订阅链接包含您在服务端的鉴权凭证（Token）。严禁截图分享或直接粘贴至公开论坛，防止套餐被盗刷或引发多地并发封号。<br/>
+          <strong>2. 保持安全防护：</strong>任何正规代理客户端均不需要用户关闭 Windows Defender、macOS Gatekeeper 或关闭系统防火墙。若某“客户端”强制要求关闭安全防护，必须立即停止使用并排查恶意木马。<br/>
+          <strong>3. 合规使用：</strong>本指南仅适用于正规跨国学术研究、合规出海商务办公及正版流媒体娱乐场景，遵守所在地区法律法规。
+        </p>
+      </div>
+    </section>
+
+    <!-- MODULE 4: Client Selection Decision Tree -->
+    <section id="client-decision-tree" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        全平台主流客户端选型判定树
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        根据您的操作系统、技术背景以及是否有特定场景需求（如电竞游戏或全屋路由），选择最契合的软件载体：
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2 shadow-2xs">
+          <div class="font-bold text-brand-dark text-sm flex items-center justify-between">
+            <span>Windows 用户</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">首选</span>
+          </div>
+          <div class="text-brand-muted space-y-1">
+            <p><strong>常规主力：</strong><a href="/clients/clash-verge-rev/" class="text-brand-teal hover:underline font-bold">Clash Verge Rev</a> (Mihomo 内核，现代化 UI，原生支持 TUN 虚拟网卡)</p>
+            <p><strong>备选工具：</strong>v2rayN (经典多内核管理，适合高阶调试与自建 VPS)</p>
+          </div>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2 shadow-2xs">
+          <div class="font-bold text-brand-dark text-sm flex items-center justify-between">
+            <span>macOS 用户</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">首选</span>
+          </div>
+          <div class="text-brand-muted space-y-1">
+            <p><strong>常规主力：</strong><a href="/clients/clash-verge-rev/" class="text-brand-teal hover:underline font-bold">Clash Verge Rev Mac 版</a> (原生 Apple Silicon 支持，菜单栏常驻)</p>
+            <p><strong>高阶专业：</strong>Surge for Mac (极度强大但收费昂贵的网络开发调试神器)</p>
+          </div>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2 shadow-2xs">
+          <div class="font-bold text-brand-dark text-sm flex items-center justify-between">
+            <span>Android 用户</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-100 text-purple-800 font-bold">首选</span>
+          </div>
+          <div class="text-brand-muted space-y-1">
+            <p><strong>常规主力：</strong><a href="/clients/#platform-android" class="text-brand-teal hover:underline font-bold">Clash Meta for Android</a> (CMFA 开源维护版，分应用代理极佳)</p>
+            <p><strong>现代轻量：</strong>Sing-box for Android (低内存占用与高并发支持)</p>
+          </div>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2 shadow-2xs">
+          <div class="font-bold text-brand-dark text-sm flex items-center justify-between">
+            <span>iOS / iPadOS 用户</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 font-bold">首选</span>
+          </div>
+          <div class="text-brand-muted space-y-1">
+            <p><strong>性价比首选：</strong><a href="/clients/shadowrocket/" class="text-brand-teal hover:underline font-bold">Shadowrocket (小火箭)</a> ($2.99，功能全面稳定)</p>
+            <p><strong>高阶质感：</strong>Loon ($5.99) 或 Quantumult X (精细化脚本支持)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 5: Windows SOP -->
+    <section id="sop-windows" class="my-10 scroll-mt-20 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+          Windows 平台标准配置 SOP：Clash Verge Rev
+        </h2>
+        <span class="text-xs px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Win 10/11 验证通过</span>
+      </div>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        Clash Verge Rev 是当前 Windows 平台体验最完整、维护最活跃的开源客户端。请按照标准流程操作：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-3 text-xs">
+        <ol class="list-decimal list-inside space-y-2.5 text-brand-dark leading-relaxed font-medium">
+          <li>
+            <strong>安装包获取与安装：</strong>前往本站 <a href="/clients/clash-verge-rev/" class="text-brand-teal hover:underline">Clash Verge Rev 官方专栏</a> 下载 <code>Clash.Verge_x64-setup.exe</code>，按照默认提示安装并允许防火墙通信。
+          </li>
+          <li>
+            <strong>导入机场订阅：</strong>启动软件，点击左侧菜单栏的 <strong>“订阅 (Profiles)”</strong>。将机场后台复制的 Clash 订阅链接粘贴到顶部 URL 输入框中，点击 <strong>“保存 (Save)”</strong>。右键该配置卡片可设置自动更新间隔（建议设为 1440 分钟/每天）。
+          </li>
+          <li>
+            <strong>激活配置档案：</strong>鼠标左键点击刚刚导入的配置卡片，边框变为高亮青绿色即表示该配置已生效。
+          </li>
+          <li>
+            <strong>设置代理分流模式：</strong>点击左侧 <strong>“代理 (Proxies)”</strong> 菜单，确保顶部切换为 <strong>“规则 (Rule)”</strong> 模式；在策略组列表中，挑选一个低延迟的香港或日本节点作为日常主力。
+          </li>
+          <li>
+            <strong>启动系统代理与 TUN：</strong>点击左侧 <strong>“设置 (Settings)”</strong>，打开 <strong>“系统代理 (System Proxy)”</strong> 开关即可正常上网。若需玩外服游戏或让命令行终端走代理，可点击“服务模式 (Service Mode)”右侧安装按钮，随后开启 <strong>“TUN 模式”</strong>。
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- MODULE 6: Android SOP -->
+    <section id="sop-android" class="my-10 scroll-mt-20 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+          Android 平台标准配置 SOP：Clash Meta for Android
+        </h2>
+        <span class="text-xs px-2 py-0.5 rounded bg-purple-100 text-purple-800 font-bold">原生系统与国产定制 ROM 兼容</span>
+      </div>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        在 Android 平台推荐使用社区维护的开源分支 Clash Meta for Android (CMFA)：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-3 text-xs">
+        <ol class="list-decimal list-inside space-y-2.5 text-brand-dark leading-relaxed font-medium">
+          <li>
+            <strong>安装 APK：</strong>下载最新版 <code>cmfa-*-universal-release.apk</code> 完成安装。小米/OPPO/vivo 等系统请在系统设置中为软件授予<strong>“无限制后台运行”</strong>权限，防止被系统杀后台。
+          </li>
+          <li>
+            <strong>导入配置：</strong>打开应用，点击 <strong>“配置 (Profiles)” ➔ “新配置” ➔ “URL (从 URL 导入)”</strong>。输入机场名称并将订阅链接粘贴进 URL 栏，点击右上角保存并等待下载完毕。
+          </li>
+          <li>
+            <strong>分应用代理设置（至关重要）：</strong>在 CMFA 设置中进入 <strong>“网络 (Network)” ➔ “分应用代理”</strong>，勾选“仅代理选中的应用”或“绕过国内常用应用（微信、高德、支付宝、银行等）”，避免国内软件因海外 IP 频繁弹出安全警告。
+          </li>
+          <li>
+            <strong>启动连接：</strong>返回首页，点击顶部正中间灰色的大开关。系统会弹出“网络连接请求 (VpnService)”对话框，点击“确定”允许，开关变为绿色即表示连接成功。
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- MODULE 7: iOS SOP -->
+    <section id="sop-ios" class="my-10 scroll-mt-20 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+          iOS 平台标准配置 SOP：Shadowrocket (小火箭)
+        </h2>
+        <span class="text-xs px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-bold">非国区 Apple ID 必备</span>
+      </div>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        因 App Store 区域合规要求，此类网络工具无法在中国大陆区应用商店下载。请按照以下步骤规范操作：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-3 text-xs">
+        <div class="p-3 bg-amber-50 rounded-lg border border-amber-200 text-amber-900 mb-2">
+          <strong>⚠️ 账号安全核心提示：</strong>获取美区/港区 Apple ID 后，<strong>绝不要在系统设置 (iCloud) 中登录</strong>！仅在 <strong>App Store 商店应用内部</strong>点击右上角头像切换登录，防止个人手机数据被云端同步锁死。
+        </div>
+        <ol class="list-decimal list-inside space-y-2.5 text-brand-dark leading-relaxed font-medium">
+          <li>
+            <strong>下载安装：</strong>在海外区 App Store 搜索购买并安装正版 <strong>Shadowrocket</strong>（开发者为 Pan Guan）。
+          </li>
+          <li>
+            <strong>添加订阅：</strong>打开 Shadowrocket，点击主界面右上角 <strong>“+”</strong> 加号图标。将类型改为 <strong>“Subscribe”</strong>，在 URL 输入框中粘贴机场订阅链接，备注填入服务商名称，点击右上角“完成”。
+          </li>
+          <li>
+            <strong>设定路由模式：</strong>在主界面中央找到 <strong>“全局路由 (Global Routing)”</strong>，务必将其切换为 <strong>“配置 (Config)”</strong>（代表规则分流，切勿误选代理或直连）。
+          </li>
+          <li>
+            <strong>启动主开关：</strong>从列表中轻触选中一个节点（前面显示圆点），随后拨开顶部的未连接开关。初次使用会弹出 iOS 系统的 <strong>“添加 VPN 配置”</strong> 提示，输入 iPhone 锁屏密码确认即可。
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- MODULE 8: macOS SOP -->
+    <section id="sop-macos" class="my-10 scroll-mt-20 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+          macOS 平台标准配置 SOP：系统权限与内核托管
+        </h2>
+        <span class="text-xs px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">Apple Silicon / Intel 双架构支持</span>
+      </div>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        macOS 对网络扩展与系统代理权限有严格的沙盒限制。配置流程如下：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-3 text-xs">
+        <ol class="list-decimal list-inside space-y-2.5 text-brand-dark leading-relaxed font-medium">
+          <li>
+            <strong>安装 DMG：</strong>下载 <code>Clash.Verge_*_aarch64.dmg</code>（M 系列芯片）或 <code>x64.dmg</code>（Intel 芯片），将应用图标拖入 Applications 应用程序文件夹。初次打开若提示“无法验证开发者”，在“系统设置 ➔ 隐私与安全性”中点击“仍要打开”。
+          </li>
+          <li>
+            <strong>导入配置并开启系统代理：</strong>同样在“订阅”界面添加订阅链接并保存。在“设置”中勾选“系统代理”。
+          </li>
+          <li>
+            <strong>开启 TUN 虚拟网卡授权：</strong>若需接管终端（Terminal/iTerm2）的 Git 与 Docker 流量，在设置中安装 Service 辅助工具，输入 macOS 密码授权后开启 TUN 模式，免去为每个终端手工配置 <code>export https_proxy</code> 的繁琐操作。
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- MODULE 9: Subscription Management & Security -->
+    <section id="subscription-management" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        订阅链接管理全景：导入、更新与防盗刷
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        订阅是用户与机场后端数据通信的唯一通道。科学管理订阅能够彻底避免断流与套餐盗用：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm">🔄 自动更新间隔合理设定</div>
+          <p class="text-brand-muted leading-relaxed">
+            机场服务器每隔数周可能调整落地的 IP 段或更换过境入口。建议在客户端中将订阅自动更新间隔设为 <strong>12 小时至 24 小时</strong>。既能保证第一时间同步节点变动，又不会因每小时频繁请求触发服务商后端的 API 防刷频限制。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm">🛡️ 在线订阅转换的风险防范</div>
+          <p class="text-brand-muted leading-relaxed">
+            如非必须，严禁将包含真实 Token 的订阅提交给来源不明的公共在线转换 API。对方完全有能力在后台静默记录您的凭据。若必须转换格式，推荐使用开源的 <code>subconverter</code> 在本机离线执行，或直接选用支持原生格式的现代客户端。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 10: Proxy Modes Breakdown -->
+    <section id="proxy-modes" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        三大代理模式拆解：Rule vs Global vs Direct
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        几乎所有客户端顶部都有“规则”、“全局”与“直连”三个选项，其路由分发逻辑截然不同：
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="p-4 bg-white border border-emerald-300 rounded-xl space-y-2">
+          <div class="font-bold text-emerald-800 text-sm flex items-center justify-between">
+            <span>规则分流 (Rule)</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">日常默认 99%</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            智能交通指挥官。国内网站走 Direct 直连，国外被阻断网站走 Proxy 代理，广告跟踪走 Reject 丢弃。兼顾访问速度与流量节约，是日常必须保持的模式。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-amber-300 rounded-xl space-y-2">
+          <div class="font-bold text-amber-800 text-sm flex items-center justify-between">
+            <span>全局模式 (Global)</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 font-bold">仅排障临时用</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            一刀切模式。无论访问百度还是 Google，所有网络数据一律强行绕道选中的海外节点。会导致国内网页加载巨慢，且可能被国内网站判定为异地登录风控。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-gray-300 rounded-xl space-y-2">
+          <div class="font-bold text-gray-800 text-sm flex items-center justify-between">
+            <span>直接连接 (Direct)</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-gray-100 text-gray-700 font-bold">等同关闭代理</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            旁路模式。客户端仅做中转透传，不对任何流量进行海外节点转发。所有网络请求直接使用本地宽带公网出口，等同于未开启代理软件。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 11: System Proxy vs TUN Mode -->
+    <section id="tun-vs-system-proxy" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        系统代理 vs TUN 虚拟网卡：全面接管对比
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        很多新手误以为打开了客户端开关就是“全局接管”，导致终端 Git 或外服游戏依然连不上。本质是实现层级的差异：
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse border border-brand-border bg-white rounded-xl shadow-xs">
+          <thead>
+            <tr class="bg-brand-light text-brand-dark font-bold border-b border-brand-border">
+              <th class="p-3">技术指标与场景</th>
+              <th class="p-3">系统代理 (System Proxy)</th>
+              <th class="p-3 text-brand-teal font-bold">TUN 虚拟网卡模式 (TUN Mode)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border text-brand-muted">
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">接管工作层级</td>
+              <td class="p-3">OS 应用层环境变量 (HTTP/HTTPS/SOCKS5 代理)</td>
+              <td class="p-3 text-emerald-800 font-bold">OS 网络层 (Layer 3 IP 虚拟网卡接口)</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">支持协议类型</td>
+              <td class="p-3">仅支持 HTTP / HTTPS / 显式 SOCKS 流量</td>
+              <td class="p-3 text-emerald-800 font-bold">接管全部 TCP 与 <strong>UDP 数据报文</strong></td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">浏览器支持 (Chrome/Edge)</td>
+              <td class="p-3 text-emerald-700">完美支持，无缝识别</td>
+              <td class="p-3 text-emerald-700">完美支持，作为系统默认网关</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">命令行终端 (Git/Curl/Docker)</td>
+              <td class="p-3 text-red-600 font-medium">默认不走！需手工 export 环境变量</td>
+              <td class="p-3 text-emerald-800 font-bold">全自动接管！无需任何终端配置</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">PC 游戏 (Steam/Apex/Discord)</td>
+              <td class="p-3 text-red-600 font-medium">无法接管 UDP 游戏数据包</td>
+              <td class="p-3 text-emerald-800 font-bold">完美接管游戏 UDP，具备游戏加速器能力</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">系统资源与权限开销</td>
+              <td class="p-3 text-emerald-700">极轻量，无需管理员特权</td>
+              <td class="p-3 text-brand-muted">需安装系统 Service 驱动，资源占用略增</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MODULE 12: DNS Leak & Fake-IP Deep Dive -->
+    <section id="fake-ip-dns" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        DNS 泄漏防护与 Fake-IP 工作原理
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        DNS 泄漏是导致真实地理位置暴露、触发流媒体锁区乃至网络封禁的最隐蔽通道。Fake-IP 技术从根源上终结了这一问题：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-red-900 text-sm flex items-center gap-1.5">
+            <span>⚠️</span> 传统 Redir-Host 模式与 DNS 泄漏
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            在传统模式下，当你在浏览器输入 <code>netflix.com</code> 时，本地系统首先向你本地运营商的 DNS（如 114.114.114.114）发起域名解析。此时：1. 本地运营商清晰知晓你试图访问 Netflix；2. 返回的解析结果往往被污染或直接解析为国内阻断 IP，导致后续即便走代理也无法正常握手。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-teal/50 rounded-xl space-y-2 shadow-2xs">
+          <div class="font-bold text-brand-teal text-sm flex items-center gap-1.5">
+            <span>🛡️</span> Fake-IP 模式的无懈可击闭环
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            在 Fake-IP 模式下，客户端内核劫持本地 DNS 请求后，<strong>根本不向公网发起查询</strong>，而是瞬间为该域名分配一个虚构私网 IP（例如 <code>198.18.0.25</code>）直接返回给浏览器。浏览器立刻使用该 IP 发起连接，内核在拿到数据包后根据内存映射表将其还原为 <code>netflix.com</code>，通过加密专线直接送至境外落地服务器进行最终解析。彻底杜绝本地 DNS 污染与隐私泄漏！
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 13: Rule Sets Customization -->
+    <section id="ruleset-customization" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        规则集分流策略定制：GeoSite 与 GeoIP
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        现代客户端支持基于 Geosite（域名数据库）与 GeoIP（IP 分布库）的高级规则匹配语法。常见自定规则示例如下：
+      </p>
+
+      <div class="p-4 bg-brand-dark text-gray-200 rounded-xl font-mono text-xs space-y-2 overflow-x-auto">
+        <div class="text-gray-400">// Clash / Mihomo 典型分流规则结构示例 (rules)</div>
+        <div>- DOMAIN-SUFFIX,openai.com,🤖 AI专用分组</div>
+        <div>- DOMAIN-SUFFIX,claude.ai,🤖 AI专用分组</div>
+        <div>- GEOSITE,netflix,🎬 流媒体专用</div>
+        <div>- GEOSITE,youtube,🎬 流媒体专用</div>
+        <div>- GEOSITE,cn,DIRECT <span class="text-gray-400">// 中国大陆常见域名走直连</span></div>
+        <div>- GEOIP,CN,DIRECT <span class="text-gray-400">// 中国大陆物理 IP 走直连</span></div>
+        <div>- MATCH,🐟 漏网之鱼分组 <span class="text-gray-400">// 未匹配规则的海外请求默认走代理</span></div>
+      </div>
+    </section>
+
+    <!-- MODULE 14: LAN Sharing (Switch / TV) -->
+    <section id="lan-sharing" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        局域网共享与多设备同享设置 (Switch/TV)
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        如果您家中的 Nintendo Switch、PlayStation 游戏主机或电视盒子无法安装客户端，可通过 PC 局域网代理共享快速解决：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-3 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="p-3 bg-brand-light rounded-lg border border-brand-border">
+            <div class="font-bold text-brand-dark mb-1">步骤 1：主机开启允许局域网</div>
+            <div class="text-brand-muted">在电脑端 Clash Verge Rev 设置中勾选 <strong>“允许来自局域网的连接 (Allow LAN)”</strong>，记录混合代理端口（默认 7897 或 7890）。</div>
+          </div>
+          <div class="p-3 bg-brand-light rounded-lg border border-brand-border">
+            <div class="font-bold text-brand-dark mb-1">步骤 2：获取电脑内网 IP</div>
+            <div class="text-brand-muted">在电脑终端输入 <code>ipconfig</code>，找到当前 Wi-Fi/以太网的 IPv4 地址（如 <code>192.168.1.188</code>）。</div>
+          </div>
+          <div class="p-3 bg-brand-light rounded-lg border border-brand-border">
+            <div class="font-bold text-brand-dark mb-1">步骤 3：在主机上配置代理</div>
+            <div class="text-brand-muted">打开 Switch 网络设置，进入已连 Wi-Fi，将“代理服务器”设为开启，填入电脑 IP 与对应端口并保存。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 15: Verification SOP -->
+    <section id="verification-sop" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        配置验证与连通性验证标准化步骤
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        配置完成后，请执行以下标准验证步骤，确保分流正确且无漏网风险：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+        <div class="p-3.5 bg-white border border-brand-border rounded-xl space-y-1.5">
+          <div class="font-bold text-brand-dark">1. 验证直连国内 IP</div>
+          <p class="text-brand-muted leading-relaxed">
+            打开 <code>ip138.com</code> 或百度搜索“IP”，必须显示您本地电信/联通/移动的真实运营商地址，证明国内直连规则完全生效。
+          </p>
+        </div>
+        <div class="p-3.5 bg-white border border-brand-border rounded-xl space-y-1.5">
+          <div class="font-bold text-brand-dark">2. 验证代理外部 IP</div>
+          <p class="text-brand-muted leading-relaxed">
+            打开 <code>ipinfo.io</code>，显示的 IP 与国家代码必须与您在客户端选中的落地节点（如香港、新加坡、美国）完全一致。
+          </p>
+        </div>
+        <div class="p-3.5 bg-white border border-brand-border rounded-xl space-y-1.5">
+          <div class="font-bold text-brand-dark">3. 验证 DNS 防泄漏</div>
+          <p class="text-brand-muted leading-relaxed">
+            访问 <code>browserleaks.com/dns</code> 进行深度测试，检测出来的 DNS 服务器不应包含任何中国大陆运营商的 IP。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 16: Sub-articles Directory (7 Guides) -->
+    <section id="articles-directory" class="my-10 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-lg font-bold text-brand-dark flex items-center gap-2">
+          <span>📖 核心教程图文专栏 (7篇实战手册)</span>
+        </h2>
+        <span class="text-xs text-brand-muted">全平台覆盖</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+        <a href="/guides/clash-verge-rev-tutorial/" class="p-3 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-brand-teal mb-1">💻 Clash Verge Rev 完整上手与配置教程</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2">从安装、订阅导入、分流模式到 TUN 虚拟网卡全流程。</div>
+        </a>
+        <a href="/guides/shadowrocket-setup/" class="p-3 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-brand-teal mb-1">📱 Shadowrocket (小火箭) 订阅管理与配置</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2">iOS 最主流客户端正版获取、订阅添加与智能分流配置。</div>
+        </a>
+        <a href="/guides/tun-mode-explained/" class="p-3 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-brand-teal mb-1">⚙️ TUN 虚拟网卡模式深度解析与防漏网</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2">解决命令行终端、游戏与后台进程不走代理的底层方案。</div>
+        </a>
+        <a href="/guides/rule-routing-guide/" class="p-3 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-brand-teal mb-1">🧠 代理分流规则详解：DIRECT、PROXY 与策略组</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2">深入理解国内外流量分流、广告拦截与自定义规则集。</div>
+        </a>
+        <a href="/guides/v2rayn-windows-guide/" class="p-3 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-brand-teal mb-1">🪟 v2rayN Windows 客户端核心内核切换与测速管理</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2">Windows 经典工具 Xray / Sing-box / Mihomo 内核调度指南。</div>
+        </a>
+        <a href="/guides/openclash-router-guide/" class="p-3 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-brand-teal mb-1">🏠 OpenClash 软路由全屋透明网关部署指南</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2">OpenWrt 路由系统部署，为家庭全屋设备提供透明分流。</div>
+        </a>
+        <a href="/guides/safe-subscription-management/" class="p-3 bg-white border border-brand-border hover:border-brand-teal rounded-xl shadow-xs transition block group sm:col-span-2">
+          <div class="font-bold text-brand-dark group-hover:text-brand-teal mb-1">🛡️ 订阅链接安全保管、Token 防盗刷与防泄露实战</div>
+          <div class="text-brand-muted text-[11px]">防范订阅被爬虫盗用、流量偷跑与恶意解析的安全准则。</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- MODULE 17: FAQ -->
+    <section id="faq" class="my-10 scroll-mt-20">
+      <FAQ items={faqItems} title="客户端日常配置与使用高频答疑 (FAQ)" />
+    </section>
+
+    <!-- MODULE 18: Troubleshooting & Tools Cross-Links -->
+    <section id="next-steps" class="my-10 p-6 bg-brand-light border border-brand-border rounded-2xl shadow-xs">
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-brand-border">
+        <h2 class="text-base font-bold text-brand-dark">遇到配置问题？查看排障专区与配套工具</h2>
+        <span class="text-xs text-brand-teal font-medium">快速故障自愈</span>
+      </div>
+      <p class="text-xs text-brand-muted leading-relaxed mb-4">
+        如果按照教程配置后仍遇到节点超时、打不开网页或客户端闪退等问题，可直接进入故障排查专题快速定位原因：
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+        <a href="/troubleshooting/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          🔧 故障排查快速诊断
+        </a>
+        <a href="/troubleshooting/node-timeout/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          ⏱️ 节点超时排查指南
+        </a>
+        <a href="/troubleshooting/subscription-update-failed/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          🔄 订阅更新失败速查
+        </a>
+        <a href="/tools/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          🧮 流量与成本在线计算器
+        </a>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>

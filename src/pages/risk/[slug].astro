@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+import { parseMarkdown } from '../../utils/markdown';
+
+export async function getStaticPaths() {
+  const articles = [
+    {
+      slug: 'airport-runaway-signs',
+      title: '机场跑路前兆与高危特征深度剖析：识别异常骨折吸资与关群失联',
+      description: '全景总结行业历史上百家停运机场的生命周期规律。教你识别骨折级促销、管理层静默关群、频换收款商户等 5 大终极跑路信号。',
+      author: '机场指南风控安全组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      riskCategory: '服务商信誉与生存周期',
+      threatLevel: '严重经济损失风险',
+      content: `
+### 一、为什么机场行业频发“跑路”现象？
+网络代理服务本质上是一个高度依赖现金流与上游信用的重度运维行业。服务商每个月都需要向下游用户预先收取订阅费，同时向上游 IDC 供应商支付昂贵的专线物理带宽费和服务器租金。
+一旦遭遇以下情况，部分缺乏商业操守或技术实力的小团队往往会选择“提款跑路”：
+1. **现金流倒挂**：前期通过低价促销吸引过多高消耗用户，收入无法覆盖昂贵的带宽续费；
+2. **上游入口被封或跑路**：中间商卷款失联，导致下游服务商无力重新采购；
+3. **法律与合规风险**：团队安全意识薄弱导致突发解散。
+
+### 二、停运跑路的五大经典前兆（高危警报）
+- **前兆 1：反常识的“骨折级”促销（极度危险 ★★★★★）**
+  - 平日价格稳定的机场，突然全员弹窗“庆祝 XX 节日，买一年送两年”或推出“99 元永久无限流量卡”。这种违背基本财务模型的自杀式定价，90% 以上是资金链断裂前夕的最后一波“跑路卷款”。
+- **前兆 2：节点大面积变红数日，管理团队失联静默**
+  - 核心节点持续超时无法连接，但在官方通知频道中连续多天没有任何维护声明、故障进展或预计修复时间。
+- **前兆 3：关闭官方沟通群或全员禁言**
+  - 原本热络的 Telegram 交流群突然开启全员永久禁言，或者管理人员将用户踢出群聊，工单系统提交后无人回复。
+- **前兆 4：频繁更换第三方非正规收款渠道**
+  - 正常的签约商户号被封后，改为使用个人二维码、闲鱼代付、代刷网甚至虚拟货币充值，且收款账户名三天一变。
+- **前兆 5：域名解析被频繁清空或解析至广告页**
+  - 官网主域名无法访问，甚至被解析到博彩或无关落地页。
+
+### 三、用户防坑自保原则
+1. **坚决不买超过一年的长期大额套餐**：宁可月付或季付多付 10%–20% 的溢价，也绝不一次性押注数百上千元在单一小作坊机场；
+2. **认准运营年限与公开透明度**：优先选择稳定运营 3 年以上、拥有公开网络拓扑与独立维护团队的成熟品牌；
+3. **时刻备有应急容灾替代品**。
+      `,
+      faqs: [
+        { question: '如果机场真的跑路了，还能把钱追回来吗？', answer: '如果是通过微信/支付宝商户号付款且时间在一两天内，可以尝试在账单详情中点击“投诉商户 -> 未提供服务”。但由于虚拟数字商品举证困难，追回成功率通常极低，因此预防是最好的自保手段。' }
+      ]
+    },
+    {
+      slug: 'dual-airport-redundancy',
+      title: '“主力专线 + 平价备用”双机场容灾体系搭建指南：告别单点故障导致的跨境断网',
+      description: '面向外贸跨境卖家、海外科研与远程办公人群。教你以极低成本配置主备双机场，在主力突发维护时实现无感一键切换。',
+      author: '机场指南技术组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      riskCategory: '业务连续性与容灾架构',
+      threatLevel: '单点故障风险',
+      content: `
+### 一、为什么必须建立“双机场”容灾架构？
+很多用户习惯了全家只买一家机场，甚至只导入一条订阅链接。然而在现实网络环境中，“单点故障 (Single Point of Failure)”几乎不可避免：
+- 海底光缆可能因地震或渔船拖网而突然断裂；
+- 服务商的核心中转机房可能遭遇电力故障或定期维护；
+- 本地宽带运营商可能临时阻断服务商的特定中转入口。
+
+如果你的工作依赖跨国开会、跨境电商发货、海外服务器 SSH 运维或大模型生产力，长达几小时的断网会带来直接的经济损失。
+
+### 二、“主力专线 + 平价备用”黄金组合策略
+搭建高可靠容灾体系，并不需要支付双倍的高昂费用：
+1. **主力机场（保障日常品质与速度）**：
+   - **定位**：IEPL / IPLC 内网物理专线，低延迟、晚高峰零丢包、支持 4K 流媒体与 AI 解锁；
+   - **付费方式**：购买月付或季付套餐（如 15–30 元/月），承担 95% 以上的日常流量消耗；
+2. **备用机场（保障极端断网时的生存底线）**：
+   - **定位**：不限时不过期流量包（如 5–20 元购买 100GB 长期不过期配额），或者 1 元/月的平价中继机场；
+   - **付费方式**：一次性预付费，无月租压力，静默躺在客户端中；
+   - **作用**：平时完全不消耗流量；一旦主力机场入口挂掉，客户端可以在 3 秒内手动切换至备用节点，保证紧急通信与查阅资料。
+
+### 三、客户端多订阅无缝管理技巧
+- 在 Clash Verge Rev 或 Shadowrocket 中，将主力订阅与备用订阅同时导入；
+- 为订阅添加清晰的前缀备注（例如 \`[主力-光速云]\`、\`[备用-灵动云]\`）；
+- 将常用的应急备用节点加入快捷收藏分组，确保危机时刻随时一键切入。
+      `,
+      faqs: [
+        { question: '备用机场的不过期流量包真的不会过期吗？', answer: '只要服务商本身不倒闭停运，大部分标注为“不限时/永久有效”的流量包在用完前均可持续使用。但仍需注意服务商是否有“长期不登录冻结账户”的条款。' }
+      ]
+    },
+    {
+      slug: 'refund-terms-analysis',
+      title: '机场不退款条款真相与维权自保指引：数字虚拟服务协议深度解读',
+      description: '为什么几乎所有机场都标注“一经售出概不退款”？深度剖析服务条款背后的成本逻辑、常见消费纠纷与用户自保策略。',
+      author: '机场指南风控安全组',
+      date: '2026-11-20',
+      updated: '2026-11-24',
+      riskCategory: '消费者权益与服务协议',
+      threatLevel: '维权困难与财务风险',
+      content: `
+### 一、普遍存在的“严禁退款”霸王条款
+如果你仔细查阅各家网络服务商的《服务条款 (TOS)》，几乎无一例外会看到类似语句：
+> “本站所售商品均为数字虚拟网络服务，一经支付开通，概不接受任何理由的退款申请（包括但不限于速度慢、本地网络不兼容、设备无法配置等）。”
+
+很多消费者在遇到晚高峰卡顿或配置困难时要求退款，往往遭遇客服已读不回甚至直接封禁账户。
+
+### 二、服务商坚持不退款的商业逻辑
+抛开少数恶意骗子平台，即使是正规服务商，抗拒退款也有其现实的运维难点：
+1. **上游固定硬件成本已发生**：用户购买当刻，服务商已经向上游 IDC 锁定了对应的专线端口与 IP 资源，上游供应商不支持按天退费；
+2. **防范“试用薅羊毛”**：代理网络如果支持无条件退款，会有大量投机者购买高配套餐跑几百 GB 大文件下载后立即申请全额退款，造成带宽公地悲剧；
+3. **缺乏官方支付通道仲裁**：多数服务商使用的是境外易宝或聚合商户，退单率过高会导致支付通道被封，因此服务商会严格限制退款。
+
+### 三、用户的理性自保法则
+- **法则 1：把“试用月付”当作沉没成本**
+  - 初次接触新机场，先花几块钱开通一个月付或小流量套餐。如果遇到晚高峰丢包严重或客户端不兼容，果断弃用，损失仅为几元钱；
+- **法则 2：不听信客服任何口头“包满意”承诺**
+  - 一切以用户协议和自己实测为准。不要因为客服说“买年付如果卡随时给你退”就盲目充值年费；
+- **法则 3：遇到跑路时保存支付证据**
+  - 保留订单截图、商户交易单号、与客服的聊天记录，若确系诈骗卷款，可通过支付平台风控中心进行异常交易反欺诈举报。
+      `,
+      faqs: [
+        { question: '有支持试用退款的机场吗？', answer: '极少数主打高端的企业级机场提供 24 小时内少于 1GB 流量的无条件退款，或者提供 1 元试用套餐。在挑选时可重点关注提供低成本试水机制的品牌。' }
+      ]
+    }
+  ];
+
+  return articles.map(art => ({
+    params: { slug: art.slug },
+    props: { article: art }
+  }));
+}
+
+const { article } = Astro.props;
+
+const breadcrumbs = [
+  { name: '风险与替代', url: '/risk/' },
+  { name: article.title, url: `/risk/${article.slug}/` }
+];
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.description}
+  breadcrumbs={breadcrumbs}
+  type="article"
+  publishDate={`${article.date}T08:00:00+08:00`}
+  modifiedDate={`${article.updated}T12:00:00+08:00`}
+  faqItems={article.faqs}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Article Header -->
+    <header class="border-b border-brand-border pb-6 mb-8">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-50 text-rose-800 text-xs font-semibold border border-rose-200 mb-3">
+        <span>🛑 风险预警与资产自保手册</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight leading-tight">
+        {article.title}
+      </h1>
+      
+      <!-- Metadata Box -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-brand-light p-3.5 rounded-xl border border-brand-border mt-4 text-xs">
+        <div>
+          <span class="text-brand-muted block">风险领域:</span>
+          <span class="font-bold text-brand-dark">{article.riskCategory}</span>
+        </div>
+        <div>
+          <span class="text-brand-muted block">风险评级:</span>
+          <span class="font-bold text-brand-dark">{article.threatLevel}</span>
+        </div>
+        <div>
+          <span class="text-brand-muted block">最后核验:</span>
+          <span class="font-bold text-brand-dark">{article.updated}</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Article Content with Rich Typography -->
+    <article class="bg-white border border-brand-border rounded-2xl p-6 sm:p-10 shadow-sm leading-relaxed text-brand-dark">
+      <div set:html={parseMarkdown(article.content)} />
+    </article>
+
+    <!-- FAQs -->
+    <div class="mt-8">
+      <FAQ items={article.faqs} title="相关风险防范疑难解答" />
+    </div>
+
+    <!-- Related Links -->
+    <div class="mt-8 pt-6 border-t border-brand-border flex items-center justify-between text-xs">
+      <a href="/risk/" class="text-brand-teal hover:underline font-bold">
+        ← 返回风险与避坑主目录
+      </a>
+      <a href="/recommend/" class="text-brand-dark hover:underline">
+        查看合规稳定靠谱机场推荐 →
+      </a>
+    </div>
+
+  </div>
+</BaseLayout>

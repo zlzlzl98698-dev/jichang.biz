@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = '隐私权政策 (Privacy Policy) · 机场指南';
+const description = '机场指南隐私保护政策。本站采用纯静态输出架构，不设立用户注册、不收集个人支付凭据与敏感订阅，遵循 GDPR 与最小化数据收集原则。';
+const breadcrumbs = [
+  { name: '隐私政策', url: '/privacy/' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-xs text-brand-muted leading-relaxed space-y-8">
+    
+    <header class="border-b border-brand-border pb-6">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 text-brand-info text-xs font-semibold border border-blue-200 mb-3">
+        <span>🔒 隐私优先与极简数据原则</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-brand-dark tracking-tight">
+        隐私权保护政策
+      </h1>
+      <p class="text-sm text-brand-muted mt-2">
+        生效日期：2026-11-20 · 最近核准更新：2026-11-24 · 恪守数据最小化原则
+      </p>
+    </header>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base sm:text-lg font-bold text-brand-dark flex items-center gap-2">
+        <span>👤 1. 不设立用户系统与个人凭据零收集</span>
+      </h2>
+      <p>
+        「机场指南」（jichang.biz）本质上属于公开知识库与独立选购决策平台。<strong>我们不设任何形式的用户注册系统、不索取您的个人手机号码、电子邮箱地址、身份识别信息、账户密码或金融支付信息</strong>。
+      </p>
+      <p>
+        您可以完全匿名、免登录查阅本站发布的 31 家品牌深度评测、价格横向大盘、客户端教程及网络原理分析，无需担心浏览行为与真实身份产生任何关联。
+      </p>
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base sm:text-lg font-bold text-brand-dark flex items-center gap-2">
+        <span>💻 2. 决策计算工具纯前端本地隔离执行</span>
+      </h2>
+      <p>
+        本站提供的交互式工具（包括“智能套餐筛选器”、“月度流量估算器”与“实际成本折算器”）均采用现代静态客户端技术驱动：
+      </p>
+      <ul class="space-y-1.5 list-disc list-inside text-brand-dark pl-1">
+        <li>所有参数筛选、预算滑动条、设备数量与流量计算<strong>均在您的本地终端浏览器内存中独立完成</strong>；</li>
+        <li>您的输入假设、历史选择与筛选意图<strong>绝不会向任何后端云服务器发起网络回传请求</strong>；</li>
+        <li>当您刷新或关闭浏览器标签页时，相关临时计算状态即刻自动清空销毁。</li>
+      </ul>
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base sm:text-lg font-bold text-brand-dark flex items-center gap-2">
+        <span>🌐 3. 服务器网络日志与匿名化留存规范</span>
+      </h2>
+      <p>
+        当您访问本站时，托管服务商（如 Cloudflare Pages CDN 边缘节点）的基础设施可能会依据网络协议标准自动生成技术访问日志：
+      </p>
+      <ul class="space-y-1.5 list-disc list-inside text-brand-dark pl-1">
+        <li><strong>记录范畴</strong>：包括访问时间戳、HTTP 状态码、请求 URI、User-Agent 客户端标识符及脱敏后的哈希 IP 地址；</li>
+        <li><strong>使用目的</strong>：上述日志纯粹用于防御分布式拒绝服务攻击（DDoS）、排查 404/500 服务器错误及优化全球边缘 CDN 节点路由吞吐；</li>
+        <li><strong>留存期限</strong>：匿名化日志由边缘安全系统自动轮替覆盖，最长保留时间不超过 24–72 小时，本站绝不提取或商业化售卖任何网络访问日志。</li>
+      </ul>
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base sm:text-lg font-bold text-brand-dark flex items-center gap-2">
+        <span>🍪 4. Cookie 与客户端本地存储政策</span>
+      </h2>
+      <p>
+        本站倡导“无干扰浏览”原则，坚决不使用任何跨网站广告追踪 Cookie：
+      </p>
+      <p>
+        本站不植入任何跨站行为画像探针（如 Facebook Pixel、跨平台追踪网管）。仅在必要时使用浏览器原生 <code>localStorage</code> 存储您主动设置的“深色/浅色视觉偏好”或“已读免责声明确认状态”。这些本地键值对仅存在于您的个人设备上，您可以随时通过浏览器设置一键清除。
+      </p>
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base sm:text-lg font-bold text-brand-dark flex items-center gap-2">
+        <span>🔗 5. 第三方商业跳转外链与合规免责声明</span>
+      </h2>
+      <p>
+        当您点击带有赞助属性的推广链接前往第三方服务商官网时，您将离开本站并进入独立第三方平台：
+      </p>
+      <p>
+        本站全量商业外链均已配置 <code>rel="nofollow sponsored noopener"</code> 安全属性，既不向外传递域名权重，也彻底切断新窗口对原浏览窗口的脚本控制。第三方服务商拥有其独立的用户协议与隐私权政策，本站对任何第三方平台的数据收集策略、支付处理合规性及服务连续性不承担连带担保责任。
+      </p>
+    </div>
+
+    <div class="bg-white border border-brand-border rounded-xl p-6 shadow-sm space-y-3">
+      <h2 class="text-base sm:text-lg font-bold text-brand-dark flex items-center gap-2">
+        <span>⚖️ 6. 国际数据合规与权利行使</span>
+      </h2>
+      <p>
+        我们遵循通用数据保护条例 (GDPR) 与加州消费者隐私法 (CCPA) 所倡导的数据极简设计（Privacy by Design）。由于本站不存储任何个人可识别信息 (PII)，您无需提交繁琐的“个人数据删除申请”；如对本站内容引用的公开历史测速数据有疑义，可随时发送邮件至 <code class="text-brand-teal font-mono font-bold">feedback@jichang.biz</code> 申请数据核对。
+      </p>
+    </div>
+
+  </div>
+</BaseLayout>

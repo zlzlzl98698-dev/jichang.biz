@@ -1,0 +1,620 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+
+const title = '机场避坑与风险预警指南 · 跑路前兆、退款条款与替代应急容灾全景指南';
+const description = '客观中立剖析网络代理服务风险。深度拆解机场跑路诱因与终极前兆、终身卡与超卖陷阱、霸王退款条款防范、Token 泄露应急处理及高韧性双机场容灾架构。';
+const breadcrumbs = [
+  { name: '风险与替代', url: '/risk/' }
+];
+
+const faqItems = [
+  {
+    question: '节点偶尔出现几小时断连，就代表机场“跑路”了吗？',
+    answer: '不能简单将单次断连判定为跑路。国际光缆发生物理故障（如台风或海底地震引发海缆中断）、机房服务器迁移或上游中转运营商调整时，都可能引发数小时甚至一两天的服务中断。正规服务商通常会在官方公告栏或频道提前同步维护状态与恢复预期；只有在无公告、长期失联且关闭所有沟通渠道超过一周以上时，才具备跑路定性依据。'
+  },
+  {
+    question: '如果在机场购买后发现晚高峰很卡，能申请退款吗？',
+    answer: '绝大多数机场服务商在购买协议中均明文注明“数字虚拟商品售出概不退款”。由于跨境代理服务无法通过常规消费者权益平台进行强制仲裁，要求退款极其困难。这就是为什么本站反复强调：任何时候都不要一上来就盲目买大额长期套餐，一定要先开月付测试晚高峰。'
+  },
+  {
+    question: '如何建立最稳妥的“双机场容灾备用”方案？',
+    answer: '建议采用“主力高品质专线（按月或半年订阅） + 5.6元平价包/一次性不过期流量包（备用）”的组合模式。平时主要使用主力专线保障低延迟与高码率；一旦主力机场遭遇入口维护或网络波动，客户端可一秒切换至备用节点应急，彻底避免跨境业务完全瘫痪。'
+  },
+  {
+    question: '市面上所谓的“终身卡（Lifetime VIP）”值得买吗？',
+    answer: '千万不要买！从经济学常识来看，服务器机房带宽、过境物理光纤和境外 IP 都是按月向运营商支付高昂固定租金的。任何声称支付一次几百元就能“终身免费享受专线”的服务商，其商业模式完全违背财务常识。这类操作 99.9% 属于跑路前的恶意敛财手段，通常几个月内就会人去楼空。'
+  },
+  {
+    question: '我的订阅链接被人看到了，会有被黑客入侵电脑的风险吗？',
+    answer: '订阅链接泄露不会导致黑客直接远程控制您的电脑，但会带来两大直接危害：1. 对方可以任意导入自己的设备消耗您的套餐流量，导致您流量迅速见底；2. 对方并发连接过多会触发服务商的防盗刷风控，导致您的账号被永久封禁。自救方法是立即登录后台点击“重置订阅凭据（Reset Token）”。'
+  },
+  {
+    question: '购买时如何最大程度保护个人支付隐私与账号安全？',
+    answer: '1. 注册时不要使用日常包含真实姓名或企业单位的常用邮箱，建议使用 ProtonMail 等独立匿名邮箱；2. 支付时优先选择具备三方风控保护的渠道或 USDT/虚拟卡支付，严禁在服务商直接绑定个人名下信用卡连续自动扣费；3. 设置与个人社交账号完全不同的独立复杂密码。'
+  },
+  {
+    question: '为什么有的测评博主吹捧的“神仙机场”买来却奇卡无比？',
+    answer: '许多带货博主与服务商存在深度利益绑定（高达 30%–60% 的循环返佣分成）。博主往往在空载测试节点、甚至在非高峰期截图，选择性夸大优势而刻意隐瞒晚高峰丢包与断连真相。辨别真伪的最好办法是看是否有清晰的负面瑕疵披露，以及是否坚持月付体验。'
+  },
+  {
+    question: '如果机场真的失联跑路了，有什么补救手段吗？',
+    answer: '若使用信用卡支付，可尝试联系发卡行申请“未收到约定数字服务（Chargeback）”拒付争议，但成功率因商户通道性质而异；若使用支付宝/微信第三方支付，追回难度极高。因此核心原则永远是“事前防范重于事后维权”：控制单次充值金额（尽量月付不超过 ¥30），并常备第二备用节点。'
+  }
+];
+
+const tocItems = [
+  { id: 'answer-first', title: 'Answer-First 核心风控摘要与用户自保铁律' },
+  { id: 'lifecycle-risks', title: '代理服务全生命周期四大风险拆解' },
+  { id: 'runaway-mechanisms', title: '机场跑路与停运深度剖析：资金链与政策诱因' },
+  { id: 'temporary-vs-runaway', title: '临时服务中断 vs 真正跑路的 5 维度鉴别法' },
+  { id: 'high-risk-models', title: '高危商业模式全曝光：终身卡与骨折吸资陷阱' },
+  { id: 'long-term-financial', title: '长期订阅 (年付/三年付) 的财务风险评估与折现考量' },
+  { id: 'refund-terms', title: '数字虚拟商品退款机制真相与霸王条款防范' },
+  { id: 'account-privacy', title: '账号安全与支付隐私保护：匿名注册与支付防范' },
+  { id: 'token-leak-sop', title: '订阅泄露风险与一键重置应急 SOP 流程' },
+  { id: 'affiliate-traps', title: '识别虚假评测与黑心推广高额返佣利益链' },
+  { id: 'evidence-preservation', title: '证据保全与纠纷处理标准指引' },
+  { id: 'alternative-matrix', title: '应急替代方案图谱：按业务场景快速分流' },
+  { id: 'golden-rules', title: '低风险选购五大黄金法则 (买前必背)' },
+  { id: 'dual-airport-sop', title: '双机场主备容灾架构搭建实战指南' },
+  { id: 'articles-directory', title: '风险避坑与资产自保专栏 (3篇深度指南)' },
+  { id: 'faq', title: '风险与避坑高频疑惑解答 (FAQ)' },
+  { id: 'next-steps', title: '关联推荐与性价比专区' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs} faqItems={faqItems} type="collection">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Hero Header -->
+    <div class="mb-8 border-b border-brand-border pb-6">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-50 text-rose-800 text-xs font-semibold border border-rose-200 mb-3">
+        <span>🛑 风险警示与资产安全 · 客观中立预警</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-brand-dark tracking-tight">
+        机场避坑指南与替代应急策略：跑路前兆、退款条款与容灾全景
+      </h1>
+      <p class="text-sm sm:text-base text-brand-muted mt-3 leading-relaxed">
+        网络代理服务存在天然的技术与商业不确定性。本页面抛开任何营销滤镜，深度拆解跑路前兆、骨折级吸资套路与数字服务退款霸王条款，指导您建立“主力+备用”双机场容灾体系，保障跨境业务永不中断。
+      </p>
+    </div>
+
+    <!-- In-Page TOC Anchor Navigation -->
+    <nav class="my-6 p-4 bg-brand-light border border-brand-border rounded-xl shadow-xs" aria-label="页面目录导航">
+      <div class="flex items-center justify-between pb-2 mb-2 border-b border-brand-border text-xs font-bold text-brand-dark">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-rose-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+          本文风控章节目录 (TOC)
+        </span>
+        <span class="text-brand-muted font-normal">点击快速跳转</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-1.5 text-xs">
+        {tocItems.map(item => (
+          <a href={`#${item.id}`} class="text-brand-dark hover:text-rose-700 hover:underline truncate py-0.5">
+            · {item.title}
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    <!-- MODULE 2: Answer-First Core Risk Summary -->
+    <section id="answer-first" class="my-8 scroll-mt-20">
+      <div class="p-5 bg-linear-to-br from-rose-50/70 via-white to-amber-50/50 border-2 border-rose-300 rounded-2xl shadow-sm">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-2 py-0.5 rounded bg-rose-700 text-white text-xs font-bold tracking-wide">Answer-First 核心风控红线</span>
+          <span class="text-xs text-brand-muted font-mono">用户自保五大铁律</span>
+        </div>
+        <h2 class="text-lg font-bold text-brand-dark mb-2">30秒掌握购买网络代理服务的自保底线</h2>
+        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
+          跨境网络服务属于无官方背书、无常规消费者协会仲裁的特殊领域。请将以下五大铁律刻入脑海：
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-5 gap-2.5 text-xs">
+          <div class="p-3 bg-white rounded-xl border border-rose-200 shadow-2xs">
+            <div class="font-bold text-rose-800 mb-1">铁律 1：坚持月付试水</div>
+            <div class="text-brand-muted">新机场无论吹得多么天花乱坠，首月一律开月付。晚高峰体验满意后再考虑季度或半年。</div>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-rose-200 shadow-2xs">
+            <div class="font-bold text-rose-800 mb-1">铁律 2：拒绝终身会员</div>
+            <div class="text-brand-muted">天下没有免费午餐。任何终身卡都是违背物理租金规律的击鼓传花跑路盘，绝不上当。</div>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-rose-200 shadow-2xs">
+            <div class="font-bold text-rose-800 mb-1">铁律 3：必须双机互备</div>
+            <div class="text-brand-muted">主力专线 + 备用不限时/平价包。把鸡蛋放在两个不同的篮子里，断网零损失。</div>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-rose-200 shadow-2xs">
+            <div class="font-bold text-rose-800 mb-1">铁律 4：支付隐私隔离</div>
+            <div class="text-brand-muted">使用独立小号邮箱，不绑定自动扣费信用卡，避免真实个人敏感信息过度留存。</div>
+          </div>
+          <div class="p-3 bg-white rounded-xl border border-rose-200 shadow-2xs">
+            <div class="font-bold text-rose-800 mb-1">铁律 5：关注跑路前兆</div>
+            <div class="text-brand-muted">一旦出现大面积超时数日无公告、群组全员禁言或反常骨折促销，立即停止充值并迁移。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 3: Lifecycle Risks Breakdown -->
+    <section id="lifecycle-risks" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+        购买网络代理服务的全生命周期四大风险拆解
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        从注册付款到日常连接，用户在每一个生命周期阶段都面临着独特的安全与财务隐患：
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-1.5 shadow-2xs">
+          <div class="font-bold text-brand-dark text-sm flex items-center justify-between">
+            <span>1. 资金沉没风险</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 font-bold">高</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            一次性充值数年套餐后，服务商半年内关门跑路，剩余预付费彻底蒸发，无法通过任何国内银行或司法途径索赔。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-1.5 shadow-2xs">
+          <div class="font-bold text-brand-dark text-sm flex items-center justify-between">
+            <span>2. 业务中断风险</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 font-bold">极高</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            跨境电商店铺运营、海外 Zoom 商务谈判或重要代码发布中途突然断网，造成直接的经济收益与商誉损失。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-1.5 shadow-2xs">
+          <div class="font-bold text-brand-dark text-sm flex items-center justify-between">
+            <span>3. 隐私与账号风险</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">中</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            劣质服务商因数据库被脱库导致用户邮箱密码泄露；或劣质节点频繁异地跳跃导致 Google/ChatGPT 账号被封禁。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-1.5 shadow-2xs">
+          <div class="font-bold text-brand-dark text-sm flex items-center justify-between">
+            <span>4. 恶意节点劫持</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-100 text-purple-800 font-bold">低</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            黑心运营者在境外落地端嗅探未加密的明文 HTTP 流量，或篡改 DNS 返回钓鱼假网站。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 4: Runaway Mechanisms -->
+    <section id="runaway-mechanisms" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+        机场“跑路”与“停运”深度剖析：资金链与政策诱因
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        许多人以为机场是稳赚不赔的暴利生意，实际上这是一个高固定成本、高运营风险的脆断行业：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-rose-900 text-sm">💸 诱因一：资金链入不敷出与负利运营</div>
+          <p class="text-brand-muted leading-relaxed">
+            IEPL 专线带宽每个月都是真金白银的固定支出。部分盲目打“超低价一元”的小机场，在前期靠低价引流，随着用户量激增，带宽费用飙升，入场资金不足以支付下个月的机房续费账单，最终被逼跑路。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-rose-900 text-sm">⛓️ 诱因二：上游专线提供商跑路连带崩盘</div>
+          <p class="text-brand-muted leading-relaxed">
+            很多中小机场自身并不具备直接向电信运营商采购物理专线的资质，而是从“上游二道贩子”（IDC 代理）处转租带宽。一旦上游二道贩子携款跑路或专线被查封，下游的数十家挂靠机场会一夜之间全线瘫痪。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-rose-900 text-sm">⚖️ 诱因三：运营团队面临合规与法律风险</div>
+          <p class="text-brand-muted leading-relaxed">
+            服务商运营人员若在中国大陆境内肉身运营、或因使用国内直连收款码而被有关部门锁定查处，其所有服务器入口与域名将被依法查封，导致“被动失联停运”。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 5: Temporary vs Runaway Identification -->
+    <section id="temporary-vs-runaway" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+        临时服务中断 vs 真正跑路的 5 维度鉴别法
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        断网并不等于跑路。通过以下 5 个维度的客观状态，可理性研判当前局面，避免盲目恐慌：
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse border border-brand-border bg-white rounded-xl shadow-xs">
+          <thead>
+            <tr class="bg-brand-light text-brand-dark font-bold border-b border-brand-border">
+              <th class="p-3">研判维度</th>
+              <th class="p-3 text-emerald-800 font-bold">临时技术故障 / 维护 (非跑路)</th>
+              <th class="p-3 text-rose-700 font-bold">跑路极高危警报 (确认跑路)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border text-brand-muted">
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">官方公告与透明度</td>
+              <td class="p-3 text-emerald-700">官方 Telegram 频道提前发公告说明原因与恢复进展</td>
+              <td class="p-3 text-rose-700 font-medium">没有任何公告，持续失联超过 3–7 天</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">用户群组与交流渠道</td>
+              <td class="p-3 text-emerald-700">群组正常开放，管理团队正在答疑互动</td>
+              <td class="p-3 text-rose-700 font-medium">群组突然开启“全员永久禁言”或将质疑用户踢出</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">官网与用户后台状态</td>
+              <td class="p-3 text-emerald-700">官网可正常打开，仪表盘工单能正常回复</td>
+              <td class="p-3 text-rose-700 font-medium">官网域名直接停止解析，或提示 502/连接被拒</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">过境入口机器网络响应</td>
+              <td class="p-3 text-emerald-700">入口机房 IP Ping 得通，仅跨境隧道端口暂时未开</td>
+              <td class="p-3 text-rose-700 font-medium">所有国内入口机器被直接关机或退租 (100% 丢包)</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">促销与支付通道异常</td>
+              <td class="p-3 text-emerald-700">维持常态化价格，未发起大额吸资</td>
+              <td class="p-3 text-rose-700 font-medium">断网前夕曾疯狂推出买一送三或两折终身卡</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MODULE 6: High Risk Models & Traps -->
+    <section id="high-risk-models" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+        高危商业模式全曝光：终身卡与骨折吸资陷阱
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        以下是业内经过数百起跑路案例验证的“经典杀猪盘模式”，务必敬而远之：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-white border border-rose-200 rounded-xl space-y-2 shadow-2xs">
+          <div class="font-bold text-rose-900 text-sm flex items-center gap-1.5">
+            <span>🪤 陷阱 1：终身会员 / 永久不过期大包卡</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            标价 ¥199 或 ¥299 宣称“一次性付费终身免费使用专线”。这完全是用新用户的入场资金去补旧用户的带宽租金（庞氏模式）。一旦新用户增长放缓，入不敷出就会瞬间崩盘。历史所有卖过终身卡的机场，无一例外在 3–12 个月内跑路。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-rose-200 rounded-xl space-y-2 shadow-2xs">
+          <div class="font-bold text-rose-900 text-sm flex items-center gap-1.5">
+            <span>🪤 陷阱 2：超常规折上折（骨折级大促）</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            平时年付 ¥200 的机场，突然毫无节庆理由地推出“限时 3 折”、“充值 ¥500 送 ¥1000”，这往往是运营者预感到政策风险或资金断流，准备跑路前疯狂卷款（Exit Scam）的最后回光返照。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 7: Long Term Financial Evaluation -->
+    <section id="long-term-financial" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+        长期订阅 (年付/三年付) 的财务风险评估与折现考量
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        服务商普遍给年付提供 15%–30% 的折扣诱惑。用户在做决策时，应从财务风险期望值进行数学计算：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-3 text-xs">
+        <div class="p-3 bg-brand-light rounded-lg border border-brand-border font-mono text-xs">
+          <strong>📐 长期订阅预期价值期望公式：</strong><br/>
+          <code>E = P(年付) × (1 - R(跑路率)) - P(月付) × 12</code>
+        </div>
+        <p class="text-brand-muted leading-relaxed">
+          若一家新开业不足 1 年的小机场，年付只要 ¥100，折合 ¥8.3/月，看似省钱；但其年内倒闭概率高达 40%。一旦在第 3 个月跑路，你的实际月均使用成本骤升至 <strong>¥33.3/月</strong>，远超踏踏实实开 ¥15/月的月付套餐。
+        </p>
+        <div class="text-[11px] font-bold text-emerald-800">
+          💡 决策黄金法则：成立满 3 年以上的老牌成熟品牌才可谨慎考虑年付；成立不足 2 年的一律只开月付或季度付！
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 8: Refund Terms Analysis -->
+    <section id="refund-terms" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+        数字虚拟商品退款机制真相与霸王条款防范
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        数字虚拟商品具有即时交付与不可逆消耗的特性。99% 的服务商用户协议（TOS）中均包含绝对免责退款条款：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm">常见 TOS 霸王条款解读</div>
+          <p class="text-brand-muted leading-relaxed">
+            “所有套餐一旦售出，概不退款；因不可抗力导致的服务中断不承担连带赔偿责任；违反合理使用准则将封禁账号并不予退款。”这些条款意味着一旦付款，资金主动权已彻底丧失。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm">少数支持退款的合规条件</div>
+          <p class="text-brand-muted leading-relaxed">
+            极少数良心品牌（如光速云、一翻云）提供 <strong>“24小时内未消耗超过 2GB 流量无条件退款”</strong>。但退款通常需要扣除 5%–10% 的第三方支付通道手续费。购买前务必通读其服务协议中的退款细则。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 9: Account & Payment Privacy -->
+    <section id="account-privacy" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+        账号安全与支付隐私保护：匿名注册与支付防范
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        在互联网使用代理服务，个人信息的第一道防火墙是“物理隔离”：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+        <div class="p-3 bg-white border border-brand-border rounded-xl space-y-1">
+          <div class="font-bold text-brand-dark">📧 邮箱彻底隔离</div>
+          <p class="text-brand-muted">严禁使用含有个人实名拼音的 QQ 邮箱、163 邮箱或公司企业邮箱注册。使用专门的 Outlook/ProtonMail 小号。</p>
+        </div>
+
+        <div class="p-3 bg-white border border-brand-border rounded-xl space-y-1">
+          <div class="font-bold text-brand-dark">💳 支付方式精选</div>
+          <p class="text-brand-muted">优先使用 USDT/虚拟加密币或第三方收款网关。不要在服务商网站勾选“记住信用卡”或开通任何免密代扣协议。</p>
+        </div>
+
+        <div class="p-3 bg-white border border-brand-border rounded-xl space-y-1">
+          <div class="font-bold text-brand-dark">🔐 独立密码管理</div>
+          <p class="text-brand-muted">服务商数据库存在被黑客撞库脱库的风险。密码必须独立生成，切勿与常用银行、社交软件密码相同。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 10: Token Leak SOP -->
+    <section id="token-leak-sop" class="my-10 scroll-mt-20 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+          订阅泄露风险与一键重置应急 SOP 流程
+        </h2>
+        <span class="text-xs px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold">泄露紧急自救</span>
+      </div>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        如果误将订阅链接发到了微信群、公开 GitHub 仓库或社交媒体，请在 60 秒内执行以下自救 SOP：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-3 text-xs">
+        <ol class="list-decimal list-inside space-y-2 text-brand-dark font-medium leading-relaxed">
+          <li><strong>立即登录机场官网后台：</strong>进入个人仪表盘主页；</li>
+          <li><strong>寻找凭据重置入口：</strong>在订阅卡片区域找到 <strong>“重置订阅信息 (Reset Token)”</strong> 或 “重置订阅链接”；</li>
+          <li><strong>确认生成新密钥：</strong>点击确认后，服务端会立即将原 Token 从鉴权数据库中物理注销，旧链接彻底失效报 403/404；</li>
+          <li><strong>同步更新所有设备：</strong>复制重新下发的全新订阅 URL，在您的电脑、手机客户端中逐一粘贴替换并重新下载。</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- MODULE 11: Affiliate Traps -->
+    <section id="affiliate-traps" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+        识别虚假评测与黑心推广高额返佣利益链
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        YouTube、Telegram 与独立博客上的测评良莠不齐。识破虚假推广佣金（Affiliate）套路的四把标尺：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm">利益链背后的真相</div>
+          <p class="text-brand-muted leading-relaxed">
+            部分小机场向推广博主许诺高达 <strong>50%–70% 的循环返佣</strong>（即你充值 ¥100，博主躺赚 ¥70）。在巨大利益驱使下，博主会对严重晚高峰丢包、甚至已出现跑路信号的平台视而不见，依然疯狂发视频拉人下水。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm">如何辨别客观真实的评测</div>
+          <p class="text-brand-muted leading-relaxed">
+            真正的中立评测敢于明确指出其缺点（例如“晚高峰偶尔丢包”、“香港节点不能看 ChatGPT”、“工单回复慢”），并且坚持在 21:00 晚高峰进行无删减录屏测速，且有透明的商业利益披露。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 12: Evidence Preservation -->
+    <section id="evidence-preservation" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-rose-600 pl-3">
+        证据保全与纠纷处理标准指引
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        购买任意网络服务后，建立个人“服务备份档案”是维护自身知情权的重要习惯：
+      </p>
+
+      <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2 text-xs">
+        <ul class="list-disc list-inside space-y-1.5 text-brand-muted leading-relaxed">
+          <li><strong>截图保存订单明细：</strong>购买成功页面截图，包含订单编号、套餐名称、生效与截止日期、支付金额；</li>
+          <li><strong>备份官方联系通道：</strong>记录机场官方备用域名列表、官方 Telegram 通知频道与工单系统入口，防止主站被封后失联；</li>
+          <li><strong>留存沟通记录：</strong>若出现服务降级或故障，在工单系统中沟通时截图留存回复凭证。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- MODULE 13: Alternative Matrix (Fallback Brands) -->
+    <section id="alternative-matrix" class="my-10 scroll-mt-20 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-lg font-bold text-brand-dark">故障发生时的应急替代方案图谱</h2>
+        <span class="text-xs text-brand-muted">按场景快速切换兜底</span>
+      </div>
+      <p class="text-xs text-brand-muted leading-relaxed">
+        若当前服务商不幸失联，根据您的核心业务诉求，直接选用以下经严格审计的稳定品牌进行无缝平替：
+      </p>
+
+      <div class="table-responsive-wrapper">
+        <table class="w-full text-left text-xs border-collapse border border-brand-border bg-white rounded-xl shadow-xs">
+          <thead>
+            <tr class="bg-brand-light border-b border-brand-border text-brand-dark font-bold">
+              <th class="p-3">核心业务诉求</th>
+              <th class="p-3">推荐替代品牌</th>
+              <th class="p-3">线路架构与优势</th>
+              <th class="p-3">起步月付参考</th>
+              <th class="p-3 text-right">核验入口</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border text-brand-muted">
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">跨国远程办公 / 商务高稳定</td>
+              <td class="p-3 font-bold text-brand-teal">光速云</td>
+              <td class="p-3">全专线 IEPL 闭环，晚高峰零丢包</td>
+              <td class="p-3 font-mono font-bold text-brand-dark">¥8.25/月起 (年付折算)</td>
+              <td class="p-3 text-right"><a href="/brands/guangsu/" class="text-brand-teal hover:underline font-medium">查看档案 →</a></td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">ChatGPT / Claude AI 深度生产力</td>
+              <td class="p-3 font-bold text-brand-teal">微风网络</td>
+              <td class="p-3">高纯净度住宅原生 IP，免 1020 验证</td>
+              <td class="p-3 font-mono font-bold text-brand-dark">¥15.00/月起</td>
+              <td class="p-3 text-right"><a href="/brands/weifeng/" class="text-brand-teal hover:underline font-medium">查看档案 →</a></td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">超低月租应急备用</td>
+              <td class="p-3 font-bold text-brand-teal">闪电鼠</td>
+              <td class="p-3">超平价 BGP 隧道中转，备用应急极佳</td>
+              <td class="p-3 font-mono font-bold text-brand-dark">¥5.60/月起</td>
+              <td class="p-3 text-right"><a href="/brands/shandianshu/" class="text-brand-teal hover:underline font-medium">查看档案 →</a></td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="p-3 font-bold text-brand-dark">海外电竞联机加速</td>
+              <td class="p-3 font-bold text-brand-teal">一翻云</td>
+              <td class="p-3">物理专线 UDP 转发，抖动 &lt; 2ms</td>
+              <td class="p-3 font-mono font-bold text-brand-dark">¥18.00/月起</td>
+              <td class="p-3 text-right"><a href="/brands/yifan/" class="text-brand-teal hover:underline font-medium">查看档案 →</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MODULE 14: Golden Rules for Low Risk -->
+    <section id="golden-rules" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        低风险选购五大黄金法则 (买前必背)
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        无论选购哪一家机场，牢记以下五大避坑准则，能规避 99% 的跑路与资金风险：
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-5 gap-2.5 text-xs">
+        <div class="p-3 bg-white border border-brand-border rounded-xl">
+          <div class="font-bold text-brand-teal mb-1">1. 月付试水法则</div>
+          <div class="text-brand-muted">初次使用坚决开月付，亲测 21:00 晚高峰满意后，方可考虑长周期。</div>
+        </div>
+        <div class="p-3 bg-white border border-brand-border rounded-xl">
+          <div class="font-bold text-brand-teal mb-1">2. 沉没限额法则</div>
+          <div class="text-brand-muted">单次充值金额绝不超过个人能承受的“完全丢弃”限额（建议 ≤ ¥50）。</div>
+        </div>
+        <div class="p-3 bg-white border border-brand-border rounded-xl">
+          <div class="font-bold text-brand-teal mb-1">3. 历史年限法则</div>
+          <div class="text-brand-muted">成立时间不足 1 年的新机场风险极高，尽量优先选择运营 2 年以上的老牌服务商。</div>
+        </div>
+        <div class="p-3 bg-white border border-brand-border rounded-xl">
+          <div class="font-bold text-brand-teal mb-1">4. 专线鉴别法则</div>
+          <div class="text-brand-muted">警惕以普通公网中转冒充内网专线的虚假宣传，晚高峰实测丢包见真章。</div>
+        </div>
+        <div class="p-3 bg-white border border-brand-border rounded-xl">
+          <div class="font-bold text-brand-teal mb-1">5. 双机互备法则</div>
+          <div class="text-brand-muted">任何时候客户端同时配置两家独立机场，一家作为主力，一家作为热备。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 15: Dual Airport Redundancy SOP -->
+    <section id="dual-airport-sop" class="my-10 scroll-mt-20 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+          双机场主备容灾架构搭建实战指南
+        </h2>
+        <span class="text-xs px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">高可用网络最佳实践</span>
+      </div>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        面对不可控的网络故障，最具性价比的抵御方案就是建立“双机场主备容灾”，搭建步骤如下：
+      </p>
+
+      <div class="p-5 bg-white border border-brand-border rounded-xl space-y-4 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-emerald-50/70 border border-emerald-200 space-y-2">
+            <strong class="text-emerald-900 text-sm block">主用网络：高端 IEPL 专线 (Primary)</strong>
+            <p class="text-emerald-800 leading-relaxed">
+              选择如光速云或微风网络等具备优质 SLA 专线的月付套餐。负责日常 95% 以上的高强度生产力、4K 视频和 AI 访问，享受低延迟与零丢包。
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-blue-50/70 border border-blue-200 space-y-2">
+            <strong class="text-blue-900 text-sm block">备用网络：不限时流量包 / 超平价小包 (Backup)</strong>
+            <p class="text-blue-800 leading-relaxed">
+              购买一个几十元不过期的不限时流量包（如二猫云不过期包）或 ¥5.6/月的平价小包（如闪电鼠）。平时不耗月租，作为冷备份长驻客户端。
+            </p>
+          </div>
+        </div>
+
+        <div class="p-3 bg-brand-light rounded-lg border border-brand-border text-brand-dark">
+          <strong>⚙️ 客户端快速切换实战：</strong>在 Clash Verge Rev 或 Shadowrocket 中同时导入两个订阅。日常勾选主力专线节点；一旦遇到主力节点红屏或维护，只需在列表中<strong>轻点切换至备用节点</strong>，整个自愈过程仅需 2 秒钟，业务无感平稳过渡。
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 16: Sub-articles Directory (3 Guides) -->
+    <section id="articles-directory" class="my-10 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-lg font-bold text-brand-dark flex items-center gap-2">
+          <span>🛑 风险避坑与资产自保专栏 (3篇深度指南)</span>
+        </h2>
+        <span class="text-xs text-brand-muted">安全防范与容灾搭建</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <a href="/risk/airport-runaway-signs/" class="p-3.5 bg-white border border-brand-border hover:border-rose-300 rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-rose-700 mb-1">🚩 机场跑路前兆与高危特征深度剖析</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2 leading-relaxed">骨折级吸资、静默关群失联与换号跑路等 5 大终极信号。</div>
+        </a>
+        <a href="/risk/dual-airport-redundancy/" class="p-3.5 bg-white border border-brand-border hover:border-rose-300 rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-rose-700 mb-1">🔄 “主力专线 + 平价备用”双机场容灾</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2 leading-relaxed">面向跨境办公人群，零月租备用方案，彻底解决单点故障。</div>
+        </a>
+        <a href="/risk/refund-terms-analysis/" class="p-3.5 bg-white border border-brand-border hover:border-rose-300 rounded-xl shadow-xs transition block group">
+          <div class="font-bold text-brand-dark group-hover:text-rose-700 mb-1">⚖️ 机场不退款条款真相与维权自保</div>
+          <div class="text-brand-muted text-[11px] line-clamp-2 leading-relaxed">数字虚拟服务协议深度解读与小额月付试水自保原则。</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- MODULE 17: FAQ -->
+    <section id="faq" class="my-10 scroll-mt-20">
+      <FAQ items={faqItems} title="风险预警与应急避坑高频问答 (FAQ)" />
+    </section>
+
+    <!-- MODULE 18: Next Steps & Tools Cross-Links -->
+    <section id="next-steps" class="my-10 p-6 bg-brand-light border border-brand-border rounded-2xl shadow-xs">
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-brand-border">
+        <h2 class="text-base font-bold text-brand-dark">开启科学选购之旅：核验高稳定合规品牌</h2>
+        <span class="text-xs text-brand-teal font-medium">保障资产安全</span>
+      </div>
+      <p class="text-xs text-brand-muted leading-relaxed mb-4">
+        了解了风险防范逻辑后，建议前往推荐榜单与价格专题，查阅经真实技术指标测试的可靠品牌：
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+        <a href="/recommend/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          🏆 综合机场推荐榜单
+        </a>
+        <a href="/pricing/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          💰 价格梯度与性价比剖析
+        </a>
+        <a href="/brands/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          🏢 31家品牌深度档案库
+        </a>
+        <a href="/tools/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          🧮 流量与成本在线计算器
+        </a>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>

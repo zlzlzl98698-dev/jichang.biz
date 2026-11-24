@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { NAV_ITEMS } from '../data/site';
+
+const title = '404 页面未找到 · 机场指南';
+const description = '您访问的页面不存在或已被迁移。请返回首页或使用导航探索 31 家品牌库与实用选购工具。';
+---
+
+<BaseLayout title={title} description={description} noindex={true}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+    
+    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-rose-50 text-rose-600 text-2xl font-bold mb-4 border border-rose-200">
+      404
+    </div>
+
+    <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+      抱歉，您访问的页面不存在或已迁移
+    </h1>
+
+    <p class="text-sm text-brand-muted mt-2 max-w-md mx-auto leading-relaxed">
+      可能是输入的 URL 有误，或者原文章经过了结构调整与规范化重定向。
+    </p>
+
+    <!-- Actions -->
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+      <a href="/" class="py-2 px-5 rounded-lg bg-brand-teal text-white text-xs font-bold hover:bg-brand-accent transition-colors shadow-sm">
+        返回首页
+      </a>
+      <a href="/search/" class="py-2 px-5 rounded-lg bg-white border border-brand-border text-brand-dark text-xs font-semibold hover:bg-brand-light transition-colors">
+        使用站内搜索
+      </a>
+    </div>
+
+    <!-- Quick Navigation Matrix -->
+    <div class="mt-12 pt-8 border-t border-brand-border text-left">
+      <h2 class="text-xs font-bold text-brand-muted uppercase tracking-wider text-center mb-4">
+        您可以尝试访问以下核心栏目
+      </h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+        {NAV_ITEMS.map(item => (
+          <a
+            href={item.href}
+            class="p-2.5 rounded-lg bg-white border border-brand-border hover:border-brand-teal hover:text-brand-teal transition-all flex flex-col justify-between"
+          >
+            <span class="font-bold text-brand-dark">{item.label}</span>
+            <span class="text-[11px] text-brand-muted truncate mt-0.5">{item.description}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</BaseLayout>

@@ -1,0 +1,405 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQ from '../../components/FAQ.astro';
+import { BRANDS } from '../../data/brands';
+
+export async function getStaticPaths() {
+  const topics = [
+    {
+      slug: 'rankings',
+      title: '2026 机场排行榜 · 靠谱稳定综合性能天梯榜与多维横评',
+      metaDescription: '权威中立的 2026 机场综合排行榜。基于真实专线架构、晚高峰抗抖动实测、AI 解锁兼容度与存续年限，客观呈现主流服务商梯队与选择依据。',
+      badge: '🏆 综合性能天梯榜',
+      coreKeyword: '机场排行',
+      heading: '2026 机场排行榜：多维度综合性能天梯横评',
+      answerFirst: '选择机场切忌盲信商业排名。本榜单基于“线路物理层（专线占比）+ 晚高峰抗丢包率（<0.5%）+ 存续运营年限（≥2年）+ AI流媒体原生解锁”四维硬核指标加权排序。排在首梯队的光速云与微风网络以全内网专线闭环保障生产力稳定性；平价梯队的闪电鼠与大佬云则主打极致性价比备用。',
+      intro: '全网测评充斥着大量虚假佣金排位。本专题抛弃主观玄学，基于持续自动化监测与晚高峰实测数据，为您呈现经得起推敲的 2026 机场综合能力排行榜。',
+      targetAudience: '需要全局视野、在多家主流品牌间纠结、寻求客观综合评分的决策型用户。',
+      filterCriteria: (b: any) => b.isPartner || b.dataStatus === 'verified',
+      faqList: [
+        {
+          question: '排行榜上的品牌是按什么标准排序的？',
+          answer: '本站综合排名采用四维加权模型：40% 线路物理质量（IEPL/IPLC 物理专线与晚高峰丢包表现）、25% 运营稳定性（成立存续年限与无跑路前兆）、20% 业务兼容性（ChatGPT/Claude 与 Netflix 4K 原生解锁）、15% 售后与性价比。绝不将商业赞助位冒充技术第一名。'
+        },
+        {
+          question: '排名第一的机场就一定适合所有人吗？',
+          answer: '不一定。排名靠前的通常是综合体验顶级的专线机场（如光速云），月均成本通常在 ¥10–¥25 左右；如果您仅仅是每月查阅几封海外邮件，选择 5.6 元的平价备用机场（如闪电鼠）反而更具经济合理性。请根据个人实际预算和核心用途对号入座。'
+        },
+        {
+          question: '为什么部分名气很大的“网红机场”没有上榜？',
+          answer: '许多社交媒体上的网红机场依靠 50% 以上的高额推广佣金驱动营销，但其底层大多租用拥挤的公网中转甚至直连，晚高峰丢包率超过 15%，严重违背本站“晚高峰抗抖动”的核心准入门槛，因此未予收录。'
+        }
+      ]
+    },
+    {
+      slug: 'reliable',
+      title: '靠谱机场推荐指南 · 存续年限、SLA 保证与不跑路避坑全景',
+      metaDescription: '如何挑选一家真正靠谱的机场？全方位解析服务商存续年限、SLA 服务可用性协议、退款机制透明度与合规防封防跑路核心筛选准则。',
+      badge: '🛡️ 信任与资产安全',
+      coreKeyword: '靠谱机场',
+      heading: '靠谱机场推荐：拒绝跑路盘的科学筛选指南',
+      answerFirst: '“靠谱”的核心定义是：持续运营不跑路、价格机制公开透明、技术参数诚实不虚标、售后具备确定性响应。判断一家机场是否靠谱的硬性三原则：1. 成立运营时间必须满 2 年以上；2. 绝不盲目购买所谓的“永久终身会员”；3. 首选具备 IEPL 专线 SLA 保障且支持月付测试的成熟服务商。',
+      intro: '跨境代理服务存在天然的商业脆弱性。本专题从公司运营年限、机房线路独立性、客服工单响应时效及退款协议等维度，为您筛选值得长期信赖的靠谱机场。',
+      targetAudience: '对断网极其敏感的跨国跨境电商卖家、海外远程办公人员及重度科研学者。',
+      filterCriteria: (b: any) => b.launchYear <= 2024 && (b.networkType.includes('专线') || b.networkType.includes('IEPL')),
+      faqList: [
+        {
+          question: '如何查验一家机场的真实开业时间？',
+          answer: '不要只听商家自宣。可通过查询其官网域名的 WHOIS 历史注册时间、官方 Telegram 频道的创建时间及第一条历史消息发布日期、以及第三方测评博主最早的测速发布记录进行交叉印证。'
+        },
+        {
+          question: '为什么说“不卖终身卡”是靠谱机场的重要标志？',
+          answer: '因为服务器带宽与专线过境租金是每个月都需要向电信运营商支付的硬性物理成本。承诺“几百元永久使用”在财务上注定崩盘，属于典型的跑路吸资杀猪盘。'
+        },
+        {
+          question: '遇到靠谱机场偶尔维护断连该怎么处理？',
+          answer: '正规靠谱机场在遭遇光缆故障或入口维护时，一定会提前在官方公告频道发布通知与预期修复时间。此时只需在客户端临时切换至平时准备的第二家备用机场即可。'
+        }
+      ]
+    },
+    {
+      slug: 'stable',
+      title: '稳定机场推荐 · 晚高峰零丢包、低延迟 IEPL 专线精选',
+      metaDescription: '告别晚高峰卡顿与频繁断流。深度评测晚高峰 20:00–23:00 表现拔尖的稳定专线机场，解析 IEPL 内网专线不过墙优势与抗抖动指标。',
+      badge: '⚡ 晚高峰抗抖动首选',
+      coreKeyword: '稳定机场',
+      heading: '稳定机场推荐：晚高峰低延迟零丢包专线横评',
+      answerFirst: '白天稳定不叫稳定，晚高峰（20:00–23:00）不丢包才是真正的稳定。影响稳定性的唯一技术决定因素是【过境链路】。走公网普通中转的机场在晚高峰丢包率往往从 1% 激增至 20%，导致 4K 转圈与 SSH 断开；而真正的 IEPL/IPLC 物理专线在运营商内网闭环传输，全天丢包率持续 < 0.2%，是极致稳定性的唯一解。',
+      intro: '网络稳定性是生产力的第一生命线。本专题专注于网络工程层面的“晚高峰抗抖动”表现，严选具备独立内网物理光纤切片的高可用机场服务商。',
+      targetAudience: '海外在线会议、外服竞技联机、跨国实时远程桌面及持续 4K 极清观影用户。',
+      filterCriteria: (b: any) => b.networkType.includes('IEPL') || b.networkType.includes('IPLC') || b.networkType.includes('专线'),
+      faqList: [
+        {
+          question: '为什么普通中转晚上会变卡，而专线不会？',
+          answer: '普通公网中转必须走国家公网国际出口路由。晚高峰全国网民都在高频使用外网，国际出口带宽发生严重拥塞，运营商 QoS 机制会丢弃大量普通数据包；而专线走的是企业租用的专用物理光缆，完全绕开公网出口，享有排他性独占带宽。'
+        },
+        {
+          question: 'Ping 延迟只有 20ms，为什么看视频还是卡？',
+          answer: '客户端测出的 Ping 只是本地到国内入口的握手时延。若过境带宽拥堵导致 5% 的丢包，TCP 窗口就会断崖式缩小，实际下载速率会暴跌 80% 以上。看视频卡顿是由丢包引起的，而非国内握手延迟。'
+        },
+        {
+          question: '稳定机场推荐哪几家？',
+          answer: '实测表现拔尖的包括光速云（全专线高冗余）、微风网络（IEPL低抖动）与一翻云（物理专线）。建议先开月付在晚高峰亲测体验。'
+        }
+      ]
+    },
+    {
+      slug: 'beginner',
+      title: '新手机场推荐 · 零基础一键导入、小白易用无障碍入门指南',
+      metaDescription: '专为新手打造的机场选购与上手手册。推荐提供自研一键客户端、小白免配置导入、支持微信支付宝、提供详尽新手教程的友好型服务商。',
+      badge: '🌱 新手零门槛入门',
+      coreKeyword: '新手机场推荐',
+      heading: '新手机场推荐：小白零门槛、一键连接上手指南',
+      answerFirst: '新手买机场最怕两件事：复杂的客户端配置报错（如不懂 YAML 语法或 TUN 驱动）和买错套餐被坑。适合新手的优质机场必须具备三大特征：1. 提供傻瓜式自研一键客户端或成熟的订阅一键唤醒；2. 套餐规则简明，无复杂的倍率换算套路；3. 提供月付小额试水通道。推荐光速云、飞猫云或二猫云作为初学者首选。',
+      intro: '第一次接触网络代理，面对各种协议名词和配置报错感到无从下手？本专题精选最容易上手、客服支持完善的新手友好型机场，助您 3 分钟顺畅开启跨境连接。',
+      targetAudience: '没有任何网络工程基础、不想折腾复杂开源内核、追求开箱即用的小白用户。',
+      filterCriteria: (b: any) => b.clientSupport.hasCustomApp || b.startingPriceMonthlyYuan <= 15,
+      faqList: [
+        {
+          question: '小白是该用机场自带的专属客户端，还是用 Clash？',
+          answer: '如果您完全不想理解任何网络参数，直接下载机场官方提供的定制客户端最省心，安装后登录账号即可一键开启；如果您希望一个软件管理多家机场或使用更精细的分流规则，推荐按照本站教程学习使用 Clash Verge Rev。'
+        },
+        {
+          question: '新手第一次买机场，买什么周期的套餐最安全？',
+          answer: '无论别人怎么推荐，新手务必坚持“只买月付”！先花十几元购买一个月体验，验证在自家的宽带网络下晚高峰是否流畅。满意后再考虑长期续费，绝不上当受骗买年付。'
+        },
+        {
+          question: '连接后无法打开海外网页怎么办？',
+          answer: '新手 90% 的连不上都是因为电脑本地时间没有同步，或者误开了全局模式。请检查电脑时间是否与北京时间一致，并将客户端路由模式设为“规则模式 (Rule)”。'
+        }
+      ]
+    },
+    {
+      slug: 'cost-effective',
+      title: '高性价比机场推荐 · ¥10–¥25 黄金价位专线平衡精选',
+      metaDescription: '兼顾钱包与体验的黄金分割点。盘点月付 ¥10 至 ¥25 之间、具备优质专线、充足流量与稳定保障的高性价比机场服务商。',
+      badge: '💰 性能与价格黄金平衡',
+      coreKeyword: '性价比机场',
+      heading: '高性价比机场推荐：兼顾专线品质与经济预算',
+      answerFirst: '真正的高性价比绝非盲目追求“1元超低价”（劣质中转晚高峰卡成 PPT），而是在“可接受的价格区间内获得可靠的专线体验”。经综合测算，月均 ¥10–¥25 是当前市场的黄金甜蜜点：既能支撑服务商采购合规的 IEPL 专线保障晚高峰体验，又不会给普通工薪族和学生党造成经济负担。',
+      intro: '不想花大几百购买企业级昂贵服务，又受够了超卖廉价机场的日常断流？本专题为您挖掘兼顾稳定专线与亲民价格的高性价比宝藏品牌。',
+      targetAudience: '注重预算把控、追求物有所值、日常使用频率高但拒绝虚高溢价的理性消费者。',
+      filterCriteria: (b: any) => b.startingPriceMonthlyYuan >= 8 && b.startingPriceMonthlyYuan <= 25,
+      faqList: [
+        {
+          question: '为什么几块钱的机场往往谈不上性价比？',
+          answer: '因为低于成本价的机场为了盈利，必然会在单个服务器上塞入数千人严重超卖。平时看似省钱，但一旦晚高峰无法打开网页或频繁掉线，浪费的时间成本与糟糕心情远超省下的几块钱差价。'
+        },
+        {
+          question: '高性价比机场一般包含多少流量？够用吗？',
+          answer: '¥10–¥25 价位的套餐通常提供每月 80GB–200GB 流量。日常网页浏览、刷推特、查阅文献每月仅消耗 10GB–20GB；每天看 1 小时 4K 视频每月约消耗 60GB–90GB，对于 95% 的个人用户完全充裕。'
+        },
+        {
+          question: '有哪些高性价比代表品牌？',
+          answer: '光速云（年付折算约 ¥8.25/月）、微风网络（¥15/月高品质）、极连云（¥18/100G）以及神行加速（¥14/120G）均属此区间表现卓越的标杆。'
+        }
+      ]
+    }
+  ];
+
+  return topics.map(topic => ({
+    params: { slug: topic.slug },
+    props: { topic }
+  }));
+}
+
+const { topic } = Astro.props;
+
+const title = topic.title;
+const description = topic.metaDescription;
+const breadcrumbs = [
+  { name: '机场推荐', url: '/recommend/' },
+  { name: topic.coreKeyword, url: `/recommend/${topic.slug}/` }
+];
+
+const selectedBrands = BRANDS.filter(topic.filterCriteria);
+
+const tocItems = [
+  { id: 'answer-first', title: 'Answer-First 核心选型结论' },
+  { id: 'decision-logic', title: '细分定位与核心评判标准' },
+  { id: 'brand-candidates', title: '精选合规品牌候选横评表' },
+  { id: 'traffic-and-billing', title: '套餐档位与资费结构剖析' },
+  { id: 'pitfalls-and-rules', title: '避坑指南与选型铁律' },
+  { id: 'faq', title: '高频常见疑问 (FAQ)' },
+  { id: 'cross-links', title: '全站决策工具与关联专题' }
+];
+---
+
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs} faqItems={topic.faqList}>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Hero Header -->
+    <div class="mb-8 border-b border-brand-border pb-6">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-brand-teal text-xs font-semibold border border-emerald-200 mb-3">
+        <span>{topic.badge}</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-brand-dark tracking-tight">
+        {topic.heading}
+      </h1>
+      <p class="text-sm sm:text-base text-brand-muted mt-3 leading-relaxed">
+        {topic.intro}
+      </p>
+    </div>
+
+    <!-- In-Page TOC Anchor Navigation -->
+    <nav class="my-6 p-4 bg-brand-light border border-brand-border rounded-xl shadow-xs" aria-label="页面目录导航">
+      <div class="flex items-center justify-between pb-2 mb-2 border-b border-brand-border text-xs font-bold text-brand-dark">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-brand-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+          本专题核心目录 (TOC)
+        </span>
+        <span class="text-brand-muted font-normal">点击快速跳转</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-1.5 text-xs">
+        {tocItems.map(item => (
+          <a href={`#${item.id}`} class="text-brand-dark hover:text-brand-teal hover:underline truncate py-0.5">
+            · {item.title}
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    <!-- MODULE 1: Answer-First Card -->
+    <section id="answer-first" class="my-8 scroll-mt-20">
+      <div class="p-5 bg-linear-to-br from-emerald-50/70 via-white to-blue-50/50 border-2 border-brand-teal/40 rounded-2xl shadow-sm">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-2 py-0.5 rounded bg-brand-teal text-white text-xs font-bold tracking-wide">Answer-First 核心结论</span>
+          <span class="text-xs text-brand-muted font-mono">定位：{topic.coreKeyword}</span>
+        </div>
+        <h2 class="text-lg font-bold text-brand-dark mb-2">30秒掌握本专题决策精要</h2>
+        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
+          {topic.answerFirst}
+        </p>
+        <div class="p-3 bg-white/80 rounded-xl border border-emerald-200 text-xs text-brand-dark font-medium flex items-center gap-2">
+          <span>🎯 <strong>目标适用人群：</strong>{topic.targetAudience}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 2: Decision Logic -->
+    <section id="decision-logic" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        细分定位与核心评判标准
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        在《{topic.coreKeyword}》细分维度下，评测团队基于以下四个硬核指标进行筛选过滤，拒绝模糊主观形容词：
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-1.5 shadow-2xs">
+          <div class="font-bold text-brand-dark flex items-center justify-between">
+            <span>物理过境架构</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">硬件指标</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            区分是否为真正不过公网的 IEPL/IPLC 物理内网专线。普通中转在晚高峰受到骨干网 QoS 限速，而专线保持全天无波动。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-1.5 shadow-2xs">
+          <div class="font-bold text-brand-dark flex items-center justify-between">
+            <span>存续年限与背书</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">合规安全</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            优先收录开业 2 年以上的老牌服务商。严查历史公告、工单服务质量与财务健康度，过滤短期敛财盘。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-1.5 shadow-2xs">
+          <div class="font-bold text-brand-dark flex items-center justify-between">
+            <span>AI 与流媒体解锁</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-100 text-purple-800 font-bold">业务兼容</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            落地节点是否具备原生住宅属性。能够无感直连 ChatGPT、Claude 及 Netflix 4K 原生画质，无 1020 报错拦截。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-1.5 shadow-2xs">
+          <div class="font-bold text-brand-dark flex items-center justify-between">
+            <span>灵活付费门槛</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 font-bold">风险控制</span>
+          </div>
+          <p class="text-brand-muted leading-relaxed">
+            必须支持小额月付试水。用户无需承担大额沉没资金风险，随时可根据实际网络体验调整续费策略。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 3: Brand Candidates Comparison Table -->
+    <section id="brand-candidates" class="my-10 scroll-mt-20 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-brand-border">
+        <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+          精选合规品牌候选横评表 ({selectedBrands.length} 家入围)
+        </h2>
+        <span class="text-xs text-brand-muted">数据动态同步自品牌库</span>
+      </div>
+      <p class="text-xs text-brand-muted leading-relaxed">
+        下表列出完全符合《{topic.coreKeyword}》筛选准则的候选品牌。点击可深入查看其独立技术档案：
+      </p>
+
+      <div class="table-responsive-wrapper">
+        <table class="w-full text-left text-xs border-collapse border border-brand-border bg-white rounded-xl shadow-xs">
+          <thead>
+            <tr class="bg-brand-light border-b border-brand-border text-brand-dark font-bold">
+              <th class="p-2.5">品牌名称</th>
+              <th class="p-2.5">线路类型</th>
+              <th class="p-2.5">起步月付</th>
+              <th class="p-2.5">核心优势与定位</th>
+              <th class="p-2.5">客户端支持</th>
+              <th class="p-2.5 text-right">档案入口</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border text-brand-muted">
+            {selectedBrands.map(b => (
+              <tr class="hover:bg-brand-light/50">
+                <td class="p-2.5 font-bold text-brand-dark whitespace-nowrap">
+                  <a href={`/brands/${b.slug}/`} class="hover:text-brand-teal hover:underline">{b.name}</a>
+                  {b.isPartner && (
+                    <span class="ml-1 px-1 py-0.2 rounded text-[9px] bg-amber-100 text-amber-800 font-normal">合作展示</span>
+                  )}
+                </td>
+                <td class="p-2.5 whitespace-nowrap font-medium text-emerald-800">
+                  {b.networkType}
+                </td>
+                <td class="p-2.5 font-mono font-bold text-brand-dark whitespace-nowrap">
+                  ¥{b.startingPriceMonthlyYuan.toFixed(2)}/月起
+                </td>
+                <td class="p-2.5 max-w-xs truncate text-[11px]" title={b.summary}>
+                  {b.summary}
+                </td>
+                <td class="p-2.5 whitespace-nowrap text-[11px]">
+                  {b.clientSupport.hasCustomApp ? '自研客户端 + 通用' : '通用 Clash/小火箭'}
+                </td>
+                <td class="p-2.5 text-right whitespace-nowrap">
+                  <a href={`/brands/${b.slug}/`} class="text-brand-teal hover:underline font-medium">查看档案 →</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MODULE 4: Traffic and Billing Breakdown -->
+    <section id="traffic-and-billing" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        套餐档位与资费结构剖析
+      </h2>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        在选购该细分维度的机场时，建议根据个人设备数量和流量吞吐规律进行精准匹配：
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm">轻度科研 / 商务查阅</div>
+          <p class="text-brand-muted leading-relaxed">
+            <strong>建议配置：</strong>50GB–100GB / 月，月付 ¥10 左右。<br/>
+            适合日常 Google 查资料、GitHub 代码拉取、收发跨国邮件及轻度学术检索。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm">重度 4K 影音 / AI 辅助</div>
+          <p class="text-brand-muted leading-relaxed">
+            <strong>建议配置：</strong>150GB–300GB / 月，月付 ¥15–¥25 左右。<br/>
+            满足每天 2 小时 YouTube 4K 流媒体观影、全天挂载 ChatGPT/Claude 对话与多设备同时在线。
+          </p>
+        </div>
+
+        <div class="p-4 bg-white border border-brand-border rounded-xl space-y-2">
+          <div class="font-bold text-brand-dark text-sm">多设备团队 / 应急备用</div>
+          <p class="text-brand-muted leading-relaxed">
+            <strong>建议配置：</strong>不限时永久大包或 ¥5.6 平价包。<br/>
+            平摊至多台设备共享，或者长期作为主力的第二备用梯子，防范单点网络波动。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULE 5: Pitfalls & Golden Rules -->
+    <section id="pitfalls-and-rules" class="my-10 scroll-mt-20 space-y-4">
+      <h2 class="text-xl font-bold text-brand-dark border-l-4 border-brand-teal pl-3">
+        避坑指南与选型铁律
+      </h2>
+      <div class="p-4 bg-amber-50/70 border border-amber-300 rounded-xl space-y-2 text-xs text-amber-950">
+        <div class="font-bold text-sm text-amber-900">⚠️ 购买本类专题机场的避坑守则：</div>
+        <ul class="list-disc list-inside space-y-1.5 leading-relaxed">
+          <li><strong>坚持首月小额月付：</strong>即使商家宣称年付有额外优惠，首次购入也坚决开月付，在晚高峰 21:00 实测满意后再续期。</li>
+          <li><strong>看清节点倍率标注：</strong>避免在客户端误用 2.0x 或 3.0x 高倍率节点，导致套餐额度被数倍快速扣除。</li>
+          <li><strong>常备第二备用服务：</strong>任何机场都有因上游光缆检修或机房断电临时维护的可能，配置双机场互备是跨境生产力不瘫痪的底层法则。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- MODULE 6: FAQ -->
+    <section id="faq" class="my-10 scroll-mt-20">
+      <FAQ items={topic.faqList} title={`${topic.coreKeyword}常见高频问题解答 (FAQ)`} />
+    </section>
+
+    <!-- MODULE 7: Cross Links & Navigation -->
+    <section id="cross-links" class="my-10 p-6 bg-brand-light border border-brand-border rounded-2xl shadow-xs">
+      <div class="flex items-center justify-between pb-3 mb-4 border-b border-brand-border">
+        <h2 class="text-base font-bold text-brand-dark">探索其他推荐专题与决策工具</h2>
+        <a href="/recommend/" class="text-xs text-brand-teal hover:underline font-bold">返回综合推荐总榜 →</a>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+        <a href="/recommend/rankings/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          🏆 综合排行榜
+        </a>
+        <a href="/recommend/stable/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          ⚡ 稳定专线推荐
+        </a>
+        <a href="/recommend/beginner/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          🌱 新手入门精选
+        </a>
+        <a href="/recommend/cost-effective/" class="p-3 bg-white rounded-xl border border-brand-border hover:border-brand-teal text-center font-bold text-brand-dark hover:text-brand-teal transition block">
+          💰 高性价比榜单
+        </a>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>

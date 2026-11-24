@@ -1,0 +1,124 @@
+---
+import type { UnlockMatrix } from '../types/brand';
+
+interface Props {
+  matrix: UnlockMatrix;
+  brandName: string;
+}
+
+const { matrix, brandName } = Astro.props;
+
+type StatusType = 'supported' | 'partial' | 'unsupported' | 'unknown';
+
+const statusConfig: Record<StatusType, { label: string; textClass: string; dotClass: string }> = {
+  supported: {
+    label: '支持 / Operational',
+    textClass: 'text-emerald-700 bg-emerald-50 border-emerald-200',
+    dotClass: 'bg-emerald-500'
+  },
+  partial: {
+    label: '视节点 / Partial',
+    textClass: 'text-amber-800 bg-amber-50 border-amber-200',
+    dotClass: 'bg-amber-500'
+  },
+  unsupported: {
+    label: '不支持 / Unavailable',
+    textClass: 'text-rose-700 bg-rose-50 border-rose-200',
+    dotClass: 'bg-rose-500'
+  },
+  unknown: {
+    label: '待核实 / Not Tested',
+    textClass: 'text-gray-700 bg-gray-100 border-gray-300',
+    dotClass: 'bg-gray-400'
+  }
+};
+
+const aiItems = [
+  { name: 'ChatGPT / OpenAI', key: 'chatgpt', note: '支持网页端及官方移动 App 登录' },
+  { name: 'Claude / Anthropic', key: 'claude', note: '对原生 IP 干净度要求较高' },
+  { name: 'Google Gemini', key: 'gemini', note: '受地区落地限制，部分节点需切换' }
+];
+
+const mediaItems = [
+  { name: 'Netflix (网飞)', key: 'netflix', note: '非全自制剧解锁与原生落地' },
+  { name: 'Disney+ (迪士尼)', key: 'disney', note: '跨区与全语言音轨' },
+  { name: 'YouTube Premium', key: 'youtube', note: '4K/8K 码率稳定传输' },
+  { name: 'TikTok (国际抖音)', key: 'tiktok', note: '电商与创作者直连' },
+  { name: 'Spotify 音频', key: 'spotify', note: '音乐版权区切换' },
+  { name: 'HBO Max', key: 'hbo', note: '北美地区专属落地' }
+];
+---
+
+<div class="bg-white border border-brand-border rounded-xl p-5 my-6 shadow-sm">
+  <!-- Title and disclaimer -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-brand-border gap-2">
+    <div>
+      <h2 class="text-base sm:text-lg font-bold text-brand-dark flex items-center gap-2">
+        <span>🎬 {brandName} · AI 生产力与主流流媒体兼容矩阵 (Service Availability)</span>
+      </h2>
+      <p class="text-[11px] text-brand-muted mt-0.5">
+        数据基于历史实测与品牌技术规格记录。受第三方平台风控与版权协议限制，服务商无法承诺 100% 永久解锁。
+      </p>
+    </div>
+    <div class="text-[11px] text-brand-muted shrink-0">
+      分类矩阵 · 动态响应
+    </div>
+  </div>
+
+  <!-- Part 1: AI Tools Matrix -->
+  <div class="mt-4">
+    <div class="text-xs font-semibold text-brand-teal uppercase tracking-wider mb-2 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-brand-teal"></span>
+      <span>AI 生产力大模型访问支持</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      {aiItems.map(item => {
+        const statusKey = matrix[item.key as keyof UnlockMatrix] as StatusType || 'unknown';
+        const conf = statusConfig[statusKey] || statusConfig.unknown;
+        return (
+          <div class="border border-brand-border rounded-lg p-3 bg-brand-light flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-brand-dark">{item.name}</span>
+              <span class:list={['inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium border', conf.textClass]}>
+                <span class:list={['w-1.5 h-1.5 rounded-full', conf.dotClass]}></span>
+                <span>{conf.label.split(' / ')[0]}</span>
+              </span>
+            </div>
+            <div class="text-[11px] text-brand-muted mt-2">{item.note}</div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+
+  <!-- Part 2: Streaming Media Matrix -->
+  <div class="mt-5">
+    <div class="text-xs font-semibold text-brand-navy uppercase tracking-wider mb-2 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-brand-navy"></span>
+      <span>主流音视频流媒体平台支持</span>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+      {mediaItems.map(item => {
+        const statusKey = matrix[item.key as keyof UnlockMatrix] as StatusType || 'unknown';
+        const conf = statusConfig[statusKey] || statusConfig.unknown;
+        return (
+          <div class="border border-brand-border rounded-lg p-3 bg-brand-light flex flex-col justify-between">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-brand-dark">{item.name}</span>
+              <span class:list={['inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium border', conf.textClass]}>
+                <span class:list={['w-1.5 h-1.5 rounded-full', conf.dotClass]}></span>
+                <span>{conf.label.split(' / ')[0]}</span>
+              </span>
+            </div>
+            <div class="text-[11px] text-brand-muted mt-2">{item.note}</div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+
+  <!-- Bottom Tip -->
+  <div class="mt-4 pt-3 border-t border-brand-border text-[11px] text-brand-muted flex items-center justify-between">
+    <span>💡 提示：若遇到 AI 拒绝访问，建议清空浏览器 Cookie、启用全局/TUN 模式或切换至新加坡/台湾等节点重试。</span>
+  </div>
+</div>

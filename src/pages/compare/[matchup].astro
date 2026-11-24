@@ -1,0 +1,350 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getBrandBySlug, type BrandEntity } from '../../data/brands';
+import AffiliateDisclosure from '../../components/AffiliateDisclosure.astro';
+import { getAffiliateLink } from '../../data/links';
+
+export async function getStaticPaths() {
+  const matchups = [
+    {
+      slug: 'guangsu-vs-muguang',
+      slugA: 'guangsu',
+      slugB: 'muguang',
+      title: '光速云 VS 暮光加速 对比评测 · 老牌双专线与BGP多设备在线怎么选？',
+      verdict: '光速云适合看重 2020 年老牌存续期、且需要自研与 Clash 通用订阅双支持的用户，其年付折合约 8.25 元/月起步；暮光加速则在多设备跨平台同时在线与不限时大流量包上更有优势，适合小团队及家庭多设备共享。'
+    },
+    {
+      slug: 'feimao-vs-weifeng',
+      slugA: 'feimao',
+      slugB: 'weifeng',
+      title: '飞猫云 VS 微风网络 对比评测 · 7元档专属客户端新手与IEPL专线性价比',
+      verdict: '飞猫云适合完全不想折腾客户端配置的纯新手，专属 App 下载登录即连，但不支持第三方订阅；微风网络则走 IEPL 专线搭配 VLESS 协议，完整支持通用客户端导入，适合看重规则分流与原生 IP 的进阶性价比用户。'
+    },
+    {
+      slug: 'weitu-vs-firefly',
+      slugA: 'weitu',
+      slugB: 'firefly',
+      title: '唯兔云 VS Firefly 对比评测 · 2026 IPLC专线高性价比深度对比',
+      verdict: '唯兔云走 IPLC 专线并支持全系列开源客户端，节假日特惠低至 14.9 元/月，生态自由度高；Firefly 同样走 IPLC 纯专线且原生 IP 解锁可靠，但采用封闭专属客户端模式，适合仅在手机和电脑开箱即用的用户。'
+    },
+    {
+      slug: 'jilian-vs-guangnian',
+      slugA: 'jilian',
+      slugB: 'guangnian',
+      title: '极连云 VS 光年梯 对比评测 · 同为18元档IEPL专线有何差异？',
+      verdict: '两家均为 18 元档的 IEPL 专线新秀且均支持通用订阅。关键差异在于：极连云品牌资料明确突出对 ChatGPT 等 AI 工具场景的适配，流量为 100GB/月；光年梯则在流量上多给 10GB（110GB/月），更侧重流量微溢价。'
+    },
+    {
+      slug: 'dalaoyun-vs-shandianshu',
+      slugA: 'dalaoyun',
+      slugB: 'shandianshu',
+      title: '大佬云 VS 闪电鼠 对比评测 · 5.6元极限平价档同质化横评与区别',
+      verdict: '大佬云与闪电鼠均属于 5.6 元/月档的标准方案（IEPL专线 + VLESS + 60GB + 季付7折），核心规格高度一致。两家均适合作为极低成本的日常查资料备用节点，若追求长期稳定生产力，建议搭配中高阶主线。'
+    },
+    {
+      slug: 'sogo-vs-yinxingren',
+      slugA: 'sogo',
+      slugB: 'yinxingren',
+      title: 'SOGO云 VS 隐形人 对比评测 · 专属客户端专线服务商深度横评',
+      verdict: '两家均采用专属客户端、不提供第三方订阅的封闭模式。SOGO云的亮点在于节点覆盖 15 个国家和地区，起步约 8.17 元/月；隐形人则主打企业级 IPLC 专线晚高峰直连与 144GB 充沛月流量，月付 24 元起步。'
+    },
+    {
+      slug: 'xingdaomeng-vs-ermao',
+      slugA: 'xingdaomeng',
+      slugB: 'ermao',
+      title: '星岛梦 VS 二猫云 对比评测 · 不限设备连接的专线机场如何选？',
+      verdict: '星岛梦自 2020 年运营，全线 1 倍率不限设备且支持第三方订阅，节点延伸至韩东多国；二猫云强调不做跑路盘与海外技术团队，配备定制客户端，但节点中缺少新加坡常驻站点，二者各有取舍。'
+    },
+    {
+      slug: 'u1s1-vs-sujie',
+      slugA: 'u1s1',
+      slugB: 'sujie',
+      title: 'U1S1 VS 速界 对比评测 · 2000Mbps新宣称与专注AI生产力的对决',
+      verdict: 'U1S1 是 2025 年新品牌，主打 2000Mbps IPLC 带宽宣称与 20 元 120GB；速界同为中端专线，主打 ChatGPT/Claude 等 AI 工具的访问体验与规则透明度。追求大带宽尝鲜看 U1S1，注重 AI 稳定选速界。'
+    },
+    {
+      slug: 'guangsu-vs-weitu',
+      slugA: 'guangsu',
+      slugB: 'weitu',
+      title: '光速云 VS 唯兔云 对比评测 · 老牌双专线与IPLC特惠专线如何抉择？',
+      verdict: '光速云运营时间更长（2020年起），自研与第三方订阅完备，套餐档位涵盖从年付8.25元/月至大容量档；唯兔云主打纯 IPLC 专线，节假日特惠 14.9 元/月极具月付杀伤力，适合月付尝鲜与注重 1 倍率的用户。'
+    },
+    {
+      slug: 'muguang-vs-ermao',
+      slugA: 'muguang',
+      slugB: 'ermao',
+      title: '暮光加速 VS 二猫云 对比评测 · 多设备同时在线与定制客户端专线对决',
+      verdict: '暮光加速采用 BGP 智能调度专线出口，节点包含新加坡，套餐档位多且有 7x24 客服；二猫云采用 IEPL 专线且强调服务存续期，但节点缺少新加坡。多端协作选暮光加速，偏好多周期长期锁价看二猫云。'
+    },
+    {
+      slug: 'feimao-vs-lingmao',
+      slugA: 'feimao',
+      slugB: 'lingmao',
+      title: '飞猫云 VS 灵猫网络 对比评测 · 纯专属客户端免配置即连模式横评',
+      verdict: '两家均属于 2026 年全面采用专属客户端、不提供第三方订阅的免折腾型机场。飞猫云年付折合约 7.0 元/月，界面极简；灵猫网络年付小包约 7.08 元/月且不限设备数量。新手小白可依据对设备数量的需求二选一。'
+    },
+    {
+      slug: 'weifeng-vs-jilian',
+      slugA: 'weifeng',
+      slugB: 'jilian',
+      title: '微风网络 VS 极连云 对比评测 · 入门IEPL专线与聚焦AI生产力专线对比',
+      verdict: '微风网络年付 137 元 100GB/月（折合 11.4 元/月），月付 27 元 200GB，综合性较好且有 AI 客服夜间值守；极连云主打 18 元/月 100GB，明确标注覆盖常见 AI 工具场景。需要小额月付选极连云，预算支持年付选微风网络。'
+    },
+    {
+      slug: 'shandianshu-vs-yunjiexian',
+      slugA: 'shandianshu',
+      slugB: 'yunjiexian',
+      title: '闪电鼠 VS 云界线 对比评测 · 5.6元极限平价档标准方案与链接格式差异',
+      verdict: '闪电鼠与云界线均为 5.6 元/月（年付 67.2 元）的 IEPL+VLESS 标准配置。两家规格完全相同，云界线的联盟链接格式缺少常见的“#”符号，注册时需留意页面加载正常；两者均适合充当廉价备用线路。'
+    },
+    {
+      slug: 'dalaoyun-vs-liulianyun',
+      slugA: 'dalaoyun',
+      slugB: 'liulianyun',
+      title: '大佬云 VS 榴莲云 对比评测 · 5.6元档明确VLESS协议与协议未明品牌对比',
+      verdict: '在 5.6 元极限平价档位中，大佬云明确标注采用 VLESS 协议与自研/第三方双支持；榴莲云在品牌资料中未明确具体协议类型。如果您对底层传输协议有明确要求，建议优先选择协议透明的大佬云。'
+    },
+    {
+      slug: 'xingdaomeng-vs-tiziyun',
+      slugA: 'xingdaomeng',
+      slugB: 'tiziyun',
+      title: '星岛梦 VS 梯子云 对比评测 · 2020年老牌不限设备与自研通用双支持对比',
+      verdict: '星岛梦自 2020 年运营，全线 1 倍率不限设备，提供永久不过期流量包；梯子云是 2025 年新品牌，主打自研小白客户端与通用订阅双支持，宣称 500Mbps 高峰冗余。看重品牌存续年限选星岛梦，看重客户端灵活性选梯子云。'
+    },
+    {
+      slug: 'sujie-vs-kexin',
+      slugA: 'sujie',
+      slugB: 'kexin',
+      title: '速界 VS 可信云 对比评测 · 25元档聚焦AI生产力与诚实中立态度对决',
+      verdict: '两家均为 25 元/月 150GB 的 IEPL 专线。速界在宣传中突出对 ChatGPT/Claude 的优化与规则说明；可信云则以极高透明度直接注明“缺乏统一实测数据，应保持中性描述”。看重 AI 场景选速界，看重诚实透明选可信云。'
+    },
+    {
+      slug: 'shanyue-vs-firefly',
+      slugA: 'shanyue',
+      slugB: 'firefly',
+      title: '闪跃 VS Firefly 对比评测 · 纯IPLC骨干专线与原生IP专线深度横评',
+      verdict: '闪跃主打纯 IPLC 骨干网接入与晚高峰极致抗抖动，月付 24 元 150GB；Firefly 同样走 IPLC 专线，原生 IP 解锁可靠，月付 25 元 150GB。两家均采用专属客户端模式，晚高峰稳定性在同价位中均处于第一梯队。'
+    },
+    {
+      slug: 'quanqiu-vs-sogo',
+      slugA: 'quanqiu',
+      slugB: 'sogo',
+      title: '全球云 VS SOGO云 对比评测 · 60+节点双协议与覆盖15国节点专线对比',
+      verdict: '全球云宣称覆盖 60+ 节点，采用 Trojan 与 Shadowsocks 双协议，月付 20 元起；SOGO云走 IEPL 专线，覆盖韩国、欧洲等 15 个国家和地区，月付 25 元起。两家均限专属客户端，需要多国小众节点选 SOGO云。'
+    },
+    {
+      slug: 'shenxing-vs-guangnian',
+      slugA: 'shenxing',
+      slugB: 'guangnian',
+      title: '神行加速 VS 光年梯 对比评测 · 14元120G年付中间档与18元110G专线对比',
+      verdict: '神行加速年付折算 14 元/月提供 120GB 流量，流量是 5.6 元档的两倍，适合年付预算用户；光年梯提供 18 元/月 110GB 的普通月付，无需一次性压一整年资金。预算充足愿按月付选光年梯，愿年付求均价选神行加速。'
+    },
+    {
+      slug: 'lingdong-vs-edgenova',
+      slugA: 'lingdong',
+      slugB: 'edgenova',
+      title: '灵动云 VS 边缘节点 EdgeNova 对比评测 · 实测AI高解锁专线与自动线路调度对比',
+      verdict: '灵动云拥有详尽的珠海联通 9Gbps 历史实测日志，OpenAI 各区解锁突出，套餐覆盖至 1.5TB 大流量；边缘节点 EdgeNova 主打高速直连与 IPLC 自动分配，限时月付仅需 15 元拥有 72GB。重度 AI 选灵动云，轻度入门选 EdgeNova。'
+    }
+  ];
+
+  return matchups.map(m => {
+    const brandA = getBrandBySlug(m.slugA)!;
+    const brandB = getBrandBySlug(m.slugB)!;
+    return {
+      params: { matchup: m.slug },
+      props: {
+        matchup: m,
+        brandA,
+        brandB
+      }
+    };
+  });
+}
+
+interface Props {
+  matchup: {
+    slug: string;
+    slugA: string;
+    slugB: string;
+    title: string;
+    verdict: string;
+  };
+  brandA: BrandEntity;
+  brandB: BrandEntity;
+}
+
+const { matchup, brandA, brandB } = Astro.props;
+
+const affA = getAffiliateLink(brandA.id);
+const affB = getAffiliateLink(brandB.id);
+
+const pageDescription = `${brandA.name} 与 ${brandB.name} 全方位对比。客观比较价格档位、专线类型、Clash 客户端支持、测速表现与风险限制，给出理性选购建议。`;
+
+const breadcrumbs = [
+  { name: '品牌对比', url: '/compare/' },
+  { name: `${brandA.name} VS ${brandB.name}`, url: `/compare/${matchup.slug}/` }
+];
+---
+
+<BaseLayout title={matchup.title} description={pageDescription} breadcrumbs={breadcrumbs} type="article">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Header -->
+    <header class="border-b border-brand-border pb-6 mb-6">
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 text-brand-info text-xs font-semibold border border-blue-200 mb-3">
+        <span>⚖️ 独立横向评测专题</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight">
+        {matchup.title}
+      </h1>
+      <p class="text-sm text-brand-muted mt-2">
+        发布日期: 2026-11-20 · 更新核准: 2026-11-24 · 编辑部深度对比分析
+      </p>
+    </header>
+
+    <!-- Answer-First Verdict Callout -->
+    <section class="bg-emerald-50/70 border border-emerald-200 rounded-xl p-5 mb-8 shadow-sm">
+      <div class="flex items-center gap-2 text-xs font-bold text-brand-teal uppercase tracking-wider mb-2">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>比对裁决结论速读 (Verdict)</span>
+      </div>
+      <p class="text-sm text-brand-dark leading-relaxed">
+        {matchup.verdict}
+      </p>
+    </section>
+
+    <!-- Side by Side Spec Table -->
+    <section class="my-8">
+      <h2 class="text-base font-bold text-brand-dark mb-3">核心参数与技术指标横向比对</h2>
+      <div class="table-responsive-wrapper">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="bg-gray-50 border-b border-brand-border">
+              <th class="py-3 px-3 text-brand-muted font-medium w-36">对比维度</th>
+              <th class="py-3 px-3 text-brand-dark font-bold text-sm w-1/2">
+                <span class="inline-block w-2.5 h-2.5 rounded-full mr-1.5" style={`background-color: ${brandA.colorAccent};`}></span>
+                <a href={`/brands/${brandA.slug}/`} class="hover:underline">{brandA.name}</a>
+                {brandA.isPartner && <span class="text-[9px] bg-emerald-100 text-brand-teal px-1 rounded ml-1 font-bold">合作品牌</span>}
+              </th>
+              <th class="py-3 px-3 text-brand-dark font-bold text-sm w-1/2">
+                <span class="inline-block w-2.5 h-2.5 rounded-full mr-1.5" style={`background-color: ${brandB.colorAccent};`}></span>
+                <a href={`/brands/${brandB.slug}/`} class="hover:underline">{brandB.name}</a>
+                {brandB.isPartner && <span class="text-[9px] bg-emerald-100 text-brand-teal px-1 rounded ml-1 font-bold">合作品牌</span>}
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border font-sans">
+            <tr class="hover:bg-brand-light/50">
+              <td class="py-3 px-3 font-semibold text-brand-muted bg-gray-50/50">起步月均门槛</td>
+              <td class="py-3 px-3 font-mono font-bold text-brand-teal text-sm">¥{brandA.startingPriceMonthlyYuan} /月起</td>
+              <td class="py-3 px-3 font-mono font-bold text-brand-teal text-sm">¥{brandB.startingPriceMonthlyYuan} /月起</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="py-3 px-3 font-semibold text-brand-muted bg-gray-50/50">专线架构</td>
+              <td class="py-3 px-3">{brandA.networkType} 专线</td>
+              <td class="py-3 px-3">{brandB.networkType} 专线</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="py-3 px-3 font-semibold text-brand-muted bg-gray-50/50">传输加密协议</td>
+              <td class="py-3 px-3 font-mono">{brandA.protocols.join(', ')}</td>
+              <td class="py-3 px-3 font-mono">{brandB.protocols.join(', ')}</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="py-3 px-3 font-semibold text-brand-muted bg-gray-50/50">自研客户端</td>
+              <td class="py-3 px-3">{brandA.clientSupport.hasCustomApp ? '已提供' : '未提供'}</td>
+              <td class="py-3 px-3">{brandB.clientSupport.hasCustomApp ? '已提供' : '未提供'}</td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="py-3 px-3 font-semibold text-brand-muted bg-gray-50/50">支持 Clash / 通用订阅</td>
+              <td class="py-3 px-3">
+                <span class:list={['font-bold', brandA.clientSupport.supportsClash ? 'text-blue-700' : 'text-rose-700']}>
+                  {brandA.clientSupport.supportsClash ? '支持通用导入' : '不支持 (仅限专属App)'}
+                </span>
+              </td>
+              <td class="py-3 px-3">
+                <span class:list={['font-bold', brandB.clientSupport.supportsClash ? 'text-blue-700' : 'text-rose-700']}>
+                  {brandB.clientSupport.supportsClash ? '支持通用导入' : '不支持 (仅限专属App)'}
+                </span>
+              </td>
+            </tr>
+            <tr class="hover:bg-brand-light/50">
+              <td class="py-3 px-3 font-semibold text-brand-muted bg-gray-50/50">AI 与流媒体适配</td>
+              <td class="py-3 px-3">{brandA.unlockMatrix.chatgpt === 'supported' ? 'ChatGPT 解锁良好' : '视节点 / 基础支持'}</td>
+              <td class="py-3 px-3">{brandB.unlockMatrix.chatgpt === 'supported' ? 'ChatGPT 解锁良好' : '视节点 / 基础支持'}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Deep Contrast Analysis -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+      
+      <!-- Option A -->
+      <div class="bg-white border border-brand-border rounded-xl p-5 shadow-sm space-y-3">
+        <h3 class="font-bold text-sm text-brand-dark flex items-center gap-2">
+          <span>选择 {brandA.name} 的理由</span>
+        </h3>
+        <ul class="text-xs text-brand-muted space-y-1.5 list-disc list-inside">
+          {brandA.pros.map(p => <li>{p}</li>)}
+        </ul>
+        <div class="pt-3 border-t border-brand-border">
+          <div class="text-[11px] font-bold text-brand-dark mb-1">适合人群:</div>
+          <p class="text-xs text-brand-muted">{brandA.targetAudience.join('、')}</p>
+        </div>
+        <div class="pt-3 border-t border-brand-border flex items-center justify-between text-xs gap-2">
+          <a href={`/reviews/${brandA.slug}/`} class="text-brand-teal font-semibold hover:underline">
+            深度评测 →
+          </a>
+          <a href={`/brands/${brandA.slug}/`} class="text-brand-muted hover:text-brand-dark hover:underline">
+            商业档案与优惠码 →
+          </a>
+        </div>
+        {affA && (
+          <div class="pt-2">
+            <a href={affA.url} target={affA.target} rel={affA.rel} class="block text-center py-2 px-3 rounded-lg bg-brand-teal text-white text-xs font-bold hover:bg-brand-accent transition-colors">
+              前往 {brandA.name} 官网（安全直达）
+            </a>
+          </div>
+        )}
+      </div>
+
+      <!-- Option B -->
+      <div class="bg-white border border-brand-border rounded-xl p-5 shadow-sm space-y-3">
+        <h3 class="font-bold text-sm text-brand-dark flex items-center gap-2">
+          <span>选择 {brandB.name} 的理由</span>
+        </h3>
+        <ul class="text-xs text-brand-muted space-y-1.5 list-disc list-inside">
+          {brandB.pros.map(p => <li>{p}</li>)}
+        </ul>
+        <div class="pt-3 border-t border-brand-border">
+          <div class="text-[11px] font-bold text-brand-dark mb-1">适合人群:</div>
+          <p class="text-xs text-brand-muted">{brandB.targetAudience.join('、')}</p>
+        </div>
+        <div class="pt-3 border-t border-brand-border flex items-center justify-between text-xs gap-2">
+          <a href={`/reviews/${brandB.slug}/`} class="text-brand-teal font-semibold hover:underline">
+            深度评测 →
+          </a>
+          <a href={`/brands/${brandB.slug}/`} class="text-brand-muted hover:text-brand-dark hover:underline">
+            商业档案与优惠码 →
+          </a>
+        </div>
+        {affB && (
+          <div class="pt-2">
+            <a href={affB.url} target={affB.target} rel={affB.rel} class="block text-center py-2 px-3 rounded-lg bg-brand-navy text-white text-xs font-bold hover:bg-brand-dark transition-colors">
+              前往 {brandB.name} 官网（安全直达）
+            </a>
+          </div>
+        )}
+      </div>
+
+    </section>
+
+    <!-- Affiliate Disclosure -->
+    <AffiliateDisclosure />
+
+  </div>
+</BaseLayout>

@@ -1,0 +1,1712 @@
+[
+  {
+    "id": "kw-top-1",
+    "query": "机场推荐",
+    "intent": "比较",
+    "entityId": null,
+    "cluster": "recommend",
+    "primaryUrl": "/recommend/",
+    "secondaryQueries": [
+      "机场推荐 评测",
+      "机场推荐 2026",
+      "机场推荐 稳定吗"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-2",
+    "query": "2026稳定机场推荐",
+    "intent": "比较",
+    "entityId": null,
+    "cluster": "recommend",
+    "primaryUrl": "/recommend/",
+    "secondaryQueries": [
+      "2026稳定机场推荐 评测",
+      "2026稳定机场推荐 2026",
+      "2026稳定机场推荐 稳定吗"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-3",
+    "query": "好用的机场推荐",
+    "intent": "比较",
+    "entityId": null,
+    "cluster": "recommend",
+    "primaryUrl": "/recommend/",
+    "secondaryQueries": [
+      "好用的机场推荐 评测",
+      "好用的机场推荐 2026",
+      "好用的机场推荐 稳定吗"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-4",
+    "query": "便宜机场推荐",
+    "intent": "比较",
+    "entityId": null,
+    "cluster": "pricing",
+    "primaryUrl": "/pricing/",
+    "secondaryQueries": [
+      "便宜机场推荐 评测",
+      "便宜机场推荐 2026",
+      "便宜机场推荐 稳定吗"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-5",
+    "query": "一元机场是真的吗",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "pricing",
+    "primaryUrl": "/pricing/",
+    "secondaryQueries": [
+      "一元机场是真的吗 评测",
+      "一元机场是真的吗 2026",
+      "一元机场是真的吗 稳定吗"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-6",
+    "query": "月付机场推荐",
+    "intent": "交易",
+    "entityId": null,
+    "cluster": "pricing",
+    "primaryUrl": "/pricing/",
+    "secondaryQueries": [
+      "月付机场推荐 评测",
+      "月付机场推荐 2026",
+      "月付机场推荐 稳定吗"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-7",
+    "query": "不限时流量机场",
+    "intent": "比较",
+    "entityId": null,
+    "cluster": "pricing",
+    "primaryUrl": "/pricing/",
+    "secondaryQueries": [
+      "不限时流量机场 评测",
+      "不限时流量机场 2026",
+      "不限时流量机场 稳定吗"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-8",
+    "query": "VPN与机场有什么区别",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "vpn",
+    "primaryUrl": "/vpn/",
+    "secondaryQueries": [
+      "VPN与机场有什么区别 评测",
+      "VPN与机场有什么区别 2026",
+      "VPN与机场有什么区别 稳定吗"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-9",
+    "query": "游戏加速器与网络代理区别",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "vpn",
+    "primaryUrl": "/vpn/",
+    "secondaryQueries": [
+      "游戏加速器与网络代理区别 评测",
+      "游戏加速器与网络代理区别 2026",
+      "游戏加速器与网络代理区别 稳定吗"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-10",
+    "query": "Clash Verge Rev 官方下载与配置",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "clients",
+    "primaryUrl": "/clients/",
+    "secondaryQueries": [
+      "Clash Verge Rev 官方下载与配置 评测",
+      "Clash Verge Rev 官方下载与配置 2026",
+      "Clash Verge Rev 官方下载与配置 稳定吗"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-11",
+    "query": "v2rayN 电脑客户端使用教程",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "clients",
+    "primaryUrl": "/clients/",
+    "secondaryQueries": [
+      "v2rayN 电脑客户端使用教程 评测",
+      "v2rayN 电脑客户端使用教程 2026",
+      "v2rayN 电脑客户端使用教程 稳定吗"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-12",
+    "query": "Shadowrocket 小火箭添加订阅教程",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "clients",
+    "primaryUrl": "/clients/",
+    "secondaryQueries": [
+      "Shadowrocket 小火箭添加订阅教程 评测",
+      "Shadowrocket 小火箭添加订阅教程 2026",
+      "Shadowrocket 小火箭添加订阅教程 稳定吗"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-13",
+    "query": "sing-box 通用客户端配置",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "clients",
+    "primaryUrl": "/clients/",
+    "secondaryQueries": [
+      "sing-box 通用客户端配置 评测",
+      "sing-box 通用客户端配置 2026",
+      "sing-box 通用客户端配置 稳定吗"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-14",
+    "query": "OpenWrt 软路由透明代理客户端",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "clients",
+    "primaryUrl": "/clients/",
+    "secondaryQueries": [
+      "OpenWrt 软路由透明代理客户端 评测",
+      "OpenWrt 软路由透明代理客户端 2026",
+      "OpenWrt 软路由透明代理客户端 稳定吗"
+    ],
+    "priority": "P2",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-15",
+    "query": "ChatGPT 机场节点推荐与报错解决",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "compatibility",
+    "primaryUrl": "/compatibility/",
+    "secondaryQueries": [
+      "ChatGPT 机场节点推荐与报错解决 评测",
+      "ChatGPT 机场节点推荐与报错解决 2026",
+      "ChatGPT 机场节点推荐与报错解决 稳定吗"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-16",
+    "query": "Netflix 4K 流媒体解锁检测",
+    "intent": "比较",
+    "entityId": null,
+    "cluster": "compatibility",
+    "primaryUrl": "/compatibility/",
+    "secondaryQueries": [
+      "Netflix 4K 流媒体解锁检测 评测",
+      "Netflix 4K 流媒体解锁检测 2026",
+      "Netflix 4K 流媒体解锁检测 稳定吗"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-17",
+    "query": "IEPL 专线与普通中转有什么区别",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "network",
+    "primaryUrl": "/network/",
+    "secondaryQueries": [
+      "IEPL 专线与普通中转有什么区别 评测",
+      "IEPL 专线与普通中转有什么区别 2026",
+      "IEPL 专线与普通中转有什么区别 稳定吗"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-18",
+    "query": "IPLC 纯专线为什么晚高峰不卡",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "network",
+    "primaryUrl": "/network/",
+    "secondaryQueries": [
+      "IPLC 纯专线为什么晚高峰不卡 评测",
+      "IPLC 纯专线为什么晚高峰不卡 2026",
+      "IPLC 纯专线为什么晚高峰不卡 稳定吗"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-19",
+    "query": "机场订阅链接怎么用",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "guides",
+    "primaryUrl": "/guides/",
+    "secondaryQueries": [
+      "机场订阅链接怎么用 评测",
+      "机场订阅链接怎么用 2026",
+      "机场订阅链接怎么用 稳定吗"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-20",
+    "query": "Clash 分流规则与 TUN 模式原理",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "guides",
+    "primaryUrl": "/guides/",
+    "secondaryQueries": [
+      "Clash 分流规则与 TUN 模式原理 评测",
+      "Clash 分流规则与 TUN 模式原理 2026",
+      "Clash 分流规则与 TUN 模式原理 稳定吗"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-21",
+    "query": "机场节点超时怎么排查",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "troubleshooting",
+    "primaryUrl": "/troubleshooting/",
+    "secondaryQueries": [
+      "机场节点超时怎么排查 评测",
+      "机场节点超时怎么排查 2026",
+      "机场节点超时怎么排查 稳定吗"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-22",
+    "query": "机场订阅更新失败怎么办",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "troubleshooting",
+    "primaryUrl": "/troubleshooting/",
+    "secondaryQueries": [
+      "机场订阅更新失败怎么办 评测",
+      "机场订阅更新失败怎么办 2026",
+      "机场订阅更新失败怎么办 稳定吗"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-23",
+    "query": "机场跑路前兆与防坑指南",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "risk",
+    "primaryUrl": "/risk/",
+    "secondaryQueries": [
+      "机场跑路前兆与防坑指南 评测",
+      "机场跑路前兆与防坑指南 2026",
+      "机场跑路前兆与防坑指南 稳定吗"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-24",
+    "query": "机场不给退款如何维权与替代",
+    "intent": "信息",
+    "entityId": null,
+    "cluster": "risk",
+    "primaryUrl": "/risk/",
+    "secondaryQueries": [
+      "机场不给退款如何维权与替代 评测",
+      "机场不给退款如何维权与替代 2026",
+      "机场不给退款如何维权与替代 稳定吗"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-25",
+    "query": "智能机场套餐筛选工具",
+    "intent": "比较",
+    "entityId": null,
+    "cluster": "tools",
+    "primaryUrl": "/tools/plan-finder/",
+    "secondaryQueries": [
+      "智能机场套餐筛选工具 评测",
+      "智能机场套餐筛选工具 2026",
+      "智能机场套餐筛选工具 稳定吗"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-26",
+    "query": "月度流量消耗估算器",
+    "intent": "工具",
+    "entityId": null,
+    "cluster": "tools",
+    "primaryUrl": "/tools/traffic-calculator/",
+    "secondaryQueries": [
+      "月度流量消耗估算器 评测",
+      "月度流量消耗估算器 2026",
+      "月度流量消耗估算器 稳定吗"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-27",
+    "query": "机场真实折算成本计算器",
+    "intent": "工具",
+    "entityId": null,
+    "cluster": "tools",
+    "primaryUrl": "/tools/cost-calculator/",
+    "secondaryQueries": [
+      "机场真实折算成本计算器 评测",
+      "机场真实折算成本计算器 2026",
+      "机场真实折算成本计算器 稳定吗"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-top-28",
+    "query": "机场横向并排对比",
+    "intent": "比较",
+    "entityId": null,
+    "cluster": "tools",
+    "primaryUrl": "/compare/",
+    "secondaryQueries": [
+      "机场横向并排对比 评测",
+      "机场横向并排对比 2026",
+      "机场横向并排对比 稳定吗"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-guangsu-1",
+    "query": "光速云 怎么样",
+    "intent": "比较",
+    "entityId": "guangsu",
+    "cluster": "brands",
+    "primaryUrl": "/brands/guangsu/",
+    "secondaryQueries": [
+      "光速云 评测",
+      "光速云 官网",
+      "光速云 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-guangsu-2",
+    "query": "光速云 价格与套餐",
+    "intent": "交易",
+    "entityId": "guangsu",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/guangsu/#plans",
+    "secondaryQueries": [
+      "光速云 优惠码",
+      "光速云 月付",
+      "光速云 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-muguang-1",
+    "query": "暮光加速 怎么样",
+    "intent": "比较",
+    "entityId": "muguang",
+    "cluster": "brands",
+    "primaryUrl": "/brands/muguang/",
+    "secondaryQueries": [
+      "暮光加速 评测",
+      "暮光加速 官网",
+      "暮光加速 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-muguang-2",
+    "query": "暮光加速 价格与套餐",
+    "intent": "交易",
+    "entityId": "muguang",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/muguang/#plans",
+    "secondaryQueries": [
+      "暮光加速 优惠码",
+      "暮光加速 月付",
+      "暮光加速 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-feimao-1",
+    "query": "飞猫云 怎么样",
+    "intent": "比较",
+    "entityId": "feimao",
+    "cluster": "brands",
+    "primaryUrl": "/brands/feimao/",
+    "secondaryQueries": [
+      "飞猫云 评测",
+      "飞猫云 官网",
+      "飞猫云 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-feimao-2",
+    "query": "飞猫云 价格与套餐",
+    "intent": "交易",
+    "entityId": "feimao",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/feimao/#plans",
+    "secondaryQueries": [
+      "飞猫云 优惠码",
+      "飞猫云 月付",
+      "飞猫云 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-weifeng-1",
+    "query": "微风网络 怎么样",
+    "intent": "比较",
+    "entityId": "weifeng",
+    "cluster": "brands",
+    "primaryUrl": "/brands/weifeng/",
+    "secondaryQueries": [
+      "微风网络 评测",
+      "微风网络 官网",
+      "微风网络 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-weifeng-2",
+    "query": "微风网络 价格与套餐",
+    "intent": "交易",
+    "entityId": "weifeng",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/weifeng/#plans",
+    "secondaryQueries": [
+      "微风网络 优惠码",
+      "微风网络 月付",
+      "微风网络 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-dalaoyun-1",
+    "query": "大佬云 怎么样",
+    "intent": "比较",
+    "entityId": "dalaoyun",
+    "cluster": "brands",
+    "primaryUrl": "/brands/dalaoyun/",
+    "secondaryQueries": [
+      "大佬云 评测",
+      "大佬云 官网",
+      "大佬云 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-dalaoyun-2",
+    "query": "大佬云 价格与套餐",
+    "intent": "交易",
+    "entityId": "dalaoyun",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/dalaoyun/#plans",
+    "secondaryQueries": [
+      "大佬云 优惠码",
+      "大佬云 月付",
+      "大佬云 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-xingdaomeng-1",
+    "query": "星岛梦 怎么样",
+    "intent": "比较",
+    "entityId": "xingdaomeng",
+    "cluster": "brands",
+    "primaryUrl": "/brands/xingdaomeng/",
+    "secondaryQueries": [
+      "星岛梦 评测",
+      "星岛梦 官网",
+      "星岛梦 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-xingdaomeng-2",
+    "query": "星岛梦 价格与套餐",
+    "intent": "交易",
+    "entityId": "xingdaomeng",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/xingdaomeng/#plans",
+    "secondaryQueries": [
+      "星岛梦 优惠码",
+      "星岛梦 月付",
+      "星岛梦 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-ermao-1",
+    "query": "二猫云 怎么样",
+    "intent": "比较",
+    "entityId": "ermao",
+    "cluster": "brands",
+    "primaryUrl": "/brands/ermao/",
+    "secondaryQueries": [
+      "二猫云 评测",
+      "二猫云 官网",
+      "二猫云 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-ermao-2",
+    "query": "二猫云 价格与套餐",
+    "intent": "交易",
+    "entityId": "ermao",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/ermao/#plans",
+    "secondaryQueries": [
+      "二猫云 优惠码",
+      "二猫云 月付",
+      "二猫云 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-wuyou-1",
+    "query": "无忧链接 怎么样",
+    "intent": "比较",
+    "entityId": "wuyou",
+    "cluster": "brands",
+    "primaryUrl": "/brands/wuyou/",
+    "secondaryQueries": [
+      "无忧链接 评测",
+      "无忧链接 官网",
+      "无忧链接 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-wuyou-2",
+    "query": "无忧链接 价格与套餐",
+    "intent": "交易",
+    "entityId": "wuyou",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/wuyou/#plans",
+    "secondaryQueries": [
+      "无忧链接 优惠码",
+      "无忧链接 月付",
+      "无忧链接 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-weitu-1",
+    "query": "唯兔云 怎么样",
+    "intent": "比较",
+    "entityId": "weitu",
+    "cluster": "brands",
+    "primaryUrl": "/brands/weitu/",
+    "secondaryQueries": [
+      "唯兔云 评测",
+      "唯兔云 官网",
+      "唯兔云 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-weitu-2",
+    "query": "唯兔云 价格与套餐",
+    "intent": "交易",
+    "entityId": "weitu",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/weitu/#plans",
+    "secondaryQueries": [
+      "唯兔云 优惠码",
+      "唯兔云 月付",
+      "唯兔云 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-firefly-1",
+    "query": "Firefly 怎么样",
+    "intent": "比较",
+    "entityId": "firefly",
+    "cluster": "brands",
+    "primaryUrl": "/brands/firefly/",
+    "secondaryQueries": [
+      "Firefly 评测",
+      "Firefly 官网",
+      "Firefly 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-firefly-2",
+    "query": "Firefly 价格与套餐",
+    "intent": "交易",
+    "entityId": "firefly",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/firefly/#plans",
+    "secondaryQueries": [
+      "Firefly 优惠码",
+      "Firefly 月付",
+      "Firefly 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-yuzhou-1",
+    "query": "宇宙云 怎么样",
+    "intent": "比较",
+    "entityId": "yuzhou",
+    "cluster": "brands",
+    "primaryUrl": "/brands/yuzhou/",
+    "secondaryQueries": [
+      "宇宙云 评测",
+      "宇宙云 官网",
+      "宇宙云 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-yuzhou-2",
+    "query": "宇宙云 价格与套餐",
+    "intent": "交易",
+    "entityId": "yuzhou",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/yuzhou/#plans",
+    "secondaryQueries": [
+      "宇宙云 优惠码",
+      "宇宙云 月付",
+      "宇宙云 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-u1s1-1",
+    "query": "U1S1 怎么样",
+    "intent": "比较",
+    "entityId": "u1s1",
+    "cluster": "brands",
+    "primaryUrl": "/brands/u1s1/",
+    "secondaryQueries": [
+      "U1S1 评测",
+      "U1S1 官网",
+      "U1S1 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-u1s1-2",
+    "query": "U1S1 价格与套餐",
+    "intent": "交易",
+    "entityId": "u1s1",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/u1s1/#plans",
+    "secondaryQueries": [
+      "U1S1 优惠码",
+      "U1S1 月付",
+      "U1S1 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-lingmao-1",
+    "query": "灵猫网络 怎么样",
+    "intent": "比较",
+    "entityId": "lingmao",
+    "cluster": "brands",
+    "primaryUrl": "/brands/lingmao/",
+    "secondaryQueries": [
+      "灵猫网络 评测",
+      "灵猫网络 官网",
+      "灵猫网络 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-lingmao-2",
+    "query": "灵猫网络 价格与套餐",
+    "intent": "交易",
+    "entityId": "lingmao",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/lingmao/#plans",
+    "secondaryQueries": [
+      "灵猫网络 优惠码",
+      "灵猫网络 月付",
+      "灵猫网络 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-jilian-1",
+    "query": "极连云 怎么样",
+    "intent": "比较",
+    "entityId": "jilian",
+    "cluster": "brands",
+    "primaryUrl": "/brands/jilian/",
+    "secondaryQueries": [
+      "极连云 评测",
+      "极连云 官网",
+      "极连云 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-jilian-2",
+    "query": "极连云 价格与套餐",
+    "intent": "交易",
+    "entityId": "jilian",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/jilian/#plans",
+    "secondaryQueries": [
+      "极连云 优惠码",
+      "极连云 月付",
+      "极连云 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-guangnian-1",
+    "query": "光年梯 怎么样",
+    "intent": "比较",
+    "entityId": "guangnian",
+    "cluster": "brands",
+    "primaryUrl": "/brands/guangnian/",
+    "secondaryQueries": [
+      "光年梯 评测",
+      "光年梯 官网",
+      "光年梯 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-guangnian-2",
+    "query": "光年梯 价格与套餐",
+    "intent": "交易",
+    "entityId": "guangnian",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/guangnian/#plans",
+    "secondaryQueries": [
+      "光年梯 优惠码",
+      "光年梯 月付",
+      "光年梯 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-yifan-1",
+    "query": "一翻云 怎么样",
+    "intent": "比较",
+    "entityId": "yifan",
+    "cluster": "brands",
+    "primaryUrl": "/brands/yifan/",
+    "secondaryQueries": [
+      "一翻云 评测",
+      "一翻云 官网",
+      "一翻云 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-yifan-2",
+    "query": "一翻云 价格与套餐",
+    "intent": "交易",
+    "entityId": "yifan",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/yifan/#plans",
+    "secondaryQueries": [
+      "一翻云 优惠码",
+      "一翻云 月付",
+      "一翻云 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-sogo-1",
+    "query": "SOGO云 怎么样",
+    "intent": "比较",
+    "entityId": "sogo",
+    "cluster": "brands",
+    "primaryUrl": "/brands/sogo/",
+    "secondaryQueries": [
+      "SOGO云 评测",
+      "SOGO云 官网",
+      "SOGO云 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-sogo-2",
+    "query": "SOGO云 价格与套餐",
+    "intent": "交易",
+    "entityId": "sogo",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/sogo/#plans",
+    "secondaryQueries": [
+      "SOGO云 优惠码",
+      "SOGO云 月付",
+      "SOGO云 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-kexin-1",
+    "query": "可信云 怎么样",
+    "intent": "比较",
+    "entityId": "kexin",
+    "cluster": "brands",
+    "primaryUrl": "/brands/kexin/",
+    "secondaryQueries": [
+      "可信云 评测",
+      "可信云 官网",
+      "可信云 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-kexin-2",
+    "query": "可信云 价格与套餐",
+    "intent": "交易",
+    "entityId": "kexin",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/kexin/#plans",
+    "secondaryQueries": [
+      "可信云 优惠码",
+      "可信云 月付",
+      "可信云 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-sujie-1",
+    "query": "速界 怎么样",
+    "intent": "比较",
+    "entityId": "sujie",
+    "cluster": "brands",
+    "primaryUrl": "/brands/sujie/",
+    "secondaryQueries": [
+      "速界 评测",
+      "速界 官网",
+      "速界 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-sujie-2",
+    "query": "速界 价格与套餐",
+    "intent": "交易",
+    "entityId": "sujie",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/sujie/#plans",
+    "secondaryQueries": [
+      "速界 优惠码",
+      "速界 月付",
+      "速界 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-shanyue-1",
+    "query": "闪跃 怎么样",
+    "intent": "比较",
+    "entityId": "shanyue",
+    "cluster": "brands",
+    "primaryUrl": "/brands/shanyue/",
+    "secondaryQueries": [
+      "闪跃 评测",
+      "闪跃 官网",
+      "闪跃 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-shanyue-2",
+    "query": "闪跃 价格与套餐",
+    "intent": "交易",
+    "entityId": "shanyue",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/shanyue/#plans",
+    "secondaryQueries": [
+      "闪跃 优惠码",
+      "闪跃 月付",
+      "闪跃 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-quanqiu-1",
+    "query": "全球云 怎么样",
+    "intent": "比较",
+    "entityId": "quanqiu",
+    "cluster": "brands",
+    "primaryUrl": "/brands/quanqiu/",
+    "secondaryQueries": [
+      "全球云 评测",
+      "全球云 官网",
+      "全球云 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-quanqiu-2",
+    "query": "全球云 价格与套餐",
+    "intent": "交易",
+    "entityId": "quanqiu",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/quanqiu/#plans",
+    "secondaryQueries": [
+      "全球云 优惠码",
+      "全球云 月付",
+      "全球云 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-shandianshu-1",
+    "query": "闪电鼠 怎么样",
+    "intent": "比较",
+    "entityId": "shandianshu",
+    "cluster": "brands",
+    "primaryUrl": "/brands/shandianshu/",
+    "secondaryQueries": [
+      "闪电鼠 评测",
+      "闪电鼠 官网",
+      "闪电鼠 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-shandianshu-2",
+    "query": "闪电鼠 价格与套餐",
+    "intent": "交易",
+    "entityId": "shandianshu",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/shandianshu/#plans",
+    "secondaryQueries": [
+      "闪电鼠 优惠码",
+      "闪电鼠 月付",
+      "闪电鼠 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-yunjiexian-1",
+    "query": "云界线 怎么样",
+    "intent": "比较",
+    "entityId": "yunjiexian",
+    "cluster": "brands",
+    "primaryUrl": "/brands/yunjiexian/",
+    "secondaryQueries": [
+      "云界线 评测",
+      "云界线 官网",
+      "云界线 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-yunjiexian-2",
+    "query": "云界线 价格与套餐",
+    "intent": "交易",
+    "entityId": "yunjiexian",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/yunjiexian/#plans",
+    "secondaryQueries": [
+      "云界线 优惠码",
+      "云界线 月付",
+      "云界线 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-liulianyun-1",
+    "query": "榴莲云 怎么样",
+    "intent": "比较",
+    "entityId": "liulianyun",
+    "cluster": "brands",
+    "primaryUrl": "/brands/liulianyun/",
+    "secondaryQueries": [
+      "榴莲云 评测",
+      "榴莲云 官网",
+      "榴莲云 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-liulianyun-2",
+    "query": "榴莲云 价格与套餐",
+    "intent": "交易",
+    "entityId": "liulianyun",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/liulianyun/#plans",
+    "secondaryQueries": [
+      "榴莲云 优惠码",
+      "榴莲云 月付",
+      "榴莲云 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-shenxing-1",
+    "query": "神行加速 怎么样",
+    "intent": "比较",
+    "entityId": "shenxing",
+    "cluster": "brands",
+    "primaryUrl": "/brands/shenxing/",
+    "secondaryQueries": [
+      "神行加速 评测",
+      "神行加速 官网",
+      "神行加速 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-shenxing-2",
+    "query": "神行加速 价格与套餐",
+    "intent": "交易",
+    "entityId": "shenxing",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/shenxing/#plans",
+    "secondaryQueries": [
+      "神行加速 优惠码",
+      "神行加速 月付",
+      "神行加速 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-huanqiuti-1",
+    "query": "环球梯 怎么样",
+    "intent": "比较",
+    "entityId": "huanqiuti",
+    "cluster": "brands",
+    "primaryUrl": "/brands/huanqiuti/",
+    "secondaryQueries": [
+      "环球梯 评测",
+      "环球梯 官网",
+      "环球梯 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-huanqiuti-2",
+    "query": "环球梯 价格与套餐",
+    "intent": "交易",
+    "entityId": "huanqiuti",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/huanqiuti/#plans",
+    "secondaryQueries": [
+      "环球梯 优惠码",
+      "环球梯 月付",
+      "环球梯 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-yinxingren-1",
+    "query": "隐形人 怎么样",
+    "intent": "比较",
+    "entityId": "yinxingren",
+    "cluster": "brands",
+    "primaryUrl": "/brands/yinxingren/",
+    "secondaryQueries": [
+      "隐形人 评测",
+      "隐形人 官网",
+      "隐形人 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-yinxingren-2",
+    "query": "隐形人 价格与套餐",
+    "intent": "交易",
+    "entityId": "yinxingren",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/yinxingren/#plans",
+    "secondaryQueries": [
+      "隐形人 优惠码",
+      "隐形人 月付",
+      "隐形人 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-tiziyun-1",
+    "query": "梯子云 怎么样",
+    "intent": "比较",
+    "entityId": "tiziyun",
+    "cluster": "brands",
+    "primaryUrl": "/brands/tiziyun/",
+    "secondaryQueries": [
+      "梯子云 评测",
+      "梯子云 官网",
+      "梯子云 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-tiziyun-2",
+    "query": "梯子云 价格与套餐",
+    "intent": "交易",
+    "entityId": "tiziyun",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/tiziyun/#plans",
+    "secondaryQueries": [
+      "梯子云 优惠码",
+      "梯子云 月付",
+      "梯子云 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-lingdong-1",
+    "query": "灵动云 怎么样",
+    "intent": "比较",
+    "entityId": "lingdong",
+    "cluster": "brands",
+    "primaryUrl": "/brands/lingdong/",
+    "secondaryQueries": [
+      "灵动云 评测",
+      "灵动云 官网",
+      "灵动云 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-lingdong-2",
+    "query": "灵动云 价格与套餐",
+    "intent": "交易",
+    "entityId": "lingdong",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/lingdong/#plans",
+    "secondaryQueries": [
+      "灵动云 优惠码",
+      "灵动云 月付",
+      "灵动云 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-langwang-1",
+    "query": "浪网 怎么样",
+    "intent": "比较",
+    "entityId": "langwang",
+    "cluster": "brands",
+    "primaryUrl": "/brands/langwang/",
+    "secondaryQueries": [
+      "浪网 评测",
+      "浪网 官网",
+      "浪网 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-langwang-2",
+    "query": "浪网 价格与套餐",
+    "intent": "交易",
+    "entityId": "langwang",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/langwang/#plans",
+    "secondaryQueries": [
+      "浪网 优惠码",
+      "浪网 月付",
+      "浪网 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-edgenova-1",
+    "query": "边缘节点 EdgeNova 怎么样",
+    "intent": "比较",
+    "entityId": "edgenova",
+    "cluster": "brands",
+    "primaryUrl": "/brands/edgenova/",
+    "secondaryQueries": [
+      "边缘节点 EdgeNova 评测",
+      "边缘节点 EdgeNova 官网",
+      "边缘节点 EdgeNova 速度"
+    ],
+    "priority": "P0",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  },
+  {
+    "id": "kw-brand-edgenova-2",
+    "query": "边缘节点 EdgeNova 价格与套餐",
+    "intent": "交易",
+    "entityId": "edgenova",
+    "cluster": "pricing",
+    "primaryUrl": "/brands/edgenova/#plans",
+    "secondaryQueries": [
+      "边缘节点 EdgeNova 优惠码",
+      "边缘节点 EdgeNova 月付",
+      "边缘节点 EdgeNova 年付多少钱"
+    ],
+    "priority": "P1",
+    "source": "seed-research",
+    "observedAt": "2026-11-20",
+    "status": "active",
+    "impressions": null,
+    "clicks": null
+  }
+]

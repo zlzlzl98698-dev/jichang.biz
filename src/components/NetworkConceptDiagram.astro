@@ -1,0 +1,91 @@
+---
+interface Props {
+  brandName?: string;
+  networkType?: string;
+  isSpecific?: boolean;
+}
+
+const { brandName = '标准机场架构', networkType = 'IEPL / IPLC 专线', isSpecific = false } = Astro.props;
+---
+
+<div class="bg-brand-navy border border-gray-800 rounded-xl p-5 my-6 text-white font-mono shadow-md overflow-hidden">
+  
+  <div class="flex items-center justify-between pb-3 border-b border-gray-800 text-xs text-gray-400">
+    <div class="flex items-center gap-2">
+      <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+      <span class="text-white font-semibold font-sans">
+        {brandName} · 网络拓扑与传输可观测性示意 (Network Path Observatory)
+      </span>
+    </div>
+    <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 border border-gray-700">
+      {isSpecific ? '官方架构宣称' : '通用技术原理示意'}
+    </span>
+  </div>
+
+  <!-- Diagram Visual Path -->
+  <div class="py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-sans">
+    
+    <!-- Step 1: User Device -->
+    <div class="flex-1 bg-gray-900 border border-gray-800 rounded-lg p-3 text-center space-y-1 w-full">
+      <div class="text-[10px] text-gray-400 font-mono">STEP 01 · CLIENT</div>
+      <div class="text-white font-bold">本地用户设备</div>
+      <div class="text-[11px] text-gray-400">PC / 手机 / 软路由</div>
+      <div class="text-[10px] text-cyan-300 font-mono mt-1">加密协议 (VLESS/Trojan)</div>
+    </div>
+
+    <!-- Arrow 1 -->
+    <div class="hidden md:flex flex-col items-center text-gray-400">
+      <span class="text-[10px] font-mono text-gray-400">国内公网</span>
+      <svg class="w-6 h-6 text-cyan-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
+    </div>
+
+    <!-- Step 2: Domestic BGP Ingress -->
+    <div class="flex-1 bg-gray-900 border border-cyan-900/60 rounded-lg p-3 text-center space-y-1 w-full">
+      <div class="text-[10px] text-cyan-400 font-mono">STEP 02 · INGRESS</div>
+      <div class="text-white font-bold">国内中转 / BGP 入口</div>
+      <div class="text-[11px] text-gray-400">广州 / 上海 / 广港</div>
+      <div class="text-[10px] text-emerald-400 font-mono mt-1">三网优化调度</div>
+    </div>
+
+    <!-- Arrow 2: Dedicated Cross-border Line -->
+    <div class="hidden md:flex flex-col items-center text-emerald-400">
+      <span class="text-[10px] font-mono font-bold text-emerald-400">{networkType}</span>
+      <div class="h-0.5 w-12 bg-emerald-500 my-1"></div>
+      <span class="text-[9px] text-gray-400">内网物理专线传输</span>
+    </div>
+
+    <!-- Step 3: Overseas Egress / Landings -->
+    <div class="flex-1 bg-gray-900 border border-emerald-900/60 rounded-lg p-3 text-center space-y-1 w-full">
+      <div class="text-[10px] text-emerald-400 font-mono">STEP 03 · EGRESS</div>
+      <div class="text-white font-bold">海外专线落地出口</div>
+      <div class="text-[11px] text-gray-400">香港 / 东京 / 新加坡 / 洛杉矶</div>
+      <div class="text-[10px] text-amber-300 font-mono mt-1">原生 / 广播商用 IP</div>
+    </div>
+
+    <!-- Arrow 3 -->
+    <div class="hidden md:flex flex-col items-center text-gray-400">
+      <span class="text-[10px] font-mono text-gray-400">全球直连</span>
+      <svg class="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
+    </div>
+
+    <!-- Step 4: Target Destination -->
+    <div class="flex-1 bg-gray-900 border border-gray-800 rounded-lg p-3 text-center space-y-1 w-full">
+      <div class="text-[10px] text-gray-400 font-mono">STEP 04 · TARGET</div>
+      <div class="text-white font-bold">目标服务与 API</div>
+      <div class="text-[11px] text-gray-400">ChatGPT / Claude</div>
+      <div class="text-[10px] text-purple-300 font-mono mt-1">Netflix / 4K 媒体</div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Clarification -->
+  <div class="pt-3 border-t border-gray-800 text-[11px] text-gray-400 flex flex-col sm:flex-row items-center justify-between gap-2">
+    <span>💡 架构原理：专线（IEPL/IPLC）利用企业级内网跨域点对点连接，降低公网抖动与晚高峰丢包。</span>
+    <span class="text-[10px] text-gray-400">技术原理科普 · 严谨合规使用</span>
+  </div>
+
+</div>

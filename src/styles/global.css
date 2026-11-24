@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-brand-dark: #152C39;
+  --color-brand-teal: #087F73;
+  --color-brand-accent: #0A9988;
+  --color-brand-light: #F7F8F4;
+  --color-brand-border: #DFE6E2;
+  --color-brand-muted: #52667A;
+  --color-brand-navy: #0E1E28;
+}
+
+@layer base {
+  html {
+    font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+    color: var(--color-brand-dark);
+    background-color: var(--color-brand-light);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  /* 数字等宽排版 */
+  .font-mono-numbers {
+    font-feature-settings: 'tnum' on, 'lnum' on;
+    font-family: 'JetBrains Mono', 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+  }
+
+  /* 消除横向溢出 */
+  main, header, footer, section {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  /* 响应式表格滚动容器 */
+  .table-responsive-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--color-brand-border);
+    border-radius: 8px;
+    background: #FFFFFF;
+    margin: 1.25rem 0;
+  }
+
+  /* 无障碍 reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* 键盘焦点样式 */
+:focus-visible {
+  outline: 2px solid var(--color-brand-teal);
+  outline-offset: 2px;
+}
+
+/* Pagefind 结果美化 */
+.pagefind-ui {
+  --pagefind-ui-primary: #087F73;
+  --pagefind-ui-text: #152C39;
+  --pagefind-ui-background: #FFFFFF;
+  --pagefind-ui-border: #DFE6E2;
+  --pagefind-ui-tag: #F7F8F4;
+}
